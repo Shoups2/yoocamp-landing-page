@@ -1,0 +1,29 @@
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Community from "@/components/Community";
+import Features from "@/components/Features";
+import ProductDemo from "@/components/ProductDemo";
+import Creators from "@/components/Creators";
+import Advantages from "@/components/Advantages";
+import Process from "@/components/Process";
+import CTABanner from "@/components/CTABanner";
+import Footer from "@/components/Footer";
+
+export default function Home() {
+  return (
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <Community />
+        <Features />
+        <ProductDemo />
+        <Creators />
+        <Advantages />
+        <Process />
+        <CTABanner />
+      </main>
+      <Footer />
+    </>
+  );
+}
