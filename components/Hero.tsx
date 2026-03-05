@@ -135,17 +135,11 @@ export default function Hero() {
                   <span className="w-2.5 h-2.5 rounded-full bg-green-300" />
                   <span className="flex-1 mx-4 h-5 bg-gray-100 rounded" />
                 </div>
-                <div className="p-6 space-y-4">
-                  <div className="flex gap-4">
-                    <div className="w-48 h-24 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl" />
-                    <div className="w-48 h-24 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl" />
-                  </div>
-                  <div className="h-32 bg-gray-50 rounded-xl" />
-                  <div className="flex gap-3">
-                    <div className="h-8 w-24 bg-indigo-50 rounded-lg" />
-                    <div className="h-8 w-32 bg-gray-50 rounded-lg" />
-                  </div>
-                </div>
+                <img
+                  src="/test.png"
+                  alt="Yoocamp dashboard"
+                  className="w-full"
+                />
               </div>
             </FadeIn>
 

@@ -1,77 +1,97 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { FadeIn, Float } from "./motion";
-
-const floatingAvatars = [
-  { letter: "A", x: "8%", y: "20%", delay: 0 },
-  { letter: "B", x: "88%", y: "25%", delay: 0.5 },
-  { letter: "C", x: "12%", y: "70%", delay: 1 },
-  { letter: "D", x: "85%", y: "65%", delay: 1.5 },
-  { letter: "E", x: "25%", y: "15%", delay: 2 },
-  { letter: "F", x: "75%", y: "80%", delay: 2.5 },
-];
+import { FadeIn } from "./motion";
 
 export default function CTABanner() {
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    console.log("Waitlist signup:", { email, role });
+    setSubmitted(true);
+  }
+
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-gray-900" />
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-indigo-700 to-indigo-900" />
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[120px]" />
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-400/10 rounded-full blur-[100px]" />
       </div>
 
-      {/* Floating avatars */}
-      {floatingAvatars.map((a) => (
-        <Float key={a.letter} delay={a.delay} duration={5} y={12}>
-          <div
-            className="absolute w-10 h-10 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm flex items-center justify-center text-white/40 text-xs font-bold hidden md:flex"
-            style={{ left: a.x, top: a.y }}
-          >
-            {a.letter}
-          </div>
-        </Float>
-      ))}
-
-      <div className="relative max-w-3xl mx-auto px-6 text-center">
+      <div className="relative max-w-xl mx-auto px-6 text-center">
         <FadeIn>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Placeholder CTA title
+            Prêt à lancer ta communauté ?
           </h2>
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <p className="text-lg text-indigo-200/80 mb-8 max-w-xl mx-auto">
-            Placeholder CTA description text goes here with value proposition.
+          <p className="text-lg text-indigo-200 mb-10 max-w-md mx-auto">
+            Rejoins la liste d&apos;attente et fais partie des premiers créateurs à accéder à Yoocamp.
           </p>
         </FadeIn>
 
         <FadeIn delay={0.2}>
-          <motion.a
-            href="#"
-            className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold text-lg px-8 py-4 rounded-xl"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 0 40px rgba(99, 102, 241, 0.3)",
-            }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 400, damping: 15 }}
-          >
-            Placeholder CTA
-            <motion.span
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
+          {submitted ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8"
             >
-              →
-            </motion.span>
-          </motion.a>
-        </FadeIn>
+              <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                </svg>
+              </div>
+              <p className="font-semibold text-white text-lg">Tu es sur la liste !</p>
+              <p className="text-sm text-indigo-200 mt-2">On te contactera dès que Yoocamp sera prêt.</p>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-3 max-w-md mx-auto">
+              <input
+                type="email"
+                required
+                placeholder="Ton adresse email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-indigo-300/60 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 transition-all"
+              />
 
-        <FadeIn delay={0.3}>
-          <p className="mt-4 text-sm text-indigo-300/50">
-            Placeholder disclaimer text
-          </p>
+              <select
+                required
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full px-4 py-3.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 transition-all appearance-none"
+              >
+                <option value="" disabled className="text-gray-900">
+                  Je suis…
+                </option>
+                <option value="creator" className="text-gray-900">Créateur de contenu</option>
+                <option value="coach" className="text-gray-900">Coach / Formateur</option>
+                <option value="expert" className="text-gray-900">Expert / Indépendant</option>
+                <option value="other" className="text-gray-900">Autre</option>
+              </select>
+
+              <motion.button
+                type="submit"
+                className="w-full bg-white text-indigo-700 font-semibold py-3.5 rounded-xl text-[15px] shadow-lg"
+                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(255,255,255,0.2)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Rejoindre la liste d&apos;attente
+              </motion.button>
+
+              <p className="text-xs text-indigo-300/60">
+                Accès early — priorité aux premiers inscrits. Pas de spam, promis.
+              </p>
+            </form>
+          )}
         </FadeIn>
       </div>
     </section>

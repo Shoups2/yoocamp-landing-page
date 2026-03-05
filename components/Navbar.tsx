@@ -33,7 +33,7 @@ export default function Navbar() {
           className="text-2xl font-extrabold tracking-tight text-gray-900"
           whileHover={{ scale: 1.03 }}
         >
-          <span className="text-indigo-600">●</span> placeholder
+          <img src="/yoocamp 4.svg" alt="Yoocamp" className="h-10" />
         </motion.a>
 
         {/* Desktop nav */}
