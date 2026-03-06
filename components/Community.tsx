@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FadeIn, Stagger, StaggerItem, Float } from "./motion";
+import { FadeIn, Stagger, StaggerItem, Float, ScaleIn } from "./motion";
 
 const possibilities = [
   {
@@ -51,9 +51,12 @@ const possibilities = [
 function VideoMock() {
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-      <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center relative">
-        <div className="w-10 h-10 rounded-full bg-indigo-500/90 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-          <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent ml-0.5" />
+      <div className="aspect-video relative">
+        <img src="/test png.png" alt="Vidéo exclusive" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-indigo-500/90 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent ml-0.5" />
+          </div>
         </div>
         <div className="absolute bottom-2 left-2 right-2 h-1 bg-gray-200 rounded-full overflow-hidden">
           <div className="h-full w-1/3 bg-indigo-500 rounded-full" />
@@ -154,14 +157,16 @@ export default function Community() {
             <StaggerItem key={item.title}>
               <motion.div
                 className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-full"
-                whileHover={{ y: -4, boxShadow: "0 16px 40px rgba(99,102,241,0.08)" }}
+                whileHover={{ scale: 1.03, y: -4, boxShadow: "0 16px 40px rgba(99,102,241,0.08)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 {/* Mock preview */}
                 <div className="p-4 pb-0">
-                  <Float delay={i * 0.4} duration={5} y={4}>
-                    {item.mock}
-                  </Float>
+                  <ScaleIn delay={0.1 + i * 0.1}>
+                    <Float delay={i * 0.4} duration={5} y={4}>
+                      {item.mock}
+                    </Float>
+                  </ScaleIn>
                 </div>
 
                 {/* Text content */}

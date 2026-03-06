@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FadeIn, Stagger, StaggerItem } from "./motion";
+import { FadeIn, Stagger, StaggerItem, ScaleIn } from "./motion";
 
 const steps = [
   {
@@ -42,21 +42,23 @@ export default function Features() {
             <StaggerItem key={step.num}>
               <div className={`flex flex-col ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-10 md:gap-16`}>
                 {/* Image placeholder */}
-                <motion.div
-                  className="flex-1 w-full"
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <div className="aspect-[16/10] bg-gradient-to-br from-gray-100 to-gray-50 rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex items-center justify-center relative">
-                    {/* Replace with <img src={step.image} /> when ready */}
-                    <div className="text-gray-300 text-sm font-medium">Capture d&apos;écran</div>
-                    <div className="absolute top-3 left-3 flex gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-200" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-200" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-200" />
+                <ScaleIn delay={0.15}>
+                  <motion.div
+                    className="flex-1 w-full"
+                    whileHover={{ y: -4 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <div className="aspect-[16/10] bg-gradient-to-br from-gray-100 to-gray-50 rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex items-center justify-center relative">
+                      {/* Replace with <img src={step.image} /> when ready */}
+                      <div className="text-gray-300 text-sm font-medium">Capture d&apos;écran</div>
+                      <div className="absolute top-3 left-3 flex gap-1.5">
+                        <div className="w-2.5 h-2.5 rounded-full bg-red-200" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-200" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-green-200" />
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </ScaleIn>
 
                 {/* Text */}
                 <div className="flex-1 w-full">

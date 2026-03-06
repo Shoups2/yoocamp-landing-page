@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FadeIn } from "./motion";
+import { FadeIn, ScaleIn } from "./motion";
 
 const tabs = [
   { id: "dashboard", label: "Dashboard" },
@@ -144,6 +144,7 @@ export default function ProductDemo() {
           </div>
 
           {/* Mockup */}
+          <ScaleIn delay={0.2}>
           <div className="bg-white rounded-2xl shadow-2xl shadow-gray-200/60 border border-gray-200 overflow-hidden">
             <div className="flex items-center gap-1.5 px-4 py-3 bg-gray-50 border-b border-gray-100">
               <span className="w-2.5 h-2.5 rounded-full bg-red-300" />
@@ -165,6 +166,7 @@ export default function ProductDemo() {
               </motion.div>
             </AnimatePresence>
           </div>
+          </ScaleIn>
         </FadeIn>
       </div>
     </section>
