@@ -20,8 +20,8 @@ export default function CTABanner() {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-indigo-700 to-indigo-900" />
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px]" />
-        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-400/10 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(90vw,600px)] h-[min(90vw,600px)] bg-white/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 right-0 w-[min(60vw,300px)] h-[min(60vw,300px)] bg-purple-400/10 rounded-full blur-[100px]" />
       </div>
 
       <div className="relative max-w-xl mx-auto px-6 text-center">
@@ -42,7 +42,7 @@ export default function CTABanner() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8"
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 md:p-8"
             >
               <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-4">
                 <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">

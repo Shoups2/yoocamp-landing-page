@@ -27,7 +27,7 @@ const steps = [
 export default function Features() {
   return (
     <section id="fonctionnalités" className="py-24 md:py-32 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-16">
           <p className="text-indigo-600 font-semibold text-sm uppercase tracking-wider mb-3">
             Simple & rapide
@@ -66,7 +66,7 @@ export default function Features() {
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900">{step.title}</h3>
                   </div>
-                  <p className="text-gray-500 text-lg leading-relaxed ml-15">
+                  <p className="text-gray-500 text-lg leading-relaxed md:ml-[3.75rem]">
                     {step.desc}
                   </p>
                 </div>

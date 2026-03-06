@@ -13,17 +13,17 @@ const tabs = [
 function MockupScreen({ id }: { id: string }) {
   const layouts: Record<string, React.ReactNode> = {
     dashboard: (
-      <div className="p-6 space-y-4">
-        <div className="flex gap-4">
-          <div className="flex-1 h-24 bg-gradient-to-br from-indigo-50 to-indigo-100/50 rounded-xl p-4">
+      <div className="p-4 sm:p-6 space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          <div className="h-24 bg-gradient-to-br from-indigo-50 to-indigo-100/50 rounded-xl p-4">
             <div className="h-3 w-16 bg-indigo-200/60 rounded mb-2" />
             <div className="h-6 w-20 bg-indigo-200/40 rounded" />
           </div>
-          <div className="flex-1 h-24 bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-xl p-4">
+          <div className="h-24 bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-xl p-4">
             <div className="h-3 w-16 bg-purple-200/60 rounded mb-2" />
             <div className="h-6 w-20 bg-purple-200/40 rounded" />
           </div>
-          <div className="flex-1 h-24 bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl p-4">
+          <div className="h-24 bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl p-4">
             <div className="h-3 w-16 bg-emerald-200/60 rounded mb-2" />
             <div className="h-6 w-20 bg-emerald-200/40 rounded" />
           </div>
@@ -48,9 +48,9 @@ function MockupScreen({ id }: { id: string }) {
       </div>
     ),
     formation: (
-      <div className="p-6">
-        <div className="flex gap-4">
-          <div className="w-48 space-y-3">
+      <div className="p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="w-full sm:w-48 space-y-3">
             {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
@@ -107,7 +107,7 @@ export default function ProductDemo() {
 
   return (
     <section className="py-24 md:py-32 bg-gray-50/50">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <FadeIn className="text-center mb-12">
           <p className="text-indigo-600 font-semibold text-sm uppercase tracking-wider mb-3">
             Placeholder label
@@ -159,7 +159,7 @@ export default function ProductDemo() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="min-h-[350px]"
+                className="min-h-[250px] md:min-h-[350px]"
               >
                 <MockupScreen id={active} />
               </motion.div>

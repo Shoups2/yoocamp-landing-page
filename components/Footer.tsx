@@ -13,11 +13,11 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="bg-gray-50 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+      <div className="max-w-[1400px] mx-auto px-6 py-16">
         <FadeIn>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 mb-12">
             {/* Brand */}
-            <div className="col-span-2 md:col-span-1">
+            <div className="sm:col-span-2 lg:col-span-1">
               <div className="text-xl font-extrabold text-gray-900 mb-3">
                 <span className="text-indigo-600">●</span> placeholder
               </div>
