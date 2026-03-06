@@ -51,12 +51,9 @@ const possibilities = [
 function VideoMock() {
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-      <div className="aspect-video relative">
-        <img src="/test png.png" alt="Vidéo exclusive" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-10 h-10 rounded-full bg-indigo-500/90 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent ml-0.5" />
-          </div>
+      <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center relative">
+        <div className="w-10 h-10 rounded-full bg-indigo-500/90 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent ml-0.5" />
         </div>
         <div className="absolute bottom-2 left-2 right-2 h-1 bg-gray-200 rounded-full overflow-hidden">
           <div className="h-full w-1/3 bg-indigo-500 rounded-full" />
