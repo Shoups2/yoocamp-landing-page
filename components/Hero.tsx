@@ -19,7 +19,8 @@ function MockupCard({
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: (delay || 0) + 0.5 }}
+        whileHover={{ scale: 1.05 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
         className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 p-4"
       >
         {children}
@@ -46,17 +47,18 @@ export default function Hero() {
                   animate={{ scale: [1, 1.3, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                Plateforme de formation &amp; communauté
+                Plateforme de communauté &amp; formation
               </div>
             </FadeIn>
 
             <FadeIn delay={0.1}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.1] tracking-tight">
-                Lance ta formation et{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+                Lance ta communauté
+                <br />
+                et{" "}
+                <span className="text-[#6366F1]">
                   commence à vendre
-                </span>{" "}
-                aujourd&apos;hui
+                </span>
               </h1>
             </FadeIn>
 
@@ -128,7 +130,11 @@ export default function Hero() {
           <div className="relative lg:h-[500px] hidden lg:block">
             {/* Main dashboard mockup */}
             <FadeIn delay={0.3} direction="left" className="relative z-10">
-              <div className="bg-white rounded-2xl shadow-2xl shadow-gray-200/60 border border-gray-200 overflow-hidden">
+              <motion.div
+                className="bg-white rounded-2xl shadow-2xl shadow-gray-200/60 border border-gray-200 overflow-hidden"
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
                 <div className="flex items-center gap-1.5 px-4 py-3 bg-gray-50 border-b border-gray-100">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-300" />
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-300" />
@@ -140,7 +146,7 @@ export default function Hero() {
                   alt="Yoocamp dashboard"
                   className="w-full"
                 />
-              </div>
+              </motion.div>
             </FadeIn>
 
             {/* Floating cards */}
