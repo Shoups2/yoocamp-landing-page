@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FadeIn, Stagger, StaggerItem, Float, ScaleIn } from "./motion";
 
@@ -23,26 +24,7 @@ const possibilities = [
     ),
     title: "Espace de discussion",
     desc: "Crée un lieu d'échange vivant : chat en temps réel, salons thématiques, interactions directes.",
-    mock: (
-      <motion.div
-        className="overflow-hidden rounded-2xl shadow-lg relative"
-        whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0,0,0,0.15)" }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      >
-        <Image src="/disc 15.png" alt="Espace de discussion" width={600} height={400} className="rounded-xl w-full h-auto" />
-        {/* Chat */}
-        <motion.div
-          className="absolute bottom-3 right-3 w-7 h-7 rounded-lg bg-indigo-500/90 backdrop-blur shadow-sm flex items-center justify-center"
-          animate={{ y: [0, -4, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          whileHover={{ scale: 1.2 }}
-        >
-          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
-          </svg>
-        </motion.div>
-      </motion.div>
-    ),
+    mock: <DiscussionMock />,
   },
   {
     icon: (
@@ -68,8 +50,8 @@ const possibilities = [
         whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0,0,0,0.15)" }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
-        <Image src="/cal 2.png" alt="Événements & lives" width={600} height={400} className="rounded-xl w-full h-auto" />
-        {/* Zoom */}
+        <Image src="/cal 9.png" alt="Événements & lives" width={600} height={400} className="rounded-xl w-full h-auto" />
+        {/* Caméra */}
         <motion.div
           className="absolute bottom-3 right-3 w-7 h-7 rounded-lg bg-indigo-500/90 backdrop-blur shadow-sm flex items-center justify-center"
           animate={{ y: [0, -4, 0] }}
@@ -79,6 +61,17 @@ const possibilities = [
           <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
             <path d="M15 10.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm-6 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm12 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
             <path d="m15.75 8.25 3.5-2.25v12l-3.5-2.25M4.5 18.75h10.125c1.036 0 1.875-.84 1.875-1.875V7.125c0-1.036-.84-1.875-1.875-1.875H4.5A1.875 1.875 0 0 0 2.625 7.125v9.75c0 1.035.84 1.875 1.875 1.875Z" />
+          </svg>
+        </motion.div>
+        {/* Notification */}
+        <motion.div
+          className="absolute top-2 left-2 w-7 h-7 rounded-lg bg-orange-300/90 backdrop-blur shadow-sm flex items-center justify-center"
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          whileHover={{ scale: 1.2 }}
+        >
+          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
           </svg>
         </motion.div>
       </motion.div>
@@ -105,6 +98,157 @@ const possibilities = [
     mock: <CustomizeMock />,
   },
 ];
+
+/* ── Zoom Image Component ──────────────────── */
+
+function ZoomImage({ src, alt }: { src: string; alt: string }) {
+  const [transformOrigin, setTransformOrigin] = useState("center center");
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setTransformOrigin(`${x}% ${y}%`);
+  };
+
+  return (
+    <div
+      className="overflow-hidden rounded-2xl shadow-lg cursor-zoom-in"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={600}
+        height={400}
+        className="w-full h-auto"
+        style={{
+          transform: isHovered ? "scale(2)" : "scale(1)",
+          transformOrigin,
+          transition: "transform 0.3s ease",
+        }}
+      />
+    </div>
+  );
+}
+
+/* ── Discussion Mock ──────────────────────── */
+
+const chatMessages = [
+  { name: "Léa", avatar: "bg-indigo-400", text: "Salut tout le monde ! Prêts pour le mastermind en live ce soir ? 🎉", side: "left" as const },
+  { name: "Maxime", avatar: "bg-violet-400", text: "Grave ! Le dernier était incroyable 🚀", side: "left" as const },
+  { name: "Toi", avatar: "bg-indigo-600", text: "Rdv à 20h, j'ai un sujet en or 🔥", side: "right" as const },
+  { name: "Sofia", avatar: "bg-fuchsia-400", text: "Présente ! J'ai plein de questions 🙋‍♀️", side: "left" as const },
+  { name: "Toi", avatar: "bg-indigo-600", text: "Parfait, on va tout décortiquer 💜", side: "right" as const },
+];
+
+function TypingIndicator({ color }: { color: string }) {
+  return (
+    <div className="flex gap-1 items-center px-3 py-2">
+      {[0, 1, 2].map((i) => (
+        <motion.div
+          key={i}
+          className={`w-1.5 h-1.5 rounded-full ${color}`}
+          animate={{ opacity: [0.3, 1, 0.3], y: [0, -3, 0] }}
+          transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.15 }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function DiscussionMock() {
+  const totalDuration = chatMessages.length * 2.5;
+
+  return (
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+      {/* Header */}
+      <div className="px-4 py-2.5 border-b border-gray-100 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-green-400" />
+          <span className="text-xs font-semibold text-gray-700">Ma communauté</span>
+        </div>
+        <div className="flex -space-x-1.5">
+          {["bg-indigo-400", "bg-violet-400", "bg-fuchsia-400"].map((c, i) => (
+            <motion.div
+              key={i}
+              className={`w-5 h-5 rounded-full ${c} border-2 border-white`}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: i * 0.2, type: "spring" }}
+            />
+          ))}
+          <motion.div
+            className="w-5 h-5 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.6, type: "spring" }}
+          >
+            <span className="text-[7px] font-bold text-gray-500">+12</span>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Messages */}
+      <div className="px-3 py-3 space-y-2.5 h-56 overflow-hidden">
+        {chatMessages.map((msg, i) => (
+          <motion.div
+            key={i}
+            className={`flex items-end gap-2 ${msg.side === "right" ? "flex-row-reverse" : ""}`}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: [0, 0, 1], y: [20, 20, 0], scale: [0.95, 0.95, 1] }}
+            transition={{
+              duration: 0.5,
+              delay: i * 2.5,
+              repeat: Infinity,
+              repeatDelay: totalDuration - 0.5,
+              times: [0, 0.01, 1],
+            }}
+          >
+            <div className={`w-6 h-6 rounded-full ${msg.avatar} flex-shrink-0 flex items-center justify-center`}>
+              <span className="text-[8px] font-bold text-white">{msg.name[0]}</span>
+            </div>
+            <div className={`max-w-[75%] ${msg.side === "right" ? "items-end" : "items-start"} flex flex-col gap-0.5`}>
+              <span className={`text-[8px] font-medium text-gray-400 ${msg.side === "right" ? "text-right" : ""}`}>{msg.name}</span>
+              <div className={`px-3 py-1.5 rounded-2xl text-[11px] leading-relaxed ${
+                msg.side === "right"
+                  ? "bg-indigo-500 text-white rounded-br-sm"
+                  : "bg-gray-100 text-gray-700 rounded-bl-sm"
+              }`}>
+                {msg.text}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Input bar */}
+      <div className="px-3 pb-3">
+        <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-50 border border-gray-200">
+          <div className="flex-1 flex items-center gap-1">
+            <span className="text-[11px] text-gray-500">En train d&apos;écrire</span>
+            {[0, 1, 2].map((i) => (
+              <motion.span
+                key={i}
+                className="w-1 h-1 rounded-full bg-gray-400"
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.3 }}
+              />
+            ))}
+          </div>
+          <div className="w-6 h-6 rounded-lg bg-indigo-500 flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /* ── Mock UI Components ──────────────────── */
 
@@ -169,16 +313,44 @@ function CourseMock() {
 }
 
 function RevenueMock() {
+  const months = [
+    { label: "Jan", value: "10 450 €", h: 35 },
+    { label: "Fév", value: "14 800 €", h: 50 },
+    { label: "Mar", value: "12 200 €", h: 40 },
+    { label: "Avr", value: "18 900 €", h: 65 },
+    { label: "Mai", value: "16 300 €", h: 55 },
+    { label: "Jun", value: "23 500 €", h: 80 },
+    { label: "Jul", value: "27 850 €", h: 95 },
+  ];
+  const [hovered, setHovered] = useState<number | null>(null);
+
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 space-y-2">
       <div className="flex items-center justify-between mb-1">
-        <div className="h-1.5 w-14 bg-gray-200 rounded" />
+        <div className="text-sm font-bold text-gray-900">Total des ventes · 2025</div>
         <div className="text-[9px] font-semibold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">+24%</div>
       </div>
-      <div className="text-lg font-bold text-gray-900">2 847 €</div>
-      <div className="flex items-end gap-1 h-10">
-        {[35, 50, 40, 65, 55, 80, 95].map((h, i) => (
-          <div key={i} className="flex-1 rounded-sm bg-indigo-400/80" style={{ height: `${h}%` }} />
+      <motion.div
+        key={hovered !== null ? months[hovered].value : "total"}
+        className="text-lg font-bold text-gray-900"
+        initial={{ opacity: 0, y: 5 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2 }}
+      >
+        {hovered !== null ? months[hovered].value : "124 000 €"}
+      </motion.div>
+      <div className={`text-xs text-gray-400 -mt-1 transition-opacity duration-200 ${hovered !== null ? "opacity-100" : "opacity-0"}`}>
+        {hovered !== null ? months[hovered].label : "\u00A0"}
+      </div>
+      <div className="flex items-end gap-1.5 h-32">
+        {months.map((m, i) => (
+          <div
+            key={i}
+            className={`flex-1 rounded-sm cursor-pointer ${hovered === i ? "bg-indigo-600" : "bg-indigo-400/80"}`}
+            style={{ height: `${m.h}%`, transition: "background-color 0.2s ease" }}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+          />
         ))}
       </div>
       <div className="flex items-center justify-between pt-1 border-t border-gray-100">
