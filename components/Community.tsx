@@ -391,7 +391,7 @@ function RevenueMock() {
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 space-y-2">
       <div className="flex items-center justify-between mb-1">
-        <div className="text-sm font-bold text-gray-900">Total des ventes · 2025</div>
+        <div className="text-sm font-medium text-gray-900">Total des ventes · 2025</div>
         <div className="text-[9px] font-semibold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">+24%</div>
       </div>
       <motion.div
