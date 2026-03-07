@@ -44,38 +44,7 @@ const possibilities = [
     ),
     title: "Événements & lives",
     desc: "Organise des masterclasses, sessions de coaching et lives. Tes membres s'inscrivent en un clic.",
-    mock: (
-      <motion.div
-        className="overflow-hidden rounded-2xl shadow-lg relative"
-        whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0,0,0,0.15)" }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      >
-        <Image src="/cal 9.png" alt="Événements & lives" width={600} height={400} className="rounded-xl w-full h-auto" />
-        {/* Caméra */}
-        <motion.div
-          className="absolute bottom-3 right-3 w-7 h-7 rounded-lg bg-indigo-500/90 backdrop-blur shadow-sm flex items-center justify-center"
-          animate={{ y: [0, -4, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          whileHover={{ scale: 1.2 }}
-        >
-          <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M15 10.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm-6 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm12 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
-            <path d="m15.75 8.25 3.5-2.25v12l-3.5-2.25M4.5 18.75h10.125c1.036 0 1.875-.84 1.875-1.875V7.125c0-1.036-.84-1.875-1.875-1.875H4.5A1.875 1.875 0 0 0 2.625 7.125v9.75c0 1.035.84 1.875 1.875 1.875Z" />
-          </svg>
-        </motion.div>
-        {/* Notification */}
-        <motion.div
-          className="absolute top-2 left-2 w-7 h-7 rounded-lg bg-orange-300/90 backdrop-blur shadow-sm flex items-center justify-center"
-          animate={{ y: [0, -3, 0] }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          whileHover={{ scale: 1.2 }}
-        >
-          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-          </svg>
-        </motion.div>
-      </motion.div>
-    ),
+    mock: <EventsMock />,
   },
   {
     icon: (
@@ -131,6 +100,104 @@ function ZoomImage({ src, alt }: { src: string; alt: string }) {
           transition: "transform 0.3s ease",
         }}
       />
+    </div>
+  );
+}
+
+/* ── Events Mock ─────────────────────────── */
+
+const weekEvents = [
+  { day: "Lun", num: 9, events: [
+    { title: "Mastermind élèves", time: "14h", color: "bg-indigo-500", desc: "Session collective pour échanger sur vos projets et avancer ensemble.", members: 24, duration: "1h30", link: "zoom.us/j/mastermi..." },
+    { title: "Coaching Léo", time: "18h", color: "bg-violet-400", desc: "Session individuelle — objectifs Q2 et plan d'action.", members: 1, duration: "45min", link: "zoom.us/j/coaching..." },
+  ]},
+  { day: "Mar", num: 10, events: [
+    { title: "Cours en visio", time: "16h", color: "bg-blue-500", desc: "Module 4 : Stratégie de monétisation et tunnels de vente.", members: 48, duration: "2h", link: "zoom.us/j/coursvisi..." },
+  ]},
+  { day: "Mer", num: 11, events: [
+    { title: "Coaching Marie", time: "10h", color: "bg-indigo-400", desc: "Point mensuel — lancement de sa formation en ligne.", members: 1, duration: "45min", link: "zoom.us/j/coaching..." },
+    { title: "Séminaire St-Tropez", time: "14h", color: "bg-violet-500", desc: "Préparation du séminaire : logistique, intervenants et programme.", members: 120, duration: "1h", link: "zoom.us/j/seminair..." },
+  ]},
+];
+
+const upcomingEvents = [
+  { title: "Mastermind élèves", date: "Lun 14h", color: "bg-indigo-500", members: 24 },
+  { title: "Coaching Léo", date: "Lun 18h", color: "bg-violet-400", members: 1 },
+  { title: "Cours en visio", date: "Mar 16h", color: "bg-blue-500", members: 48 },
+];
+
+function EventsMock() {
+  const [selectedDay, setSelectedDay] = useState(0);
+  const [selectedEvent, setSelectedEvent] = useState<{ dayIdx: number; evtIdx: number } | null>(null);
+  const activeEvent = selectedEvent ? weekEvents[selectedEvent.dayIdx]?.events[selectedEvent.evtIdx] : null;
+  return (
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+      {/* Header */}
+      <div className="px-4 py-2.5 border-b border-gray-100 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+          </svg>
+          <span className="text-xs font-semibold text-gray-700">Semaine du 10 mars</span>
+        </div>
+        <motion.div
+          className="w-2 h-2 rounded-full bg-green-400"
+          animate={{ scale: [1, 1.3, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+      </div>
+
+      {/* Week calendar */}
+      <div className="px-3 pt-3 pb-2">
+        <div className="flex gap-1">
+          {weekEvents.map((day, i) => (
+            <motion.div
+              key={day.day}
+              className="flex-1 flex flex-col items-center gap-1"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, duration: 0.3 }}
+            >
+              <motion.div
+                className={`w-full rounded-xl py-1.5 border text-center cursor-pointer ${selectedDay === i ? "bg-white border-indigo-200 shadow-sm" : "bg-gray-50 border-gray-200"}`}
+                onClick={() => setSelectedDay(i)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={selectedDay === i ? { y: -2 } : { y: 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              >
+                <span className={`text-[10px] font-semibold block transition-colors duration-200 ${selectedDay === i ? "text-indigo-500" : "text-gray-400"}`}>{day.day}</span>
+                <span className={`text-sm font-bold block transition-colors duration-200 ${selectedDay === i ? "text-gray-900" : "text-gray-500"}`}>{day.num}</span>
+              </motion.div>
+              <div className={`w-full h-28 rounded-lg border flex flex-col items-center justify-start gap-1 p-1 overflow-hidden transition-colors duration-200 ${
+                selectedDay === i ? "border-indigo-200 bg-indigo-50/50" : "border-gray-100 bg-gray-50/30"
+              }`}>
+                {day.events.length > 0 ? day.events.map((evt, j) => (
+                  <motion.div
+                    key={j}
+                    className="w-[90%] rounded-md px-1.5 py-1 bg-white border border-gray-200 shadow-sm"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.5 + i * 0.15 + j * 0.1, type: "spring", stiffness: 300 }}
+                  >
+                    <div className="flex items-center gap-1">
+                      <div className={`w-1.5 h-1.5 rounded-full ${evt.color} flex-shrink-0`} />
+                      <span className="text-[11px] text-gray-800 font-semibold leading-tight block truncate">{evt.title}</span>
+                    </div>
+                    <span className="text-[10px] text-gray-400 ml-2.5">{evt.time}</span>
+                  </motion.div>
+                )) : (
+                  <div className="w-1 h-1 rounded-full bg-gray-200" />
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Event detail or upcoming */}
+      <div className="px-3 pb-3">
+      </div>
     </div>
   );
 }
@@ -198,14 +265,11 @@ function DiscussionMock() {
           <motion.div
             key={i}
             className={`flex items-end gap-2 ${msg.side === "right" ? "flex-row-reverse" : ""}`}
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: [0, 0, 1], y: [20, 20, 0], scale: [0.95, 0.95, 1] }}
+            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
-              duration: 0.5,
-              delay: i * 2.5,
-              repeat: Infinity,
-              repeatDelay: totalDuration - 0.5,
-              times: [0, 0.01, 1],
+              duration: 0.4,
+              delay: i * 1,
             }}
           >
             <div className={`w-6 h-6 rounded-full ${msg.avatar} flex-shrink-0 flex items-center justify-center`}>
