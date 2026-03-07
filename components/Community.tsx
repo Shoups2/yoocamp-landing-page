@@ -25,11 +25,22 @@ const possibilities = [
     desc: "Crée un lieu d'échange vivant : chat en temps réel, salons thématiques, interactions directes.",
     mock: (
       <motion.div
-        className="overflow-hidden rounded-2xl shadow-lg"
+        className="overflow-hidden rounded-2xl shadow-lg relative"
         whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0,0,0,0.15)" }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
         <Image src="/disc 15.png" alt="Espace de discussion" width={600} height={400} className="rounded-xl w-full h-auto" />
+        {/* Chat */}
+        <motion.div
+          className="absolute bottom-3 right-3 w-7 h-7 rounded-lg bg-indigo-500/90 backdrop-blur shadow-sm flex items-center justify-center"
+          animate={{ y: [0, -4, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.2 }}
+        >
+          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+          </svg>
+        </motion.div>
       </motion.div>
     ),
   },
@@ -51,7 +62,27 @@ const possibilities = [
     ),
     title: "Événements & lives",
     desc: "Organise des masterclasses, sessions de coaching et lives. Tes membres s'inscrivent en un clic.",
-    mock: <CalendarMock />,
+    mock: (
+      <motion.div
+        className="overflow-hidden rounded-2xl shadow-lg relative"
+        whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0,0,0,0.15)" }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
+        <Image src="/cal 2.png" alt="Événements & lives" width={600} height={400} className="rounded-xl w-full h-auto" />
+        {/* Zoom */}
+        <motion.div
+          className="absolute bottom-3 right-3 w-7 h-7 rounded-lg bg-indigo-500/90 backdrop-blur shadow-sm flex items-center justify-center"
+          animate={{ y: [0, -4, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.2 }}
+        >
+          <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15 10.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm-6 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm12 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+            <path d="m15.75 8.25 3.5-2.25v12l-3.5-2.25M4.5 18.75h10.125c1.036 0 1.875-.84 1.875-1.875V7.125c0-1.036-.84-1.875-1.875-1.875H4.5A1.875 1.875 0 0 0 2.625 7.125v9.75c0 1.035.84 1.875 1.875 1.875Z" />
+          </svg>
+        </motion.div>
+      </motion.div>
+    ),
   },
   {
     icon: (
