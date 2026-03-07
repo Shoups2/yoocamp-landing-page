@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { FadeIn, Stagger, StaggerItem, Float, ScaleIn } from "./motion";
 
@@ -22,7 +23,15 @@ const possibilities = [
     ),
     title: "Espace de discussion",
     desc: "Crée un lieu d'échange vivant : chat en temps réel, salons thématiques, interactions directes.",
-    mock: <ChatMock />,
+    mock: (
+      <motion.div
+        className="overflow-hidden rounded-2xl shadow-lg"
+        whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0,0,0,0.15)" }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
+        <Image src="/disc 15.png" alt="Espace de discussion" width={600} height={400} className="rounded-xl w-full h-auto" />
+      </motion.div>
+    ),
   },
   {
     icon: (
@@ -43,6 +52,26 @@ const possibilities = [
     title: "Événements & lives",
     desc: "Organise des masterclasses, sessions de coaching et lives. Tes membres s'inscrivent en un clic.",
     mock: <CalendarMock />,
+  },
+  {
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+    ),
+    title: "Génération de revenus",
+    desc: "Monétise ta communauté avec des abonnements, ventes de formations et événements payants. Suis tes revenus en temps réel.",
+    mock: <RevenueMock />,
+  },
+  {
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42" />
+      </svg>
+    ),
+    title: "Personnalisation complète",
+    desc: "Personnalise ton espace à ton image : couleurs, logo, mise en page. Ta communauté reflète ta marque.",
+    mock: <CustomizeMock />,
   },
 ];
 
@@ -108,6 +137,57 @@ function CourseMock() {
   );
 }
 
+function RevenueMock() {
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 space-y-2">
+      <div className="flex items-center justify-between mb-1">
+        <div className="h-1.5 w-14 bg-gray-200 rounded" />
+        <div className="text-[9px] font-semibold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">+24%</div>
+      </div>
+      <div className="text-lg font-bold text-gray-900">2 847 €</div>
+      <div className="flex items-end gap-1 h-10">
+        {[35, 50, 40, 65, 55, 80, 95].map((h, i) => (
+          <div key={i} className="flex-1 rounded-sm bg-indigo-400/80" style={{ height: `${h}%` }} />
+        ))}
+      </div>
+      <div className="flex items-center justify-between pt-1 border-t border-gray-100">
+        <div className="flex items-center gap-1.5">
+          <div className="w-2 h-2 rounded-full bg-green-400" />
+          <div className="h-1.5 w-12 bg-gray-200 rounded" />
+        </div>
+        <div className="h-1.5 w-8 bg-gray-100 rounded" />
+      </div>
+    </div>
+  );
+}
+
+function CustomizeMock() {
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 space-y-2">
+      <div className="flex items-center gap-2 mb-1">
+        <div className="w-5 h-5 rounded-full bg-indigo-500" />
+        <div className="h-1.5 w-16 bg-gray-200 rounded" />
+      </div>
+      <div className="flex gap-1.5">
+        {["#6366F1", "#EC4899", "#F59E0B", "#10B981", "#1E1E1E"].map((c) => (
+          <div key={c} className="w-5 h-5 rounded-full border-2 border-white shadow-sm" style={{ backgroundColor: c }} />
+        ))}
+      </div>
+      <div className="rounded-lg border border-gray-100 overflow-hidden">
+        <div className="h-6 bg-indigo-500" />
+        <div className="p-2 space-y-1.5">
+          <div className="h-1.5 w-3/4 bg-gray-200 rounded" />
+          <div className="h-1.5 w-1/2 bg-gray-100 rounded" />
+        </div>
+      </div>
+      <div className="flex items-center gap-2 pt-1">
+        <div className="h-4 w-8 rounded-full bg-indigo-500" />
+        <div className="h-1.5 w-14 bg-gray-200 rounded" />
+      </div>
+    </div>
+  );
+}
+
 function CalendarMock() {
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
@@ -139,13 +219,13 @@ export default function Community() {
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-16">
           <p className="text-indigo-600 font-semibold text-sm uppercase tracking-wider mb-3">
-            Tout-en-un
+            COMMUNAUTÉ & MONÉTISATION
           </p>
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
-            Ce que tu vas pouvoir créer
+            La plateforme pour créer et monétiser ta communauté
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-            Un seul espace pour engager, former et monétiser ta communauté.
+            Rassemble ta communauté, partage du contenu exclusif et génère des revenus au même endroit.
           </p>
         </FadeIn>
 
