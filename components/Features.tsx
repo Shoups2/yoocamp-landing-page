@@ -26,8 +26,12 @@ const steps = [
 
 export default function Features() {
   return (
-    <section id="fonctionnalités" className="py-24 md:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="fonctionnalités" className="py-24 md:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[#fbfaff]" />
+      <div className="absolute top-[-20%] left-[-5%] w-[45%] h-[60%] bg-violet-200/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-15%] right-[-10%] w-[55%] h-[65%] bg-blue-200/20 rounded-full blur-[110px] pointer-events-none" />
+      <div className="absolute top-[50%] right-[10%] w-[30%] h-[35%] bg-pink-200/15 rounded-full blur-[90px] pointer-events-none" />
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-16">
           <p className="text-indigo-600 font-semibold text-sm uppercase tracking-wider mb-3">
             Simple & rapide

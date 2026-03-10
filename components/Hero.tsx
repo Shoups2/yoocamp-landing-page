@@ -8,7 +8,7 @@ import Image from "next/image";
 const blurFadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 24, filter: "blur(8px)" },
   animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
 /* ── Avatar list for scrolling banner ──── */
@@ -107,12 +107,14 @@ function FloatingCard({
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-16">
-      {/* ── Background ── */}
-      <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/70 via-white to-white" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-gradient-to-br from-indigo-100/50 to-violet-100/30 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-[10%] right-0 w-[400px] h-[400px] bg-purple-100/20 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute top-[10%] left-0 w-[300px] h-[300px] bg-blue-100/20 rounded-full blur-[80px] pointer-events-none" />
+    <section className="relative bg-white pt-16 pb-6 md:pb-8">
+      {/* ── Background arrondi ── */}
+      <div className="absolute inset-x-1.5 md:inset-x-2.5 top-1.5 md:top-2.5 bottom-0 bg-gradient-to-br from-indigo-50/60 via-violet-50/50 to-fuchsia-50/40 rounded-t-[1.5rem] md:rounded-t-[2rem] rounded-b-[2rem] md:rounded-b-[3rem] overflow-hidden">
+        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[70%] bg-violet-200/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[60%] bg-indigo-200/18 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-[30%] right-[15%] w-[35%] h-[40%] bg-fuchsia-200/15 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-[20%] left-[20%] w-[30%] h-[35%] bg-purple-200/12 rounded-full blur-[80px] pointer-events-none" />
+      </div>
 
       <FloatingElements />
 
@@ -213,7 +215,7 @@ export default function Hero() {
       </div>
 
       {/* ── Image produit centrale ── */}
-      <div className="relative max-w-6xl mx-auto px-6 mt-12 md:mt-14">
+      <div className="relative max-w-6xl mx-4 xl:mx-auto mt-12 md:mt-14">
         {/* Glow derrière l'image */}
         <motion.div
           className="absolute inset-x-12 top-8 bottom-0 bg-gradient-to-b from-indigo-200/40 via-violet-200/20 to-transparent rounded-[2rem] blur-[60px] pointer-events-none"
@@ -230,7 +232,7 @@ export default function Hero() {
           whileHover={{ y: -8, boxShadow: "0 30px 80px -10px rgba(99,102,241,0.18), 0 12px 40px rgba(0,0,0,0.08)" }}
           transition={{ type: "spring", stiffness: 200, damping: 25 }}
         >
-          <div className="bg-white rounded-t-2xl md:rounded-t-3xl shadow-[0_-4px_60px_rgba(99,102,241,0.08),0_8px_30px_rgba(0,0,0,0.06)] border border-gray-200/60 border-b-0 overflow-hidden transition-shadow duration-500">
+          <div className="bg-white rounded-2xl md:rounded-3xl shadow-[0_-4px_60px_rgba(99,102,241,0.08),0_8px_30px_rgba(0,0,0,0.06)] border border-gray-200/60 overflow-hidden transition-shadow duration-500">
             {/* Browser chrome */}
             <div className="flex items-center gap-2 px-5 py-3 bg-gray-50/80 border-b border-gray-100">
               <span className="w-3 h-3 rounded-full bg-red-300" />
@@ -296,8 +298,6 @@ export default function Hero() {
           </div>
         </FloatingCard>
 
-        {/* Fade to white en bas */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none" />
       </div>
     </section>
   );

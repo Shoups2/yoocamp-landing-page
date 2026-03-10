@@ -57,8 +57,12 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-white via-gray-50/60 to-white overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="py-24 md:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[#faf9ff]" />
+      <div className="absolute top-[-25%] right-[0%] w-[50%] h-[70%] bg-pink-200/25 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-20%] left-[-10%] w-[55%] h-[60%] bg-violet-200/20 rounded-full blur-[110px] pointer-events-none" />
+      <div className="absolute top-[35%] left-[25%] w-[35%] h-[40%] bg-blue-200/15 rounded-full blur-[90px] pointer-events-none" />
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
 
         {/* ── Header ── */}
         <FadeIn className="text-center mb-14">

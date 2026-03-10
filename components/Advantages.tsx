@@ -85,8 +85,12 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export default function Advantages() {
   return (
-    <section id="faq" className="py-24 md:py-32 bg-gray-50/50">
-      <div className="max-w-3xl mx-auto px-6">
+    <section id="faq" className="py-24 md:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[#faf9ff]" />
+      <div className="absolute top-[-15%] left-[-5%] w-[50%] h-[65%] bg-blue-200/25 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[45%] h-[55%] bg-violet-200/20 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-[40%] right-[15%] w-[30%] h-[30%] bg-pink-200/15 rounded-full blur-[90px] pointer-events-none" />
+      <div className="relative z-10 max-w-3xl mx-auto px-6">
         <FadeIn className="text-center mb-12">
           <p className="text-indigo-600 font-semibold text-sm uppercase tracking-wider mb-3">
             FAQ
