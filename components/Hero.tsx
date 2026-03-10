@@ -107,9 +107,9 @@ function FloatingCard({
 
 export default function Hero() {
   return (
-    <section className="relative bg-white pt-16 pb-6 md:pb-8">
+    <section className="relative bg-white pt-16 pb-2 md:pb-3">
       {/* ── Background arrondi ── */}
-      <div className="absolute inset-x-1.5 md:inset-x-2.5 top-1.5 md:top-2.5 bottom-0 bg-gradient-to-br from-indigo-50/60 via-violet-50/50 to-fuchsia-50/40 rounded-t-[1.5rem] md:rounded-t-[2rem] rounded-b-[2rem] md:rounded-b-[3rem] overflow-hidden">
+      <div className="absolute inset-x-1.5 md:inset-x-2.5 top-0.5 md:top-1 bottom-0 bg-gradient-to-br from-indigo-50/60 via-violet-50/50 to-fuchsia-50/40 rounded-t-[1.5rem] md:rounded-t-[2rem] rounded-b-[2rem] md:rounded-b-[3rem] overflow-hidden">
         <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[70%] bg-violet-200/20 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[60%] bg-indigo-200/18 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute top-[30%] right-[15%] w-[35%] h-[40%] bg-fuchsia-200/15 rounded-full blur-[100px] pointer-events-none" />

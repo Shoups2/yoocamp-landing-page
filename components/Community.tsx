@@ -465,19 +465,19 @@ export default function Community() {
   const view = cardViews[activeIdx];
 
   return (
-    <section id="communauté" className="py-28 md:py-36 bg-white">
+    <section id="communauté" className="pt-16 md:pt-20 pb-16 md:pb-20 bg-white">
       <div className="max-w-[90rem] mx-auto px-6">
 
         {/* ── Header ── */}
-        <FadeIn className="text-center mb-20 md:mb-24">
+        <FadeIn className="text-center mb-10 md:mb-14">
           <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-indigo-100/60">
             <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
             Tout-en-un
           </div>
-          <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight leading-[1.1]">
+          <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight leading-[1.1]" style={{ textShadow: "0 4px 24px rgba(99,102,241,0.12), 0 1px 3px rgba(0,0,0,0.06)" }}>
             Tout ce dont tu as besoin,
             <br />
-            <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent" style={{ filter: "drop-shadow(0 6px 20px rgba(99,102,241,0.25))" }}>
               au même endroit
             </span>
           </h2>
@@ -487,14 +487,15 @@ export default function Community() {
         </FadeIn>
 
         {/* ── Cards ── */}
-        <div className="grid md:grid-cols-3 gap-5 md:gap-6 items-start pt-12 md:pt-16">
+        <div className="grid md:grid-cols-[1fr_1.1fr_1fr] gap-5 md:gap-6 items-start pt-12 md:pt-16">
 
           {/* ── Card 1 : Communauté / Événements (switchable) ── */}
           <ScaleIn delay={0.1}>
             <motion.div
-              className="relative rounded-[2rem] border border-gray-200/80 md:mt-6 overflow-visible"
-              whileHover={{ y: -8, boxShadow: "0 32px 64px -16px rgba(139,92,246,0.14), 0 8px 24px -4px rgba(0,0,0,0.05)" }}
-              transition={{ type: "spring", stiffness: 260, damping: 22 }}
+              className="relative rounded-[2rem] border border-gray-200/60 md:mt-10 overflow-hidden shadow-[0_2px_40px_-12px_rgba(139,92,246,0.08)]"
+
+              whileHover={{ y: -4, boxShadow: "0 20px 40px -12px rgba(139,92,246,0.14), 0 0 0 1px rgba(139,92,246,0.04)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 24 }}
             >
               {/* Fond animé qui change selon la vue */}
               <motion.div
@@ -507,9 +508,9 @@ export default function Community() {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
               />
 
-              {/* Mockup qui sort de la carte + toggle */}
-              <div className="relative px-5 md:px-7 mt-4 mb-4">
-                {/* Toggle switch flottant au-dessus du mockup */}
+              {/* Mockup + toggle */}
+              <div className="relative px-5 md:px-7 pt-5 mb-4">
+                {/* Toggle switch */}
                 <div className="relative z-30 flex justify-center mb-3">
                   <div className="inline-flex items-center bg-white/90 backdrop-blur-sm rounded-full p-1 border border-gray-200 shadow-sm">
                     {cardViews.map((v) => (
@@ -540,24 +541,26 @@ export default function Community() {
                     ))}
                   </div>
                 </div>
+                {/* Halo lumineux */}
                 <motion.div
-                  className="absolute inset-x-0 top-8 bottom-0 rounded-2xl blur-[30px] pointer-events-none"
+                  className="absolute inset-x-4 top-10 bottom-4 rounded-3xl blur-[40px] pointer-events-none"
                   animate={{
-                    backgroundColor: activeView === "community" ? "rgba(196,181,253,0.2)" : "rgba(253,230,138,0.2)",
+                    backgroundColor: activeView === "community" ? "rgba(167,139,250,0.15)" : "rgba(251,191,36,0.12)",
                   }}
                   transition={{ duration: 0.5 }}
                 />
-                <div className="overflow-hidden rounded-2xl">
-                  <AnimatePresence mode="wait">
+                <div className="relative rounded-2xl overflow-hidden" style={{ height: 280 }}>
+                  <AnimatePresence initial={false}>
                     <motion.div
                       key={activeView}
-                      initial={{ opacity: 0, x: activeView === "events" ? 60 : -60, scale: 0.95 }}
-                      animate={{ opacity: 1, x: 0, scale: 1 }}
-                      exit={{ opacity: 0, x: activeView === "events" ? -60 : 60, scale: 0.95 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 28 }}
+                      className="absolute inset-0"
+                      initial={{ opacity: 0, x: activeView === "events" ? 30 : -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: activeView === "events" ? -30 : 30 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
                     >
                       <Float duration={7} y={3} delay={0.3}>
-                        <div className="relative z-10 drop-shadow-xl">
+                        <div className="relative z-10 drop-shadow-lg">
                           {activeView === "community" ? <DiscussionMock /> : <EventsMock />}
                         </div>
                       </Float>
@@ -567,14 +570,15 @@ export default function Community() {
               </div>
 
               {/* Contenu texte animé */}
-              <div className="relative px-7 md:px-9 pb-6 md:pb-7 pt-2">
-                <AnimatePresence mode="wait">
+              <div className="relative px-7 md:px-9 pb-6 md:pb-7 pt-2 h-[160px]">
+                <AnimatePresence initial={false}>
                   <motion.div
                     key={activeView}
-                    initial={{ opacity: 0, y: 10 }}
+                    className="absolute inset-0 px-7 md:px-9 pb-6 md:pb-7 pt-2"
+                    initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${view.iconBg}`}>
@@ -607,17 +611,18 @@ export default function Community() {
           {/* ── Card 2 : Création de contenu (elevated center) ── */}
           <ScaleIn delay={0.2}>
             <motion.div
-              className="relative rounded-[2rem] border border-gray-200/80 bg-gradient-to-b from-slate-50/80 to-indigo-50/40 md:-mt-4 overflow-hidden"
-              whileHover={{ y: -8, boxShadow: "0 32px 64px -16px rgba(99,102,241,0.14), 0 8px 24px -4px rgba(0,0,0,0.05)" }}
-              transition={{ type: "spring", stiffness: 260, damping: 22 }}
+              className="relative rounded-[2rem] border border-gray-200/60 bg-gradient-to-b from-slate-50/80 to-indigo-50/40 md:-mt-6 overflow-hidden shadow-[0_4px_48px_-12px_rgba(99,102,241,0.14)]"
+              whileHover={{ y: -4, boxShadow: "0 24px 48px -12px rgba(99,102,241,0.20), 0 0 0 1px rgba(99,102,241,0.06)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 24 }}
             >
               {/* Subtle highlight for center card */}
-              <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-indigo-400/50 to-transparent rounded-t-[2rem]" />
+              <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-indigo-400/60 to-transparent rounded-t-[2rem]" />
               {/* Mockup dans la carte */}
               <div className="relative px-5 md:px-7 pt-6 mb-4">
-                <div className="absolute inset-x-0 top-8 bottom-0 bg-indigo-200/20 rounded-2xl blur-[30px] pointer-events-none" />
+                {/* Halo lumineux */}
+                <div className="absolute inset-x-4 top-8 bottom-4 bg-indigo-300/12 rounded-3xl blur-[40px] pointer-events-none" />
                 <Float duration={6} y={3}>
-                  <div className="relative z-10 drop-shadow-xl">
+                  <div className="relative z-10 drop-shadow-lg">
                     <VideoMock />
                   </div>
                 </Float>
@@ -647,15 +652,16 @@ export default function Community() {
           {/* ── Card 3 : Revenus ── */}
           <ScaleIn delay={0.3}>
             <motion.div
-              className="relative rounded-[2rem] border border-gray-200/80 bg-gradient-to-b from-emerald-50/40 to-indigo-50/20 md:-mt-12 overflow-hidden"
-              whileHover={{ y: -8, boxShadow: "0 32px 64px -16px rgba(16,185,129,0.12), 0 8px 24px -4px rgba(0,0,0,0.05)" }}
-              transition={{ type: "spring", stiffness: 260, damping: 22 }}
+              className="relative rounded-[2rem] border border-gray-200/60 bg-gradient-to-b from-emerald-50/40 to-indigo-50/20 md:mt-10 overflow-hidden shadow-[0_2px_40px_-12px_rgba(16,185,129,0.08)]"
+              whileHover={{ y: -4, boxShadow: "0 20px 40px -12px rgba(16,185,129,0.14), 0 0 0 1px rgba(16,185,129,0.04)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 24 }}
             >
               {/* Mockup dans la carte */}
               <div className="relative px-5 md:px-7 pt-6 mb-4">
-                <div className="absolute inset-x-0 top-8 bottom-0 bg-emerald-200/15 rounded-2xl blur-[30px] pointer-events-none" />
+                {/* Halo lumineux */}
+                <div className="absolute inset-x-4 top-8 bottom-4 bg-emerald-300/10 rounded-3xl blur-[40px] pointer-events-none" />
                 <Float duration={6} y={3} delay={1}>
-                  <div className="relative z-10 drop-shadow-xl">
+                  <div className="relative z-10 drop-shadow-lg">
                     <RevenueMock />
                   </div>
                 </Float>
