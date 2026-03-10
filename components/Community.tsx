@@ -482,52 +482,169 @@ function CalendarMock() {
 
 export default function Community() {
   return (
-    <section id="communauté" className="py-24 md:py-32 bg-gray-50/50 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <FadeIn className="text-center mb-16">
-          <p className="text-indigo-600 font-semibold text-sm uppercase tracking-wider mb-3">
-            COMMUNAUTÉ & MONÉTISATION
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
-            La plateforme pour créer et monétiser ta communauté
-          </h2>
-          <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-            Rassemble ta communauté, partage du contenu exclusif et génère des revenus au même endroit.
-          </p>
-        </FadeIn>
+    <section id="communauté" className="overflow-hidden">
 
-        <Stagger className="grid md:grid-cols-2 gap-6" staggerDelay={0.12}>
-          {possibilities.map((item, i) => (
-            <StaggerItem key={item.title}>
-              <motion.div
-                className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-full"
-                whileHover={{ scale: 1.03, y: -4, boxShadow: "0 16px 40px rgba(99,102,241,0.08)" }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                {/* Mock preview */}
-                <div className="p-4 pb-0">
-                  <ScaleIn delay={0.1 + i * 0.1}>
-                    <Float delay={i * 0.4} duration={5} y={4}>
+      {/* ═══ Titre principal ═══ */}
+      <div className="pt-24 md:pt-32 pb-16 md:pb-20 bg-gray-50/50">
+        <FadeIn className="text-center max-w-3xl mx-auto px-6">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
+            Une plateforme pensée pour les créateurs
+          </h2>
+        </FadeIn>
+      </div>
+
+      {/* ═══ Section 1 : Création de contenu ═══ */}
+      <div className="pb-24 md:pb-32 bg-gray-50/50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+            {/* Texte à gauche */}
+            <FadeIn direction="left">
+              <p className="text-indigo-600 font-semibold text-sm uppercase tracking-wider mb-3">
+                Création de contenu
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Partage ton savoir, à ta façon
+              </h2>
+              <p className="text-lg text-gray-500 mb-8">
+                Publie des vidéos exclusives, structure des formations complètes et accompagne tes membres dans leur progression.
+              </p>
+              <div className="space-y-4">
+                {[possibilities[0], possibilities[2]].map((item, i) => (
+                  <FadeIn key={item.title} delay={0.2 + i * 0.15} direction="left">
+                    <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
+                      <div className="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                        <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* Mockups à droite empilés */}
+            <div className="relative">
+              <FadeIn direction="right" delay={0.1}>
+                <ScaleIn delay={0.2}>
+                  <Float duration={6} y={5}>
+                    <div className="relative z-10">
+                      {possibilities[0].mock}
+                    </div>
+                  </Float>
+                </ScaleIn>
+                <ScaleIn delay={0.4}>
+                  <Float duration={7} y={6} delay={1}>
+                    <div className="mt-4 ml-8 md:ml-12">
+                      {possibilities[2].mock}
+                    </div>
+                  </Float>
+                </ScaleIn>
+              </FadeIn>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ═══ Section 2 : Communauté (layout inversé) ═══ */}
+      <div className="py-24 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+            {/* Mockups à gauche */}
+            <FadeIn direction="left" delay={0.1} className="order-2 md:order-1">
+              <Stagger className="space-y-5" staggerDelay={0.2}>
+                {[possibilities[1], possibilities[3]].map((item, i) => (
+                  <StaggerItem key={item.title}>
+                    <motion.div
+                      whileHover={{ scale: 1.02, y: -3 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    >
+                      <Float duration={5 + i * 2} y={3} delay={i * 0.8}>
+                        {item.mock}
+                      </Float>
+                    </motion.div>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            </FadeIn>
+
+            {/* Texte à droite */}
+            <FadeIn direction="right" className="order-1 md:order-2">
+              <p className="text-violet-600 font-semibold text-sm uppercase tracking-wider mb-3">
+                Communauté
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Fédère et anime ton audience
+              </h2>
+              <p className="text-lg text-gray-500 mb-8">
+                Crée un espace d&apos;échange vivant avec du chat en temps réel, des événements et des lives pour renforcer les liens.
+              </p>
+              <div className="space-y-3">
+                {[possibilities[1], possibilities[3]].map((item, i) => (
+                  <FadeIn key={item.title} delay={0.3 + i * 0.15} direction="right">
+                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="w-9 h-9 rounded-full bg-violet-50 text-violet-600 flex items-center justify-center flex-shrink-0">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 text-sm">{item.title}</h3>
+                        <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </div>
+
+      {/* ═══ Section 3 : Outils (layout centré) ═══ */}
+      <div className="py-24 md:py-32 bg-gradient-to-b from-gray-50/80 to-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <FadeIn className="text-center mb-14">
+            <p className="text-emerald-600 font-semibold text-sm uppercase tracking-wider mb-3">
+              Outils
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Monétise et personnalise ton espace
+            </h2>
+            <p className="text-lg text-gray-500 max-w-xl mx-auto">
+              Génère des revenus avec des abonnements et formations payantes, et personnalise chaque détail à ton image.
+            </p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[possibilities[4], possibilities[5]].map((item, i) => (
+              <ScaleIn key={item.title} delay={0.15 + i * 0.2}>
+                <motion.div
+                  className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-full"
+                  whileHover={{ scale: 1.03, y: -6, boxShadow: "0 20px 50px rgba(99,102,241,0.10)" }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                >
+                  <div className="p-5 pb-0">
+                    <Float duration={6} y={4} delay={i * 0.5}>
                       {item.mock}
                     </Float>
-                  </ScaleIn>
-                </div>
-
-                {/* Text content */}
-                <div className="p-5 pt-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                      {item.icon}
-                    </div>
-                    <h3 className="font-semibold text-gray-900 text-lg">{item.title}</h3>
                   </div>
-                  <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.div>
-            </StaggerItem>
-          ))}
-        </Stagger>
+                  <div className="p-6 pt-5">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                        {item.icon}
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-lg">{item.title}</h3>
+                    </div>
+                    <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                  </div>
+                </motion.div>
+              </ScaleIn>
+            ))}
+          </div>
+        </div>
       </div>
+
     </section>
   );
 }

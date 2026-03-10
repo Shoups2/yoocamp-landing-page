@@ -3,129 +3,186 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const links = ["Communauté", "Fonctionnalités", "Processus", "Créateurs"];
+const links = [
+  { label: "Produit", href: "#communauté" },
+  { label: "Fonctionnalités", href: "#fonctionnalités" },
+  { label: "Comment ça marche", href: "#processus" },
+  { label: "FAQ", href: "#faq" },
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${
-        scrolled
-          ? "bg-white/80 backdrop-blur-xl shadow-[0_1px_6px_rgba(0,0,0,0.1)] border-gray-200/60"
-          : "bg-transparent border-transparent"
-      }`}
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-0 left-0 right-0 z-50"
     >
-      <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <motion.a
-          href="#"
-          className="text-2xl font-extrabold tracking-tight text-gray-900"
-          whileHover={{ scale: 1.03 }}
-        >
-          <img src="/yoocamp 4.svg" alt="Yoocamp" className="h-10" />
-        </motion.a>
+      <div className="mt-4 max-w-6xl mx-4 xl:mx-auto bg-white/60 backdrop-blur-xl rounded-2xl border border-gray-200/40 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1">
-          {links.map((link) => (
-            <motion.a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className="relative px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
-              whileHover="hover"
-            >
-              {link}
-              <motion.span
-                className="absolute bottom-0 left-1/2 h-0.5 bg-indigo-600 rounded-full"
-                variants={{
-                  hover: { width: "50%", x: "-50%", opacity: 1 },
-                }}
-                initial={{ width: 0, x: "-50%", opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              />
-            </motion.a>
-          ))}
+          {/* ── Logo ── */}
           <motion.a
             href="#"
-            className="ml-4 bg-gray-900 text-white px-5 py-2.5 rounded-xl text-sm font-semibold"
-            whileHover={{ scale: 1.05, backgroundColor: "#4338ca" }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            className="relative z-10 flex items-center gap-2"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            Placeholder CTA
+            <img src="/yoocamp 4.svg" alt="Yoocamp" className="h-7" />
           </motion.a>
-        </nav>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden relative w-8 h-8 flex items-center justify-center"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menu"
-        >
-          <motion.span
-            className="absolute h-0.5 w-5 bg-gray-900 rounded-full"
-            animate={menuOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -4 }}
-            transition={{ duration: 0.2 }}
-          />
-          <motion.span
-            className="absolute h-0.5 w-5 bg-gray-900 rounded-full"
-            animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-            transition={{ duration: 0.1 }}
-          />
-          <motion.span
-            className="absolute h-0.5 w-5 bg-gray-900 rounded-full"
-            animate={menuOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 4 }}
-            transition={{ duration: 0.2 }}
-          />
-        </button>
+          {/* ── Desktop nav (center) ── */}
+          <nav className="hidden md:flex items-center gap-0.5">
+            {links.map((link) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                className="relative px-3.5 py-2 text-sm font-medium text-gray-500 rounded-lg transition-colors hover:text-gray-900"
+                whileHover="hover"
+              >
+                {link.label}
+                <motion.span
+                  className="absolute inset-0 rounded-lg bg-gray-100/60"
+                  variants={{ hover: { opacity: 1 } }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ zIndex: -1 }}
+                />
+              </motion.a>
+            ))}
+          </nav>
+
+          {/* ── Desktop actions (right) ── */}
+          <div className="hidden md:flex items-center gap-2">
+            <motion.a
+              href="#"
+              className="px-4 py-2 text-sm font-medium text-gray-500 rounded-lg transition-colors hover:text-gray-900"
+              whileHover={{ backgroundColor: "rgba(0,0,0,0.03)" }}
+            >
+              Se connecter
+            </motion.a>
+            <motion.a
+              href="#"
+              className="px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-xl"
+              whileHover={{
+                scale: 1.03,
+                backgroundColor: "#4338ca",
+                boxShadow: "0 4px 16px rgba(99,102,241,0.3)",
+              }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              Rejoindre la bêta
+            </motion.a>
+          </div>
+
+          {/* ── Mobile hamburger ── */}
+          <button
+            className="md:hidden relative z-10 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-100/60 transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menu"
+          >
+            <div className="w-[18px] h-3 relative">
+              <motion.span
+                className="absolute left-0 right-0 h-[1.5px] bg-gray-800 rounded-full"
+                animate={menuOpen ? { rotate: 45, y: 5.25 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.span
+                className="absolute left-0 right-0 top-[5.25px] h-[1.5px] bg-gray-800 rounded-full"
+                animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.15 }}
+              />
+              <motion.span
+                className="absolute left-0 right-0 bottom-0 h-[1.5px] bg-gray-800 rounded-full"
+                animate={menuOpen ? { rotate: -45, y: -5.25 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+          </button>
+        </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* ── Mobile menu ── */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 overflow-hidden"
-          >
-            <div className="px-6 py-4 flex flex-col gap-1">
-              {links.map((link, i) => (
-                <motion.a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="py-3 text-gray-600 font-medium hover:text-gray-900 transition-colors"
-                  onClick={() => setMenuOpen(false)}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMenuOpen(false)}
+            />
+
+            {/* Panel */}
+            <motion.div
+              className="fixed top-0 right-0 bottom-0 w-[280px] bg-white shadow-2xl md:hidden z-50"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="flex flex-col h-full pt-20 px-6 pb-8">
+                {/* Links */}
+                <nav className="flex flex-col gap-1 flex-1">
+                  {links.map((link, i) => (
+                    <motion.a
+                      key={link.label}
+                      href={link.href}
+                      className="py-3 px-3 text-[15px] font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.05 }}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {link.label}
+                    </motion.a>
+                  ))}
+                </nav>
+
+                {/* Actions */}
+                <motion.div
+                  className="space-y-2.5 pt-6 border-t border-gray-100"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
                 >
-                  {link}
-                </motion.a>
-              ))}
-              <motion.a
-                href="#"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: links.length * 0.05 }}
-                className="mt-2 bg-gray-900 text-white text-center py-3 rounded-xl font-semibold"
-              >
-                Placeholder CTA
-              </motion.a>
-            </div>
-          </motion.div>
+                  <a
+                    href="#"
+                    className="block text-center py-3 text-[15px] font-medium text-gray-600 rounded-xl hover:bg-gray-50 transition-colors"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Se connecter
+                  </a>
+                  <a
+                    href="#"
+                    className="block text-center py-3 text-[15px] font-semibold text-white bg-gray-900 rounded-xl"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Rejoindre la bêta
+                  </a>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>

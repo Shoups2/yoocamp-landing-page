@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Problem from "@/components/Problem";
 import Community from "@/components/Community";
 import Features from "@/components/Features";
 import ProductDemo from "@/components/ProductDemo";
@@ -17,6 +18,7 @@ export default function Home() {
         <Community />
         <Features />
         <ProductDemo />
+        <Problem />
         <Creators />
         <Advantages />
         <CTABanner />
