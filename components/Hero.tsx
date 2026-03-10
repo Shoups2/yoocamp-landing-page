@@ -226,7 +226,7 @@ export default function Hero() {
 
         {/* Image container */}
         <motion.div
-          className="relative z-10"
+          className="relative z-10 rounded-2xl md:rounded-3xl"
           initial={{ opacity: 0, y: 40, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           whileHover={{ y: -8, boxShadow: "0 30px 80px -10px rgba(99,102,241,0.18), 0 12px 40px rgba(0,0,0,0.08)" }}
