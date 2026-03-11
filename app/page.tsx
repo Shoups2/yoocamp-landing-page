@@ -7,6 +7,7 @@ import ProductDemo from "@/components/ProductDemo";
 import Creators from "@/components/Creators";
 import Advantages from "@/components/Advantages";
 import CTABanner from "@/components/CTABanner";
+import Marquee from "@/components/Marquee";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <Marquee />
         <Community />
         <Features />
         <ProductDemo />
