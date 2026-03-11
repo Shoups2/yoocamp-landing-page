@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Fredoka } from "next/font/google";
+import { Inter, Playfair_Display, Fredoka, Poppins } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,6 +17,12 @@ const fredoka = Fredoka({
   subsets: ["latin"],
 });
 
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["800"],
+});
+
 export const metadata: Metadata = {
   title: "Yoocamp - Lance ta communauté et commence à vendre",
   description:
@@ -30,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${inter.variable} ${playfair.variable} ${fredoka.variable} antialiased`}>{children}</body>
+      <body className={`${inter.variable} ${playfair.variable} ${fredoka.variable} ${poppins.variable} antialiased`}>{children}</body>
     </html>
   );
 }

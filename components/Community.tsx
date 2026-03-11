@@ -470,7 +470,7 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
 
       {/* Titre + Description */}
       <div className={`relative z-10 px-7 md:px-9 ${card.featured ? "pt-10" : "pt-7"}`}>
-        <h3 className={`${card.featured ? "text-[2.2rem] md:text-[2.75rem]" : "text-3xl md:text-4xl"} font-bold uppercase font-[family-name:var(--font-fredoka)] leading-[1.08] tracking-[0.02em] whitespace-pre-line mb-3 ${card.titleColor}`}>
+        <h3 className={`${card.featured ? "text-3xl md:text-4xl" : "text-3xl md:text-4xl"} font-extrabold uppercase font-[family-name:var(--font-poppins)] leading-[1.08] tracking-[0.02em] whitespace-pre-line mb-3 ${card.titleColor}`}>
           {card.title}
         </h3>
         <p className="text-[15px] font-medium leading-relaxed text-gray-400/90 max-w-[90%]">
@@ -567,7 +567,7 @@ export default function Community() {
         <FadeIn delay={0.5}>
           <div className="mt-5 md:mt-6 rounded-[1.25rem] border border-[#7B61FF]/10 bg-gradient-to-r from-[#7B61FF]/[0.04] via-white to-[#7B61FF]/[0.06] px-8 md:px-14 py-8 md:py-10 flex flex-col md:flex-row items-center justify-between gap-5 shadow-[0_2px_32px_-8px_rgba(123,97,255,0.08)]">
             <div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 font-[family-name:var(--font-fredoka)]">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 font-[family-name:var(--font-poppins)]">
                 Crée ta communauté maintenant
               </h3>
               <p className="text-sm text-gray-400 mt-1.5 hidden md:block">
