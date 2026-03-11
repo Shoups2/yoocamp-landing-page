@@ -9,7 +9,6 @@ import { FadeIn } from "./motion";
 function Step1Mock() {
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
-      {/* Top bar */}
       <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#7B61FF] to-[#9B8AFF] flex items-center justify-center">
@@ -22,7 +21,6 @@ function Step1Mock() {
           <span className="text-[10px] text-gray-400">Étape 1/3</span>
         </div>
       </div>
-      {/* Content */}
       <div className="p-5 space-y-4">
         <div className="space-y-2">
           <label className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Nom de ta communauté</label>
@@ -74,7 +72,6 @@ function Step1Mock() {
 function Step2Mock() {
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
-      {/* Top bar */}
       <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -86,7 +83,6 @@ function Step2Mock() {
           <span className="text-[10px] font-medium text-[#7B61FF] bg-[#7B61FF]/8 px-2 py-0.5 rounded-full">Brouillon</span>
         </div>
       </div>
-      {/* Video preview */}
       <div className="mx-5 mt-4 aspect-video rounded-xl bg-gradient-to-br from-[#7B61FF] via-[#9B8AFF] to-[#6C4FE0] relative overflow-hidden">
         <div className="absolute top-[-20%] right-[-15%] w-[60%] h-[80%] bg-white/10 rounded-full blur-[30px]" />
         <div className="absolute inset-0 flex items-center justify-center">
@@ -105,7 +101,6 @@ function Step2Mock() {
           </div>
         </div>
       </div>
-      {/* Meta */}
       <div className="p-5 space-y-3">
         <div className="space-y-1.5">
           <div className="text-sm font-semibold text-gray-900">Construire une offre irrésistible</div>
@@ -141,7 +136,6 @@ function Step3Mock() {
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
-      {/* Top bar */}
       <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <span className="text-xs font-semibold text-gray-700">Tableau de bord</span>
@@ -155,7 +149,6 @@ function Step3Mock() {
           <span className="text-[10px] text-gray-400">42 en ligne</span>
         </div>
       </div>
-      {/* Stats */}
       <div className="p-5 space-y-4">
         <div className="grid grid-cols-3 gap-3">
           {[
@@ -176,7 +169,6 @@ function Step3Mock() {
             </motion.div>
           ))}
         </div>
-        {/* Members */}
         <div>
           <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Membres actifs</span>
           <div className="mt-2 space-y-2">
@@ -207,67 +199,95 @@ function Step3Mock() {
 
 /* ── Step Row ─────────────────────────────── */
 
-function StepRow({ step, index }: { step: typeof steps[number]; index: number }) {
+const mocks = [<Step1Mock key="1" />, <Step2Mock key="2" />, <Step3Mock key="3" />];
+
+function StepRow({ step, index, activeStep }: { step: typeof steps[number]; index: number; activeStep: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const isReversed = index % 2 !== 0;
-  const mocks = [<Step1Mock key="1" />, <Step2Mock key="2" />, <Step3Mock key="3" />];
+  const isActive = activeStep >= index;
+  const isCurrent = activeStep === index;
 
   return (
-    <div className="relative">
+    <div className="relative" ref={ref}>
       {/* Timeline node */}
       <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-0 flex-col items-center z-20">
         <motion.div
-          className="w-12 h-12 rounded-full bg-white border-2 border-[#7B61FF]/20 flex items-center justify-center shadow-[0_4px_20px_-4px_rgba(123,97,255,0.15)]"
+          className="w-12 h-12 rounded-full flex items-center justify-center"
           initial={{ scale: 0 }}
-          animate={isInView ? { scale: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 300 }}
+          animate={isInView ? {
+            scale: isCurrent ? 1.1 : 1,
+            boxShadow: isCurrent
+              ? "0 0 0 5px rgba(123,97,255,0.12), 0 0 24px -4px rgba(123,97,255,0.35)"
+              : isActive
+                ? "0 0 0 3px rgba(123,97,255,0.08), 0 4px 20px -4px rgba(123,97,255,0.15)"
+                : "0 2px 8px rgba(0,0,0,0.06)",
+          } : {}}
+          transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 260, damping: 20 }}
+          style={{
+            backgroundColor: isActive ? "white" : "#fafafa",
+            border: isActive ? "2px solid rgba(123,97,255,0.3)" : "2px solid rgba(0,0,0,0.06)",
+          }}
         >
-          <div className="w-8 h-8 rounded-full bg-[#7B61FF] text-white font-bold text-sm flex items-center justify-center">
+          <motion.div
+            className="w-8 h-8 rounded-full font-bold text-sm flex items-center justify-center"
+            animate={{
+              backgroundColor: isActive ? "#7B61FF" : "#e5e7eb",
+              color: isActive ? "#ffffff" : "#9ca3af",
+            }}
+            transition={{ duration: 0.4 }}
+          >
             {step.num}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
 
-      <div
-        ref={ref}
+      <motion.div
         className={`flex flex-col ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-10 md:gap-16 pt-16 md:pt-0`}
+        animate={{ opacity: isActive ? 1 : 0.6 }}
+        transition={{ duration: 0.5 }}
       >
         {/* Texte */}
         <div className="flex-1 w-full">
-          {/* Label "Étape X" */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Mobile step badge */}
             <div className="flex md:hidden items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-full bg-[#7B61FF] text-white font-bold text-base flex items-center justify-center shrink-0 shadow-lg shadow-[#7B61FF]/20">
+              <motion.div
+                className="w-10 h-10 rounded-full font-bold text-base flex items-center justify-center shrink-0"
+                animate={{
+                  backgroundColor: isActive ? "#7B61FF" : "#e5e7eb",
+                  color: isActive ? "#ffffff" : "#9ca3af",
+                  scale: isCurrent ? 1.1 : 1,
+                  boxShadow: isCurrent ? "0 0 0 4px rgba(123,97,255,0.15), 0 4px 16px -4px rgba(123,97,255,0.3)" : "0 0 0 0px transparent",
+                }}
+                transition={{ duration: 0.4 }}
+              >
                 {step.num}
-              </div>
+              </motion.div>
               <span className="text-xs font-semibold text-[#7B61FF] uppercase tracking-wider">Étape {step.num}</span>
             </div>
-            {/* Desktop label */}
             <span className="hidden md:block text-xs font-semibold text-[#7B61FF] uppercase tracking-wider mb-4">Étape {step.num}</span>
           </motion.div>
 
-          {/* Title */}
           <motion.h3
-            className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight"
+            className="text-2xl md:text-3xl font-bold mb-3 leading-tight transition-colors duration-500"
             initial={{ opacity: 0, y: 25 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            style={{ color: isActive ? "#111827" : "#9ca3af" }}
           >
             {step.title}
           </motion.h3>
 
-          {/* Description */}
           <motion.p
-            className="text-gray-500 text-base md:text-lg leading-relaxed max-w-md"
+            className="text-base md:text-lg leading-relaxed max-w-md transition-colors duration-500"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            style={{ color: isActive ? "#6b7280" : "#d1d5db" }}
           >
             {step.desc}
           </motion.p>
@@ -276,31 +296,29 @@ function StepRow({ step, index }: { step: typeof steps[number]; index: number })
         {/* Mockup */}
         <motion.div
           className="flex-1 w-full"
-          initial={{ opacity: 0, scale: 0.92, y: 40 }}
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
           animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          whileHover={{ y: -4 }}
+          transition={{ duration: 0.7, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          whileHover={{ y: -4, scale: 1.01, transition: { duration: 0.3, ease: "easeOut" } }}
         >
-          <div className="relative">
-            {/* Halo */}
+          <div className="relative group">
+            {/* Halo — intensifies when active */}
             <div
-              className="absolute -inset-4 pointer-events-none"
+              className="absolute -inset-8 pointer-events-none transition-opacity duration-700 rounded-3xl"
               style={{
-                background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(123,97,255,0.08) 0%, transparent 70%)",
+                background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(123,97,255,0.18) 0%, transparent 70%)",
+                opacity: isCurrent ? 1 : 0.25,
               }}
             />
-            <div className="relative z-10 drop-shadow-[0_8px_32px_rgba(123,97,255,0.10)]">
+            <div className="relative z-10 drop-shadow-[0_8px_30px_rgba(123,97,255,0.12)] transition-all duration-300 group-hover:drop-shadow-[0_16px_48px_rgba(123,97,255,0.22)]">
               {mocks[index]}
             </div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 }
-
-/* ── Timeline connector ───────────────────── */
-
 
 /* ── Timeline connector ───────────────────── */
 
@@ -323,20 +341,20 @@ function TimelineLine() {
   return (
     <div ref={ref} className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 z-10">
       {/* Background line */}
-      <div className="absolute inset-0 w-[2px] bg-[#7B61FF]/[0.08] mx-auto rounded-full" />
+      <div className="absolute inset-0 w-[3px] bg-[#7B61FF]/[0.12] mx-auto rounded-full" />
       {/* Animated fill — locks at 100% once completed */}
       <motion.div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] rounded-full origin-top"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[3px] rounded-full origin-top"
         style={{
           scaleY: completed ? 1 : scaleY,
           height: "100%",
-          background: "linear-gradient(to bottom, #7B61FF, #9B8AFF, #7B61FF)",
+          background: "linear-gradient(to bottom, #7B61FF, #9B8AFF, #B8A9FF, #7B61FF)",
         }}
       />
       {/* Animated dot — hidden once completed */}
       {!completed && (
         <motion.div
-          className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#7B61FF] shadow-[0_0_12px_rgba(123,97,255,0.5)]"
+          className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#7B61FF] shadow-[0_0_16px_rgba(123,97,255,0.6)]"
           style={{ top: dotTop, opacity: dotOpacity }}
         />
       )}
@@ -370,8 +388,21 @@ const steps = [
 /* ── Main Component ───────────────────────── */
 
 export default function Features() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start center", "end center"],
+  });
+  const [activeStep, setActiveStep] = useState(0);
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    if (v < 0.25) setActiveStep(0);
+    else if (v < 0.6) setActiveStep(1);
+    else setActiveStep(2);
+  });
+
   return (
-    <section id="fonctionnalités" className="py-24 md:py-36 relative overflow-hidden">
+    <section ref={sectionRef} id="fonctionnalités" className="py-24 md:py-36 relative overflow-hidden">
       {/* Progressive gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F8F6FF] to-[#F0ECFF]" />
       {/* Ambient glows */}
@@ -399,7 +430,7 @@ export default function Features() {
 
           <div className="space-y-20 md:space-y-32">
             {steps.map((step, i) => (
-              <StepRow key={step.num} step={step} index={i} />
+              <StepRow key={step.num} step={step} index={i} activeStep={activeStep} />
             ))}
           </div>
         </div>
