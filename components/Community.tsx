@@ -95,8 +95,6 @@ const chatMessages = [
   { name: "Léa", avatar: "bg-indigo-400", text: "Salut tout le monde ! Prêts pour le mastermind en live ce soir ? 🎉", side: "left" as const },
   { name: "Maxime", avatar: "bg-violet-400", text: "Grave ! Le dernier était incroyable 🚀", side: "left" as const },
   { name: "Toi", avatar: "bg-[#7B61FF]", text: "Rdv à 20h, j'ai un sujet en or 🔥", side: "right" as const },
-  { name: "Sofia", avatar: "bg-fuchsia-400", text: "Présente ! J'ai plein de questions 🙋‍♀️", side: "left" as const },
-  { name: "Toi", avatar: "bg-[#7B61FF]", text: "Parfait, on va tout décortiquer 💜", side: "right" as const },
 ];
 
 function DiscussionMock() {
@@ -127,7 +125,7 @@ function DiscussionMock() {
           </motion.div>
         </div>
       </div>
-      <div className="px-3 py-3 space-y-2.5 h-44 overflow-hidden">
+      <div className="px-3 py-3 space-y-2.5 h-52 overflow-hidden">
         {chatMessages.map((msg, i) => (
           <motion.div
             key={i}
