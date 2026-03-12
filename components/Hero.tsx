@@ -166,7 +166,7 @@ export default function Hero() {
           {...blurFadeUp(0.35)}
           className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto"
         >
-          Publie du contenu exclusif, vends tes formations et anime ta communauté. Sans jongler entre 6 outils.
+          Publie du contenu exclusif, vends tes formations et anime ta communauté. Sans jongler entre 6 apps.
         </motion.p>
 
         {/* CTA */}
