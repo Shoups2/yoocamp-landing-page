@@ -166,7 +166,7 @@ export default function Hero() {
           {...blurFadeUp(0.35)}
           className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto"
         >
-          Crée ton espace, publie du contenu exclusif, anime ta communauté et monétise ton expertise. Une seule plateforme.
+          Publie du contenu exclusif, vends tes formations et anime ta communauté. Sans jongler entre 6 outils.
         </motion.p>
 
         {/* CTA */}
@@ -181,7 +181,7 @@ export default function Hero() {
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
-            Créer ma communauté
+            Créer ma communauté gratuitement
             <motion.svg
               className="w-5 h-5"
               fill="none"
@@ -206,12 +206,24 @@ export default function Hero() {
           </motion.a>
         </motion.div>
 
+        {/* Micro-copy */}
+        <motion.p
+          {...blurFadeUp(0.6)}
+          className="mt-4 text-sm text-gray-400 flex items-center justify-center gap-2 flex-wrap"
+        >
+          <span className="flex items-center gap-1"><svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>Gratuit pour démarrer</span>
+          <span className="text-gray-300">·</span>
+          <span className="flex items-center gap-1"><svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>Pas de carte bancaire</span>
+          <span className="text-gray-300">·</span>
+          <span className="flex items-center gap-1"><svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>Prêt en 2 minutes</span>
+        </motion.p>
+
         {/* Social proof — défilement */}
         <motion.div
           {...blurFadeUp(0.65)}
           className="mt-6 flex items-center gap-4 justify-center"
         >
-          <div className="relative w-[120px] h-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]">
+          <div className="relative w-[150px] h-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]">
             <motion.div
               className="flex -space-x-1.5 absolute top-0 h-full items-center"
               animate={{ x: ["0%", "-50%"] }}
@@ -228,7 +240,7 @@ export default function Hero() {
             </motion.div>
           </div>
           <p className="text-sm text-gray-400">
-            <span className="font-semibold text-gray-600">500+</span> créateurs actifs
+            <span className="font-semibold text-gray-600">+1 000 créateurs</span> sur la liste d&apos;attente
           </p>
         </motion.div>
       </div>
