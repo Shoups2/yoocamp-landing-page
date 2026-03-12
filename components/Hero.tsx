@@ -149,25 +149,15 @@ export default function Hero() {
 
       {/* ── Content ── */}
       <div className="relative max-w-5xl mx-auto px-6 pt-10 md:pt-14 pb-0 text-center">
-        {/* Badge */}
-        <motion.div {...blurFadeUp(0.1)} className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm text-indigo-600 text-sm font-semibold px-4 py-2 rounded-full mb-5 border border-indigo-100/60 shadow-sm">
-          <motion.span
-            className="w-2 h-2 bg-indigo-500 rounded-full"
-            animate={{ scale: [1, 1.4, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          Plateforme tout-en-un pour créateurs
-        </motion.div>
-
         {/* Title */}
         <motion.h1
           {...blurFadeUp(0.2)}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-[1.08] tracking-tight"
         >
-          Crée, anime et monétise
+          Lance ta communauté
           <br />
-          <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">
-            ta communauté
+          <span className="bg-gradient-to-r from-[#6C4FE0] via-[#7B61FF] to-[#A855F7] bg-clip-text text-transparent">
+            et commence à vendre
           </span>
         </motion.h1>
 
@@ -176,7 +166,7 @@ export default function Hero() {
           {...blurFadeUp(0.35)}
           className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto"
         >
-          Une seule plateforme pour tes contenus, formations, événements et discussions. Fini les 6 outils différents.
+          Crée ton espace, publie du contenu exclusif, anime ta communauté et monétise ton expertise. Une seule plateforme.
         </motion.p>
 
         {/* CTA */}
