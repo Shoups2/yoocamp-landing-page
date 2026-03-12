@@ -92,9 +92,9 @@ function EventsMock() {
 /* ── Discussion Mock ──────────────────────── */
 
 const chatMessages = [
-  { name: "Léa", avatar: "bg-indigo-400", text: "Salut tout le monde ! Prêts pour le mastermind en live ce soir ? 🎉", side: "left" as const },
-  { name: "Maxime", avatar: "bg-violet-400", text: "Grave ! Le dernier était incroyable 🚀", side: "left" as const },
-  { name: "Toi", avatar: "bg-[#7B61FF]", text: "Rdv à 20h, j'ai un sujet en or 🔥", side: "right" as const },
+  { name: "Léa", avatar: "bg-blue-400", text: "Salut tout le monde ! Prêts pour le mastermind en live ce soir ? 🎉", side: "left" as const },
+  { name: "Maxime", avatar: "bg-blue-500", text: "Grave ! Le dernier était incroyable 🚀", side: "left" as const },
+  { name: "Toi", avatar: "bg-[#4F7BFF]", text: "Rdv à 20h, j'ai un sujet en or 🔥", side: "right" as const },
 ];
 
 function DiscussionMock() {
@@ -106,7 +106,7 @@ function DiscussionMock() {
           <span className="text-xs font-semibold text-gray-700">Ma communauté</span>
         </div>
         <div className="flex -space-x-1.5">
-          {["bg-[#7B61FF]", "bg-violet-400", "bg-fuchsia-400"].map((c, i) => (
+          {["bg-[#4F7BFF]", "bg-blue-400", "bg-blue-500"].map((c, i) => (
             <motion.div
               key={i}
               className={`w-5 h-5 rounded-full ${c} border-2 border-white`}
@@ -141,7 +141,7 @@ function DiscussionMock() {
               <span className={`text-[8px] font-medium text-gray-400 ${msg.side === "right" ? "text-right" : ""}`}>{msg.name}</span>
               <div className={`px-3 py-1.5 rounded-2xl text-[11px] leading-relaxed ${
                 msg.side === "right"
-                  ? "bg-[#7B61FF] text-white rounded-br-sm"
+                  ? "bg-[#4F7BFF] text-white rounded-br-sm"
                   : "bg-gray-100 text-gray-700 rounded-bl-sm"
               }`}>
                 {msg.text}
@@ -163,7 +163,7 @@ function DiscussionMock() {
               />
             ))}
           </div>
-          <div className="w-6 h-6 rounded-lg bg-[#7B61FF] flex items-center justify-center">
+          <div className="w-6 h-6 rounded-lg bg-[#4F7BFF] flex items-center justify-center">
             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
             </svg>
@@ -182,7 +182,7 @@ function VideoMock() {
       <div className="aspect-video relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#7B61FF] via-[#9B8AFF] to-[#6C4FE0]" />
         <div className="absolute top-[-20%] right-[-15%] w-[60%] h-[80%] bg-white/10 rounded-full blur-[40px]" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[60%] bg-fuchsia-400/15 rounded-full blur-[30px]" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[60%] bg-sky-300/15 rounded-full blur-[30px]" />
         <div className="absolute top-3 right-3 grid grid-cols-3 gap-1 opacity-20">
           {Array.from({ length: 9 }).map((_, i) => (
             <div key={i} className="w-1 h-1 rounded-full bg-white" />
@@ -373,57 +373,57 @@ interface CardData {
 const cards: CardData[] = [
   {
     id: "content",
-    title: "Création\nde contenu",
-    desc: "Publie du contenu exclusif et crée tes formations, programmes et ressources pour tes membres.",
-    titleColor: "text-[#4A35A8]",
-    cardBg: "bg-gradient-to-br from-[#F8F5FF] via-[#F0EBFF] to-[#E6DEFF]",
-    haloColor: "bg-[#7B61FF]/20",
-    haloColor2: "bg-[#9B8AFF]/12",
-    haloColor3: "bg-[#BDB0FF]/8",
-    borderColor: "border-[#DDD5FF]/80",
-    shadowDefault: "0 4px 40px -8px rgba(123,97,255,0.14), 0 1px 3px rgba(123,97,255,0.06)",
-    shadowHover: "0 32px 64px -16px rgba(123,97,255,0.28), 0 16px 32px -8px rgba(123,97,255,0.12), 0 0 0 1px rgba(123,97,255,0.1)",
+    title: "Créer du\ncontenu",
+    desc: "Publie vidéos, formations et contenus exclusifs.",
+    titleColor: "text-[#8B5CF6]",
+    cardBg: "bg-gradient-to-b from-[#F3EEFF] via-[#F9F7FF] to-white",
+    haloColor: "bg-violet-400/20",
+    haloColor2: "bg-violet-300/10",
+    haloColor3: "bg-violet-200/6",
+    borderColor: "border-violet-100/50",
+    shadowDefault: "0 8px 30px -6px rgba(139,92,246,0.10), 0 2px 8px rgba(0,0,0,0.04)",
+    shadowHover: "0 20px 50px -10px rgba(139,92,246,0.22), 0 8px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(139,92,246,0.12)",
     mock: "video",
     featured: true,
   },
   {
     id: "community",
-    title: "Communauté",
-    desc: "Fédère et anime ton audience dans un espace pensé pour les échanges et l'engagement.",
-    titleColor: "text-[#5A45BF]",
-    cardBg: "bg-gradient-to-br from-white via-[#FDFCFF] to-[#F8F6FF]",
-    haloColor: "bg-[#7B61FF]/10",
-    haloColor2: "bg-[#818CF8]/6",
-    borderColor: "border-gray-200/70",
-    shadowDefault: "0 2px 24px -4px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03)",
-    shadowHover: "0 24px 56px -12px rgba(123,97,255,0.20), 0 12px 24px -8px rgba(123,97,255,0.08), 0 0 0 1px rgba(123,97,255,0.06)",
+    title: "Anime ta\ncommunauté",
+    desc: "Discussions, événements et interactions avec tes membres.",
+    titleColor: "text-[#4F7BFF]",
+    cardBg: "bg-gradient-to-b from-[#EEF2FF] via-[#F7F8FF] to-white",
+    haloColor: "bg-[#4F7BFF]/16",
+    haloColor2: "bg-[#4F7BFF]/10",
+    borderColor: "border-indigo-100/50",
+    shadowDefault: "0 8px 30px -6px rgba(79,123,255,0.12), 0 2px 8px rgba(0,0,0,0.04)",
+    shadowHover: "0 20px 60px -10px rgba(79,123,255,0.20), 0 8px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(79,123,255,0.12)",
     mock: "discussion",
   },
   {
     id: "events",
-    title: "Événements",
-    desc: "Organise des masterclasses, sessions de coaching et lives. Tes membres s'inscrivent en un clic.",
-    titleColor: "text-[#5A45BF]",
-    cardBg: "bg-gradient-to-b from-white via-[#FDFCFF] to-[#F6F3FF]",
-    haloColor: "bg-[#818CF8]/12",
-    haloColor2: "bg-[#7B61FF]/6",
-    borderColor: "border-gray-200/70",
-    shadowDefault: "0 2px 24px -4px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03)",
-    shadowHover: "0 24px 56px -12px rgba(123,97,255,0.18), 0 12px 24px -8px rgba(123,97,255,0.07), 0 0 0 1px rgba(123,97,255,0.05)",
+    title: "Événements\nlive",
+    desc: "Organise masterclasses, coaching et sessions en direct.",
+    titleColor: "text-[#E8862F]",
+    cardBg: "bg-gradient-to-b from-[#FFF4E8] via-[#FFFAF5] to-white",
+    haloColor: "bg-orange-300/18",
+    haloColor2: "bg-amber-300/10",
+    borderColor: "border-orange-100/50",
+    shadowDefault: "0 8px 30px -6px rgba(251,146,60,0.10), 0 2px 8px rgba(0,0,0,0.04)",
+    shadowHover: "0 20px 50px -10px rgba(251,146,60,0.22), 0 8px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(251,146,60,0.12)",
     mock: "events",
   },
   {
     id: "revenue",
     title: "Génère\ndes revenus",
-    desc: "Monétise ton expertise et suis facilement les performances de ton activité.",
-    titleColor: "text-[#4A35A8]",
-    cardBg: "bg-gradient-to-br from-[#FCFFFC] via-white to-[#F0FDF4]",
-    haloColor: "bg-emerald-400/14",
-    haloColor2: "bg-[#7B61FF]/6",
-    haloColor3: "bg-emerald-300/8",
-    borderColor: "border-[#D5F0DF]/70",
-    shadowDefault: "0 2px 24px -4px rgba(16,185,129,0.08), 0 1px 2px rgba(0,0,0,0.03)",
-    shadowHover: "0 24px 56px -12px rgba(16,185,129,0.22), 0 12px 24px -8px rgba(16,185,129,0.08), 0 0 0 1px rgba(16,185,129,0.06)",
+    desc: "Monétise ton expertise avec abonnements et ventes.",
+    titleColor: "text-[#34D399]",
+    cardBg: "bg-gradient-to-b from-[#ECFBF0] via-[#F5FDF7] to-white",
+    haloColor: "bg-emerald-400/18",
+    haloColor2: "bg-emerald-300/10",
+    haloColor3: "bg-emerald-200/8",
+    borderColor: "border-emerald-100/50",
+    shadowDefault: "0 8px 30px -6px rgba(16,185,129,0.10), 0 2px 8px rgba(0,0,0,0.04)",
+    shadowHover: "0 20px 50px -10px rgba(16,185,129,0.22), 0 8px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(16,185,129,0.12)",
     mock: "revenue",
   },
 ];
@@ -447,7 +447,7 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
       ref={ref}
       initial={{ opacity: 0, y: 60, scale: 0.96 }}
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -6 }}
       transition={{ duration: 0.9, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
       style={{ boxShadow: card.shadowDefault }}
       onMouseEnter={(e) => {
@@ -456,7 +456,7 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLElement).style.boxShadow = card.shadowDefault;
       }}
-      className={`group relative rounded-[1.75rem] border overflow-hidden transition-shadow duration-500 ease-out ${card.cardBg} ${card.borderColor} ${grow ? "md:flex-1 h-full" : ""}`}
+      className={`group relative rounded-[1.75rem] border overflow-hidden transition-all duration-300 ease-out ${card.cardBg} ${card.borderColor} ${grow ? "md:flex-1 h-full" : ""}`}
     >
       {/* Accent line pour la card featured */}
       {card.featured && (
@@ -483,21 +483,27 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
           className="absolute inset-x-0 top-0 bottom-0 pointer-events-none transition-opacity duration-700 group-hover:opacity-130"
           style={{
             background: card.id === "revenue"
-              ? "radial-gradient(ellipse 80% 70% at 50% 55%, rgba(16,185,129,0.12) 0%, rgba(16,185,129,0.04) 50%, transparent 100%)"
+              ? "radial-gradient(ellipse 90% 80% at 50% 55%, rgba(16,185,129,0.12) 0%, rgba(16,185,129,0.04) 55%, transparent 100%)"
               : card.id === "events"
-                ? "radial-gradient(ellipse 80% 70% at 50% 55%, rgba(129,140,248,0.10) 0%, rgba(123,97,255,0.04) 50%, transparent 100%)"
-                : "radial-gradient(ellipse 80% 70% at 50% 55%, rgba(123,97,255,0.14) 0%, rgba(155,138,255,0.06) 50%, transparent 100%)",
+                ? "radial-gradient(ellipse 90% 80% at 50% 55%, rgba(251,146,60,0.11) 0%, rgba(251,146,60,0.04) 55%, transparent 100%)"
+                : card.id === "community"
+                  ? "radial-gradient(ellipse 90% 80% at 50% 55%, rgba(79,123,255,0.11) 0%, rgba(79,123,255,0.04) 55%, transparent 100%)"
+                  : "radial-gradient(ellipse 90% 80% at 50% 55%, rgba(139,92,246,0.12) 0%, rgba(139,92,246,0.04) 55%, transparent 100%)",
           }}
         />
         {/* Halo secondaire — spot lumineux plus concentré */}
         <div
           className="absolute pointer-events-none transition-opacity duration-700 group-hover:opacity-140"
           style={{
-            inset: "15% 20% 20% 20%",
+            inset: "10% 15% 15% 15%",
             background: card.id === "revenue"
-              ? "radial-gradient(circle at 50% 50%, rgba(52,211,153,0.08) 0%, transparent 70%)"
-              : "radial-gradient(circle at 50% 50%, rgba(155,138,255,0.08) 0%, transparent 70%)",
-            filter: "blur(20px)",
+              ? "radial-gradient(circle at 50% 50%, rgba(52,211,153,0.09) 0%, transparent 75%)"
+              : card.id === "events"
+                ? "radial-gradient(circle at 50% 50%, rgba(251,146,60,0.08) 0%, transparent 75%)"
+                : card.id === "community"
+                  ? "radial-gradient(circle at 50% 50%, rgba(79,123,255,0.08) 0%, transparent 75%)"
+                  : "radial-gradient(circle at 50% 50%, rgba(139,92,246,0.09) 0%, transparent 75%)",
+            filter: "blur(28px)",
           }}
         />
         <Float duration={6} y={card.featured ? 4 : 3} delay={index * 0.3}>
@@ -545,7 +551,7 @@ export default function Community() {
         </FadeIn>
 
         {/* Bento grid */}
-        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+        <div className="relative grid md:grid-cols-2 gap-4 md:gap-5">
           {/* Colonne gauche : Communauté + Revenus */}
           <div className="flex flex-col gap-4 md:gap-5">
             <CardItem card={cards[1]} index={0} />
@@ -563,7 +569,10 @@ export default function Community() {
 
         {/* CTA card */}
         <FadeIn delay={0.5}>
-          <div className="mt-5 md:mt-6 rounded-[1.25rem] border border-[#7B61FF]/10 bg-gradient-to-r from-[#7B61FF]/[0.04] via-white to-[#7B61FF]/[0.06] px-8 md:px-14 py-8 md:py-10 flex flex-col md:flex-row items-center justify-between gap-5 shadow-[0_2px_32px_-8px_rgba(123,97,255,0.08)]">
+          <div className="relative mt-5 md:mt-6 rounded-[1.5rem] border border-[#7B61FF]/15 bg-gradient-to-r from-[#F8F5FF] via-white to-[#F0ECFF] px-10 md:px-16 py-10 md:py-12 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_4px_40px_-8px_rgba(123,97,255,0.12)] overflow-hidden">
+            {/* Halo violet */}
+            <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-[300px] h-[200px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(123,97,255,0.12), transparent 70%)" }} />
+            <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[250px] h-[180px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(155,138,255,0.10), transparent 70%)" }} />
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 font-[family-name:var(--font-poppins)]">
                 Crée ta communauté maintenant
@@ -574,13 +583,13 @@ export default function Community() {
             </div>
             <motion.a
               href="#"
-              className="relative shrink-0 px-9 py-4 rounded-full bg-[#7B61FF] text-white font-semibold text-sm shadow-[0_4px_24px_-4px_rgba(123,97,255,0.45)]"
-              whileHover={{ scale: 1.04, boxShadow: "0 8px 36px -4px rgba(123,97,255,0.55)" }}
+              className="relative shrink-0 px-10 py-4.5 rounded-full bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0] text-white font-semibold text-sm shadow-[0_6px_28px_-4px_rgba(123,97,255,0.50)]"
+              whileHover={{ scale: 1.04, boxShadow: "0 10px 40px -4px rgba(123,97,255,0.60)" }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
-              {/* Subtle glow behind button */}
-              <div className="absolute -inset-1 bg-[#7B61FF]/20 rounded-full blur-lg pointer-events-none" />
+              {/* Glow behind button */}
+              <div className="absolute -inset-2 bg-[#7B61FF]/25 rounded-full blur-xl pointer-events-none" />
               <span className="relative z-10">Créer</span>
             </motion.a>
           </div>

@@ -28,41 +28,46 @@ const avatarList = [
   { img: "https://api.dicebear.com/9.x/lorelei/svg?seed=Koda" },
 ];
 
-/* ── Floating decorative elements ───────── */
+/* ── Floating decorative particles ──────── */
 
-function FloatingElements() {
-  const elements = [
-    { x: "8%", y: "18%", size: 8, color: "#818CF8", delay: 0 },
-    { x: "88%", y: "22%", size: 6, color: "#C084FC", delay: 0.5 },
-    { x: "14%", y: "65%", size: 10, color: "#6366F1", delay: 1 },
-    { x: "90%", y: "60%", size: 7, color: "#A78BFA", delay: 1.5 },
-    { x: "25%", y: "12%", size: 5, color: "#E0E7FF", delay: 0.8 },
-    { x: "78%", y: "75%", size: 9, color: "#DDD6FE", delay: 0.3 },
+function FloatingParticles() {
+  const particles = [
+    { x: "8%", y: "18%", size: 4, color: "#818CF8", opacity: 0.5, delay: 0, drift: 6 },
+    { x: "88%", y: "22%", size: 3, color: "#C084FC", opacity: 0.35, delay: 0.5, drift: 5 },
+    { x: "14%", y: "65%", size: 6, color: "#6366F1", opacity: 0.45, delay: 1, drift: 8 },
+    { x: "90%", y: "60%", size: 3, color: "#A78BFA", opacity: 0.3, delay: 1.5, drift: 4 },
+    { x: "25%", y: "12%", size: 2, color: "#E0E7FF", opacity: 0.6, delay: 0.8, drift: 5 },
+    { x: "78%", y: "75%", size: 5, color: "#DDD6FE", opacity: 0.35, delay: 0.3, drift: 7 },
+    { x: "50%", y: "10%", size: 2, color: "#818CF8", opacity: 0.25, delay: 1.2, drift: 3 },
+    { x: "35%", y: "80%", size: 3, color: "#C4B5FD", opacity: 0.3, delay: 0.7, drift: 6 },
+    { x: "65%", y: "45%", size: 2, color: "#A5B4FC", opacity: 0.2, delay: 1.8, drift: 4 },
   ];
 
   return (
     <>
-      {elements.map((el, i) => (
+      {particles.map((p, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full pointer-events-none hidden md:block"
           style={{
-            left: el.x,
-            top: el.y,
-            width: el.size,
-            height: el.size,
-            backgroundColor: el.color,
+            left: p.x,
+            top: p.y,
+            width: p.size,
+            height: p.size,
+            backgroundColor: p.color,
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
-            opacity: [0, 0.6, 0.3, 0.6],
+            opacity: [0, p.opacity, p.opacity * 0.5, p.opacity],
             scale: 1,
-            y: [-8, 8, -8],
+            x: [-p.drift, p.drift, -p.drift],
+            y: [-p.drift, p.drift, -p.drift],
           }}
           transition={{
-            opacity: { delay: 1 + el.delay, duration: 1.5, repeat: Infinity, repeatType: "reverse" },
-            scale: { delay: 1 + el.delay, duration: 0.6 },
-            y: { delay: 1 + el.delay, duration: 4 + i * 0.5, repeat: Infinity, ease: "easeInOut" },
+            opacity: { delay: 1 + p.delay, duration: 2.5, repeat: Infinity, repeatType: "reverse" },
+            scale: { delay: 1 + p.delay, duration: 0.6 },
+            x: { delay: 1 + p.delay, duration: 6 + i * 0.8, repeat: Infinity, ease: "easeInOut" },
+            y: { delay: 1 + p.delay, duration: 5 + i * 0.6, repeat: Infinity, ease: "easeInOut" },
           }}
         />
       ))}
@@ -107,16 +112,40 @@ function FloatingCard({
 
 export default function Hero() {
   return (
-    <section className="relative bg-white pt-16 pb-2 md:pb-3">
+    <section
+      className="relative pt-16 pb-2 md:pb-3"
+      style={{
+        background: "linear-gradient(180deg, #ffffff 0%, #f6f5ff 40%, #f0efff 70%, #ffffff 100%)",
+      }}
+    >
+      {/* ── Noise texture overlay ── */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[1]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          opacity: 0.02,
+        }}
+      />
+
       {/* ── Background arrondi ── */}
-      <div className="absolute inset-x-1.5 md:inset-x-2.5 top-0.5 md:top-1 bottom-0 bg-gradient-to-br from-indigo-50/60 via-violet-50/50 to-fuchsia-50/40 rounded-t-[1.5rem] md:rounded-t-[2rem] rounded-b-[2rem] md:rounded-b-[3rem] overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[70%] bg-violet-200/20 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[60%] bg-indigo-200/18 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute top-[30%] right-[15%] w-[35%] h-[40%] bg-fuchsia-200/15 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-[20%] left-[20%] w-[30%] h-[35%] bg-purple-200/12 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute inset-x-1.5 md:inset-x-2.5 top-0.5 md:top-1 bottom-0 rounded-t-[1.5rem] md:rounded-t-[2rem] rounded-b-[2rem] md:rounded-b-[3rem] overflow-hidden pointer-events-none">
+        {/* Blob gauche — violet/rose */}
+        <motion.div
+          className="absolute top-[15%] left-[-5%] w-[45%] h-[55%] rounded-full blur-[120px]"
+          style={{ background: "radial-gradient(circle, rgba(168, 130, 255, 0.18), rgba(236, 130, 220, 0.1) 60%, transparent 80%)" }}
+          animate={{ x: [0, 15, 0], y: [0, -10, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* Blob droite — bleu/violet */}
+        <motion.div
+          className="absolute bottom-[10%] right-[-5%] w-[45%] h-[55%] rounded-full blur-[120px]"
+          style={{ background: "radial-gradient(circle, rgba(99, 102, 241, 0.16), rgba(139, 92, 246, 0.1) 60%, transparent 80%)" }}
+          animate={{ x: [0, -12, 0], y: [0, 10, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
 
-      <FloatingElements />
+      <FloatingParticles />
 
       {/* ── Content ── */}
       <div className="relative max-w-5xl mx-auto px-6 pt-10 md:pt-14 pb-0 text-center">
@@ -216,12 +245,15 @@ export default function Hero() {
 
       {/* ── Image produit centrale ── */}
       <div className="relative max-w-6xl mx-4 xl:mx-auto mt-12 md:mt-14">
-        {/* Glow derrière l'image */}
+        {/* Glow radial derrière le mockup */}
         <motion.div
-          className="absolute inset-x-12 top-8 bottom-0 bg-gradient-to-b from-indigo-200/40 via-violet-200/20 to-transparent rounded-[2rem] blur-[60px] pointer-events-none"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1.2 }}
+          className="absolute inset-x-0 top-4 bottom-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(circle at center, rgba(120, 90, 255, 0.18), rgba(99, 102, 241, 0.08) 40%, transparent 70%)",
+          }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6, duration: 1.4, ease: "easeOut" }}
         />
 
         {/* Image container */}
