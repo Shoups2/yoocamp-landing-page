@@ -53,9 +53,11 @@ export default function Creators() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="pour-qui" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 w-[700px] h-[400px] bg-[#7B61FF]/[0.03] rounded-full blur-[140px] pointer-events-none" />
+    <section
+      id="pour-qui"
+      className="py-24 md:py-32 relative overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #ffffff 0%, rgba(124,92,255,0.04) 35%, rgba(124,92,255,0.06) 50%, rgba(124,92,255,0.04) 65%, #ffffff 100%)" }}
+    >
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-16">
@@ -87,7 +89,7 @@ export default function Creators() {
                   className="relative bg-white rounded-2xl p-7 border border-gray-200/60 h-full overflow-hidden"
                   onMouseEnter={() => setHoveredIndex(i)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  whileHover={{ y: -6, borderColor: p.borderHover, rotate: 0 }}
+                  whileHover={{ y: -6, scale: 1.01, borderColor: p.borderHover, rotate: 0 }}
                   initial={{ rotate: p.rotation }}
                   animate={{ rotate: p.rotation }}
                   transition={{ type: "spring", stiffness: 300, damping: 22 }}
