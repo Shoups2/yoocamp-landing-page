@@ -27,7 +27,7 @@ function EventsMock() {
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-[#EC4899]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
           </svg>
           <span className="text-xs font-semibold text-gray-700">Semaine du 10 mars</span>
@@ -49,18 +49,18 @@ function EventsMock() {
               transition={{ delay: i * 0.1, duration: 0.3 }}
             >
               <motion.div
-                className={`w-full rounded-xl py-1.5 border text-center cursor-pointer ${selectedDay === i ? "bg-white border-[#7B61FF]/30 shadow-sm" : "bg-gray-50 border-gray-200"}`}
+                className={`w-full rounded-xl py-1.5 border text-center cursor-pointer ${selectedDay === i ? "bg-white border-[#EC4899]/30 shadow-sm" : "bg-gray-50 border-gray-200"}`}
                 onClick={() => setSelectedDay(i)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 animate={selectedDay === i ? { y: -2 } : { y: 0 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                <span className={`text-[10px] font-semibold block transition-colors duration-200 ${selectedDay === i ? "text-[#7B61FF]" : "text-gray-400"}`}>{day.day}</span>
+                <span className={`text-[10px] font-semibold block transition-colors duration-200 ${selectedDay === i ? "text-[#EC4899]" : "text-gray-400"}`}>{day.day}</span>
                 <span className={`text-sm font-bold block transition-colors duration-200 ${selectedDay === i ? "text-gray-900" : "text-gray-500"}`}>{day.num}</span>
               </motion.div>
               <div className={`w-full h-28 rounded-lg border flex flex-col items-center justify-start gap-1 p-1 overflow-hidden transition-colors duration-200 ${
-                selectedDay === i ? "border-[#7B61FF]/20 bg-[#7B61FF]/[0.04]" : "border-gray-100 bg-gray-50/30"
+                selectedDay === i ? "border-[#EC4899]/20 bg-[#EC4899]/[0.04]" : "border-gray-100 bg-gray-50/30"
               }`}>
                 {day.events.length > 0 ? day.events.map((evt, j) => (
                   <motion.div
@@ -373,7 +373,7 @@ interface CardData {
 const cards: CardData[] = [
   {
     id: "content",
-    title: "Créer du\ncontenu",
+    title: "Créer du\ncontenu vidéo",
     desc: "Publie vidéos, formations et contenus exclusifs.",
     titleColor: "text-[#8B5CF6]",
     cardBg: "bg-gradient-to-b from-[#F3EEFF] via-[#F9F7FF] to-white",
@@ -401,15 +401,15 @@ const cards: CardData[] = [
   },
   {
     id: "events",
-    title: "Événements\nlive",
+    title: "Organise\ndes événements",
     desc: "Organise masterclasses, coaching et sessions en direct.",
-    titleColor: "text-[#E8862F]",
-    cardBg: "bg-gradient-to-b from-[#FFF4E8] via-[#FFFAF5] to-white",
-    haloColor: "bg-orange-300/18",
-    haloColor2: "bg-amber-300/10",
-    borderColor: "border-orange-100/50",
-    shadowDefault: "0 8px 30px -6px rgba(251,146,60,0.10), 0 2px 8px rgba(0,0,0,0.04)",
-    shadowHover: "0 20px 50px -10px rgba(251,146,60,0.22), 0 8px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(251,146,60,0.12)",
+    titleColor: "text-[#EC4899]",
+    cardBg: "bg-gradient-to-b from-[#FFF0F7] via-[#FFF8FB] to-white",
+    haloColor: "bg-pink-300/18",
+    haloColor2: "bg-pink-200/10",
+    borderColor: "border-pink-100/50",
+    shadowDefault: "0 8px 30px -6px rgba(236,72,153,0.10), 0 2px 8px rgba(0,0,0,0.04)",
+    shadowHover: "0 20px 50px -10px rgba(236,72,153,0.22), 0 8px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(236,72,153,0.12)",
     mock: "events",
   },
   {
@@ -485,7 +485,7 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
             background: card.id === "revenue"
               ? "radial-gradient(ellipse 90% 80% at 50% 55%, rgba(16,185,129,0.12) 0%, rgba(16,185,129,0.04) 55%, transparent 100%)"
               : card.id === "events"
-                ? "radial-gradient(ellipse 90% 80% at 50% 55%, rgba(251,146,60,0.11) 0%, rgba(251,146,60,0.04) 55%, transparent 100%)"
+                ? "radial-gradient(ellipse 90% 80% at 50% 55%, rgba(236,72,153,0.11) 0%, rgba(236,72,153,0.04) 55%, transparent 100%)"
                 : card.id === "community"
                   ? "radial-gradient(ellipse 90% 80% at 50% 55%, rgba(79,123,255,0.11) 0%, rgba(79,123,255,0.04) 55%, transparent 100%)"
                   : "radial-gradient(ellipse 90% 80% at 50% 55%, rgba(139,92,246,0.12) 0%, rgba(139,92,246,0.04) 55%, transparent 100%)",
@@ -499,7 +499,7 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
             background: card.id === "revenue"
               ? "radial-gradient(circle at 50% 50%, rgba(52,211,153,0.09) 0%, transparent 75%)"
               : card.id === "events"
-                ? "radial-gradient(circle at 50% 50%, rgba(251,146,60,0.08) 0%, transparent 75%)"
+                ? "radial-gradient(circle at 50% 50%, rgba(236,72,153,0.08) 0%, transparent 75%)"
                 : card.id === "community"
                   ? "radial-gradient(circle at 50% 50%, rgba(79,123,255,0.08) 0%, transparent 75%)"
                   : "radial-gradient(circle at 50% 50%, rgba(139,92,246,0.09) 0%, transparent 75%)",
