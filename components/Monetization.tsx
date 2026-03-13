@@ -1,350 +1,403 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { FadeIn } from "./motion";
 
-/* ── Animated counter ────────────────────── */
+/* ── Format number ───────────────────────── */
 
-function CountUp({ target, delay = 0 }: { target: number; delay?: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-  const [value, setValue] = useState(0);
+const fmt = (n: number) =>
+  Math.round(n)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
-  const format = useCallback(
-    (n: number) =>
-      Math.round(n)
-        .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, " "),
-    [],
-  );
+/* ── Animated number (reacts to value changes) */
+
+function AnimatedNumber({ value, className }: { value: number; className?: string }) {
+  const [display, setDisplay] = useState(value);
+  const ref = useRef<{ raf: number; from: number }>({ raf: 0, from: value });
 
   useEffect(() => {
-    if (!inView) return;
-    const timeout = setTimeout(() => {
-      const duration = 1200;
-      const start = performance.now();
-      const step = (now: number) => {
-        const t = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - t, 3);
-        setValue(target * ease);
-        if (t < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    }, delay * 1000);
-    return () => clearTimeout(timeout);
-  }, [inView, target, delay]);
+    const from = ref.current.from;
+    if (from === value) return;
+    cancelAnimationFrame(ref.current.raf);
+    const duration = 450;
+    const startTime = performance.now();
+    const step = (now: number) => {
+      const t = Math.min((now - startTime) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      setDisplay(from + (value - from) * ease);
+      if (t < 1) {
+        ref.current.raf = requestAnimationFrame(step);
+      } else {
+        ref.current.from = value;
+      }
+    };
+    ref.current.raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(ref.current.raf);
+  }, [value]);
 
-  return <span ref={ref}>{format(value)}&nbsp;€</span>;
+  return <span className={className}>{fmt(display)}&nbsp;€</span>;
 }
 
-/* ── Interactive Revenue Curve ───────────── */
+/* ── Custom slider ───────────────────────── */
 
-// Realistic MRR growth with natural ups & downs
-const monthlyData = [
-  { month: "Jan", value: 120 },
-  { month: "Fév", value: 310 },
-  { month: "Mar", value: 480 },
-  { month: "Avr", value: 620 },
-  { month: "Mai", value: 890 },
-  { month: "Jun", value: 1150 },
-  { month: "Jul", value: 1040 },
-  { month: "Aoû", value: 1380 },
-  { month: "Sep", value: 1820 },
-  { month: "Oct", value: 2350 },
-  { month: "Nov", value: 2780 },
-  { month: "Déc", value: 3480 },
-];
-
-function InteractiveCurve() {
-  const ref = useRef<SVGSVGElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
-
-  const padding = { top: 14, right: 10, bottom: 22, left: 8 };
-  const w = 280;
-  const h = 115;
-  const chartW = w - padding.left - padding.right;
-  const chartH = h - padding.top - padding.bottom;
-
-  const maxVal = Math.max(...monthlyData.map((d) => d.value));
-
-  const points = monthlyData.map((d, i) => ({
-    x: padding.left + (i / (monthlyData.length - 1)) * chartW,
-    y: padding.top + chartH - (d.value / maxVal) * chartH,
-  }));
-
-  // Smooth cubic bezier path
-  const linePath = points.reduce((acc, p, i) => {
-    if (i === 0) return `M${p.x},${p.y}`;
-    const prev = points[i - 1];
-    const cpx = (prev.x + p.x) / 2;
-    return `${acc} C${cpx},${prev.y} ${cpx},${p.y} ${p.x},${p.y}`;
-  }, "");
-
-  const areaPath = `${linePath} L${points[points.length - 1].x},${padding.top + chartH} L${points[0].x},${padding.top + chartH} Z`;
-
-  const activePoint = hoverIndex !== null ? points[hoverIndex] : null;
-  const activeData = hoverIndex !== null ? monthlyData[hoverIndex] : null;
-
-  const format = (n: number) =>
-    n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-
-  const colWidth = chartW / monthlyData.length;
+function Slider({
+  label,
+  value,
+  onChange,
+  min,
+  max,
+  step,
+  suffix,
+  color,
+}: {
+  label: string;
+  value: number;
+  onChange: (v: number) => void;
+  min: number;
+  max: number;
+  step: number;
+  suffix: string;
+  color: string;
+}) {
+  const pct = ((value - min) / (max - min)) * 100;
 
   return (
-    <div className="relative">
-      <svg
-        ref={ref}
-        viewBox={`0 0 ${w} ${h}`}
-        className="w-full h-auto"
-        preserveAspectRatio="xMidYMid meet"
-      >
-        <defs>
-          <linearGradient id="rev-line" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#7B61FF" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#7B61FF" />
-          </linearGradient>
-          <linearGradient id="rev-area" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#7B61FF" stopOpacity="0.12" />
-            <stop offset="100%" stopColor="#7B61FF" stopOpacity="0.02" />
-          </linearGradient>
-        </defs>
-
-        {/* Grid lines */}
-        {[0, 0.25, 0.5, 0.75, 1].map((t) => (
-          <line
-            key={t}
-            x1={padding.left}
-            x2={padding.left + chartW}
-            y1={padding.top + chartH * (1 - t)}
-            y2={padding.top + chartH * (1 - t)}
-            stroke="#e5e7eb"
-            strokeWidth="0.5"
-            strokeDasharray="3,3"
-          />
-        ))}
-
-        {/* Area fill */}
-        <motion.path
-          d={areaPath}
-          fill="url(#rev-area)"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        />
-
-        {/* Curve line */}
-        <motion.path
-          d={linePath}
-          fill="none"
-          stroke="url(#rev-line)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          initial={{ pathLength: 0 }}
-          animate={inView ? { pathLength: 1 } : {}}
-          transition={{ delay: 0.3, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        />
-
-        {/* Month labels */}
-        {monthlyData.map((d, i) => (
-          <text
-            key={d.month}
-            x={points[i].x}
-            y={h - 6}
-            textAnchor="middle"
-            className="text-[9px] fill-gray-300 select-none"
-          >
-            {d.month}
-          </text>
-        ))}
-
-        {/* Hover vertical line */}
-        {activePoint && (
-          <line
-            x1={activePoint.x}
-            x2={activePoint.x}
-            y1={padding.top}
-            y2={padding.top + chartH}
-            stroke="#7B61FF"
-            strokeWidth="1"
-            strokeDasharray="4,3"
-            opacity="0.4"
-          />
-        )}
-
-        {/* Active dot */}
-        {activePoint && (
-          <>
-            <circle
-              cx={activePoint.x}
-              cy={activePoint.y}
-              r="6"
-              fill="#7B61FF"
-              opacity="0.15"
-            />
-            <circle
-              cx={activePoint.x}
-              cy={activePoint.y}
-              r="3.5"
-              fill="#7B61FF"
-              stroke="white"
-              strokeWidth="1.5"
-            />
-          </>
-        )}
-
-        {/* Invisible hover zones per month */}
-        {points.map((p, i) => (
-          <rect
-            key={i}
-            x={p.x - colWidth / 2}
-            y={padding.top}
-            width={colWidth}
-            height={chartH}
-            fill="transparent"
-            className="cursor-pointer"
-            onMouseEnter={() => setHoverIndex(i)}
-            onMouseLeave={() => setHoverIndex(null)}
-          />
-        ))}
-      </svg>
-
-      {/* Tooltip */}
-      {activePoint && activeData && (
-        <div
-          className="absolute pointer-events-none bg-gray-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-lg -translate-x-1/2 whitespace-nowrap"
-          style={{
-            left: `${(activePoint.x / w) * 100}%`,
-            top: `${((activePoint.y - 30) / h) * 100}%`,
-          }}
+    <div className="space-y-2.5">
+      <div className="flex items-center justify-between">
+        <span className="text-[13px] font-medium text-gray-500">{label}</span>
+        <span
+          className="text-[13px] font-bold tabular-nums px-2.5 py-0.5 rounded-full"
+          style={{ color, backgroundColor: `color-mix(in srgb, ${color} 8%, transparent)` }}
         >
-          {activeData.month} · {format(activeData.value)}&nbsp;€
-        </div>
-      )}
+          {fmt(value)}{suffix}
+        </span>
+      </div>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        className="yoo-slider w-full"
+        style={{
+          "--slider-color": color,
+          "--slider-track": `linear-gradient(to right, ${color} ${pct}%, #e5e7eb ${pct}%)`,
+        } as React.CSSProperties}
+      />
     </div>
   );
 }
 
-/* ── Card motion ─────────────────────────── */
+/* ── Mini sparkline (Abonnements) ────────── */
 
-const cardMotion = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-50px" } as const,
-  whileHover: {
-    y: -4,
-    boxShadow: "0 12px 32px rgba(0,0,0,0.08)",
-    transition: { duration: 0.25 },
-  },
+function MiniSparkline({ value, color }: { value: number; color: string }) {
+  const ref = useRef<SVGSVGElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
+  const coords = useMemo(() => {
+    const ratios = [0.03, 0.09, 0.14, 0.18, 0.26, 0.33, 0.30, 0.40, 0.52, 0.68, 0.80, 1.0];
+    const pts = ratios.map((r) => r * value);
+    const w = 200;
+    const h = 50;
+    const maxVal = Math.max(...pts, 1);
+    return pts.map((v, i) => ({
+      x: (i / (pts.length - 1)) * w,
+      y: h - (v / maxVal) * h * 0.85 - 2,
+    }));
+  }, [value]);
+
+  const w = 200;
+  const h = 50;
+
+  const linePath = coords.reduce((acc, p, i) => {
+    if (i === 0) return `M${p.x},${p.y}`;
+    const prev = coords[i - 1];
+    const cpx = (prev.x + p.x) / 2;
+    return `${acc} C${cpx},${prev.y} ${cpx},${p.y} ${p.x},${p.y}`;
+  }, "");
+
+  const areaPath = `${linePath} L${w},${h} L0,${h} Z`;
+
+  return (
+    <svg
+      ref={ref}
+      viewBox={`0 0 ${w} ${h}`}
+      className="w-full h-full"
+      preserveAspectRatio="none"
+    >
+      <defs>
+        <linearGradient id="spark-area-v2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.1" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.02" />
+        </linearGradient>
+      </defs>
+      <motion.path
+        d={areaPath}
+        fill="url(#spark-area-v2)"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.6 }}
+      />
+      <motion.path
+        d={linePath}
+        fill="none"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeOpacity="0.35"
+        initial={{ pathLength: 0 }}
+        animate={inView ? { pathLength: 1 } : {}}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      />
+    </svg>
+  );
+}
+
+/* ── Card animation ──────────────────────── */
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] as const },
+  }),
 };
+
+/* ── Revenue card ────────────────────────── */
+
+function RevenueCard({
+  index,
+  inView,
+  title,
+  subtitle,
+  badge,
+  revenue,
+  color,
+  gradientTo,
+  children,
+  sparkline,
+}: {
+  index: number;
+  inView: boolean;
+  title: string;
+  subtitle: string;
+  badge?: React.ReactNode;
+  revenue: number;
+  color: string;
+  gradientTo: string;
+  children: React.ReactNode;
+  sparkline?: React.ReactNode;
+}) {
+  return (
+    <motion.div
+      className="rounded-2xl border overflow-hidden flex flex-col"
+      style={{
+        borderColor: `color-mix(in srgb, ${color} 10%, transparent)`,
+        backgroundColor: `color-mix(in srgb, ${color} 2%, white)`,
+      }}
+      variants={cardVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      custom={index}
+      whileHover={{
+        y: -3,
+        boxShadow: `0 8px 30px color-mix(in srgb, ${color} 10%, transparent)`,
+        transition: { duration: 0.2 },
+      }}
+    >
+      {/* ── Zone résultat ── */}
+      <div className="p-5 pb-4">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[15px] font-bold" style={{ color }}>{title}</span>
+          {badge || <span className="text-[11px] font-medium text-gray-400">{subtitle}</span>}
+        </div>
+        <span
+          className="text-[34px] md:text-[38px] font-extrabold leading-none tracking-tight"
+          style={{
+            backgroundImage: `linear-gradient(to right, ${color}, ${gradientTo})`,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          <AnimatedNumber value={revenue} />
+        </span>
+      </div>
+
+      {/* ── Zone visuelle (sparkline) ── */}
+      {sparkline && (
+        <div className="h-12 px-5">
+          {sparkline}
+        </div>
+      )}
+
+      {/* ── Zone contrôles ── */}
+      <div
+        className="mt-auto p-5 pt-4 space-y-3 border-t"
+        style={{ borderColor: `color-mix(in srgb, ${color} 6%, transparent)` }}
+      >
+        {children}
+      </div>
+    </motion.div>
+  );
+}
 
 /* ── Section ─────────────────────────────── */
 
 export default function Monetization() {
+  const [members, setMembers] = useState(120);
+  const [subPrice, setSubPrice] = useState(29);
+  const [sales, setSales] = useState(248);
+  const [coursePrice, setCoursePrice] = useState(97);
+  const [sessions, setSessions] = useState(20);
+  const [sessionPrice, setSessionPrice] = useState(120);
+  const [participants, setParticipants] = useState(86);
+  const [ticketPrice, setTicketPrice] = useState(49);
+
+  const subRevenue = members * subPrice;
+  const courseRevenue = sales * coursePrice;
+  const coachRevenue = sessions * sessionPrice;
+  const eventRevenue = participants * ticketPrice;
+  const total = subRevenue + courseRevenue + coachRevenue + eventRevenue;
+
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(sectionRef, { once: true, margin: "-80px" });
+
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50/40 to-white" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* Header */}
-        <FadeIn className="text-center mb-14">
+        <FadeIn className="text-center mb-6">
           <p className="text-[#7B61FF] font-semibold text-sm uppercase tracking-wider mb-3">
-            Monétisation
+            Simulateur de revenus
           </p>
           <h2 className="text-3xl md:text-[2.75rem] lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            Transforme ta communauté<br className="hidden md:block" />
-            en <span className="text-[#7B61FF]">revenus</span>
+            Génère des revenus<br className="hidden md:block" />
+            avec <span className="text-[#7B61FF]">ta communauté</span>
           </h2>
           <p className="text-base text-gray-400 max-w-lg mx-auto">
-            Abonnements, formations, coaching et événements — tout est intégré.
+            Abonnements, formations, coaching et événements — tout est intégré dans Yoocamp.
           </p>
         </FadeIn>
 
-        {/* Cards wrapper — constrained width, centered */}
-        <div className="sm:w-[75%] sm:mx-auto flex flex-col gap-3.5">
+        {/* Micro-copy interactive hint */}
+        <FadeIn delay={0.15} className="text-center mb-10">
+          <span className="inline-flex items-center gap-2 text-[13px] font-medium text-gray-400 bg-gray-50 border border-gray-100 px-4 py-2 rounded-full">
+            <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+            </svg>
+            Ajuste les curseurs pour simuler tes revenus
+          </span>
+        </FadeIn>
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
           {/* ── Abonnements ──────────────── */}
-          <motion.div
-            className="relative rounded-2xl border border-[#7B61FF]/10 overflow-hidden"
-            style={{ backgroundColor: "rgba(123,97,255,0.03)" }}
-            {...cardMotion}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          <RevenueCard
+            index={0}
+            inView={inView}
+            title="Abonnements"
+            subtitle="revenus mensuels"
+            revenue={subRevenue}
+            color="#7B61FF"
+            gradientTo="#3B82F6"
+            sparkline={<MiniSparkline value={subRevenue} color="#7B61FF" />}
           >
-            <div className="p-4 pb-1 flex items-start justify-between">
-              <div>
-                <span className="text-[36px] md:text-[42px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#7B61FF] to-[#3B82F6] bg-clip-text text-transparent">
-                  <CountUp target={3480} delay={0.2} />
-                </span>
-                <span className="text-[18px] font-bold text-[#7B61FF] mt-1 block">Abonnements</span>
-              </div>
-              <span className="text-[18px] font-bold text-[#7B61FF] mt-1">Décembre</span>
-            </div>
-            <div className="px-2 pb-2">
-              <InteractiveCurve />
-            </div>
-          </motion.div>
-
-          {/* 3 cards row */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+            <Slider label="Membres" value={members} onChange={setMembers} min={10} max={1000} step={10} suffix="" color="#7B61FF" />
+            <Slider label="Prix abonnement" value={subPrice} onChange={setSubPrice} min={5} max={99} step={1} suffix=" €" color="#7B61FF" />
+          </RevenueCard>
 
           {/* ── Formations ──────────────── */}
-          <motion.div
-            className="relative rounded-2xl border border-[#3B82F6]/10 overflow-hidden"
-            style={{ backgroundColor: "rgba(59,130,246,0.03)" }}
-            {...cardMotion}
-            transition={{ duration: 0.45, delay: 0.07, ease: [0.22, 1, 0.36, 1] }}
+          <RevenueCard
+            index={1}
+            inView={inView}
+            title="Formations"
+            subtitle="revenus cumulés"
+            revenue={courseRevenue}
+            color="#3B82F6"
+            gradientTo="#06B6D4"
           >
-            <div className="p-5">
-              <div>
-                <span className="text-[36px] md:text-[42px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] bg-clip-text text-transparent">
-                  <CountUp target={8796} delay={0.3} />
-                </span>
-              </div>
-              <span className="text-[20px] font-bold text-[#3B82F6] mt-2 block">Formations</span>
-            </div>
-          </motion.div>
+            <Slider label="Ventes" value={sales} onChange={setSales} min={10} max={1000} step={10} suffix="" color="#3B82F6" />
+            <Slider label="Prix formation" value={coursePrice} onChange={setCoursePrice} min={19} max={497} step={1} suffix=" €" color="#3B82F6" />
+          </RevenueCard>
 
           {/* ── Coaching ────────────────── */}
-          <motion.div
-            className="relative rounded-2xl border border-[#10B981]/10 overflow-hidden"
-            style={{ backgroundColor: "rgba(16,185,129,0.03)" }}
-            {...cardMotion}
-            transition={{ duration: 0.45, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
+          <RevenueCard
+            index={2}
+            inView={inView}
+            title="Coaching"
+            subtitle="revenus mensuels"
+            revenue={coachRevenue}
+            color="#10B981"
+            gradientTo="#34D399"
           >
-            <div className="p-5">
-              <div>
-                <span className="text-[36px] md:text-[42px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#10B981] to-[#34D399] bg-clip-text text-transparent">
-                  <CountUp target={2400} delay={0.4} />
-                </span>
-              </div>
-              <span className="text-[20px] font-bold text-[#10B981] mt-2 block">Coaching</span>
-            </div>
-          </motion.div>
+            <Slider label="Sessions / mois" value={sessions} onChange={setSessions} min={1} max={100} step={1} suffix="" color="#10B981" />
+            <Slider label="Prix par session" value={sessionPrice} onChange={setSessionPrice} min={20} max={500} step={10} suffix=" €" color="#10B981" />
+          </RevenueCard>
 
           {/* ── Événements ──────────────── */}
-          <motion.div
-            className="relative rounded-2xl border border-[#EC4899]/10 overflow-hidden"
-            style={{ backgroundColor: "rgba(236,72,153,0.03)" }}
-            {...cardMotion}
-            transition={{ duration: 0.45, delay: 0.21, ease: [0.22, 1, 0.36, 1] }}
+          <RevenueCard
+            index={3}
+            inView={inView}
+            title="Événements"
+            subtitle=""
+            badge={
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#EC4899] bg-[#EC4899]/8 px-2.5 py-1 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#EC4899] animate-pulse" />
+                live event
+              </span>
+            }
+            revenue={eventRevenue}
+            color="#EC4899"
+            gradientTo="#F472B6"
           >
-            <div className="p-5">
-              <div>
-                <span className="text-[36px] md:text-[42px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#EC4899] to-[#F472B6] bg-clip-text text-transparent">
-                  <CountUp target={4214} delay={0.5} />
-                </span>
-              </div>
-              <span className="text-[20px] font-bold text-[#EC4899] mt-2 block">Événements</span>
-            </div>
-          </motion.div>
+            <Slider label="Participants" value={participants} onChange={setParticipants} min={10} max={500} step={5} suffix="" color="#EC4899" />
+            <Slider label="Prix du ticket" value={ticketPrice} onChange={setTicketPrice} min={5} max={199} step={1} suffix=" €" color="#EC4899" />
+          </RevenueCard>
 
-          </div>
         </div>
 
+        {/* ── Total global ──────────────── */}
+        <motion.div
+          className="mt-8 rounded-2xl border border-[#7B61FF]/10 bg-gradient-to-r from-[#7B61FF]/[0.03] via-white to-[#10B981]/[0.03] p-8 md:p-10 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="text-sm font-medium text-gray-400 mb-3">
+            Revenus potentiels avec Yoocamp
+          </p>
+          <AnimatedNumber
+            value={total}
+            className="text-[48px] md:text-[64px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#7B61FF] via-[#3B82F6] to-[#10B981] bg-clip-text text-transparent"
+          />
+          <div className="flex items-center justify-center gap-3 sm:gap-5 mt-5 flex-wrap">
+            {[
+              { label: "Abonnements", value: subRevenue, color: "#7B61FF" },
+              { label: "Formations", value: courseRevenue, color: "#3B82F6" },
+              { label: "Coaching", value: coachRevenue, color: "#10B981" },
+              { label: "Événements", value: eventRevenue, color: "#EC4899" },
+            ].map((item) => (
+              <span
+                key={item.label}
+                className="flex items-center gap-1.5 text-[13px] text-gray-400 bg-gray-50 px-3 py-1.5 rounded-full"
+              >
+                <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
+                {fmt(item.value)}&nbsp;€
+              </span>
+            ))}
+          </div>
+        </motion.div>
+
         {/* CTA */}
-        <FadeIn delay={0.25} className="text-center mt-14">
+        <FadeIn delay={0.3} className="text-center mt-12">
           <motion.a
             href="#"
             className="inline-flex items-center gap-2.5 bg-[#7B61FF] text-white font-semibold px-8 py-4 rounded-xl text-[15px] shadow-lg shadow-[#7B61FF]/20 cursor-pointer"

@@ -22,3 +22,61 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
+
+/* ── Custom range slider ─────────────────── */
+
+input[type="range"].yoo-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  height: 24px;
+}
+
+input[type="range"].yoo-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--slider-track, #e5e7eb);
+}
+
+input[type="range"].yoo-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--slider-color, #7B61FF);
+  border: 3px solid white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15), 0 0 0 0px var(--slider-color, #7B61FF);
+  margin-top: -7px;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+input[type="range"].yoo-slider:hover::-webkit-slider-thumb,
+input[type="range"].yoo-slider:active::-webkit-slider-thumb {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15), 0 0 0 4px color-mix(in srgb, var(--slider-color, #7B61FF) 15%, transparent);
+  transform: scale(1.1);
+}
+
+input[type="range"].yoo-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--slider-track, #e5e7eb);
+  border: none;
+}
+
+input[type="range"].yoo-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--slider-color, #7B61FF);
+  border: 3px solid white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+input[type="range"].yoo-slider:hover::-moz-range-thumb,
+input[type="range"].yoo-slider:active::-moz-range-thumb {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15), 0 0 0 4px color-mix(in srgb, var(--slider-color, #7B61FF) 15%, transparent);
+  transform: scale(1.1);
+}
