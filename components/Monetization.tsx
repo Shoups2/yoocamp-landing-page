@@ -14,27 +14,26 @@ const fmt = (n: number) =>
 /* ── Animated number (reacts to value changes) */
 
 function AnimatedNumber({ value, className }: { value: number; className?: string }) {
+  const displayRef = useRef(value);
   const [display, setDisplay] = useState(value);
-  const ref = useRef<{ raf: number; from: number }>({ raf: 0, from: value });
+  const raf = useRef(0);
 
   useEffect(() => {
-    const from = ref.current.from;
-    if (from === value) return;
-    cancelAnimationFrame(ref.current.raf);
-    const duration = 450;
-    const startTime = performance.now();
+    cancelAnimationFrame(raf.current);
+    const from = displayRef.current;
+    const diff = value - from;
+    if (diff === 0) return;
+    const duration = 250;
+    const start = performance.now();
     const step = (now: number) => {
-      const t = Math.min((now - startTime) / duration, 1);
-      const ease = 1 - Math.pow(1 - t, 3);
-      setDisplay(from + (value - from) * ease);
-      if (t < 1) {
-        ref.current.raf = requestAnimationFrame(step);
-      } else {
-        ref.current.from = value;
-      }
+      const t = Math.min((now - start) / duration, 1);
+      const current = from + diff * t;
+      displayRef.current = current;
+      setDisplay(current);
+      if (t < 1) raf.current = requestAnimationFrame(step);
     };
-    ref.current.raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(ref.current.raf);
+    raf.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf.current);
   }, [value]);
 
   return <span className={className}>{fmt(display)}&nbsp;€</span>;
@@ -173,8 +172,6 @@ function RevenueCard({
   index,
   inView,
   title,
-  subtitle,
-  badge,
   revenue,
   color,
   gradientTo,
@@ -184,8 +181,6 @@ function RevenueCard({
   index: number;
   inView: boolean;
   title: string;
-  subtitle: string;
-  badge?: React.ReactNode;
   revenue: number;
   color: string;
   gradientTo: string;
@@ -194,7 +189,7 @@ function RevenueCard({
 }) {
   return (
     <motion.div
-      className="rounded-2xl border overflow-hidden flex flex-col"
+      className="rounded-2xl border overflow-hidden flex flex-col relative"
       style={{
         borderColor: `color-mix(in srgb, ${color} 10%, transparent)`,
         backgroundColor: `color-mix(in srgb, ${color} 2%, white)`,
@@ -211,12 +206,8 @@ function RevenueCard({
     >
       {/* ── Zone résultat ── */}
       <div className="p-5 pb-4">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-[15px] font-bold" style={{ color }}>{title}</span>
-          {badge || <span className="text-[11px] font-medium text-gray-400">{subtitle}</span>}
-        </div>
         <span
-          className="text-[34px] md:text-[38px] font-extrabold leading-none tracking-tight"
+          className="block text-[34px] md:text-[38px] font-extrabold leading-none tracking-tight"
           style={{
             backgroundImage: `linear-gradient(to right, ${color}, ${gradientTo})`,
             WebkitBackgroundClip: "text",
@@ -226,6 +217,7 @@ function RevenueCard({
         >
           <AnimatedNumber value={revenue} />
         </span>
+        <span className="text-[20px] font-bold block mt-2" style={{ color }}>{title}</span>
       </div>
 
       {/* ── Zone visuelle (sparkline) ── */}
@@ -304,7 +296,6 @@ export default function Monetization() {
             index={0}
             inView={inView}
             title="Abonnements"
-            subtitle="revenus mensuels"
             revenue={subRevenue}
             color="#7B61FF"
             gradientTo="#3B82F6"
@@ -319,7 +310,6 @@ export default function Monetization() {
             index={1}
             inView={inView}
             title="Formations"
-            subtitle="revenus cumulés"
             revenue={courseRevenue}
             color="#3B82F6"
             gradientTo="#06B6D4"
@@ -333,7 +323,6 @@ export default function Monetization() {
             index={2}
             inView={inView}
             title="Coaching"
-            subtitle="revenus mensuels"
             revenue={coachRevenue}
             color="#10B981"
             gradientTo="#34D399"
@@ -347,13 +336,6 @@ export default function Monetization() {
             index={3}
             inView={inView}
             title="Événements"
-            subtitle=""
-            badge={
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#EC4899] bg-[#EC4899]/8 px-2.5 py-1 rounded-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#EC4899] animate-pulse" />
-                live event
-              </span>
-            }
             revenue={eventRevenue}
             color="#EC4899"
             gradientTo="#F472B6"
@@ -374,10 +356,9 @@ export default function Monetization() {
           <p className="text-sm font-medium text-gray-400 mb-3">
             Revenus potentiels avec Yoocamp
           </p>
-          <AnimatedNumber
-            value={total}
-            className="text-[48px] md:text-[64px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#7B61FF] via-[#3B82F6] to-[#10B981] bg-clip-text text-transparent"
-          />
+          <span className="text-[48px] md:text-[64px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#7B61FF] via-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">
+            {fmt(total)}&nbsp;€
+          </span>
           <div className="flex items-center justify-center gap-3 sm:gap-5 mt-5 flex-wrap">
             {[
               { label: "Abonnements", value: subRevenue, color: "#7B61FF" },
