@@ -14,11 +14,13 @@ function Step1Mock() {
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#7B61FF] to-[#9B8AFF] flex items-center justify-center">
             <span className="text-[9px] font-bold text-white">Y</span>
           </div>
-          <span className="text-xs font-semibold text-gray-700">Créer ma communauté</span>
+          <span className="text-xs font-semibold text-gray-700">Mon espace privé</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-2 h-2 rounded-full bg-[#7B61FF]/40" />
-          <span className="text-[10px] text-gray-400">Étape 1/3</span>
+          <svg className="w-3.5 h-3.5 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+          </svg>
+          <span className="text-[10px] font-medium text-[#7B61FF]">Privé</span>
         </div>
       </div>
       <div className="p-5 space-y-4">
@@ -34,9 +36,14 @@ function Step1Mock() {
           </div>
         </div>
         <div className="space-y-2">
-          <label className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Description</label>
-          <div className="px-3.5 py-2.5 rounded-xl bg-gray-50 border border-gray-200 h-16">
-            <span className="text-sm text-gray-400">Décris ton espace en quelques mots...</span>
+          <label className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Accès</label>
+          <div className="flex gap-2">
+            <div className="flex-1 px-3 py-2 rounded-xl bg-[#7B61FF]/8 border border-[#7B61FF]/20 text-center">
+              <span className="text-xs font-semibold text-[#7B61FF]">Sur invitation</span>
+            </div>
+            <div className="flex-1 px-3 py-2 rounded-xl bg-gray-50 border border-gray-200 text-center">
+              <span className="text-xs font-medium text-gray-400">Public</span>
+            </div>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -62,7 +69,7 @@ function Step1Mock() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
         >
-          Continuer
+          Créer mon espace
         </motion.div>
       </div>
     </div>
@@ -77,10 +84,15 @@ function Step2Mock() {
           <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
-          <span className="text-xs font-semibold text-gray-700">Nouveau contenu</span>
+          <span className="text-xs font-semibold text-gray-700">Contenu exclusif</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] font-medium text-[#7B61FF] bg-[#7B61FF]/8 px-2 py-0.5 rounded-full">Brouillon</span>
+          <span className="text-[10px] font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full flex items-center gap-1">
+            <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 1l2.39 4.84L17.3 6.8l-3.65 3.56.86 5.02L10 13.14l-4.51 2.24.86-5.02L2.7 6.8l4.91-.96L10 1z" />
+            </svg>
+            Exclusif
+          </span>
         </div>
       </div>
       <div className="mx-5 mt-4 aspect-video rounded-xl bg-gradient-to-br from-[#7B61FF] via-[#9B8AFF] to-[#6C4FE0] relative overflow-hidden">
@@ -107,7 +119,7 @@ function Step2Mock() {
           <div className="text-[11px] text-gray-400">Module 3 · Formation Premium</div>
         </div>
         <div className="flex items-center gap-2">
-          {["Vidéo", "Formation", "Premium"].map((tag, i) => (
+          {["Vidéo", "Exclusif", "Membres only"].map((tag, i) => (
             <span key={i} className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#7B61FF]/8 text-[#7B61FF]">
               {tag}
             </span>
@@ -127,34 +139,35 @@ function Step2Mock() {
 }
 
 function Step3Mock() {
-  const members = [
-    { name: "Léa", avatar: "bg-indigo-400" },
-    { name: "Max", avatar: "bg-violet-400" },
-    { name: "Sofia", avatar: "bg-fuchsia-400" },
-    { name: "Hugo", avatar: "bg-blue-400" },
+  const transactions = [
+    { name: "Léa M.", type: "Abonnement Pro", amount: "+29 €", avatar: "bg-indigo-400" },
+    { name: "Max D.", type: "Formation complète", amount: "+97 €", avatar: "bg-violet-400" },
+    { name: "Sofia R.", type: "Événement VIP", amount: "+49 €", avatar: "bg-fuchsia-400" },
   ];
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <span className="text-xs font-semibold text-gray-700">Tableau de bord</span>
+          <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+          </svg>
+          <span className="text-xs font-semibold text-gray-700">Monétisation</span>
         </div>
         <div className="flex items-center gap-1.5">
           <motion.div
-            className="w-2 h-2 rounded-full bg-green-400"
+            className="w-2 h-2 rounded-full bg-emerald-400"
             animate={{ scale: [1, 1.3, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          <span className="text-[10px] text-gray-400">42 en ligne</span>
+          <span className="text-[10px] text-emerald-600 font-medium">En direct</span>
         </div>
       </div>
       <div className="p-5 space-y-4">
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 gap-3">
           {[
-            { label: "Membres", value: "1 247", trend: "+18%" },
-            { label: "Revenus", value: "8 420 €", trend: "+24%" },
-            { label: "Événements", value: "12", trend: "+3" },
+            { label: "Revenus du mois", value: "4 820 €", trend: "+32%" },
+            { label: "Abonnés actifs", value: "186", trend: "+12%" },
           ].map((stat, i) => (
             <motion.div
               key={i}
@@ -170,9 +183,9 @@ function Step3Mock() {
           ))}
         </div>
         <div>
-          <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Membres actifs</span>
+          <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Dernières ventes</span>
           <div className="mt-2 space-y-2">
-            {members.map((m, i) => (
+            {transactions.map((t, i) => (
               <motion.div
                 key={i}
                 className="flex items-center gap-2.5 py-1.5"
@@ -180,14 +193,14 @@ function Step3Mock() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8 + i * 0.1 }}
               >
-                <div className={`w-7 h-7 rounded-full ${m.avatar} flex items-center justify-center`}>
-                  <span className="text-[9px] font-bold text-white">{m.name[0]}</span>
+                <div className={`w-7 h-7 rounded-full ${t.avatar} flex items-center justify-center`}>
+                  <span className="text-[9px] font-bold text-white">{t.name[0]}</span>
                 </div>
-                <span className="text-sm font-medium text-gray-700">{m.name}</span>
-                <div className="ml-auto flex items-center gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                  <span className="text-[10px] text-gray-400">en ligne</span>
+                <div className="flex-1 min-w-0">
+                  <span className="text-sm font-medium text-gray-700 block">{t.name}</span>
+                  <span className="text-[10px] text-gray-400">{t.type}</span>
                 </div>
+                <span className="text-sm font-semibold text-emerald-600">{t.amount}</span>
               </motion.div>
             ))}
           </div>
@@ -324,14 +337,9 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
 
 function TimelineLine() {
   const ref = useRef(null);
-  const [completed, setCompleted] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start center", "end center"],
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    if (v >= 0.9 && !completed) setCompleted(true);
   });
 
   const scaleY = useTransform(scrollYProgress, [0, 0.95], [0, 1]);
@@ -342,22 +350,20 @@ function TimelineLine() {
     <div ref={ref} className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 z-10">
       {/* Background line */}
       <div className="absolute inset-0 w-[3px] bg-[#7B61FF]/[0.12] mx-auto rounded-full" />
-      {/* Animated fill — locks at 100% once completed */}
+      {/* Animated fill */}
       <motion.div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[3px] rounded-full origin-top"
         style={{
-          scaleY: completed ? 1 : scaleY,
+          scaleY,
           height: "100%",
           background: "linear-gradient(to bottom, #7B61FF, #9B8AFF, #B8A9FF, #7B61FF)",
         }}
       />
-      {/* Animated dot — hidden once completed */}
-      {!completed && (
-        <motion.div
-          className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#7B61FF] shadow-[0_0_16px_rgba(123,97,255,0.6)]"
-          style={{ top: dotTop, opacity: dotOpacity }}
-        />
-      )}
+      {/* Animated dot */}
+      <motion.div
+        className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#7B61FF] shadow-[0_0_16px_rgba(123,97,255,0.6)]"
+        style={{ top: dotTop, opacity: dotOpacity }}
+      />
     </div>
   );
 }
@@ -367,20 +373,20 @@ function TimelineLine() {
 const steps = [
   {
     num: "1",
-    title: "Crée ton espace",
-    desc: "Configure ta plateforme et prépare ta communauté.",
+    title: "Crée ton espace privé",
+    desc: "Configure ta plateforme en quelques clics et personnalise ton univers.",
     image: "/step1.png",
   },
   {
     num: "2",
-    title: "Publie ton contenu",
-    desc: "Partage tes vidéos, formations et contenus exclusifs.",
+    title: "Publie du contenu exclusif",
+    desc: "Partage tes vidéos, formations et ressources réservées à ta communauté.",
     image: "/step2.png",
   },
   {
     num: "3",
-    title: "Fais grandir ta communauté",
-    desc: "Engage tes membres, organise des événements et développe ton audience.",
+    title: "Commence à monétiser ton audience",
+    desc: "Génère des revenus avec des abonnements, ventes et événements payants.",
     image: "/step3.png",
   },
 ];
