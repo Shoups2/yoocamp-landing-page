@@ -241,20 +241,14 @@ function RevenueCard({
 /* ── Section ─────────────────────────────── */
 
 export default function Monetization() {
-  const [members, setMembers] = useState(120);
-  const [subPrice, setSubPrice] = useState(29);
-  const [sales, setSales] = useState(248);
-  const [coursePrice, setCoursePrice] = useState(97);
-  const [sessions, setSessions] = useState(20);
-  const [sessionPrice, setSessionPrice] = useState(120);
-  const [participants, setParticipants] = useState(86);
-  const [ticketPrice, setTicketPrice] = useState(49);
+  const [members, setMembers] = useState(200);
+  const [subPrice, setSubPrice] = useState(39);
+  const [sales, setSales] = useState(60);
+  const [coursePrice, setCoursePrice] = useState(297);
 
   const subRevenue = members * subPrice;
   const courseRevenue = sales * coursePrice;
-  const coachRevenue = sessions * sessionPrice;
-  const eventRevenue = participants * ticketPrice;
-  const total = subRevenue + courseRevenue + coachRevenue + eventRevenue;
+  const total = subRevenue + courseRevenue;
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-80px" });
@@ -270,11 +264,11 @@ export default function Monetization() {
             Simulateur de revenus
           </p>
           <h2 className="text-3xl md:text-[2.75rem] lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            Génère des revenus<br className="hidden md:block" />
-            avec <span className="text-[#7B61FF]">ta communauté</span>
+            Combien pourrait te rapporter<br className="hidden md:block" />
+            <span className="text-[#7B61FF]">ta communauté</span> ?
           </h2>
           <p className="text-base text-gray-400 max-w-lg mx-auto">
-            Abonnements, formations, coaching et événements — tout est intégré dans Yoocamp.
+            Abonnements et ventes de formations ou coaching — tout est intégré dans Yoocamp.
           </p>
         </FadeIn>
 
@@ -305,75 +299,50 @@ export default function Monetization() {
             <Slider label="Prix abonnement" value={subPrice} onChange={setSubPrice} min={5} max={99} step={1} suffix=" €" color="#7B61FF" />
           </RevenueCard>
 
-          {/* ── Formations ──────────────── */}
+          {/* ── Formations & Coaching ──── */}
           <RevenueCard
             index={1}
             inView={inView}
-            title="Formations"
+            title="Formations & Coaching"
             revenue={courseRevenue}
             color="#3B82F6"
             gradientTo="#06B6D4"
           >
-            <Slider label="Ventes" value={sales} onChange={setSales} min={10} max={1000} step={10} suffix="" color="#3B82F6" />
-            <Slider label="Prix formation" value={coursePrice} onChange={setCoursePrice} min={19} max={497} step={1} suffix=" €" color="#3B82F6" />
-          </RevenueCard>
-
-          {/* ── Coaching ────────────────── */}
-          <RevenueCard
-            index={2}
-            inView={inView}
-            title="Coaching"
-            revenue={coachRevenue}
-            color="#10B981"
-            gradientTo="#34D399"
-          >
-            <Slider label="Sessions / mois" value={sessions} onChange={setSessions} min={1} max={100} step={1} suffix="" color="#10B981" />
-            <Slider label="Prix par session" value={sessionPrice} onChange={setSessionPrice} min={20} max={500} step={10} suffix=" €" color="#10B981" />
-          </RevenueCard>
-
-          {/* ── Événements ──────────────── */}
-          <RevenueCard
-            index={3}
-            inView={inView}
-            title="Événements"
-            revenue={eventRevenue}
-            color="#EC4899"
-            gradientTo="#F472B6"
-          >
-            <Slider label="Participants" value={participants} onChange={setParticipants} min={10} max={500} step={5} suffix="" color="#EC4899" />
-            <Slider label="Prix du ticket" value={ticketPrice} onChange={setTicketPrice} min={5} max={199} step={1} suffix=" €" color="#EC4899" />
+            <Slider label="Ventes / mois" value={sales} onChange={setSales} min={10} max={1000} step={10} suffix="" color="#3B82F6" />
+            <Slider label="Prix par vente" value={coursePrice} onChange={setCoursePrice} min={19} max={497} step={1} suffix=" €" color="#3B82F6" />
           </RevenueCard>
 
         </div>
 
         {/* ── Total global ──────────────── */}
         <motion.div
-          className="mt-8 rounded-2xl border border-[#7B61FF]/10 bg-gradient-to-r from-[#7B61FF]/[0.03] via-white to-[#10B981]/[0.03] p-8 md:p-10 text-center"
+          className="mt-8 rounded-2xl border border-[#7B61FF]/10 overflow-hidden relative"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-sm font-medium text-gray-400 mb-3">
-            Revenus potentiels avec Yoocamp
-          </p>
-          <span className="text-[48px] md:text-[64px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#7B61FF] via-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">
-            {fmt(total)}&nbsp;€
-          </span>
-          <div className="flex items-center justify-center gap-3 sm:gap-5 mt-5 flex-wrap">
-            {[
-              { label: "Abonnements", value: subRevenue, color: "#7B61FF" },
-              { label: "Formations", value: courseRevenue, color: "#3B82F6" },
-              { label: "Coaching", value: coachRevenue, color: "#10B981" },
-              { label: "Événements", value: eventRevenue, color: "#EC4899" },
-            ].map((item) => (
-              <span
-                key={item.label}
-                className="flex items-center gap-1.5 text-[13px] text-gray-400 bg-gray-50 px-3 py-1.5 rounded-full"
-              >
-                <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
-                {fmt(item.value)}&nbsp;€
+          {/* Fond gradient animé */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#7B61FF]/[0.04] via-white to-[#3B82F6]/[0.04]" />
+          <motion.div
+            className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-[#7B61FF]/[0.04] blur-3xl"
+            animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-[#3B82F6]/[0.04] blur-3xl"
+            animate={{ scale: [1.2, 1, 1.2], opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          <div className="relative p-8 md:p-12 text-center">
+            <div className="flex items-baseline justify-center gap-2">
+              <span className="text-[52px] md:text-[72px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#7B61FF] via-[#3B82F6] to-[#7B61FF] bg-clip-text text-transparent">
+                <AnimatedNumber value={total} />
               </span>
-            ))}
+            </div>
+            <p className="text-base md:text-lg font-medium text-gray-400 mt-3">
+              Revenus potentiels par mois avec <span className="text-[#7B61FF] font-semibold">Yoocamp</span>
+            </p>
           </div>
         </motion.div>
 
