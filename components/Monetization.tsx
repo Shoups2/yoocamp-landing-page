@@ -199,9 +199,6 @@ function RevenueCard({
     >
       {/* ── Résultat ── */}
       <div className="p-6 pb-4">
-        <span className="text-[13px] font-semibold uppercase tracking-wider block mb-2" style={{ color }}>
-          {title}
-        </span>
         <span
           className="block text-[36px] md:text-[40px] font-extrabold leading-none tracking-tight"
           style={{
@@ -212,6 +209,9 @@ function RevenueCard({
           }}
         >
           <AnimatedNumber value={revenue} />
+        </span>
+        <span className="text-[20px] font-bold block mt-2" style={{ color }}>
+          {title}
         </span>
       </div>
 
@@ -277,7 +277,6 @@ export default function Monetization() {
             revenue={subRevenue}
             color="#7B61FF"
             gradientTo="#3B82F6"
-            sparkline={<MiniSparkline value={subRevenue} color="#7B61FF" />}
           >
             <Slider label="Membres" value={members} onChange={setMembers} min={10} max={1000} step={10} suffix="" color="#7B61FF" />
             <Slider label="Prix / mois" value={subPrice} onChange={setSubPrice} min={5} max={99} step={1} suffix=" €" color="#7B61FF" />
@@ -290,7 +289,6 @@ export default function Monetization() {
             revenue={courseRevenue}
             color="#3B82F6"
             gradientTo="#06B6D4"
-            sparkline={<MiniSparkline value={courseRevenue} color="#3B82F6" />}
           >
             <Slider label="Ventes / mois" value={sales} onChange={setSales} min={10} max={1000} step={10} suffix="" color="#3B82F6" />
             <Slider label="Prix par vente" value={coursePrice} onChange={setCoursePrice} min={19} max={497} step={1} suffix=" €" color="#3B82F6" />
@@ -305,13 +303,9 @@ export default function Monetization() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="py-14 md:py-20 px-8 text-center relative">
+          <div className="py-6 md:py-8 px-6 text-center relative">
             {/* Glow subtil */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] rounded-full bg-[#7B61FF]/[0.04] blur-[80px] pointer-events-none" />
-
-            <p className="relative text-sm font-medium text-gray-400 mb-6">
-              Ton potentiel mensuel avec Yoocamp
-            </p>
 
             <motion.div
               className="relative"
@@ -325,8 +319,8 @@ export default function Monetization() {
               </span>
             </motion.div>
 
-            <p className="relative text-base text-gray-400 mt-5 mb-10">
-              de revenus potentiels par mois
+            <p className="relative text-base md:text-lg font-medium text-gray-400 mt-5 mb-10">
+              de revenus potentiels par mois avec <span className="text-[#7B61FF] font-semibold">Yoocamp</span>
             </p>
 
             {/* CTA */}
@@ -336,14 +330,14 @@ export default function Monetization() {
               whileHover={{ scale: 1.03, boxShadow: "0 4px 24px rgba(123,97,255,0.35)" }}
               whileTap={{ scale: 0.98 }}
             >
-              Créer ma communauté — c&apos;est gratuit
+              Démarrer gratuitement
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </motion.a>
 
             <p className="relative text-[13px] text-gray-400 mt-4">
-              Lance ta communauté et commence à générer tes premiers revenus.
+              Formule gratuite · Sans carte bancaire · En 2 minutes
             </p>
           </div>
         </motion.div>
