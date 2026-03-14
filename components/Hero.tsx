@@ -156,7 +156,7 @@ export default function Hero() {
         >
           Lance ta communauté
           <br />
-          <span className="bg-gradient-to-r from-[#6C4FE0] via-[#7B61FF] to-[#A855F7] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
             et commence à vendre
           </span>
         </motion.h1>

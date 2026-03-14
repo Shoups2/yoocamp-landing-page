@@ -95,25 +95,10 @@ function Step2Mock() {
           </span>
         </div>
       </div>
-      <div className="mx-5 mt-4 aspect-video rounded-xl bg-gradient-to-br from-[#7B61FF] via-[#9B8AFF] to-[#6C4FE0] relative overflow-hidden">
-        <div className="absolute top-[-20%] right-[-15%] w-[60%] h-[80%] bg-white/10 rounded-full blur-[30px]" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-10 h-10 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center border border-white/30">
-            <div className="w-0 h-0 border-l-[7px] border-l-white border-t-[4.5px] border-t-transparent border-b-[4.5px] border-b-transparent ml-0.5" />
-          </div>
-        </div>
-        <div className="absolute bottom-2 left-3 right-3">
-          <div className="h-1 bg-white/20 rounded-full overflow-hidden">
-            <motion.div
-              className="h-full bg-white/70 rounded-full"
-              initial={{ width: "0%" }}
-              animate={{ width: "42%" }}
-              transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
-            />
-          </div>
-        </div>
+      <div className="mx-4 mt-3 aspect-video rounded-xl overflow-hidden">
+        <img src="/image 2.png" alt="Contenu exclusif" className="w-full h-full object-cover scale-125" />
       </div>
-      <div className="p-5 space-y-3">
+      <div className="p-4 pt-2 space-y-2">
         <div className="space-y-1.5">
           <div className="text-sm font-semibold text-gray-900">Construire une offre irrésistible</div>
           <div className="text-[11px] text-gray-400">Module 3 · Formation Premium</div>

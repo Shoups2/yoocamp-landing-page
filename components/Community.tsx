@@ -177,56 +177,50 @@ function DiscussionMock() {
 /* ── Video Mock ───────────────────────────── */
 
 function VideoMock() {
+  const videos = [
+    { title: "Lancer son offre", duration: "18 min", progress: 100, color: "from-[#7B61FF] to-[#8B75FF]" },
+    { title: "Contenu qui convertit", duration: "12 min", progress: 65, color: "from-[#6C4FE0] to-[#7B61FF]" },
+    { title: "Audience fidèle", duration: "24 min", progress: 0, color: "from-[#8B75FF] to-[#B4A0FF]" },
+    { title: "Monétiser son savoir", duration: "15 min", progress: 0, color: "from-[#7B61FF] to-[#6C4FE0]" },
+  ];
+
   return (
     <div className="bg-white rounded-xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
-      <div className="aspect-video relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#7B61FF] via-[#9B8AFF] to-[#6C4FE0]" />
-        <div className="absolute top-[-20%] right-[-15%] w-[60%] h-[80%] bg-white/10 rounded-full blur-[40px]" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[60%] bg-sky-300/15 rounded-full blur-[30px]" />
-        <div className="absolute top-3 right-3 grid grid-cols-3 gap-1 opacity-20">
-          {Array.from({ length: 9 }).map((_, i) => (
-            <div key={i} className="w-1 h-1 rounded-full bg-white" />
-          ))}
-        </div>
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
-          <div className="flex items-center gap-1.5 mb-2 opacity-80">
-            <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
-              <div className="w-2 h-2 rounded-full bg-white" />
-            </div>
-            <span className="text-[9px] font-semibold tracking-wide uppercase">Module 3</span>
-          </div>
-          <p className="text-[11px] md:text-xs font-bold text-center leading-snug">
-            Construire une offre
-            <br />
-            irrésistible
-          </p>
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.div
-            className="w-11 h-11 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30"
-            whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.35)" }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent ml-0.5" />
-          </motion.div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
-          <motion.div
-            className="h-full bg-white/80 rounded-full"
-            initial={{ width: "0%" }}
-            animate={{ width: "35%" }}
-            transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
-          />
-        </div>
+      <div className="px-3.5 py-2.5 border-b border-gray-100 flex items-center justify-between">
+        <span className="text-[11px] font-semibold text-gray-900">Ma formation</span>
+        <span className="text-[10px] text-gray-400">4 vidéos</span>
       </div>
-      <div className="p-3 flex items-center gap-2.5">
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#7B61FF] to-[#9B8AFF] flex items-center justify-center flex-shrink-0">
-          <span className="text-[9px] font-bold text-white">Y</span>
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-xs font-semibold text-gray-900 truncate">Construire une offre irrésistible</p>
-          <p className="text-[10px] text-gray-400">Module 3 · 12 min</p>
-        </div>
+      <div className="grid grid-cols-2 gap-2.5 p-3">
+        {videos.map((v, i) => (
+          <div key={i} className="relative">
+            <div className={`aspect-video rounded-lg bg-gradient-to-br ${v.color} flex items-center justify-center relative overflow-hidden`}>
+              <div className="absolute top-[-20%] right-[-15%] w-[60%] h-[80%] bg-white/8 rounded-full blur-[20px]" />
+              {v.progress === 100 ? (
+                <div className="w-6 h-6 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center">
+                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                </div>
+              ) : (
+                <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <div className="w-0 h-0 border-l-[5px] border-l-white border-t-[3px] border-t-transparent border-b-[3px] border-b-transparent ml-0.5" />
+                </div>
+              )}
+              {v.progress > 0 && v.progress < 100 && (
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-black/15">
+                  <motion.div
+                    className="h-full bg-white/80 rounded-full"
+                    initial={{ width: "0%" }}
+                    animate={{ width: `${v.progress}%` }}
+                    transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+                  />
+                </div>
+              )}
+            </div>
+            <p className="text-[10px] font-semibold text-gray-700 mt-1.5 truncate">{v.title}</p>
+            <p className="text-[9px] text-gray-400">{v.duration}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -458,10 +452,18 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
       }}
       className={`group relative rounded-[1.75rem] border overflow-hidden transition-all duration-300 ease-out ${card.cardBg} ${card.borderColor} ${grow ? "md:flex-1 h-full" : ""}`}
     >
-      {/* Accent line pour la card featured */}
-      {card.featured && (
-        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#7B61FF]/70 to-transparent" />
-      )}
+      {/* Accent line */}
+      <div
+        className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent to-transparent"
+        style={{
+          backgroundImage: `linear-gradient(to right, transparent, ${
+            card.id === "content" ? "rgba(139,92,246,0.7)"
+            : card.id === "community" ? "rgba(79,123,255,0.7)"
+            : card.id === "events" ? "rgba(236,72,153,0.7)"
+            : "rgba(52,211,153,0.7)"
+          }, transparent)`,
+        }}
+      />
 
       {/* Noise texture subtile */}
       <div className="absolute inset-0 opacity-[0.012] pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
@@ -537,7 +539,7 @@ export default function Community() {
           <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight leading-[1.1]">
             Tout ce dont tu as besoin,
             <br />
-            <span className="bg-gradient-to-r from-[#7B61FF] via-[#9B8AFF] to-[#6C4FE0] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
               au même endroit
             </span>
           </h2>

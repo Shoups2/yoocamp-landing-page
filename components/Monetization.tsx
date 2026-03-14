@@ -235,8 +235,8 @@ function RevenueCard({
 export default function Monetization() {
   const [members, setMembers] = useState(200);
   const [subPrice, setSubPrice] = useState(39);
-  const [sales, setSales] = useState(60);
-  const [coursePrice, setCoursePrice] = useState(297);
+  const [sales, setSales] = useState(30);
+  const [coursePrice, setCoursePrice] = useState(240);
 
   const subRevenue = members * subPrice;
   const courseRevenue = sales * coursePrice;
@@ -246,7 +246,7 @@ export default function Monetization() {
   const inView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
-    <section ref={sectionRef} className="py-28 md:py-36 relative overflow-hidden">
+    <section ref={sectionRef} id="simulateur" className="py-28 md:py-36 relative overflow-hidden">
       {/* ── Fond ── */}
       <div className="absolute inset-0 bg-[#FAFAFA]" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
@@ -257,7 +257,7 @@ export default function Monetization() {
         <FadeIn className="text-center mb-5">
           <h2 className="text-3xl md:text-[2.75rem] lg:text-5xl font-bold text-gray-900 leading-tight">
             Combien peut vraiment te rapporter<br className="hidden md:block" />
-            <span className="text-[#7B61FF]">ta communauté</span> ?
+            <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">ta communauté</span> ?
           </h2>
         </FadeIn>
 

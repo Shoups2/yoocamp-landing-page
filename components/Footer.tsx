@@ -4,10 +4,38 @@ import { motion } from "framer-motion";
 import { FadeIn } from "./motion";
 
 const columns = [
-  { title: "Placeholder", links: ["Link 1", "Link 2", "Link 3", "Link 4"] },
-  { title: "Placeholder", links: ["Link 1", "Link 2", "Link 3"] },
-  { title: "Placeholder", links: ["Link 1", "Link 2", "Link 3"] },
-  { title: "Placeholder", links: ["Link 1", "Link 2"] },
+  {
+    title: "Produit",
+    links: [
+      { label: "Communauté", href: "#communauté" },
+      { label: "Fonctionnalités", href: "#fonctionnalités" },
+      { label: "Simulateur", href: "#simulateur" },
+      { label: "Tarifs", href: "#" },
+    ],
+  },
+  {
+    title: "Ressources",
+    links: [
+      { label: "Blog", href: "#" },
+      { label: "Guides", href: "#" },
+      { label: "FAQ", href: "#faq" },
+    ],
+  },
+  {
+    title: "Entreprise",
+    links: [
+      { label: "À propos", href: "#" },
+      { label: "Contact", href: "#" },
+      { label: "Carrières", href: "#" },
+    ],
+  },
+  {
+    title: "Légal",
+    links: [
+      { label: "Mentions légales", href: "#" },
+      { label: "CGU", href: "#" },
+    ],
+  },
 ];
 
 export default function Footer() {
@@ -18,22 +46,27 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 mb-12">
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1">
-              <div className="text-xl font-extrabold text-gray-900 mb-3">
-                <span className="text-indigo-600">●</span> placeholder
-              </div>
-              <div className="space-y-1.5">
-                <div className="h-2.5 w-40 bg-gray-200 rounded" />
-                <div className="h-2.5 w-32 bg-gray-100 rounded" />
-              </div>
+              <a href="#" className="inline-block mb-3">
+                <img src="/yoocamp 4.svg" alt="Yoocamp" className="h-7" />
+              </a>
+              <p className="text-sm text-gray-400 leading-relaxed max-w-[220px]">
+                La plateforme tout-en-un pour créer, animer et monétiser ta communauté.
+              </p>
               <div className="flex gap-3 mt-4">
-                {["X", "In", "Yt", "Ig"].map((s) => (
-                  <motion.div
-                    key={s}
+                {[
+                  { label: "X", href: "#" },
+                  { label: "In", href: "#" },
+                  { label: "Yt", href: "#" },
+                  { label: "Ig", href: "#" },
+                ].map((s) => (
+                  <motion.a
+                    key={s.label}
+                    href={s.href}
                     className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400 text-xs font-bold cursor-pointer"
-                    whileHover={{ scale: 1.1, backgroundColor: "#EEF2FF", color: "#4F46E5" }}
+                    whileHover={{ scale: 1.1, backgroundColor: "#EEF2FF", color: "#7B61FF" }}
                   >
-                    {s}
-                  </motion.div>
+                    {s.label}
+                  </motion.a>
                 ))}
               </div>
             </div>
@@ -48,11 +81,11 @@ export default function Footer() {
                   {col.links.map((link, j) => (
                     <li key={j}>
                       <motion.a
-                        href="#"
-                        className="text-sm text-gray-400 hover:text-indigo-600 transition-colors"
+                        href={link.href}
+                        className="text-sm text-gray-400 hover:text-[#7B61FF] transition-colors"
                         whileHover={{ x: 2 }}
                       >
-                        {link}
+                        {link.label}
                       </motion.a>
                     </li>
                   ))}
@@ -63,11 +96,11 @@ export default function Footer() {
         </FadeIn>
 
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-          <p>© 2026 Placeholder. All rights reserved.</p>
+          <p>© 2026 Yoocamp. Tous droits réservés.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-gray-600 transition-colors">Placeholder</a>
-            <a href="#" className="hover:text-gray-600 transition-colors">Placeholder</a>
-            <a href="#" className="hover:text-gray-600 transition-colors">Placeholder</a>
+            <a href="#" className="hover:text-gray-600 transition-colors">Confidentialité</a>
+            <a href="#" className="hover:text-gray-600 transition-colors">CGU</a>
+            <a href="#" className="hover:text-gray-600 transition-colors">Contact</a>
           </div>
         </div>
       </div>
