@@ -470,7 +470,7 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
 
       {/* Titre + Description */}
       <div className={`relative z-10 px-7 md:px-9 ${card.featured ? "pt-10" : "pt-7"}`}>
-        <h3 className={`${card.featured ? "text-3xl md:text-4xl" : "text-3xl md:text-4xl"} font-extrabold uppercase font-[family-name:var(--font-poppins)] leading-[1.08] tracking-[0.02em] whitespace-pre-line mb-3 ${card.titleColor}`}>
+        <h3 className={`${card.featured ? "text-3xl md:text-4xl" : "text-3xl md:text-4xl"} font-extrabold font-[family-name:var(--font-poppins)] leading-[1.08] tracking-[0.02em] whitespace-pre-line mb-3 ${card.titleColor}`}>
           {card.title}
         </h3>
         <p className="text-[15px] font-medium leading-relaxed text-gray-400/90 max-w-[90%]">
@@ -536,6 +536,10 @@ export default function Community() {
 
         {/* Header */}
         <FadeIn className="text-center mb-14 md:mb-20">
+          <div className="inline-flex items-center gap-2 bg-[#7B61FF]/[0.06] text-[#7B61FF] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#7B61FF]/10">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#7B61FF]" />
+            Fonctionnalités
+          </div>
           <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight leading-[1.1]">
             Tout ce dont tu as besoin,
             <br />
