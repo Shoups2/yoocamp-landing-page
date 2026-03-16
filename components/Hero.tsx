@@ -172,11 +172,11 @@ export default function Hero() {
         {/* CTA */}
         <motion.div
           {...blurFadeUp(0.5)}
-          className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
+          className="mt-8 flex justify-center"
         >
           <motion.a
             href="#"
-            className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-lg font-semibold px-8 py-4 rounded-2xl shadow-lg shadow-indigo-500/25"
+            className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-lg font-semibold px-10 py-4 rounded-2xl shadow-lg shadow-indigo-500/25"
             whileHover={{ scale: 1.04, boxShadow: "0 20px 50px -10px rgba(99, 102, 241, 0.45)" }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
@@ -192,17 +192,6 @@ export default function Hero() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </motion.svg>
-          </motion.a>
-          <motion.a
-            href="#"
-            className="inline-flex items-center justify-center gap-2 bg-white text-gray-700 text-lg font-semibold px-8 py-4 rounded-2xl border border-gray-200 shadow-sm"
-            whileHover={{ scale: 1.04, borderColor: "#818cf8", boxShadow: "0 8px 30px rgba(99,102,241,0.08)" }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-            </svg>
-            Voir la démo
           </motion.a>
         </motion.div>
 
