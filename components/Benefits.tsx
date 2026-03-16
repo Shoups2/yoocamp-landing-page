@@ -131,14 +131,17 @@ export default function Benefits() {
             Pourquoi Yoocamp
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
-            Transforme ton expertise<br className="hidden sm:block" /> en revenus récurrents
+            Ton expertise a plus de valeur<br className="hidden sm:block" /> qu&apos;un feed qui défile
           </h2>
+          <p className="mt-5 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Les créateurs les plus ambitieux ne laissent plus leur audience, leurs contenus et leurs revenus éparpillés entre six outils différents.
+          </p>
         </FadeIn>
 
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           <div className="h-[360px] rounded-[1.75rem] border border-gray-200/60 bg-[#F4F4F4] pt-7 px-7 flex flex-col overflow-hidden">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Crée une nouvelle source de revenus</h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Transforme chaque contenu en revenu</h3>
 
             {/* Smartphone mockup */}
             <div className="flex-1 flex justify-center items-end min-h-0">
@@ -197,11 +200,11 @@ export default function Benefits() {
             </div>
           </div>
           <div className="h-[360px] rounded-[1.75rem] border border-gray-200/60 bg-[#F4F4F4] p-7 flex flex-col overflow-hidden">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Tout au même endroit, enfin</h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Tout centralisé. Rien à assembler.</h3>
             <CarouselCard />
           </div>
           <div className="h-[360px] rounded-[1.75rem] border border-gray-200/60 bg-[#F4F4F4] p-7 flex flex-col overflow-hidden">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Fais grandir ta communauté</h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Reprends le contrôle</h3>
 
             {/* Stats — asymmetric layout */}
             <div className="flex-1 flex flex-col gap-2.5 px-4 pb-3">
