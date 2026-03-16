@@ -469,17 +469,17 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
       <div className="absolute inset-0 opacity-[0.012] pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
 
       {/* Titre + Description */}
-      <div className={`relative z-10 px-7 md:px-9 ${card.featured ? "pt-10" : "pt-7"}`}>
-        <h3 className={`${card.featured ? "text-3xl md:text-4xl" : "text-3xl md:text-4xl"} font-extrabold font-[family-name:var(--font-poppins)] leading-[1.08] tracking-[0.02em] whitespace-pre-line mb-3 ${card.titleColor}`}>
+      <div className={`relative z-10 px-5 md:px-7 ${card.featured ? "pt-8" : "pt-6"}`}>
+        <h3 className={`${card.featured ? "text-3xl md:text-[2.1rem]" : "text-3xl md:text-[2.1rem]"} font-extrabold font-[family-name:var(--font-poppins)] leading-[1.08] tracking-[0.02em] whitespace-pre-line mb-2 ${card.titleColor}`}>
           {card.title}
         </h3>
-        <p className="text-[15px] font-medium leading-relaxed text-gray-400/90 max-w-[90%]">
+        <p className="text-[13px] font-medium leading-relaxed text-gray-400/90 max-w-[90%]">
           {card.desc}
         </p>
       </div>
 
       {/* Mockup */}
-      <div className={`relative ${card.featured ? "px-4 md:px-6 pt-8 pb-5" : "px-5 md:px-7 pt-6 pb-5"}`}>
+      <div className={`relative ${card.featured ? "px-3 md:px-5 pt-6 pb-3" : "px-4 md:px-5 pt-4 pb-3"}`}>
         {/* Halo principal — gradient radial doux */}
         <div
           className="absolute inset-x-0 top-0 bottom-0 pointer-events-none transition-opacity duration-700 group-hover:opacity-130"
@@ -553,7 +553,7 @@ export default function Community() {
         </FadeIn>
 
         {/* Bento grid */}
-        <div className="relative grid md:grid-cols-2 gap-4 md:gap-5">
+        <div className="relative grid md:grid-cols-2 gap-4 md:gap-5 max-w-5xl mx-auto">
           {/* Colonne gauche : Communauté + Revenus */}
           <div className="flex flex-col gap-4 md:gap-5">
             <CardItem card={cards[1]} index={0} />
@@ -571,7 +571,7 @@ export default function Community() {
 
         {/* CTA card */}
         <FadeIn delay={0.5}>
-          <div className="relative mt-5 md:mt-6 rounded-[1.5rem] border border-[#7B61FF]/15 bg-gradient-to-r from-[#F8F5FF] via-white to-[#F0ECFF] px-10 md:px-16 py-10 md:py-12 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_4px_40px_-8px_rgba(123,97,255,0.12)] overflow-hidden">
+          <div className="relative mt-4 md:mt-5 rounded-[1.5rem] border border-[#7B61FF]/15 bg-gradient-to-r from-[#F8F5FF] via-white to-[#F0ECFF] px-8 md:px-12 py-8 md:py-9 flex flex-col md:flex-row items-center justify-between gap-5 shadow-[0_4px_40px_-8px_rgba(123,97,255,0.12)] overflow-hidden max-w-5xl mx-auto">
             {/* Halo violet */}
             <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-[300px] h-[200px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(123,97,255,0.12), transparent 70%)" }} />
             <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[250px] h-[180px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(155,138,255,0.10), transparent 70%)" }} />
