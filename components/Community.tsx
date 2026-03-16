@@ -92,9 +92,9 @@ function EventsMock() {
 /* ── Discussion Mock ──────────────────────── */
 
 const chatMessages = [
-  { name: "Léa", avatar: "bg-blue-400", text: "Salut tout le monde ! Prêts pour le mastermind en live ce soir ? 🎉", side: "left" as const },
-  { name: "Maxime", avatar: "bg-blue-500", text: "Grave ! Le dernier était incroyable 🚀", side: "left" as const },
-  { name: "Toi", avatar: "bg-[#4F7BFF]", text: "Rdv à 20h, j'ai un sujet en or 🔥", side: "right" as const },
+  { name: "Léa", avatar: "https://i.pravatar.cc/80?img=5", text: "Salut tout le monde ! Prêts pour le mastermind en live ce soir ? 🎉", side: "left" as const },
+  { name: "Maxime", avatar: "https://i.pravatar.cc/80?img=12", text: "Grave ! Le dernier était incroyable 🚀", side: "left" as const },
+  { name: "Toi", avatar: "https://i.pravatar.cc/80?img=32", text: "Rdv à 20h, j'ai un sujet en or 🔥", side: "right" as const },
 ];
 
 function DiscussionMock() {
@@ -106,10 +106,12 @@ function DiscussionMock() {
           <span className="text-xs font-semibold text-gray-700">Ma communauté</span>
         </div>
         <div className="flex -space-x-1.5">
-          {["bg-[#4F7BFF]", "bg-blue-400", "bg-blue-500"].map((c, i) => (
-            <motion.div
+          {["https://i.pravatar.cc/80?img=32", "https://i.pravatar.cc/80?img=5", "https://i.pravatar.cc/80?img=12"].map((src, i) => (
+            <motion.img
               key={i}
-              className={`w-5 h-5 rounded-full ${c} border-2 border-white`}
+              src={src}
+              alt=""
+              className="w-5 h-5 rounded-full border-2 border-white object-cover"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: i * 0.2, type: "spring" }}
@@ -134,9 +136,7 @@ function DiscussionMock() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.4, delay: i * 1 }}
           >
-            <div className={`w-6 h-6 rounded-full ${msg.avatar} flex-shrink-0 flex items-center justify-center`}>
-              <span className="text-[8px] font-bold text-white">{msg.name[0]}</span>
-            </div>
+            <img src={msg.avatar} alt={msg.name} className="w-6 h-6 rounded-full flex-shrink-0 object-cover border border-white shadow-sm" />
             <div className={`max-w-[75%] ${msg.side === "right" ? "items-end" : "items-start"} flex flex-col gap-0.5`}>
               <span className={`text-[8px] font-medium text-gray-400 ${msg.side === "right" ? "text-right" : ""}`}>{msg.name}</span>
               <div className={`px-3 py-1.5 rounded-2xl text-[11px] leading-relaxed ${
