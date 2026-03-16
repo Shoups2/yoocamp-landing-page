@@ -79,25 +79,23 @@ function CarouselCard() {
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Carousel box */}
-      <div className="flex-1 flex items-center justify-center">
-        <div className="w-[70%] h-[90%] bg-white rounded-[1.75rem] border border-gray-200/60 shadow-[0_2px_12px_rgba(0,0,0,0.04)] p-6 flex flex-col items-center justify-center gap-3">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              className="flex flex-col items-center gap-3"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="w-14 h-14 rounded-2xl bg-[#7B61FF]/[0.07] flex items-center justify-center">
-                {item.icon}
-              </div>
-              <p className="text-base font-bold text-gray-900">{item.label}</p>
-              <p className="text-xs text-gray-400">{item.desc}</p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+      <div className="flex-1 flex items-center justify-center overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            className="w-[70%] h-[90%] bg-white rounded-[1.75rem] border border-gray-200/60 shadow-[0_2px_12px_rgba(0,0,0,0.04)] p-6 flex flex-col items-center justify-center gap-3"
+            initial={{ opacity: 0, x: 120, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -120, scale: 0.95 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="w-14 h-14 rounded-2xl bg-[#7B61FF]/[0.07] flex items-center justify-center">
+              {item.icon}
+            </div>
+            <p className="text-base font-bold text-gray-900">{item.label}</p>
+            <p className="text-xs text-gray-400">{item.desc}</p>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Dots */}
@@ -140,7 +138,7 @@ export default function Benefits() {
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           <div className="h-[360px] rounded-[1.75rem] border border-gray-200/60 bg-[#F4F4F4] pt-7 px-7 flex flex-col overflow-hidden">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Crée une nouvelle source de revenus</h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Crée une nouvelle source de revenus</h3>
 
             {/* Smartphone mockup */}
             <div className="flex-1 flex justify-center items-end min-h-0">
@@ -158,7 +156,7 @@ export default function Benefits() {
                 </div>
 
                 {/* Profile content */}
-                <div className="flex flex-col items-center px-6 py-6 gap-3">
+                <div className="flex flex-col items-center px-6 py-4 gap-2.5">
                   {/* Avatar */}
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#7B61FF] to-[#9B8AFF] flex items-center justify-center shadow-md">
                     <img
@@ -199,11 +197,66 @@ export default function Benefits() {
             </div>
           </div>
           <div className="h-[360px] rounded-[1.75rem] border border-gray-200/60 bg-[#F4F4F4] p-7 flex flex-col overflow-hidden">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Tout au même endroit, enfin</h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Tout au même endroit, enfin</h3>
             <CarouselCard />
           </div>
-          <div className="h-[360px] rounded-[1.75rem] border border-gray-200/60 bg-[#F4F4F4] p-7">
-            <h3 className="text-lg font-bold text-gray-900">Fais grandir ta communauté</h3>
+          <div className="h-[360px] rounded-[1.75rem] border border-gray-200/60 bg-[#F4F4F4] p-7 flex flex-col overflow-hidden">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Fais grandir ta communauté</h3>
+
+            {/* Stats — asymmetric layout */}
+            <div className="flex-1 flex flex-col gap-2.5 px-4 pb-3">
+              {/* Row 1 */}
+              <div className="flex gap-2.5 flex-1">
+                {/* +300 membres */}
+                <div className="bg-white rounded-2xl p-4 flex flex-col justify-center border border-gray-100 flex-[1.4] shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+                  <div className="flex items-baseline gap-1.5 mb-1">
+                    <p className="text-2xl font-extrabold text-[#7B61FF] leading-none">+300</p>
+                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
+                  </div>
+                  <p className="text-[10px] text-gray-400 font-medium">Nouveaux membres</p>
+                </div>
+                {/* 12 formations */}
+                <div className="bg-white rounded-2xl p-4 flex flex-col items-center justify-center border border-gray-100 flex-[0.8] shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+                  <div className="w-9 h-9 rounded-full bg-[#7B61FF]/10 flex items-center justify-center mb-2">
+                    <svg className="w-4.5 h-4.5 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                    </svg>
+                  </div>
+                  <p className="text-xl font-extrabold text-gray-900 leading-none">12</p>
+                  <p className="text-[9px] text-gray-400 font-medium mt-0.5">Formations</p>
+                </div>
+              </div>
+
+              {/* Row 2 */}
+              <div className="flex gap-2.5 flex-1">
+                {/* 3 000€ */}
+                <div className="bg-white rounded-2xl p-4 flex flex-col justify-center border border-gray-100 flex-[0.9] shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+                  <p className="text-xl font-extrabold text-gray-900 leading-none">3 000€</p>
+                  <p className="text-[9px] text-gray-400 font-medium mt-1">Abonnements</p>
+                  <div className="flex gap-0.5 mt-2">
+                    {[40, 55, 35, 65, 50, 70, 60].map((h, i) => (
+                      <div key={i} className="flex-1 bg-[#7B61FF]/15 rounded-full" style={{ height: h * 0.35 }} />
+                    ))}
+                  </div>
+                </div>
+                {/* 20 coachings */}
+                <div className="bg-white rounded-2xl p-4 flex flex-col justify-center border border-gray-100 flex-[1.3] shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-full bg-[#7B61FF]/10 flex items-center justify-center shrink-0">
+                      <svg className="w-4.5 h-4.5 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xl font-extrabold text-gray-900 leading-none">20</p>
+                      <p className="text-[9px] text-gray-400 font-medium mt-0.5">Coachings ce mois</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
