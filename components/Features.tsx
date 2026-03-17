@@ -275,7 +275,7 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
           </motion.div>
 
           <motion.h3
-            className="text-2xl md:text-3xl font-bold mb-3 leading-tight transition-colors duration-500"
+            className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight transition-colors duration-500"
             initial={{ opacity: 0, y: 25 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
@@ -285,7 +285,7 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
           </motion.h3>
 
           <motion.p
-            className="text-base md:text-lg leading-relaxed max-w-md transition-colors duration-500"
+            className="text-lg md:text-xl font-medium leading-relaxed max-w-md transition-colors duration-500"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -414,7 +414,7 @@ export default function Features() {
           <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
             Comment ça marche
           </h2>
-          <p className="mt-4 text-lg text-gray-400 max-w-lg mx-auto leading-relaxed">
+          <p className="mt-4 text-lg md:text-xl text-gray-500 font-medium max-w-lg mx-auto leading-relaxed">
             Crée ta communauté et lance ton activité en quelques minutes.
           </p>
         </FadeIn>
