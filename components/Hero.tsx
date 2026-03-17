@@ -148,7 +148,7 @@ export default function Hero() {
       <FloatingParticles />
 
       {/* ── Content ── */}
-      <div className="relative max-w-5xl mx-auto px-6 pt-10 md:pt-14 pb-0 text-center">
+      <div className="relative max-w-5xl mx-auto px-6 pt-12 md:pt-16 pb-0 text-center">
         {/* Title */}
         <motion.h1
           {...blurFadeUp(0.2)}
@@ -166,7 +166,7 @@ export default function Hero() {
           {...blurFadeUp(0.35)}
           className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto"
         >
-          Publie du contenu exclusif, vends tes formations et anime ta communauté. Sans jongler entre 6 apps.
+          Publie du contenu exclusif, vends tes formations<br className="hidden sm:block" /> et anime ta communauté.
         </motion.p>
 
         {/* CTA */}

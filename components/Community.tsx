@@ -526,7 +526,7 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
 
 export default function Community() {
   return (
-    <section id="communauté" className="pt-20 md:pt-28 pb-16 md:pb-20 bg-gradient-to-b from-white via-white to-[#F8F5FF] relative overflow-hidden">
+    <section id="communauté" className="pt-10 md:pt-14 pb-16 md:pb-20 bg-gradient-to-b from-white via-white to-[#F8F5FF] relative overflow-hidden">
       {/* Background glows */}
       <div className="absolute top-[15%] left-[5%] w-[600px] h-[600px] bg-[#7B61FF]/[0.035] rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-[5%] right-[0%] w-[500px] h-[500px] bg-[#7B61FF]/[0.025] rounded-full blur-[130px] pointer-events-none" />

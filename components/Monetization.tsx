@@ -248,9 +248,7 @@ export default function Monetization() {
   return (
     <section ref={sectionRef} id="simulateur" className="py-28 md:py-36 relative overflow-hidden">
       {/* ── Fond ── */}
-      <div className="absolute inset-0 bg-[#FAFAFA]" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAFA] via-[#FAFAFA] to-white" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6">
         {/* ── Header ── */}
