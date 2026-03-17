@@ -81,47 +81,96 @@ function Step1Mock() {
 }
 
 function Step2Mock() {
+  const modules = [
+    { num: 1, title: "Trouver ta niche", duration: "12 min", done: true },
+    { num: 2, title: "Créer ton offre", duration: "18 min", done: true },
+    { num: 3, title: "Construire ton audience", duration: "24 min", done: false },
+    { num: 4, title: "Lancer ta communauté", duration: "15 min", done: false },
+  ];
+
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
           </svg>
-          <span className="text-xs font-semibold text-gray-700">Contenu exclusif</span>
+          <span className="text-xs font-semibold text-gray-700">Formation Premium</span>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full flex items-center gap-1">
-            <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 1l2.39 4.84L17.3 6.8l-3.65 3.56.86 5.02L10 13.14l-4.51 2.24.86-5.02L2.7 6.8l4.91-.96L10 1z" />
+        <div className="flex items-center gap-1.5">
+          <span className="text-[10px] font-medium text-[#7B61FF] bg-[#7B61FF]/8 px-2 py-0.5 rounded-full">4 modules</span>
+        </div>
+      </div>
+      {/* Video player */}
+      <div className="mx-4 mt-3 aspect-video rounded-xl bg-gray-900 relative overflow-hidden">
+        <div className="w-full h-full bg-gradient-to-tr from-[#1e1b4b] via-[#312e81] to-[#7B61FF]/60" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg backdrop-blur-sm"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5, type: "spring", stiffness: 260, damping: 20 }}
+          >
+            <svg className="w-4 h-4 text-[#7B61FF] ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
             </svg>
-            Exclusif
-          </span>
+          </motion.div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/60 to-transparent flex items-center gap-2">
+          <motion.div
+            className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden"
+          >
+            <motion.div
+              className="h-full bg-[#7B61FF] rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: "35%" }}
+              transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
+            />
+          </motion.div>
+          <span className="text-[9px] text-white/70 font-medium">4:12 / 12:00</span>
         </div>
       </div>
-      <div className="mx-4 mt-3 aspect-video rounded-xl overflow-hidden">
-        <img src="/image 2.png" alt="Contenu exclusif" className="w-full h-full object-cover scale-125" />
-      </div>
-      <div className="p-4 pt-2 space-y-2">
+
+      <div className="p-4 pt-3 space-y-3">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-sm font-semibold text-gray-900">Devenir créateur premium</div>
+            <div className="text-[11px] text-gray-400 mt-0.5">Parcours complet · 4 vidéos · 1h09</div>
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="text-[10px] font-medium text-gray-400">2/4</span>
+          </div>
+        </div>
         <div className="space-y-1.5">
-          <div className="text-sm font-semibold text-gray-900">Construire une offre irrésistible</div>
-          <div className="text-[11px] text-gray-400">Module 3 · Formation Premium</div>
-        </div>
-        <div className="flex items-center gap-2">
-          {["Vidéo", "Exclusif", "Membres only"].map((tag, i) => (
-            <span key={i} className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#7B61FF]/8 text-[#7B61FF]">
-              {tag}
-            </span>
+          {modules.map((m, i) => (
+            <motion.div
+              key={i}
+              className={`flex items-center gap-3 px-3 py-2 rounded-xl border ${m.done ? "bg-[#7B61FF]/[0.04] border-[#7B61FF]/15" : "bg-gray-50 border-gray-100"}`}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 + i * 0.1 }}
+            >
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${m.done ? "bg-[#7B61FF]" : "bg-gray-200"}`}>
+                {m.done ? (
+                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                ) : (
+                  <span className="text-[9px] font-bold text-gray-400">{m.num}</span>
+                )}
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className={`text-xs font-medium ${m.done ? "text-gray-900" : "text-gray-500"}`}>{m.title}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <svg className={`w-3 h-3 ${m.done ? "text-[#7B61FF]" : "text-gray-300"}`} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                </svg>
+                <span className="text-[10px] text-gray-400">{m.duration}</span>
+              </div>
+            </motion.div>
           ))}
         </div>
-        <motion.div
-          className="w-full py-2.5 rounded-xl bg-[#7B61FF] text-white text-sm font-semibold text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        >
-          Publier
-        </motion.div>
       </div>
     </div>
   );
@@ -269,9 +318,9 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
               >
                 {step.num}
               </motion.div>
-              <span className="text-xs font-semibold text-[#7B61FF] uppercase tracking-wider">Étape {step.num}</span>
+              <span className="text-sm font-bold text-[#7B61FF] uppercase tracking-wider">Étape {step.num}</span>
             </div>
-            <span className="hidden md:block text-xs font-semibold text-[#7B61FF] uppercase tracking-wider mb-4">Étape {step.num}</span>
+            <span className="hidden md:block text-sm font-bold text-[#7B61FF] uppercase tracking-wider mb-4">Étape {step.num}</span>
           </motion.div>
 
           <motion.h3
@@ -363,13 +412,13 @@ const steps = [
   {
     num: "1",
     title: "Crée ton espace privé",
-    desc: "Configure ta plateforme en quelques clics et personnalise ton univers.",
+    desc: "Configure et personnalise ta communauté à ton image.",
     image: "/step1.png",
   },
   {
     num: "2",
-    title: "Publie du contenu exclusif",
-    desc: "Partage tes vidéos, formations et ressources réservées à ta communauté.",
+    title: "Publie tes vidéos et crée tes formations",
+    desc: "Crée des parcours complets et partage du contenu réservé à tes membres.",
     image: "/step2.png",
   },
   {
@@ -412,10 +461,10 @@ export default function Features() {
             Simple &amp; rapide
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
-            Comment ça marche
+            Lance ta communauté en 3 étapes
           </h2>
           <p className="mt-4 text-lg md:text-xl text-gray-500 font-medium max-w-lg mx-auto leading-relaxed">
-            Crée ta communauté et lance ton activité en quelques minutes.
+            Ton espace privé est prêt en quelques minutes.
           </p>
         </FadeIn>
 
