@@ -187,10 +187,10 @@ export default function Benefits() {
             whileHover={{ y: -3 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
           >
-            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-3 tracking-[-0.02em] leading-snug">Crée un espace qui t&apos;appartient</h3>
+            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-3 tracking-[-0.02em] leading-snug">Un espace privé pour toi et ta communauté</h3>
 
             <div className="flex-1 flex justify-center items-end min-h-0">
-              <div className="w-[280px] h-[300px] bg-white rounded-t-[2.4rem] border border-b-0 border-gray-200 shadow-[0_-4px_30px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.05),0_8px_40px_rgba(0,0,0,0.1)] flex flex-col overflow-hidden">
+              <div className="w-[280px] h-[280px] bg-white rounded-t-[2.4rem] border border-b-0 border-gray-200 shadow-[0_-4px_30px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.05),0_8px_40px_rgba(0,0,0,0.1)] flex flex-col overflow-hidden">
                 <div className="bg-white h-2 rounded-t-[2.4rem]" />
                 <div className="bg-white px-8 pt-2 pb-0.5">
                   <div className="flex items-center gap-3 bg-gradient-to-r from-[#7B61FF] to-[#8B75FF] rounded-full px-4 py-[5px] shadow-[0_2px_8px_rgba(123,97,255,0.25)]">
@@ -248,7 +248,7 @@ export default function Benefits() {
             whileHover={{ y: -3 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
           >
-            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-6 tracking-[-0.02em] leading-snug">Tous les outils pour faire grandir ta communauté</h3>
+            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-6 tracking-[-0.02em] leading-snug">Tous les outils pour créer, partager et vendre ton travail</h3>
             <CarouselCard />
           </motion.div>
 
@@ -258,24 +258,47 @@ export default function Benefits() {
             whileHover={{ y: -3 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
           >
-            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-6 tracking-[-0.02em] leading-snug">Transforme ton audience en revenus</h3>
+            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-5 tracking-[-0.02em] leading-snug">Monétise ton contenu simplement</h3>
 
-            <div className="flex-1 grid grid-cols-2 gap-3 pb-2">
-              <div className={`${statCard} items-center justify-center text-center`}>
-                <p className="text-3xl font-extrabold text-[#7B61FF] leading-none tracking-tight">3 000€</p>
-                <p className="text-xs text-gray-500 font-medium mt-2">Revenus abonnements</p>
+            <div className="flex-1 flex flex-col gap-3 pb-2">
+              {/* Bloc principal — Revenus */}
+              <div className="bg-gradient-to-br from-[#7B61FF]/[0.06] to-[#6C4FE0]/[0.03] rounded-2xl p-5 border border-[#7B61FF]/10">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-[11px] text-gray-500 font-medium uppercase tracking-wide">Revenus ce mois</p>
+                    <p className="text-[2.2rem] font-extrabold text-gray-900 leading-none tracking-tight mt-1.5">3 847€</p>
+                  </div>
+                  <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full mt-1">+18%</span>
+                </div>
+                {/* Mini sparkline */}
+                <div className="flex items-end gap-[3px] mt-3 h-6">
+                  {[30, 38, 35, 42, 48, 45, 55, 52, 60, 65, 62, 72].map((h, i) => (
+                    <div
+                      key={i}
+                      className="flex-1 rounded-sm"
+                      style={{
+                        height: `${h}%`,
+                        background: i >= 10 ? "#7B61FF" : `rgba(123, 97, 255, ${0.15 + i * 0.06})`,
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
-              <div className={`${statCard} items-center justify-center text-center`}>
-                <p className="text-3xl font-extrabold text-gray-900 leading-none tracking-tight">12</p>
-                <p className="text-xs text-gray-500 font-medium mt-2">Formations</p>
-              </div>
-              <div className={`${statCard} items-center justify-center text-center`}>
-                <p className="text-3xl font-extrabold text-gray-900 leading-none tracking-tight">20</p>
-                <p className="text-xs text-gray-500 font-medium mt-2">Coachings ce mois</p>
-              </div>
-              <div className={`${statCard} items-center justify-center text-center`}>
-                <p className="text-3xl font-extrabold text-[#7B61FF] leading-none tracking-tight">+300</p>
-                <p className="text-xs text-gray-500 font-medium mt-2">Nouveaux membres</p>
+
+              {/* Blocs secondaires */}
+              <div className="grid grid-cols-3 gap-2.5">
+                <div className="bg-[#FAFAFA] rounded-xl p-3 border border-gray-100 text-center">
+                  <p className="text-xl font-bold text-gray-900 leading-none">12</p>
+                  <p className="text-[10px] text-gray-500 font-medium mt-1.5">Formations vendues</p>
+                </div>
+                <div className="bg-[#FAFAFA] rounded-xl p-3 border border-gray-100 text-center">
+                  <p className="text-xl font-bold text-gray-900 leading-none">20</p>
+                  <p className="text-[10px] text-gray-500 font-medium mt-1.5">Coachings réservés</p>
+                </div>
+                <div className="bg-[#FAFAFA] rounded-xl p-3 border border-gray-100 text-center">
+                  <p className="text-xl font-bold leading-none bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">+300</p>
+                  <p className="text-[10px] text-gray-500 font-medium mt-1.5">Nouveaux membres</p>
+                </div>
               </div>
             </div>
           </motion.div>
