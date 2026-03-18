@@ -577,7 +577,7 @@ export default function Community() {
             </div>
             <motion.a
               href="#"
-              className="relative shrink-0 px-10 py-4.5 rounded-full bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0] text-white font-semibold text-sm shadow-[0_6px_28px_-4px_rgba(123,97,255,0.50)]"
+              className="relative shrink-0 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0] text-white font-semibold text-sm shadow-[0_6px_28px_-4px_rgba(123,97,255,0.50)]"
               whileHover={{ scale: 1.04, boxShadow: "0 10px 40px -4px rgba(123,97,255,0.60)" }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}

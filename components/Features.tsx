@@ -324,7 +324,7 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
           </motion.div>
 
           <motion.h3
-            className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight transition-colors duration-500"
+            className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight transition-colors duration-500 whitespace-pre-line"
             initial={{ opacity: 0, y: 25 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
@@ -411,20 +411,20 @@ function TimelineLine() {
 const steps = [
   {
     num: "1",
-    title: "Crée ton espace privé",
-    desc: "Configure et personnalise ta communauté à ton image.",
+    title: "Crée ta communauté\nautour de ton contenu",
+    desc: "Rassemble ton audience et structure ton contenu dans un espace dédié.",
     image: "/step1.png",
   },
   {
     num: "2",
-    title: "Publie tes vidéos et crée tes formations",
-    desc: "Crée des parcours complets et partage du contenu réservé à tes membres.",
+    title: "Publie ta formation\nou du contenu exclusif",
+    desc: "Propose des parcours, des vidéos, ou les deux.",
     image: "/step2.png",
   },
   {
     num: "3",
-    title: "Commence à monétiser ton audience",
-    desc: "Génère des revenus avec des abonnements, ventes et événements payants.",
+    title: "Développe ta communauté\net tes revenus",
+    desc: "Invite ton audience, échange avec tes membres et crée une vraie dynamique.",
     image: "/step3.png",
   },
 ];
