@@ -470,16 +470,13 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
 
       {/* Titre + Description */}
       <div className={`relative z-10 px-5 md:px-7 ${card.featured ? "pt-8" : "pt-6"}`}>
-        <h3 className={`${card.featured ? "text-3xl md:text-[2.1rem]" : "text-3xl md:text-[2.1rem]"} font-extrabold font-[family-name:var(--font-poppins)] leading-[1.08] tracking-[0.02em] whitespace-pre-line mb-2 ${card.titleColor}`}>
+        <h3 className={`${card.featured ? "text-3xl md:text-[2.1rem]" : "text-3xl md:text-[2.1rem]"} font-extrabold font-[family-name:var(--font-poppins)] leading-[1.08] tracking-[0.02em] whitespace-pre-line mb-1 ${card.titleColor}`}>
           {card.title}
         </h3>
-        <p className="text-[13px] font-medium leading-relaxed text-gray-400/90 max-w-[90%]">
-          {card.desc}
-        </p>
       </div>
 
       {/* Mockup */}
-      <div className={`relative ${card.featured ? "px-3 md:px-5 pt-6 pb-3" : "px-4 md:px-5 pt-4 pb-3"}`}>
+      <div className={`relative ${card.featured ? "px-3 md:px-5 pt-4 pb-3" : "px-4 md:px-5 pt-3 pb-3"}`}>
         {/* Halo principal — gradient radial doux */}
         <div
           className="absolute inset-x-0 top-0 bottom-0 pointer-events-none transition-opacity duration-700 group-hover:opacity-130"
@@ -541,14 +538,12 @@ export default function Community() {
             Fonctionnalités
           </div>
           <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight leading-[1.1]">
-            Tout ce dont tu as besoin,
+            Crée, partage et
             <br />
-            <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
-              au même endroit
-            </span>
+            <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">fais grandir ta communauté</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-400 max-w-xl mx-auto leading-relaxed">
-            Fini les 6 outils différents. Une seule plateforme pour créer, animer et monétiser.
+          <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            Une seule plateforme pour publier tes contenus, échanger avec tes membres, organiser tes événements et générer des revenus.
           </p>
         </FadeIn>
 

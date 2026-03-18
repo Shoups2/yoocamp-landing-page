@@ -104,7 +104,7 @@ const carouselItems = [
 /* ── Card wrapper class ──────────────────── */
 
 const cardClass =
-  "h-[400px] rounded-3xl bg-white border border-gray-200/80 p-8 flex flex-col overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.08),0_20px_48px_rgba(0,0,0,0.06)]";
+  "h-[400px] rounded-3xl bg-white border border-gray-200/80 p-8 flex flex-col overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.04)] transition-shadow duration-500";
 
 /* ── Stat mini-card class ────────────────── */
 
@@ -185,18 +185,27 @@ export default function Benefits() {
       <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F7F7F9] to-white" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <FadeIn className="text-center mb-16 md:mb-20">
+        <motion.div
+          className="text-center mb-16 md:mb-20"
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
           <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-[-0.03em] leading-[1.1]">
             Ton contenu <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">attire</span>.<br className="hidden sm:block" /> Ton espace doit enfin <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">convertir</span>.
           </h2>
-        </FadeIn>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
           {/* Card 1 — Smartphone */}
           <motion.div
-            className="h-[400px] rounded-3xl bg-white border border-gray-200/80 pt-8 px-8 flex flex-col overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.08),0_20px_48px_rgba(0,0,0,0.06)]"
-            whileHover={{ y: -3 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="h-[400px] rounded-3xl bg-white border border-gray-200/80 pt-8 px-8 flex flex-col overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.04)] transition-shadow duration-500"
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -5, boxShadow: "0 8px 30px rgba(123, 97, 255, 0.12), 0 20px 50px rgba(123, 97, 255, 0.08)" }}
           >
             <h3 className="text-[1.35rem] font-medium text-gray-900 mb-3 tracking-[-0.02em] leading-snug">Un espace privé pour toi et ta communauté</h3>
 
@@ -256,8 +265,11 @@ export default function Benefits() {
           {/* Card 2 — Carousel */}
           <motion.div
             className={cardClass}
-            whileHover={{ y: -3 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -5, boxShadow: "0 8px 30px rgba(123, 97, 255, 0.12), 0 20px 50px rgba(123, 97, 255, 0.08)" }}
           >
             <h3 className="text-[1.35rem] font-medium text-gray-900 mb-6 tracking-[-0.02em] leading-snug">Tous les outils pour créer, partager et vendre ton travail</h3>
             <CarouselCard />
@@ -266,8 +278,11 @@ export default function Benefits() {
           {/* Card 3 — Stats */}
           <motion.div
             className={cardClass}
-            whileHover={{ y: -3 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -5, boxShadow: "0 8px 30px rgba(123, 97, 255, 0.12), 0 20px 50px rgba(123, 97, 255, 0.08)" }}
           >
             <h3 className="text-[1.35rem] font-medium text-gray-900 mb-5 tracking-[-0.02em] leading-snug">Monétise ton contenu simplement</h3>
 
