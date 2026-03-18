@@ -70,11 +70,11 @@ const carouselItems = [
         <path stroke="url(#violetGrad)" strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z" />
       </svg>
     ),
-    label: "Tableau de bord",
+    label: "Suis ta croissance",
+    labelSub: "et tes revenus",
     desc: "Tableau de bord",
     color: "#7B61FF",
     bg: "rgba(123, 97, 255, 0.08)",
-    centered: true,
   },
   {
     icon: (
@@ -226,6 +226,17 @@ export default function Benefits() {
                     </svg>
                   </div>
 
+                  <div className="flex items-center gap-5">
+                    <div className="text-center">
+                      <p className="text-base font-bold text-[#7B61FF]">4.8K</p>
+                      <p className="text-[11px] text-gray-500">Membres</p>
+                    </div>
+                    <div className="w-px h-4 bg-gray-200" />
+                    <div className="text-center">
+                      <p className="text-base font-bold text-gray-900">12</p>
+                      <p className="text-[11px] text-gray-500">Formations</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
