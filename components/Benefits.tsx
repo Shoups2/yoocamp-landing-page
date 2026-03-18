@@ -9,22 +9,14 @@ import { FadeIn } from "./motion";
 const carouselItems = [
   {
     icon: (
-      <svg className="w-14 h-14" fill="none" strokeWidth={1} viewBox="0 0 24 24">
-        <defs>
-          <linearGradient id="sparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#A78BFA" />
-            <stop offset="50%" stopColor="#7B61FF" />
-            <stop offset="100%" stopColor="#6C4FE0" />
-          </linearGradient>
-        </defs>
-        <path stroke="url(#sparkleGrad)" strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
-      </svg>
+      <span className="text-5xl" style={{ filter: "drop-shadow(0 0 8px rgba(123, 97, 255, 0.4))" }}>💎</span>
     ),
     label: "Publie du",
     labelHighlight: "Contenu Exclusif",
     desc: "Vidéos & modules",
-    color: "#7B61FF",
-    bg: "rgba(123, 97, 255, 0.08)",
+    color: "#3B82F6",
+    bg: "rgba(59, 130, 246, 0.08)",
+    centered: true,
   },
   {
     icon: (
@@ -124,7 +116,7 @@ function CarouselCard() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="flex-1 flex items-center justify-center overflow-hidden">
+      <div className="flex-1 flex items-center justify-center overflow-hidden mt-2">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -138,7 +130,7 @@ function CarouselCard() {
               {item.icon}
             </div>
             <p className={`text-[1.35rem] font-medium text-gray-900 tracking-[-0.02em] leading-snug text-left ${item.centered ? "self-center" : "self-start"}`}>
-              {item.label}{item.labelHighlight && <><br /><span className="text-[#7B61FF] font-bold">{item.labelHighlight}</span></>}{item.labelSub && <><br />{item.labelSub}</>}
+              {item.label}{item.labelHighlight && <><br /><span className="font-bold" style={{ color: item.color }}>{item.labelHighlight}</span></>}{item.labelSub && <><br />{item.labelSub}</>}
             </p>
           </motion.div>
         </AnimatePresence>
