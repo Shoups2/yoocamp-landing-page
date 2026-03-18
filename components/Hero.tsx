@@ -113,7 +113,7 @@ function FloatingCard({
 export default function Hero() {
   return (
     <section
-      className="relative pt-16 pb-2 md:pb-3"
+      className="relative pb-2 md:pb-3"
       style={{
         background: "linear-gradient(180deg, #ffffff 0%, #f6f5ff 40%, #f0efff 70%, #ffffff 100%)",
       }}
@@ -148,7 +148,7 @@ export default function Hero() {
       <FloatingParticles />
 
       {/* ── Content ── */}
-      <div className="relative max-w-5xl mx-auto px-6 pt-16 md:pt-24 pb-0 text-center">
+      <div className="relative max-w-5xl mx-auto px-6 pt-24 md:pt-36 lg:pt-44 text-center">
         {/* Title */}
         <motion.h1
           {...blurFadeUp(0.2)}
@@ -209,7 +209,7 @@ export default function Hero() {
       </div>
 
       {/* ── Image produit centrale ── */}
-      <div className="relative max-w-6xl mx-4 xl:mx-auto mt-20 md:mt-24">
+      <div className="relative max-w-6xl mx-4 xl:mx-auto mt-20 md:mt-24 lg:mt-28">
         {/* Glow radial derrière le mockup */}
         <motion.div
           className="absolute inset-x-0 top-4 bottom-0 pointer-events-none"
