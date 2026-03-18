@@ -367,7 +367,7 @@ interface CardData {
 const cards: CardData[] = [
   {
     id: "content",
-    title: "Créer du\ncontenu vidéo",
+    title: "Partage\nton expertise",
     desc: "Publie vidéos, formations et contenus exclusifs.",
     titleColor: "text-[#8B5CF6]",
     cardBg: "bg-gradient-to-b from-[#F3EEFF] via-[#F9F7FF] to-white",
@@ -382,7 +382,7 @@ const cards: CardData[] = [
   },
   {
     id: "community",
-    title: "Anime ta\ncommunauté",
+    title: "Accompagne\nta communauté",
     desc: "Discussions, événements et interactions avec tes membres.",
     titleColor: "text-[#4F7BFF]",
     cardBg: "bg-gradient-to-b from-[#EEF2FF] via-[#F7F8FF] to-white",
@@ -538,13 +538,10 @@ export default function Community() {
             Fonctionnalités
           </div>
           <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight leading-[1.1]">
-            Crée, partage et
+            Crée, partage.
             <br />
-            <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">fais grandir ta communauté</span>
+            <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">Fais grandir ta communauté.</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            Une seule plateforme pour publier tes contenus, échanger avec tes membres, organiser tes événements et générer des revenus.
-          </p>
         </FadeIn>
 
         {/* Bento grid */}
@@ -572,10 +569,10 @@ export default function Community() {
             <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[250px] h-[180px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(155,138,255,0.10), transparent 70%)" }} />
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 font-[family-name:var(--font-poppins)]">
-                Crée ta communauté maintenant
+                Lance ta communauté maintenant
               </h3>
-              <p className="text-sm text-gray-400 mt-1.5 hidden md:block">
-                Rejoins +500 créateurs qui font déjà confiance à Yoocamp.
+              <p className="text-sm text-gray-600 mt-1.5 hidden md:block">
+                Sans engagement. Prêt en quelques minutes.
               </p>
             </div>
             <motion.a
@@ -587,7 +584,7 @@ export default function Community() {
             >
               {/* Glow behind button */}
               <div className="absolute -inset-2 bg-[#7B61FF]/25 rounded-full blur-xl pointer-events-none" />
-              <span className="relative z-10">Créer</span>
+              <span className="relative z-10">Créer ma communauté</span>
             </motion.a>
           </div>
         </FadeIn>

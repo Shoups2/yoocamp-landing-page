@@ -12,11 +12,10 @@ const carouselItems = [
       <span className="text-5xl" style={{ filter: "drop-shadow(0 0 8px rgba(123, 97, 255, 0.4))" }}>💎</span>
     ),
     label: "Publie du",
-    labelHighlight: "Contenu Exclusif",
+    labelHighlight: "Contenu Premium",
     desc: "Vidéos & modules",
     color: "#3B82F6",
     bg: "rgba(59, 130, 246, 0.08)",
-    centered: true,
   },
   {
     icon: (
@@ -139,16 +138,16 @@ function CarouselCard() {
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            className="w-[72%] h-[88%] bg-[#FAFAFA] rounded-2xl border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] p-6 flex flex-col items-center justify-center gap-4"
+            className="w-[80%] h-[88%] bg-[#FAFAFA] rounded-2xl border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] p-6 flex flex-col items-center justify-center gap-4"
             initial={{ opacity: 0, x: 120, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: -120, scale: 0.95 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className={`flex items-center transition-colors duration-500 ${item.centered ? "justify-center" : "justify-start self-start"}`} style={{ color: item.color }}>
+            <div className={`flex items-center transition-colors duration-500 ${(item.centered || item.iconCentered) ? "justify-center" : "justify-start self-start"}`} style={{ color: item.color }}>
               {item.icon}
             </div>
-            <p className={`text-[1.35rem] font-medium text-gray-900 tracking-[-0.02em] leading-snug text-left ${item.centered ? "self-center" : "self-start"}`}>
+            <p className={`text-[1.35rem] font-medium text-gray-900 tracking-[-0.02em] leading-snug ${item.centered ? "self-center text-center" : "self-start text-left"}`}>
               {item.label}{item.labelHighlight && <><br /><span className="font-bold" style={{ color: item.color }}>{item.labelHighlight}</span></>}{item.labelSub && <><br />{item.labelSub}</>}
             </p>
           </motion.div>
