@@ -9,11 +9,18 @@ import { FadeIn } from "./motion";
 const carouselItems = [
   {
     icon: (
-      <svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+      <svg className="w-14 h-14" fill="none" strokeWidth={1} viewBox="0 0 24 24">
+        <defs>
+          <linearGradient id="sparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#A78BFA" />
+            <stop offset="50%" stopColor="#7B61FF" />
+            <stop offset="100%" stopColor="#6C4FE0" />
+          </linearGradient>
+        </defs>
+        <path stroke="url(#sparkleGrad)" strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
       </svg>
     ),
-    label: "Créer du",
+    label: "Publie du",
     labelHighlight: "Contenu Exclusif",
     desc: "Vidéos & modules",
     color: "#7B61FF",
@@ -60,11 +67,11 @@ const carouselItems = [
             <stop offset="100%" stopColor="#6C4FE0" />
           </linearGradient>
         </defs>
-        <path stroke="url(#violetGrad)" strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+        <path stroke="url(#violetGrad)" strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z" />
       </svg>
     ),
-    label: "Statistiques",
-    desc: "Statistiques & revenus",
+    label: "Tableau de bord",
+    desc: "Tableau de bord",
     color: "#7B61FF",
     bg: "rgba(123, 97, 255, 0.08)",
     centered: true,
@@ -121,7 +128,7 @@ function CarouselCard() {
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            className="w-[72%] h-[88%] bg-[#FAFAFA] rounded-2xl border border-gray-100 p-6 flex flex-col items-center justify-center gap-4"
+            className="w-[72%] h-[88%] bg-[#FAFAFA] rounded-2xl border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] p-6 flex flex-col items-center justify-center gap-4"
             initial={{ opacity: 0, x: 120, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: -120, scale: 0.95 }}
@@ -183,7 +190,7 @@ export default function Benefits() {
             <h3 className="text-[1.35rem] font-medium text-gray-900 mb-3 tracking-[-0.02em] leading-snug">Crée un espace qui t&apos;appartient</h3>
 
             <div className="flex-1 flex justify-center items-end min-h-0">
-              <div className="w-[280px] h-[300px] bg-white rounded-t-[2.4rem] border border-b-0 border-gray-200 shadow-[0_-2px_20px_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.03)] flex flex-col overflow-hidden">
+              <div className="w-[280px] h-[300px] bg-white rounded-t-[2.4rem] border border-b-0 border-gray-200 shadow-[0_-4px_30px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.05),0_8px_40px_rgba(0,0,0,0.1)] flex flex-col overflow-hidden">
                 <div className="bg-white h-2 rounded-t-[2.4rem]" />
                 <div className="bg-white px-8 pt-2 pb-0.5">
                   <div className="flex items-center gap-3 bg-gradient-to-r from-[#7B61FF] to-[#8B75FF] rounded-full px-4 py-[5px] shadow-[0_2px_8px_rgba(123,97,255,0.25)]">
@@ -219,22 +226,6 @@ export default function Benefits() {
                     </svg>
                   </div>
 
-                  <div className="flex items-center gap-5">
-                    <div className="text-center">
-                      <p className="text-base font-bold text-[#7B61FF]">4.8K</p>
-                      <p className="text-[11px] text-gray-500">Membres</p>
-                    </div>
-                    <div className="w-px h-4 bg-gray-200" />
-                    <div className="text-center">
-                      <p className="text-base font-bold text-gray-900">12</p>
-                      <p className="text-[11px] text-gray-500">Formations</p>
-                    </div>
-                    <div className="w-px h-4 bg-gray-200" />
-                    <div className="text-center">
-                      <p className="text-base font-bold text-gray-900">48</p>
-                      <p className="text-[11px] text-gray-500">Coachings</p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -246,7 +237,7 @@ export default function Benefits() {
             whileHover={{ y: -3 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
           >
-            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-6 tracking-[-0.02em] leading-snug">Fidélise avec une meilleure expérience</h3>
+            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-6 tracking-[-0.02em] leading-snug">Tous les outils pour faire grandir ta communauté</h3>
             <CarouselCard />
           </motion.div>
 
