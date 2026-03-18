@@ -172,7 +172,7 @@ export default function Hero() {
         {/* CTA */}
         <motion.div
           {...blurFadeUp(0.5)}
-          className="mt-10 flex justify-center"
+          className="mt-10 flex flex-col items-center"
         >
           <motion.a
             href="#"
@@ -193,19 +193,47 @@ export default function Hero() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </motion.svg>
           </motion.a>
+          <div className="flex items-center gap-2 mt-3 text-xs text-gray-400">
+            <span className="flex items-center gap-1">
+              <svg className="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+              Gratuit pour démarrer
+            </span>
+            <span>·</span>
+            <span className="flex items-center gap-1">
+              <svg className="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+              Sans carte bancaire
+            </span>
+            <span>·</span>
+            <span className="flex items-center gap-1">
+              <svg className="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+              Prêt en 2 minutes
+            </span>
+          </div>
         </motion.div>
 
-        {/* Micro-copy + social proof */}
-        <motion.p
+        {/* Social proof */}
+        <motion.div
           {...blurFadeUp(0.6)}
-          className="mt-6 flex items-center justify-center gap-3 text-sm text-gray-500"
+          className="mt-5 flex items-center justify-center gap-2.5"
         >
-          <span><span className="text-green-400">✓</span> Gratuit</span>
-          <span className="text-gray-400 font-bold">·</span>
-          <span><span className="text-green-400">✓</span> Sans carte bancaire</span>
-          <span className="text-gray-400 font-bold">·</span>
-          <span className="font-semibold text-gray-700">+1 000 créateurs sur liste d&apos;attente</span>
-        </motion.p>
+          <div className="relative w-[120px] h-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]">
+            <motion.div
+              className="flex -space-x-1.5 absolute top-0 h-full items-center"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+            >
+              {[...avatarList, ...avatarList].map((av, i) => (
+                <img
+                  key={i}
+                  src={av.img}
+                  alt=""
+                  className="w-7 h-7 rounded-full border-2 border-white shadow-sm flex-shrink-0 object-cover bg-gray-100"
+                />
+              ))}
+            </motion.div>
+          </div>
+          <span className="text-sm text-gray-500"><span className="font-semibold text-gray-700">+1 000 créateurs</span> sur liste d&apos;attente</span>
+        </motion.div>
       </div>
 
       {/* ── Image produit centrale ── */}
