@@ -6,40 +6,36 @@ import { FadeIn } from "./motion";
 
 const faqs = [
   {
-    q: "Je peux essayer Yoocamp gratuitement ?",
-    a: "Oui ! Tu peux tester Yoocamp gratuitement et découvrir toutes les fonctionnalités. Aucune carte bancaire n'est requise.",
+    q: "C'est quoi Yoocamp ?",
+    a: "Yoocamp est une plateforme pour créer du contenu payant, animer une communauté et vendre des formations en ligne.",
   },
   {
-    q: "Dois-je déjà avoir une communauté pour utiliser Yoocamp ?",
-    a: "Pas du tout. Yoocamp t'aide justement à construire ta communauté de zéro. Tu peux commencer avec quelques membres et grandir à ton rythme.",
+    q: "C'est gratuit ?",
+    a: "Oui, tu peux démarrer gratuitement, sans carte bancaire. Yoocamp se rémunère uniquement par une commission sur tes ventes.",
   },
   {
-    q: "C'est fait pour quel type de formateurs ?",
-    a: "Yoocamp s'adresse à tous les créateurs de contenu, coachs, formateurs et experts qui veulent monétiser leur savoir et fédérer une communauté engagée.",
+    q: "J'ai besoin de compétences techniques ?",
+    a: "Non. Yoocamp est conçu pour être simple et intuitif. Tu peux créer et configurer ton espace en quelques clics, sans aucune compétence technique.",
   },
   {
-    q: "Qu'est-ce qui rend Yoocamp différent ?",
-    a: "Yoocamp regroupe tout en un seul endroit : vidéo, communauté, formations, événements et monétisation. Pas besoin de jongler entre 5 outils différents.",
+    q: "Je n'ai pas encore d'audience, c'est un problème ?",
+    a: "Non. Tu peux commencer sans audience. Yoocamp te permet de créer ton contenu et de construire ta communauté progressivement.",
   },
   {
-    q: "Que se passe-t-il si je n'obtiens pas de membres ?",
-    a: "Yoocamp met à ta disposition des outils pour attirer et engager tes membres. Et si tu as besoin d'aide, notre équipe est là pour t'accompagner.",
+    q: "Comment je suis payé ?",
+    a: "Tu fixes librement tes prix. Les paiements sont sécurisés et tes revenus te sont versés directement sur ton compte. Yoocamp applique une commission sur chaque vente.",
   },
   {
-    q: "Dois-je savoir programmer ?",
-    a: "Absolument pas. Yoocamp est conçu pour être simple et intuitif. Tu configures ton espace en quelques clics, sans aucune compétence technique.",
+    q: "Quels types de contenus je peux vendre ?",
+    a: "Formations vidéo, modules de cours, coachings, abonnements mensuels ou événements… Tu choisis le format qui te correspond et tu fixes librement tes prix.",
   },
   {
-    q: "Comment fonctionne le paiement de mes formations ?",
-    a: "Tu fixes tes prix librement. Les paiements sont gérés de façon sécurisée et tu reçois tes revenus directement sur ton compte.",
+    q: "Quelle est la différence avec Skool, Teachable ou Podia ?",
+    a: "Yoocamp combine communauté, formations, contenu premium et monétisation dans un seul espace. Pas besoin de jongler entre plusieurs outils — tout est intégré et pensé pour les créateurs francophones.",
   },
   {
-    q: "Puis-je annuler ou quitter la plateforme si je change d'avis ?",
-    a: "Bien sûr. Tu es libre de quitter à tout moment, sans engagement ni frais cachés. Tes données restent accessibles.",
-  },
-  {
-    q: "Puis-je importer mes élèves depuis une autre plateforme ?",
-    a: "Oui, tu peux facilement importer ta liste de membres existante pour démarrer rapidement sur Yoocamp.",
+    q: "Je peux quitter à tout moment ?",
+    a: "Bien sûr. Aucun engagement, aucun frais caché. Tu es libre de partir quand tu veux et tes données restent accessibles.",
   },
 ];
 

@@ -185,7 +185,7 @@ function RevenueCard({
 }) {
   return (
     <motion.div
-      className="rounded-2xl border border-gray-200/60 bg-white overflow-hidden flex flex-col"
+      className="rounded-2xl border border-gray-200/80 bg-white overflow-hidden flex flex-col shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
       variants={cardVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
@@ -296,7 +296,7 @@ export default function Monetization() {
 
         {/* ── Total ── */}
         <motion.div
-          className="rounded-2xl bg-white border border-gray-200/60 overflow-hidden relative"
+          className="rounded-2xl bg-white border border-gray-200/80 overflow-hidden relative shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
