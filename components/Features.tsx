@@ -91,7 +91,7 @@ function Step2Mock() {
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="px-5 py-3 border-b border-gray-100">
-        <span className="text-sm font-bold text-gray-900">Découvrir mes <span className="bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0] bg-clip-text text-transparent">formations</span></span>
+        <span className="text-sm font-bold text-gray-900">Mes <span className="bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0] bg-clip-text text-transparent">formations</span></span>
       </div>
 
       <div className="p-3 space-y-2">
@@ -147,68 +147,58 @@ function Step2Mock() {
 }
 
 function Step3Mock() {
-  const transactions = [
-    { name: "Léa M.", type: "Abonnement Pro", amount: "+29 €", avatar: "bg-indigo-400" },
-    { name: "Max D.", type: "Formation complète", amount: "+97 €", avatar: "bg-violet-400" },
-    { name: "Sofia R.", type: "Événement VIP", amount: "+49 €", avatar: "bg-fuchsia-400" },
+  const activity = [
+    { name: "Léa M.", action: "a acheté Formation complète", amount: "+97 €", avatar: "https://i.pravatar.cc/80?img=5" },
+    { name: "Max D.", action: "a acheté Coaching VIP", amount: "+149 €", avatar: "https://i.pravatar.cc/80?img=12" },
+    { name: "Sofia R.", action: "a acheté Pack Premium", amount: "+49 €", avatar: "https://i.pravatar.cc/80?img=23" },
+    { name: "Hugo T.", action: "a acheté Masterclass", amount: "+79 €", avatar: "https://i.pravatar.cc/80?img=53" },
   ];
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
-          </svg>
-          <span className="text-xs font-semibold text-gray-700">Monétisation</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <motion.div
-            className="w-2 h-2 rounded-full bg-emerald-400"
-            animate={{ scale: [1, 1.3, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <span className="text-[10px] text-emerald-600 font-medium">En direct</span>
-        </div>
+        <span className="text-sm font-bold text-gray-900">Tableau de bord</span>
+        <span />
       </div>
-      <div className="p-5 space-y-4">
-        <div className="grid grid-cols-2 gap-3">
+      <div className="p-4 space-y-3">
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-2">
           {[
-            { label: "Revenus du mois", value: "4 820 €", trend: "+32%" },
-            { label: "Abonnés actifs", value: "186", trend: "+12%" },
+            { label: "Membres", value: "486", trend: "+24" },
+            { label: "Ventes", value: "38", trend: "+12" },
+            { label: "Revenus", value: "4 820 €", trend: "+32%" },
           ].map((stat, i) => (
             <motion.div
               key={i}
-              className="bg-gray-50 rounded-xl p-3 border border-gray-100"
+              className="bg-gray-50 rounded-xl p-2.5 border border-gray-100 text-center"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + i * 0.1 }}
+              transition={{ delay: 0.3 + i * 0.1 }}
             >
-              <span className="text-[10px] text-gray-400 font-medium">{stat.label}</span>
-              <div className="text-lg font-bold text-gray-900 leading-tight mt-0.5">{stat.value}</div>
-              <span className="text-[10px] font-semibold text-emerald-500">{stat.trend}</span>
+              <div className="text-base font-bold text-gray-900 leading-tight">{stat.value}</div>
+              <span className="text-[9px] text-gray-400 font-medium">{stat.label}</span>
+              <div className="text-[9px] font-semibold text-emerald-500 mt-0.5">{stat.trend}</div>
             </motion.div>
           ))}
         </div>
+
+        {/* Activité récente */}
         <div>
-          <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Dernières ventes</span>
-          <div className="mt-2 space-y-2">
-            {transactions.map((t, i) => (
+          <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Activité récente</span>
+          <div className="mt-2 space-y-1.5">
+            {activity.map((a, i) => (
               <motion.div
                 key={i}
-                className="flex items-center gap-2.5 py-1.5"
+                className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl bg-gray-50/80 border border-gray-100"
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8 + i * 0.1 }}
+                transition={{ delay: 0.6 + i * 0.12 }}
               >
-                <div className={`w-7 h-7 rounded-full ${t.avatar} flex items-center justify-center`}>
-                  <span className="text-[9px] font-bold text-white">{t.name[0]}</span>
-                </div>
+                <img src={a.avatar} alt={a.name} className="w-6 h-6 rounded-full object-cover shrink-0 border border-white shadow-sm" />
                 <div className="flex-1 min-w-0">
-                  <span className="text-sm font-medium text-gray-700 block">{t.name}</span>
-                  <span className="text-[10px] text-gray-400">{t.type}</span>
+                  <span className="text-[11px] text-gray-700"><span className="font-semibold">{a.name}</span> {a.action}</span>
                 </div>
-                <span className="text-sm font-semibold text-emerald-600">{t.amount}</span>
+                <span className="text-[11px] font-semibold text-emerald-600 shrink-0">{a.amount}</span>
               </motion.div>
             ))}
           </div>
@@ -395,8 +385,8 @@ const steps = [
   },
   {
     num: "3",
-    title: <>Développe ta communauté{"\n"}et <span className={gradientClass}>tes revenus</span></>,
-    desc: "Invite ton audience, échange avec tes membres et crée une vraie dynamique.",
+    title: <>Génère tes{"\n"}<span className={gradientClass}>premiers revenus</span></>,
+    desc: "Invite de nouveaux membres, vends tes produits et développe tes revenus.",
     image: "/step3.png",
   },
 ];
@@ -430,7 +420,7 @@ export default function Features() {
         <FadeIn className="text-center mb-20 md:mb-28">
           <div className="inline-flex items-center gap-2 bg-[#7B61FF]/[0.06] text-[#7B61FF] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#7B61FF]/10">
             <div className="w-1.5 h-1.5 rounded-full bg-[#7B61FF]" />
-            Simple &amp; rapide
+            Comment ça marche
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
             <span className="text-gray-900">Lance ta communauté </span>

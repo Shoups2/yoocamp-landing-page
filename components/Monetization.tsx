@@ -253,17 +253,17 @@ export default function Monetization() {
       <div className="relative z-10 max-w-5xl mx-auto px-6">
         {/* ── Header ── */}
         <FadeIn className="text-center mb-5">
+          <div className="inline-flex items-center gap-2 bg-[#7B61FF]/[0.06] text-[#7B61FF] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#7B61FF]/10">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#7B61FF]" />
+            Simule tes revenus
+          </div>
           <h2 className="text-3xl md:text-[2.75rem] lg:text-5xl font-bold text-gray-900 leading-tight">
             Combien peut vraiment te rapporter<br className="hidden md:block" />
             <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">ta communauté</span> ?
           </h2>
         </FadeIn>
 
-        <FadeIn delay={0.1} className="text-center mb-12">
-          <p className="text-base text-gray-400 max-w-md mx-auto">
-            Abonnements et ventes de formations ou coaching — tout est intégré.
-          </p>
-        </FadeIn>
+        <div className="mb-12" />
 
         {/* ── Cards ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
