@@ -81,108 +81,66 @@ function Step1Mock() {
 }
 
 function Step2Mock() {
-  const modules = [
-    { num: 1, title: "Trouver ta niche", duration: "12 min", locked: false, done: true },
-    { num: 2, title: "Créer ton offre", duration: "18 min", locked: false, done: true },
-    { num: 3, title: "Construire ton audience", duration: "24 min", locked: true, done: false },
-    { num: 4, title: "Lancer ta communauté", duration: "15 min", locked: true, done: false },
+  const formations = [
+    { title: "Trouver ta niche", videos: 4, color: "from-[#7B61FF] to-[#9B8AFF]", free: true },
+    { title: "Créer ton offre", videos: 6, color: "from-[#6C4FE0] to-[#7B61FF]", free: true },
+    { title: "Construire ton audience", videos: 8, color: "from-[#8B75FF] to-[#B4A0FF]", free: false, price: "49€" },
+    { title: "Monétiser son expertise", videos: 5, color: "from-[#7B61FF] to-[#6C4FE0]", free: false, price: "79€" },
   ];
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
-      <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-5 h-5 rounded-md bg-gradient-to-br from-[#7B61FF] to-[#6C4FE0] flex items-center justify-center">
-            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" />
-            </svg>
-          </div>
-          <span className="text-xs font-semibold text-gray-700">Formation Premium</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <svg className="w-3 h-3 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-          </svg>
-          <span className="text-[10px] font-medium text-[#7B61FF] bg-[#7B61FF]/8 px-2 py-0.5 rounded-full">Réservé aux membres</span>
-        </div>
-      </div>
-      {/* Video player */}
-      <div className="mx-4 mt-3 aspect-video rounded-xl bg-gray-900 relative overflow-hidden">
-        <div className="w-full h-full bg-gradient-to-tr from-[#1e1b4b] via-[#312e81] to-[#7B61FF]/60" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.div
-            className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg backdrop-blur-sm"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.5, type: "spring", stiffness: 260, damping: 20 }}
-          >
-            <svg className="w-4 h-4 text-[#7B61FF] ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-            </svg>
-          </motion.div>
-        </div>
-        {/* Badge premium sur la vidéo */}
-        <div className="absolute top-2 right-2 flex items-center gap-1 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-lg">
-          <svg className="w-2.5 h-2.5 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-          </svg>
-          <span className="text-[8px] font-bold text-amber-400 uppercase tracking-wider">Premium</span>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/60 to-transparent flex items-center gap-2">
-          <motion.div
-            className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden"
-          >
-            <motion.div
-              className="h-full bg-[#7B61FF] rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: "35%" }}
-              transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
-            />
-          </motion.div>
-          <span className="text-[9px] text-white/70 font-medium">4:12 / 12:00</span>
-        </div>
+      <div className="px-5 py-3 border-b border-gray-100">
+        <span className="text-sm font-bold text-gray-900">Découvrir mes <span className="bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0] bg-clip-text text-transparent">formations</span></span>
       </div>
 
-      <div className="p-4 pt-3 space-y-3">
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="text-sm font-semibold text-gray-900">Devenir créateur premium</div>
-            <div className="text-[11px] text-gray-400 mt-0.5">Parcours complet · 4 vidéos · 1h09</div>
-          </div>
-          <div className="flex items-center gap-1.5 bg-[#7B61FF]/8 px-2 py-1 rounded-full">
-            <span className="text-[10px] font-bold text-[#7B61FF]">29€/mois</span>
-          </div>
-        </div>
-        <div className="space-y-1.5">
-          {modules.map((m, i) => (
-            <motion.div
-              key={i}
-              className={`flex items-center justify-between px-3 py-2.5 rounded-xl border ${m.done ? "bg-[#7B61FF]/[0.04] border-[#7B61FF]/15" : "bg-gray-50 border-gray-100"}`}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 + i * 0.1 }}
-            >
-              <div className="flex items-center gap-2">
-                <div className={`w-1 h-5 rounded-full ${m.done ? "bg-[#7B61FF]" : "bg-gray-200"}`} />
-                <span className={`text-xs font-medium ${m.done ? "text-gray-900" : "text-gray-400"}`}>{m.title}</span>
-                {m.locked && (
-                  <span className="text-[8px] font-semibold text-[#7B61FF] bg-[#7B61FF]/8 px-1.5 py-0.5 rounded border border-[#7B61FF]/15">MEMBRES</span>
-                )}
-              </div>
-              <div className="flex items-center">
-                {m.done ? (
-                  <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
-                ) : (
-                  <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+      <div className="p-3 space-y-2">
+        {formations.map((f, i) => (
+          <motion.div
+            key={i}
+            className="flex items-center gap-3 p-2 rounded-xl border border-gray-100 bg-gray-50/50"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 + i * 0.1 }}
+          >
+            {/* Miniature */}
+            <div className={`w-16 h-10 rounded-lg bg-gradient-to-br ${f.color} flex items-center justify-center shrink-0 relative overflow-hidden`}>
+              <div className="absolute top-[-20%] right-[-15%] w-[60%] h-[80%] bg-white/10 rounded-full blur-[8px]" />
+              {f.free ? (
+                <div className="w-5 h-5 rounded-full bg-white/25 flex items-center justify-center">
+                  <div className="w-0 h-0 border-l-[4px] border-l-white border-t-[2.5px] border-t-transparent border-b-[2.5px] border-b-transparent ml-0.5" />
+                </div>
+              ) : (
+                <div className="w-5 h-5 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center">
+                  <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                   </svg>
-                )}
+                </div>
+              )}
+            </div>
+
+            {/* Info */}
+            <div className="flex-1 min-w-0">
+              <span className={`text-xs font-medium block truncate ${f.free ? "text-gray-900" : "text-gray-400"}`}>{f.title}</span>
+              <span className="text-[10px] text-gray-400">{f.videos} vidéos</span>
+            </div>
+
+            {/* Badge */}
+            {f.free ? (
+              <span className="text-[8px] font-semibold text-[#7B61FF] bg-[#7B61FF]/8 px-1.5 py-0.5 rounded border border-[#7B61FF]/15 shrink-0">MEMBRES</span>
+            ) : (
+              <div className="shrink-0 relative group/btn cursor-pointer">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0] rounded-xl blur-md opacity-30" />
+                <div className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0]">
+                  <svg className="w-2.5 h-2.5 text-white/80" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                  </svg>
+                  <span className="text-[9px] font-bold text-white">{f.price}</span>
+                </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            )}
+          </motion.div>
+        ))}
       </div>
     </div>
   );
