@@ -82,23 +82,28 @@ function Step1Mock() {
 
 function Step2Mock() {
   const modules = [
-    { num: 1, title: "Trouver ta niche", duration: "12 min", done: true },
-    { num: 2, title: "Créer ton offre", duration: "18 min", done: true },
-    { num: 3, title: "Construire ton audience", duration: "24 min", done: false },
-    { num: 4, title: "Lancer ta communauté", duration: "15 min", done: false },
+    { num: 1, title: "Trouver ta niche", duration: "12 min", locked: false, done: true },
+    { num: 2, title: "Créer ton offre", duration: "18 min", locked: false, done: true },
+    { num: 3, title: "Construire ton audience", duration: "24 min", locked: true, done: false },
+    { num: 4, title: "Lancer ta communauté", duration: "15 min", locked: true, done: false },
   ];
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-          </svg>
+          <div className="w-5 h-5 rounded-md bg-gradient-to-br from-[#7B61FF] to-[#6C4FE0] flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" />
+            </svg>
+          </div>
           <span className="text-xs font-semibold text-gray-700">Formation Premium</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-[10px] font-medium text-[#7B61FF] bg-[#7B61FF]/8 px-2 py-0.5 rounded-full">4 modules</span>
+          <svg className="w-3 h-3 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+          </svg>
+          <span className="text-[10px] font-medium text-[#7B61FF] bg-[#7B61FF]/8 px-2 py-0.5 rounded-full">Réservé aux membres</span>
         </div>
       </div>
       {/* Video player */}
@@ -115,6 +120,13 @@ function Step2Mock() {
               <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
             </svg>
           </motion.div>
+        </div>
+        {/* Badge premium sur la vidéo */}
+        <div className="absolute top-2 right-2 flex items-center gap-1 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-lg">
+          <svg className="w-2.5 h-2.5 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+          </svg>
+          <span className="text-[8px] font-bold text-amber-400 uppercase tracking-wider">Premium</span>
         </div>
         <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/60 to-transparent flex items-center gap-2">
           <motion.div
@@ -137,36 +149,36 @@ function Step2Mock() {
             <div className="text-sm font-semibold text-gray-900">Devenir créateur premium</div>
             <div className="text-[11px] text-gray-400 mt-0.5">Parcours complet · 4 vidéos · 1h09</div>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="text-[10px] font-medium text-gray-400">2/4</span>
+          <div className="flex items-center gap-1.5 bg-[#7B61FF]/8 px-2 py-1 rounded-full">
+            <span className="text-[10px] font-bold text-[#7B61FF]">29€/mois</span>
           </div>
         </div>
         <div className="space-y-1.5">
           {modules.map((m, i) => (
             <motion.div
               key={i}
-              className={`flex items-center gap-3 px-3 py-2 rounded-xl border ${m.done ? "bg-[#7B61FF]/[0.04] border-[#7B61FF]/15" : "bg-gray-50 border-gray-100"}`}
+              className={`flex items-center justify-between px-3 py-2.5 rounded-xl border ${m.done ? "bg-[#7B61FF]/[0.04] border-[#7B61FF]/15" : "bg-gray-50 border-gray-100"}`}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 + i * 0.1 }}
             >
-              <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${m.done ? "bg-[#7B61FF]" : "bg-gray-200"}`}>
-                {m.done ? (
-                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
-                ) : (
-                  <span className="text-[9px] font-bold text-gray-400">{m.num}</span>
+              <div className="flex items-center gap-2">
+                <div className={`w-1 h-5 rounded-full ${m.done ? "bg-[#7B61FF]" : "bg-gray-200"}`} />
+                <span className={`text-xs font-medium ${m.done ? "text-gray-900" : "text-gray-400"}`}>{m.title}</span>
+                {m.locked && (
+                  <span className="text-[8px] font-semibold text-[#7B61FF] bg-[#7B61FF]/8 px-1.5 py-0.5 rounded border border-[#7B61FF]/15">MEMBRES</span>
                 )}
               </div>
-              <div className="flex-1 min-w-0">
-                <span className={`text-xs font-medium ${m.done ? "text-gray-900" : "text-gray-500"}`}>{m.title}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <svg className={`w-3 h-3 ${m.done ? "text-[#7B61FF]" : "text-gray-300"}`} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-                </svg>
-                <span className="text-[10px] text-gray-400">{m.duration}</span>
+              <div className="flex items-center">
+                {m.done ? (
+                  <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                  </svg>
+                )}
               </div>
             </motion.div>
           ))}
@@ -324,7 +336,7 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
           </motion.div>
 
           <motion.h3
-            className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight transition-colors duration-500 whitespace-pre-line"
+            className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight transition-colors duration-500 whitespace-pre-wrap"
             initial={{ opacity: 0, y: 25 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
@@ -408,22 +420,24 @@ function TimelineLine() {
 
 /* ── Steps Data ───────────────────────────── */
 
+const gradientClass = "bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent";
+
 const steps = [
   {
     num: "1",
-    title: "Crée ta communauté\nautour de ton contenu",
+    title: <>Crée <span className={gradientClass}>ta communauté</span>{"\n"}autour de ton contenu</>,
     desc: "Rassemble ton audience et structure ton contenu dans un espace dédié.",
     image: "/step1.png",
   },
   {
     num: "2",
-    title: "Publie ta formation\nou du contenu exclusif",
-    desc: "Propose des parcours, des vidéos, ou les deux.",
+    title: <>Publie du{"\n"}<span className={gradientClass}>contenu premium</span></>,
+    desc: "Propose des formations, des vidéos exclusives, ou les deux.",
     image: "/step2.png",
   },
   {
     num: "3",
-    title: "Développe ta communauté\net tes revenus",
+    title: <>Développe ta communauté{"\n"}et <span className={gradientClass}>tes revenus</span></>,
     desc: "Invite ton audience, échange avec tes membres et crée une vraie dynamique.",
     image: "/step3.png",
   },
@@ -460,11 +474,12 @@ export default function Features() {
             <div className="w-1.5 h-1.5 rounded-full bg-[#7B61FF]" />
             Simple &amp; rapide
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
-            Lance ta communauté en 3 étapes
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+            <span className="text-gray-900">Lance ta communauté </span>
+            <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">en 3 étapes</span>
           </h2>
           <p className="mt-4 text-lg md:text-xl text-gray-500 font-medium max-w-lg mx-auto leading-relaxed">
-            Ton espace privé est prêt en quelques minutes.
+            Ton espace privé est prêt <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent font-semibold">en quelques minutes</span>.
           </p>
         </FadeIn>
 

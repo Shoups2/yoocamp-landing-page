@@ -134,11 +134,11 @@ function CarouselCard() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="flex-1 flex items-center justify-center overflow-hidden mt-2">
+      <div className="flex-1 flex items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            className="w-[80%] h-[88%] bg-[#FAFAFA] rounded-2xl border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] p-6 flex flex-col items-center justify-center gap-4"
+            className="w-[80%] h-[170px] bg-[#FAFAFA] rounded-2xl border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] p-6 flex flex-col items-center justify-center gap-4"
             initial={{ opacity: 0, x: 120, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: -120, scale: 0.95 }}
@@ -206,10 +206,10 @@ export default function Benefits() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -5, boxShadow: "0 8px 30px rgba(123, 97, 255, 0.12), 0 20px 50px rgba(123, 97, 255, 0.08)" }}
           >
-            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-3 tracking-[-0.02em] leading-snug">Un espace privé pour toi et ta communauté</h3>
+            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-6 tracking-[-0.02em] leading-snug min-h-[3.5rem]">Un espace privé pour toi et ta communauté</h3>
 
-            <div className="flex-1 flex justify-center items-end min-h-0">
-              <div className="w-[280px] h-[280px] bg-white rounded-t-[2.4rem] border border-b-0 border-gray-200 shadow-[0_-4px_30px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.05),0_8px_40px_rgba(0,0,0,0.1)] flex flex-col overflow-hidden">
+            <div className="flex-1 flex justify-center items-start min-h-0">
+              <div className="w-[280px] h-full bg-white rounded-t-[2.4rem] border border-b-0 border-gray-200 shadow-[0_-4px_30px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.05),0_8px_40px_rgba(0,0,0,0.1)] flex flex-col overflow-hidden">
                 <div className="bg-white h-2 rounded-t-[2.4rem]" />
                 <div className="bg-white px-8 pt-2 pb-0.5">
                   <div className="flex items-center gap-3 bg-gradient-to-r from-[#7B61FF] to-[#8B75FF] rounded-full px-4 py-[5px] shadow-[0_2px_8px_rgba(123,97,255,0.25)]">
@@ -270,7 +270,7 @@ export default function Benefits() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -5, boxShadow: "0 8px 30px rgba(123, 97, 255, 0.12), 0 20px 50px rgba(123, 97, 255, 0.08)" }}
           >
-            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-6 tracking-[-0.02em] leading-snug">Tous les outils pour créer, partager et vendre ton travail</h3>
+            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-6 tracking-[-0.02em] leading-snug min-h-[3.5rem]">Tous les outils pour créer, partager et vendre ton travail</h3>
             <CarouselCard />
           </motion.div>
 
@@ -283,7 +283,7 @@ export default function Benefits() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -5, boxShadow: "0 8px 30px rgba(123, 97, 255, 0.12), 0 20px 50px rgba(123, 97, 255, 0.08)" }}
           >
-            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-5 tracking-[-0.02em] leading-snug">Monétise ton contenu simplement</h3>
+            <h3 className="text-[1.35rem] font-medium text-gray-900 mb-6 tracking-[-0.02em] leading-snug min-h-[3.5rem]">Monétise ton contenu simplement</h3>
 
             <div className="flex-1 flex flex-col gap-3 pb-2">
               {/* Bloc principal — Revenus */}
