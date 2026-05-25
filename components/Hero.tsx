@@ -115,7 +115,7 @@ export default function Hero() {
     <section
       className="relative pb-2 md:pb-3"
       style={{
-        background: "linear-gradient(180deg, #ffffff 0%, #f6f5ff 40%, #f0efff 70%, #ffffff 100%)",
+        background: "linear-gradient(180deg, #ffffff 0%, #ffffff 65%, #fdfcff 88%, #faf9ff 100%)",
       }}
     >
       {/* ── Noise texture overlay ── */}
