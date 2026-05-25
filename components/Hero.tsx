@@ -166,7 +166,7 @@ export default function Hero() {
           {...blurFadeUp(0.35)}
           className="mt-8 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto"
         >
-          Offre à ton audience un espace privé où elle peut suivre tes vidéos, découvrir tes formations, rejoindre tes événements et échanger avec toi.
+          Offre à ton audience un espace privé pour échanger, suivre tes vidéos, accéder à tes formations et participer à tes événements exclusifs.
         </motion.p>
 
         {/* CTA */}
