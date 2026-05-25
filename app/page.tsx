@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import LiveActivity from "@/components/LiveActivity";
 
-import Benefits from "@/components/Benefits";
 import Community from "@/components/Community";
 import Features from "@/components/Features";
 
@@ -17,8 +17,8 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <LiveActivity />
 
-        <Benefits />
         <Community />
         <Features />
         <Monetization />

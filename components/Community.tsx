@@ -374,7 +374,7 @@ const cards: CardData[] = [
     haloColor: "bg-violet-400/20",
     haloColor2: "bg-violet-300/10",
     haloColor3: "bg-violet-200/6",
-    borderColor: "border-violet-100/50",
+    borderColor: "border-violet-200/70",
     shadowDefault: "0 8px 30px -6px rgba(139,92,246,0.10), 0 2px 8px rgba(0,0,0,0.04)",
     shadowHover: "0 20px 50px -10px rgba(139,92,246,0.22), 0 8px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(139,92,246,0.12)",
     mock: "video",
@@ -388,7 +388,7 @@ const cards: CardData[] = [
     cardBg: "bg-gradient-to-b from-[#EEF2FF] via-[#F7F8FF] to-white",
     haloColor: "bg-[#4F7BFF]/16",
     haloColor2: "bg-[#4F7BFF]/10",
-    borderColor: "border-indigo-100/50",
+    borderColor: "border-indigo-200/70",
     shadowDefault: "0 8px 30px -6px rgba(79,123,255,0.12), 0 2px 8px rgba(0,0,0,0.04)",
     shadowHover: "0 20px 60px -10px rgba(79,123,255,0.20), 0 8px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(79,123,255,0.12)",
     mock: "discussion",
@@ -401,7 +401,7 @@ const cards: CardData[] = [
     cardBg: "bg-gradient-to-b from-[#FFF0F7] via-[#FFF8FB] to-white",
     haloColor: "bg-pink-300/18",
     haloColor2: "bg-pink-200/10",
-    borderColor: "border-pink-100/50",
+    borderColor: "border-pink-200/70",
     shadowDefault: "0 8px 30px -6px rgba(236,72,153,0.10), 0 2px 8px rgba(0,0,0,0.04)",
     shadowHover: "0 20px 50px -10px rgba(236,72,153,0.22), 0 8px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(236,72,153,0.12)",
     mock: "events",
@@ -415,7 +415,7 @@ const cards: CardData[] = [
     haloColor: "bg-emerald-400/18",
     haloColor2: "bg-emerald-300/10",
     haloColor3: "bg-emerald-200/8",
-    borderColor: "border-emerald-100/50",
+    borderColor: "border-emerald-200/70",
     shadowDefault: "0 8px 30px -6px rgba(16,185,129,0.10), 0 2px 8px rgba(0,0,0,0.04)",
     shadowHover: "0 20px 50px -10px rgba(16,185,129,0.22), 0 8px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(16,185,129,0.12)",
     mock: "revenue",
@@ -523,7 +523,7 @@ function CardItem({ card, index, grow }: { card: CardData; index: number; grow?:
 
 export default function Community() {
   return (
-    <section id="communauté" className="pt-10 md:pt-14 pb-16 md:pb-20 bg-gradient-to-b from-white via-white to-[#F8F5FF] relative overflow-hidden">
+    <section id="communauté" className="pt-10 md:pt-14 pb-16 md:pb-20 bg-gradient-to-b from-[#FAFAFD] via-[#FCFBFE] to-white relative overflow-hidden scroll-mt-24">
       {/* Background glows */}
       <div className="absolute top-[15%] left-[5%] w-[600px] h-[600px] bg-[#6952E6]/[0.035] rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-[5%] right-[0%] w-[500px] h-[500px] bg-[#6952E6]/[0.025] rounded-full blur-[130px] pointer-events-none" />
@@ -535,7 +535,7 @@ export default function Community() {
         <FadeIn className="text-center mb-14 md:mb-20">
           <div className="inline-flex items-center gap-2 bg-[#6952E6]/[0.06] text-[#6952E6] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#6952E6]/10">
             <div className="w-1.5 h-1.5 rounded-full bg-[#6952E6]" />
-            Fonctionnalités
+            Communautés
           </div>
           <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight leading-[1.1]">
             Crée, partage.
@@ -563,7 +563,7 @@ export default function Community() {
 
         {/* CTA card */}
         <FadeIn delay={0.5}>
-          <div className="relative mt-4 md:mt-5 rounded-[1.5rem] border border-[#6952E6]/15 bg-gradient-to-r from-[#F8F5FF] via-white to-[#F0ECFF] px-8 md:px-12 py-8 md:py-9 flex flex-col md:flex-row items-center justify-between gap-5 shadow-[0_4px_40px_-8px_rgba(123,97,255,0.12)] overflow-hidden max-w-5xl mx-auto">
+          <div className="relative mt-4 md:mt-5 rounded-[1.5rem] border border-[#6952E6]/30 bg-gradient-to-r from-[#F8F5FF] via-white to-[#F0ECFF] px-8 md:px-12 py-8 md:py-9 flex flex-col md:flex-row items-center justify-between gap-5 shadow-[0_4px_40px_-8px_rgba(123,97,255,0.12)] overflow-hidden max-w-5xl mx-auto">
             {/* Halo violet */}
             <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-[300px] h-[200px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(123,97,255,0.12), transparent 70%)" }} />
             <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[250px] h-[180px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(155,138,255,0.10), transparent 70%)" }} />

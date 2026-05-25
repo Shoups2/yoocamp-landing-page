@@ -115,31 +115,29 @@ export default function Hero() {
     <section
       className="relative pb-2 md:pb-3"
       style={{
-        background: "linear-gradient(180deg, #ffffff 0%, #ffffff 65%, #fdfcff 88%, #faf9ff 100%)",
+        background: "linear-gradient(180deg, #FAFAFD 0%, #FEFDFE 100%)",
       }}
     >
-      {/* ── Noise texture overlay ── */}
+      {/* ── Grain subtil pour la matière ── */}
       <div
         className="absolute inset-0 pointer-events-none z-[1]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-          opacity: 0.02,
+          opacity: 0.025,
         }}
       />
 
-      {/* ── Background arrondi ── */}
+      {/* ── Halos violet (marque uniquement) ── */}
       <div className="absolute inset-x-1.5 md:inset-x-2.5 top-0.5 md:top-1 bottom-0 rounded-t-[1.5rem] md:rounded-t-[2rem] rounded-b-[2rem] md:rounded-b-[3rem] overflow-hidden pointer-events-none">
-        {/* Blob gauche — violet/rose */}
         <motion.div
-          className="absolute top-[15%] left-[-5%] w-[45%] h-[55%] rounded-full blur-[120px]"
-          style={{ background: "radial-gradient(circle, rgba(168, 130, 255, 0.18), rgba(236, 130, 220, 0.1) 60%, transparent 80%)" }}
+          className="absolute top-[30%] left-[-10%] w-[50%] h-[55%] rounded-full blur-[110px]"
+          style={{ background: "radial-gradient(circle, rgba(105,82,230,0.06), rgba(139,117,255,0.025) 55%, transparent 80%)" }}
           animate={{ x: [0, 15, 0], y: [0, -10, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* Blob droite — bleu/violet */}
         <motion.div
-          className="absolute bottom-[10%] right-[-5%] w-[45%] h-[55%] rounded-full blur-[120px]"
-          style={{ background: "radial-gradient(circle, rgba(99, 102, 241, 0.16), rgba(139, 92, 246, 0.1) 60%, transparent 80%)" }}
+          className="absolute bottom-[5%] right-[-8%] w-[50%] h-[55%] rounded-full blur-[110px]"
+          style={{ background: "radial-gradient(circle, rgba(139,117,255,0.045), rgba(184,169,255,0.02) 55%, transparent 80%)" }}
           animate={{ x: [0, -12, 0], y: [0, 10, 0] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -254,7 +252,7 @@ export default function Hero() {
           className="relative z-10 rounded-2xl md:rounded-3xl"
           initial={{ opacity: 0, y: 40, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          whileHover={{ y: -8, boxShadow: "0 30px 80px -10px rgba(99,102,241,0.18), 0 12px 40px rgba(0,0,0,0.08)" }}
+          whileHover={{ y: -6, boxShadow: "0 18px 40px -12px rgba(105,82,230,0.10), 0 8px 24px rgba(0,0,0,0.05)" }}
           transition={{ type: "spring", stiffness: 200, damping: 25 }}
         >
           <div className="bg-white rounded-2xl md:rounded-3xl shadow-[0_-4px_60px_rgba(99,102,241,0.08),0_8px_30px_rgba(0,0,0,0.06)] border border-gray-200/60 overflow-hidden transition-shadow duration-500">
