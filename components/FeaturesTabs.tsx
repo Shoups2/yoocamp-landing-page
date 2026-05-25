@@ -14,7 +14,7 @@ const TONES = {
   sun:   { c: "#FFB627", soft: "rgba(255,182,39,0.10)", ring: "rgba(255,182,39,0.20)" },
 } as const;
 type Tone = keyof typeof TONES;
-type ToneObj = (typeof TONES)[Tone];
+export type ToneObj = { c: string; soft: string; ring: string };
 
 const AVATARS = [
   "https://i.pravatar.cc/80?img=1",
@@ -96,26 +96,6 @@ const FEATS: Feat[] = [
     bullets: ["Lives & webinaires", "Sessions privées", "Mentorat & coaching", "Notifications aux membres"],
     mock: "events",
   },
-  {
-    id: "payments",
-    label: "Monétisation",
-    tone: "mint",
-    icon: "💰",
-    title: <>De l&apos;offre au virement, <Grad from="#2DCFA8" to="#5DDDBE">en quelques clics</Grad></>,
-    desc: "Crée ton offre, partage ton lien et encaisse via Stripe. Yoocamp gère l'accès, les paiements et les virements automatiques. Zéro plugin, zéro setup complexe.",
-    bullets: ["Offres en quelques clics", "Abonnements ou paiement unique", "Virements automatiques", "Zéro plugin"],
-    mock: "payments",
-  },
-  {
-    id: "mobile",
-    label: "App mobile",
-    tone: "sun",
-    icon: "📱",
-    title: <>Garde le lien <Grad from="#FFB627" to="#FFD16B">avec ta communauté</Grad></>,
-    desc: "Tes membres accèdent à tes contenus, formations, discussions et événements depuis leur téléphone, même loin de leur ordinateur.",
-    bullets: ["Accès iOS & Android", "Notifications push", "Formations sur mobile", "Discussions à tout moment"],
-    mock: "mobile",
-  },
 ];
 
 /* ── Main component ────────────────────────────────────────────────── */
@@ -137,7 +117,7 @@ export default function FeaturesTabs() {
   return (
     <section
       id="communauté"
-      className="relative py-24 md:py-32 overflow-hidden scroll-mt-24"
+      className="relative pt-24 pb-4 md:pt-32 md:pb-6 overflow-hidden scroll-mt-24"
       style={{ background: "linear-gradient(180deg, #FAFAFD 0%, #FEFDFE 100%)" }}
     >
       {/* Background glow that changes with tab */}
@@ -532,7 +512,7 @@ function EventsMock() {
 
 /* ── Revenus (Paiements) ───────────────────────────────────────────── */
 
-function RevenueMock() {
+export function RevenueMock() {
   const months = [
     { label: "Jan", value: "10 450 €", h: 30 },
     { label: "Fév", value: "14 800 €", h: 42 },
@@ -652,7 +632,7 @@ function RevenueMock() {
 
 /* ── Mobile (depuis le spec, pas de mock existant) ──────────────────── */
 
-function MockMobile({ tone }: { tone: ToneObj }) {
+export function MockMobile({ tone }: { tone: ToneObj }) {
   return (
     <div className="relative flex justify-center">
       <div className="absolute inset-0 -z-0 flex items-center justify-center pointer-events-none">

@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import LiveActivity from "@/components/LiveActivity";
 
 import FeaturesTabs from "@/components/FeaturesTabs";
+import Highlights from "@/components/Highlights";
 import Features from "@/components/Features";
 
 import Monetization from "@/components/Monetization";
@@ -20,6 +21,7 @@ export default function Home() {
         <LiveActivity />
 
         <FeaturesTabs />
+        <Highlights />
         <Features />
         <Monetization />
         <Advantages />
