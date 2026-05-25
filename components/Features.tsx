@@ -409,8 +409,8 @@ export default function Features() {
 
   return (
     <section ref={sectionRef} id="fonctionnalités" className="py-24 md:py-36 relative overflow-hidden">
-      {/* Progressive gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#F8F5FF] via-[#F6F2FF] to-[#FAFAFA]" />
+      {/* Progressive gradient background — du blanc vers le violet */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#FAF7FE] to-[#F0EBFE]" />
       {/* Ambient glows */}
       <div className="absolute top-[10%] left-[-5%] w-[45%] h-[50%] bg-violet-300/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-[40%] right-[-8%] w-[40%] h-[40%] bg-blue-200/12 rounded-full blur-[140px] pointer-events-none" />

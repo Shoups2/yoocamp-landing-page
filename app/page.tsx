@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import LiveActivity from "@/components/LiveActivity";
 
-import Community from "@/components/Community";
+import FeaturesTabs from "@/components/FeaturesTabs";
 import Features from "@/components/Features";
 
 import Monetization from "@/components/Monetization";
@@ -19,7 +19,7 @@ export default function Home() {
         <Hero />
         <LiveActivity />
 
-        <Community />
+        <FeaturesTabs />
         <Features />
         <Monetization />
         <Advantages />
