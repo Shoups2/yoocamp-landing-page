@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, useMemo } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { FadeIn } from "./motion";
 
@@ -91,66 +91,6 @@ function Slider({
   );
 }
 
-/* ── Mini sparkline ──────────────────────── */
-
-function MiniSparkline({ value, color }: { value: number; color: string }) {
-  const ref = useRef<SVGSVGElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-
-  const coords = useMemo(() => {
-    const ratios = [0.03, 0.09, 0.14, 0.18, 0.26, 0.33, 0.30, 0.40, 0.52, 0.68, 0.80, 1.0];
-    const pts = ratios.map((r) => r * value);
-    const w = 200;
-    const h = 50;
-    const maxVal = Math.max(...pts, 1);
-    return pts.map((v, i) => ({
-      x: (i / (pts.length - 1)) * w,
-      y: h - (v / maxVal) * h * 0.85 - 2,
-    }));
-  }, [value]);
-
-  const w = 200;
-  const h = 50;
-
-  const linePath = coords.reduce((acc, p, i) => {
-    if (i === 0) return `M${p.x},${p.y}`;
-    const prev = coords[i - 1];
-    const cpx = (prev.x + p.x) / 2;
-    return `${acc} C${cpx},${prev.y} ${cpx},${p.y} ${p.x},${p.y}`;
-  }, "");
-
-  const areaPath = `${linePath} L${w},${h} L0,${h} Z`;
-
-  return (
-    <svg ref={ref} viewBox={`0 0 ${w} ${h}`} className="w-full h-full" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="spark-area-v2" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity="0.1" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.02" />
-        </linearGradient>
-      </defs>
-      <motion.path
-        d={areaPath}
-        fill="url(#spark-area-v2)"
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.6 }}
-      />
-      <motion.path
-        d={linePath}
-        fill="none"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeOpacity="0.35"
-        initial={{ pathLength: 0 }}
-        animate={inView ? { pathLength: 1 } : {}}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-      />
-    </svg>
-  );
-}
-
 /* ── Card animation ──────────────────────── */
 
 const cardVariants = {
@@ -172,7 +112,6 @@ function RevenueCard({
   color,
   gradientTo,
   children,
-  sparkline,
 }: {
   index: number;
   inView: boolean;
@@ -181,7 +120,6 @@ function RevenueCard({
   color: string;
   gradientTo: string;
   children: React.ReactNode;
-  sparkline?: React.ReactNode;
 }) {
   return (
     <motion.div
@@ -215,13 +153,6 @@ function RevenueCard({
         </span>
       </div>
 
-      {/* ── Sparkline ── */}
-      {sparkline && (
-        <div className="h-12 px-6">
-          {sparkline}
-        </div>
-      )}
-
       {/* ── Contrôles ── */}
       <div className="mt-auto p-6 pt-4 space-y-4 border-t border-gray-100">
         {children}
@@ -253,13 +184,13 @@ export default function Monetization() {
       <div className="relative z-10 max-w-5xl mx-auto px-6">
         {/* ── Header ── */}
         <FadeIn className="text-center mb-5">
-          <div className="inline-flex items-center gap-2 bg-[#7B61FF]/[0.06] text-[#7B61FF] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#7B61FF]/10">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#7B61FF]" />
+          <div className="inline-flex items-center gap-2 bg-[#6952E6]/[0.06] text-[#6952E6] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#6952E6]/10">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#6952E6]" />
             Simule tes revenus
           </div>
           <h2 className="text-3xl md:text-[2.75rem] lg:text-5xl font-bold text-gray-900 leading-tight">
             Combien peut vraiment te rapporter<br className="hidden md:block" />
-            <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">ta communauté</span> ?
+            <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">ta communauté</span> ?
           </h2>
         </FadeIn>
 
@@ -273,11 +204,11 @@ export default function Monetization() {
             inView={inView}
             title="Abonnements"
             revenue={subRevenue}
-            color="#7B61FF"
+            color="#6952E6"
             gradientTo="#3B82F6"
           >
-            <Slider label="Membres" value={members} onChange={setMembers} min={10} max={1000} step={10} suffix="" color="#7B61FF" />
-            <Slider label="Prix / mois" value={subPrice} onChange={setSubPrice} min={5} max={99} step={1} suffix=" €" color="#7B61FF" />
+            <Slider label="Membres" value={members} onChange={setMembers} min={10} max={1000} step={10} suffix="" color="#6952E6" />
+            <Slider label="Prix / mois" value={subPrice} onChange={setSubPrice} min={5} max={99} step={1} suffix=" €" color="#6952E6" />
           </RevenueCard>
 
           <RevenueCard
@@ -303,7 +234,7 @@ export default function Monetization() {
         >
           <div className="py-6 md:py-8 px-6 text-center relative">
             {/* Glow subtil */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] rounded-full bg-[#7B61FF]/[0.04] blur-[80px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] rounded-full bg-[#6952E6]/[0.04] blur-[80px] pointer-events-none" />
 
             <motion.div
               className="relative"
@@ -312,19 +243,19 @@ export default function Monetization() {
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
-              <span className="text-[52px] md:text-[72px] lg:text-[88px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#7B61FF] to-[#3B82F6] bg-clip-text text-transparent">
+              <span className="text-[52px] md:text-[72px] lg:text-[88px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#6952E6] to-[#3B82F6] bg-clip-text text-transparent">
                 <AnimatedNumber value={total} />
               </span>
             </motion.div>
 
             <p className="relative text-base md:text-lg font-medium text-gray-400 mt-5 mb-10">
-              de revenus potentiels par mois avec <span className="text-[#7B61FF] font-semibold">Yoocamp</span>
+              de revenus potentiels par mois avec <span className="text-[#6952E6] font-semibold">Yoocamp</span>
             </p>
 
             {/* CTA */}
             <motion.a
               href="#"
-              className="relative inline-flex items-center gap-2.5 bg-[#7B61FF] text-white font-semibold px-8 py-4 rounded-xl text-[15px] shadow-[0_2px_16px_rgba(123,97,255,0.25)] cursor-pointer"
+              className="relative inline-flex items-center gap-2.5 bg-[#6952E6] text-white font-semibold px-8 py-4 rounded-xl text-[15px] shadow-[0_2px_16px_rgba(123,97,255,0.25)] cursor-pointer"
               whileHover={{ scale: 1.03, boxShadow: "0 4px 24px rgba(123,97,255,0.35)" }}
               whileTap={{ scale: 0.98 }}
             >

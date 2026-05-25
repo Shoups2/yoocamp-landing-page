@@ -11,16 +11,16 @@ function Step1Mock() {
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#7B61FF] to-[#9B8AFF] flex items-center justify-center">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#6952E6] to-[#9B8AFF] flex items-center justify-center">
             <span className="text-[9px] font-bold text-white">Y</span>
           </div>
           <span className="text-xs font-semibold text-gray-700">Yoocamp</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <svg className="w-3.5 h-3.5 text-[#7B61FF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          <svg className="w-3.5 h-3.5 text-[#6952E6]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
           </svg>
-          <span className="text-[10px] font-medium text-[#7B61FF]">Privé</span>
+          <span className="text-[10px] font-medium text-[#6952E6]">Privé</span>
         </div>
       </div>
       <div className="p-4 space-y-3">
@@ -29,7 +29,7 @@ function Step1Mock() {
           <div className="px-3 py-2 rounded-xl bg-gray-50 border border-gray-200 flex items-center">
             <span className="text-sm text-gray-800 font-medium">Yoocamp</span>
             <motion.div
-              className="w-[2px] h-4 bg-[#7B61FF] ml-0.5 rounded-full"
+              className="w-[2px] h-4 bg-[#6952E6] ml-0.5 rounded-full"
               animate={{ opacity: [1, 0, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
             />
@@ -38,8 +38,8 @@ function Step1Mock() {
         <div className="space-y-1.5">
           <label className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Accès</label>
           <div className="flex gap-2">
-            <div className="flex-1 px-3 py-2 rounded-xl bg-[#7B61FF]/8 border border-[#7B61FF]/20 text-center">
-              <span className="text-xs font-semibold text-[#7B61FF]">Sur invitation</span>
+            <div className="flex-1 px-3 py-2 rounded-xl bg-[#6952E6]/8 border border-[#6952E6]/20 text-center">
+              <span className="text-xs font-semibold text-[#6952E6]">Sur invitation</span>
             </div>
             <div className="flex-1 px-3 py-2 rounded-xl bg-gray-50 border border-gray-200 text-center">
               <span className="text-xs font-medium text-gray-400">Public</span>
@@ -52,8 +52,8 @@ function Step1Mock() {
             <div className="flex-1 px-3 py-2 rounded-xl bg-gray-50 border border-gray-200 text-center">
               <span className="text-xs font-medium text-gray-400">Gratuit</span>
             </div>
-            <div className="flex-1 px-3 py-2 rounded-xl bg-[#7B61FF]/8 border border-[#7B61FF]/20 text-center">
-              <span className="text-xs font-semibold text-[#7B61FF]">Payant</span>
+            <div className="flex-1 px-3 py-2 rounded-xl bg-[#6952E6]/8 border border-[#6952E6]/20 text-center">
+              <span className="text-xs font-semibold text-[#6952E6]">Payant</span>
             </div>
           </div>
           <div className="flex gap-2">
@@ -68,7 +68,7 @@ function Step1Mock() {
           </div>
         </div>
         <motion.div
-          className="w-full py-2.5 rounded-xl bg-[#7B61FF] text-white text-sm font-semibold text-center"
+          className="w-full py-2.5 rounded-xl bg-[#6952E6] text-white text-sm font-semibold text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
@@ -82,16 +82,16 @@ function Step1Mock() {
 
 function Step2Mock() {
   const formations = [
-    { title: "Trouver ta niche", videos: 4, color: "from-[#7B61FF] to-[#9B8AFF]", free: true },
-    { title: "Créer ton offre", videos: 6, color: "from-[#6C4FE0] to-[#7B61FF]", free: true },
+    { title: "Trouver ta niche", videos: 4, color: "from-[#6952E6] to-[#9B8AFF]", free: true },
+    { title: "Créer ton offre", videos: 6, color: "from-[#6C4FE0] to-[#6952E6]", free: true },
     { title: "Construire ton audience", videos: 8, color: "from-[#8B75FF] to-[#B4A0FF]", free: false, price: "49€" },
-    { title: "Monétiser son expertise", videos: 5, color: "from-[#7B61FF] to-[#6C4FE0]", free: false, price: "79€" },
+    { title: "Monétiser son expertise", videos: 5, color: "from-[#6952E6] to-[#6C4FE0]", free: false, price: "79€" },
   ];
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="px-5 py-3 border-b border-gray-100">
-        <span className="text-sm font-bold text-gray-900">Mes <span className="bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0] bg-clip-text text-transparent">formations</span></span>
+        <span className="text-sm font-bold text-gray-900">Mes <span className="bg-gradient-to-r from-[#6952E6] to-[#6C4FE0] bg-clip-text text-transparent">formations</span></span>
       </div>
 
       <div className="p-3 space-y-2">
@@ -127,11 +127,11 @@ function Step2Mock() {
 
             {/* Badge */}
             {f.free ? (
-              <span className="text-[8px] font-semibold text-[#7B61FF] bg-[#7B61FF]/8 px-1.5 py-0.5 rounded border border-[#7B61FF]/15 shrink-0">MEMBRES</span>
+              <span className="text-[8px] font-semibold text-[#6952E6] bg-[#6952E6]/8 px-1.5 py-0.5 rounded border border-[#6952E6]/15 shrink-0">MEMBRES</span>
             ) : (
               <div className="shrink-0 relative group/btn cursor-pointer">
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0] rounded-xl blur-md opacity-30" />
-                <div className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0]">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#6952E6] to-[#6C4FE0] rounded-xl blur-md opacity-30" />
+                <div className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#6952E6] to-[#6C4FE0]">
                   <svg className="w-2.5 h-2.5 text-white/80" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                   </svg>
@@ -243,7 +243,7 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
           <motion.div
             className="w-8 h-8 rounded-full font-bold text-sm flex items-center justify-center"
             animate={{
-              backgroundColor: isActive ? "#7B61FF" : "#e5e7eb",
+              backgroundColor: isActive ? "#6952E6" : "#e5e7eb",
               color: isActive ? "#ffffff" : "#9ca3af",
             }}
             transition={{ duration: 0.4 }}
@@ -269,7 +269,7 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
               <motion.div
                 className="w-10 h-10 rounded-full font-bold text-base flex items-center justify-center shrink-0"
                 animate={{
-                  backgroundColor: isActive ? "#7B61FF" : "#e5e7eb",
+                  backgroundColor: isActive ? "#6952E6" : "#e5e7eb",
                   color: isActive ? "#ffffff" : "#9ca3af",
                   scale: isCurrent ? 1.1 : 1,
                   boxShadow: isCurrent ? "0 0 0 4px rgba(123,97,255,0.15), 0 4px 16px -4px rgba(123,97,255,0.3)" : "0 0 0 0px transparent",
@@ -278,9 +278,9 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
               >
                 {step.num}
               </motion.div>
-              <span className="text-sm font-bold text-[#7B61FF] uppercase tracking-wider">Étape {step.num}</span>
+              <span className="text-sm font-bold text-[#6952E6] uppercase tracking-wider">Étape {step.num}</span>
             </div>
-            <span className="hidden md:block text-sm font-bold text-[#7B61FF] uppercase tracking-wider mb-4">Étape {step.num}</span>
+            <span className="hidden md:block text-sm font-bold text-[#6952E6] uppercase tracking-wider mb-4">Étape {step.num}</span>
           </motion.div>
 
           <motion.h3
@@ -347,19 +347,19 @@ function TimelineLine() {
   return (
     <div ref={ref} className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 z-10">
       {/* Background line */}
-      <div className="absolute inset-0 w-[3px] bg-[#7B61FF]/[0.12] mx-auto rounded-full" />
+      <div className="absolute inset-0 w-[3px] bg-[#6952E6]/[0.12] mx-auto rounded-full" />
       {/* Animated fill */}
       <motion.div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[3px] rounded-full origin-top"
         style={{
           scaleY,
           height: "100%",
-          background: "linear-gradient(to bottom, #7B61FF, #9B8AFF, #B8A9FF, #7B61FF)",
+          background: "linear-gradient(to bottom, #6952E6, #9B8AFF, #B8A9FF, #6952E6)",
         }}
       />
       {/* Animated dot */}
       <motion.div
-        className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#7B61FF] shadow-[0_0_16px_rgba(123,97,255,0.6)]"
+        className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#6952E6] shadow-[0_0_16px_rgba(123,97,255,0.6)]"
         style={{ top: dotTop, opacity: dotOpacity }}
       />
     </div>
@@ -368,7 +368,7 @@ function TimelineLine() {
 
 /* ── Steps Data ───────────────────────────── */
 
-const gradientClass = "bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent";
+const gradientClass = "bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent";
 
 const steps = [
   {
@@ -414,20 +414,20 @@ export default function Features() {
       {/* Ambient glows */}
       <div className="absolute top-[10%] left-[-5%] w-[45%] h-[50%] bg-violet-300/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-[40%] right-[-8%] w-[40%] h-[40%] bg-blue-200/12 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[5%] left-[10%] w-[35%] h-[35%] bg-[#7B61FF]/[0.04] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[5%] left-[10%] w-[35%] h-[35%] bg-[#6952E6]/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         <FadeIn className="text-center mb-20 md:mb-28">
-          <div className="inline-flex items-center gap-2 bg-[#7B61FF]/[0.06] text-[#7B61FF] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#7B61FF]/10">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#7B61FF]" />
+          <div className="inline-flex items-center gap-2 bg-[#6952E6]/[0.06] text-[#6952E6] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#6952E6]/10">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#6952E6]" />
             Comment ça marche
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
             <span className="text-gray-900">Lance ta communauté </span>
-            <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">en 3 étapes</span>
+            <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">en 3 étapes</span>
           </h2>
           <p className="mt-4 text-lg md:text-xl text-gray-500 font-medium max-w-lg mx-auto leading-relaxed">
-            Ton espace privé est prêt <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent font-semibold">en quelques minutes</span>.
+            Ton espace privé est prêt <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent font-semibold">en quelques minutes</span>.
           </p>
         </FadeIn>
 

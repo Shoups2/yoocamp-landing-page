@@ -39,8 +39,10 @@ const faqs = [
   },
 ];
 
-function FAQItem({ q, a }: { q: string; a: string }) {
+function FAQItem({ q, a, id }: { q: string; a: string; id: string }) {
   const [open, setOpen] = useState(false);
+  const panelId = `faq-panel-${id}`;
+  const buttonId = `faq-button-${id}`;
 
   return (
     <motion.div
@@ -48,16 +50,20 @@ function FAQItem({ q, a }: { q: string; a: string }) {
       initial={false}
     >
       <button
+        id={buttonId}
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls={panelId}
         className="w-full flex items-center justify-between py-5 text-left group"
       >
-        <span className="font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors pr-4">
+        <span className="font-semibold text-gray-900 group-hover:text-[#6952E6] transition-colors pr-4">
           {q}
         </span>
         <motion.span
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.2 }}
           className="text-xl text-gray-400 shrink-0"
+          aria-hidden="true"
         >
           +
         </motion.span>
@@ -65,6 +71,9 @@ function FAQItem({ q, a }: { q: string; a: string }) {
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
+            id={panelId}
+            role="region"
+            aria-labelledby={buttonId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -79,6 +88,16 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   );
 }
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function Advantages() {
   return (
     <section id="faq" className="py-24 md:py-32 relative overflow-hidden">
@@ -90,7 +109,7 @@ export default function Advantages() {
       <div className="absolute top-[40%] right-[15%] w-[30%] h-[30%] bg-pink-200/15 rounded-full blur-[90px] pointer-events-none" />
       <div className="relative z-10 max-w-3xl mx-auto px-6">
         <FadeIn className="text-center mb-12">
-          <p className="text-indigo-600 font-semibold text-sm uppercase tracking-wider mb-3">
+          <p className="text-[#6952E6] font-semibold text-sm uppercase tracking-wider mb-3">
             FAQ
           </p>
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
@@ -100,12 +119,16 @@ export default function Advantages() {
 
         <FadeIn delay={0.15}>
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 md:px-8">
-            {faqs.map((faq) => (
-              <FAQItem key={faq.q} q={faq.q} a={faq.a} />
+            {faqs.map((faq, i) => (
+              <FAQItem key={faq.q} id={String(i)} q={faq.q} a={faq.a} />
             ))}
           </div>
         </FadeIn>
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
     </section>
   );
 }

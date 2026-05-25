@@ -1,21 +1,6 @@
-import type { Metadata } from "next";
-import { Inter, Playfair_Display, Fredoka, Poppins } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Poppins } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
-
-const fredoka = Fredoka({
-  variable: "--font-fredoka",
-  subsets: ["latin"],
-});
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -23,10 +8,37 @@ const poppins = Poppins({
   weight: ["800"],
 });
 
+const siteUrl = "https://yoocamp.com";
+const title = "Yoocamp - Lance ta communauté et commence à vendre";
+const description =
+  "La solution la plus simple pour transformer ton contenu en revenus durables. Crée ta formation, bâtis ta communauté et monétise ton expertise.";
+
 export const metadata: Metadata = {
-  title: "Yoocamp - Lance ta communauté et commence à vendre",
-  description:
-    "La solution la plus simple pour transformer ton contenu en revenus durables. Crée ta formation, bâtis ta communauté et monétise ton expertise.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: siteUrl,
+    siteName: "Yoocamp",
+    title,
+    description,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Yoocamp" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/og-image.png"],
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#6952E6",
 };
 
 export default function RootLayout({
@@ -36,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${inter.variable} ${playfair.variable} ${fredoka.variable} ${poppins.variable} antialiased`}>{children}</body>
+      <body className={`${poppins.variable} antialiased`}>{children}</body>
     </html>
   );
 }

@@ -178,10 +178,10 @@ function DiscussionMock() {
 
 function VideoMock() {
   const videos = [
-    { title: "Lancer son offre", duration: "18 min", progress: 100, color: "from-[#7B61FF] to-[#8B75FF]" },
-    { title: "Contenu qui convertit", duration: "12 min", progress: 65, color: "from-[#6C4FE0] to-[#7B61FF]" },
+    { title: "Lancer son offre", duration: "18 min", progress: 100, color: "from-[#6952E6] to-[#8B75FF]" },
+    { title: "Contenu qui convertit", duration: "12 min", progress: 65, color: "from-[#6C4FE0] to-[#6952E6]" },
     { title: "Audience fidèle", duration: "24 min", progress: 0, color: "from-[#8B75FF] to-[#B4A0FF]" },
-    { title: "Monétiser son savoir", duration: "15 min", progress: 0, color: "from-[#7B61FF] to-[#6C4FE0]" },
+    { title: "Monétiser son savoir", duration: "15 min", progress: 0, color: "from-[#6952E6] to-[#6C4FE0]" },
   ];
 
   return (
@@ -300,8 +300,8 @@ function RevenueMock() {
                     isLast(i)
                       ? "bg-gradient-to-t from-emerald-500 via-emerald-400 to-emerald-300"
                       : hovered === i
-                        ? "bg-gradient-to-t from-[#6C4FE0] via-[#7B61FF] to-[#9B8AFF]"
-                        : "bg-gradient-to-t from-[#7B61FF]/70 via-[#9B8AFF]/60 to-[#BDB0FF]/50"
+                        ? "bg-gradient-to-t from-[#6C4FE0] via-[#6952E6] to-[#9B8AFF]"
+                        : "bg-gradient-to-t from-[#6952E6]/70 via-[#9B8AFF]/60 to-[#BDB0FF]/50"
                   }`} />
                   <div className="absolute inset-x-0 top-0 h-[40%] bg-white/15 rounded-t-md" />
                   {isLast(i) && (
@@ -525,22 +525,22 @@ export default function Community() {
   return (
     <section id="communauté" className="pt-10 md:pt-14 pb-16 md:pb-20 bg-gradient-to-b from-white via-white to-[#F8F5FF] relative overflow-hidden">
       {/* Background glows */}
-      <div className="absolute top-[15%] left-[5%] w-[600px] h-[600px] bg-[#7B61FF]/[0.035] rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-[5%] right-[0%] w-[500px] h-[500px] bg-[#7B61FF]/[0.025] rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#7B61FF]/[0.015] rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-[15%] left-[5%] w-[600px] h-[600px] bg-[#6952E6]/[0.035] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[5%] right-[0%] w-[500px] h-[500px] bg-[#6952E6]/[0.025] rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#6952E6]/[0.015] rounded-full blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
 
         {/* Header */}
         <FadeIn className="text-center mb-14 md:mb-20">
-          <div className="inline-flex items-center gap-2 bg-[#7B61FF]/[0.06] text-[#7B61FF] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#7B61FF]/10">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#7B61FF]" />
+          <div className="inline-flex items-center gap-2 bg-[#6952E6]/[0.06] text-[#6952E6] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#6952E6]/10">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#6952E6]" />
             Fonctionnalités
           </div>
           <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight leading-[1.1]">
             Crée, partage.
             <br />
-            <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">Fais grandir ta communauté.</span>
+            <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">Fais grandir ta communauté.</span>
           </h2>
         </FadeIn>
 
@@ -563,7 +563,7 @@ export default function Community() {
 
         {/* CTA card */}
         <FadeIn delay={0.5}>
-          <div className="relative mt-4 md:mt-5 rounded-[1.5rem] border border-[#7B61FF]/15 bg-gradient-to-r from-[#F8F5FF] via-white to-[#F0ECFF] px-8 md:px-12 py-8 md:py-9 flex flex-col md:flex-row items-center justify-between gap-5 shadow-[0_4px_40px_-8px_rgba(123,97,255,0.12)] overflow-hidden max-w-5xl mx-auto">
+          <div className="relative mt-4 md:mt-5 rounded-[1.5rem] border border-[#6952E6]/15 bg-gradient-to-r from-[#F8F5FF] via-white to-[#F0ECFF] px-8 md:px-12 py-8 md:py-9 flex flex-col md:flex-row items-center justify-between gap-5 shadow-[0_4px_40px_-8px_rgba(123,97,255,0.12)] overflow-hidden max-w-5xl mx-auto">
             {/* Halo violet */}
             <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-[300px] h-[200px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(123,97,255,0.12), transparent 70%)" }} />
             <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[250px] h-[180px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(155,138,255,0.10), transparent 70%)" }} />
@@ -577,13 +577,13 @@ export default function Community() {
             </div>
             <motion.a
               href="#"
-              className="relative shrink-0 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#7B61FF] to-[#6C4FE0] text-white font-semibold text-sm shadow-[0_6px_28px_-4px_rgba(123,97,255,0.50)]"
+              className="relative shrink-0 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#6952E6] to-[#6C4FE0] text-white font-semibold text-sm shadow-[0_6px_28px_-4px_rgba(123,97,255,0.50)]"
               whileHover={{ scale: 1.04, boxShadow: "0 10px 40px -4px rgba(123,97,255,0.60)" }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               {/* Glow behind button */}
-              <div className="absolute -inset-2 bg-[#7B61FF]/25 rounded-full blur-xl pointer-events-none" />
+              <div className="absolute -inset-2 bg-[#6952E6]/25 rounded-full blur-xl pointer-events-none" />
               <span className="relative z-10">Créer ma communauté</span>
             </motion.a>
           </div>

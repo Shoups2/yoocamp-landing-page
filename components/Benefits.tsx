@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FadeIn } from "./motion";
 
 /* ── Carousel Items ──────────────────────── */
 
@@ -73,7 +72,7 @@ const carouselItems = [
         <defs>
           <linearGradient id="violetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#A78BFA" />
-            <stop offset="50%" stopColor="#7B61FF" />
+            <stop offset="50%" stopColor="#6952E6" />
             <stop offset="100%" stopColor="#6C4FE0" />
           </linearGradient>
         </defs>
@@ -83,7 +82,7 @@ const carouselItems = [
     label: "Suis ta croissance",
     labelSub: "et tes revenus",
     desc: "Tableau de bord",
-    color: "#7B61FF",
+    color: "#6952E6",
     bg: "rgba(123, 97, 255, 0.08)",
   },
   {
@@ -104,11 +103,6 @@ const carouselItems = [
 
 const cardClass =
   "h-[400px] rounded-3xl bg-white border border-gray-200/80 p-8 flex flex-col overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.04)] transition-shadow duration-500";
-
-/* ── Stat mini-card class ────────────────── */
-
-const statCard =
-  "bg-[#FAFAFA] rounded-2xl p-4 flex flex-col justify-center border border-gray-100 transition-colors duration-200 hover:bg-[#F5F5F5]";
 
 /* ── Carousel Card ───────────────────────── */
 
@@ -144,7 +138,7 @@ function CarouselCard() {
             exit={{ opacity: 0, x: -120, scale: 0.95 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className={`flex items-center transition-colors duration-500 ${(item.centered || item.iconCentered) ? "justify-center" : "justify-start self-start"}`} style={{ color: item.color }}>
+            <div className={`flex items-center transition-colors duration-500 ${item.centered ? "justify-center" : "justify-start self-start"}`} style={{ color: item.color }}>
               {item.icon}
             </div>
             <p className={`text-[1.35rem] font-medium text-gray-900 tracking-[-0.02em] leading-snug ${item.centered ? "self-center text-center" : "self-start text-left"}`}>
@@ -192,7 +186,7 @@ export default function Benefits() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-[-0.03em] leading-[1.1]">
-            Ton contenu <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">attire</span>.<br className="hidden sm:block" /> Ton espace doit enfin <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">convertir</span>.
+            Ton contenu <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">attire</span>.<br className="hidden sm:block" /> Ton espace doit enfin <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">convertir</span>.
           </h2>
         </motion.div>
 
@@ -212,7 +206,7 @@ export default function Benefits() {
               <div className="w-[280px] h-full bg-white rounded-t-[2.4rem] border border-b-0 border-gray-200 shadow-[0_-4px_30px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.05),0_8px_40px_rgba(0,0,0,0.1)] flex flex-col overflow-hidden">
                 <div className="bg-white h-2 rounded-t-[2.4rem]" />
                 <div className="bg-white px-8 pt-2 pb-0.5">
-                  <div className="flex items-center gap-3 bg-gradient-to-r from-[#7B61FF] to-[#8B75FF] rounded-full px-4 py-[5px] shadow-[0_2px_8px_rgba(123,97,255,0.25)]">
+                  <div className="flex items-center gap-3 bg-gradient-to-r from-[#6952E6] to-[#8B75FF] rounded-full px-4 py-[5px] shadow-[0_2px_8px_rgba(123,97,255,0.25)]">
                     <svg className="w-3.5 h-3.5 text-white/90" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A8.966 8.966 0 013 12c0-1.97.633-3.792 1.708-5.274" />
                     </svg>
@@ -221,7 +215,7 @@ export default function Benefits() {
                 </div>
 
                 <div className="flex flex-col items-center px-6 py-5 gap-3 flex-1 justify-center">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#7B61FF] to-[#9B8AFF] p-[2px] shadow-[0_4px_12px_rgba(123,97,255,0.2)]">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#6952E6] to-[#9B8AFF] p-[2px] shadow-[0_4px_12px_rgba(123,97,255,0.2)]">
                     <img
                       src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?w=150&h=150&fit=crop&crop=face"
                       alt="Créateur"
@@ -247,7 +241,7 @@ export default function Benefits() {
 
                   <div className="flex items-center gap-5">
                     <div className="text-center">
-                      <p className="text-base font-bold text-[#7B61FF]">4.8K</p>
+                      <p className="text-base font-bold text-[#6952E6]">4.8K</p>
                       <p className="text-[11px] text-gray-500">Membres</p>
                     </div>
                     <div className="w-px h-4 bg-gray-200" />
@@ -287,7 +281,7 @@ export default function Benefits() {
 
             <div className="flex-1 flex flex-col gap-3 pb-2">
               {/* Bloc principal — Revenus */}
-              <div className="bg-gradient-to-br from-[#7B61FF]/[0.06] to-[#6C4FE0]/[0.03] rounded-2xl p-5 border border-[#7B61FF]/10">
+              <div className="bg-gradient-to-br from-[#6952E6]/[0.06] to-[#6C4FE0]/[0.03] rounded-2xl p-5 border border-[#6952E6]/10">
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="text-[11px] text-gray-500 font-medium uppercase tracking-wide">Revenus ce mois</p>
@@ -303,7 +297,7 @@ export default function Benefits() {
                       className="flex-1 rounded-sm"
                       style={{
                         height: `${h}%`,
-                        background: i >= 10 ? "#7B61FF" : `rgba(123, 97, 255, ${0.15 + i * 0.06})`,
+                        background: i >= 10 ? "#6952E6" : `rgba(123, 97, 255, ${0.15 + i * 0.06})`,
                       }}
                     />
                   ))}
@@ -321,7 +315,7 @@ export default function Benefits() {
                   <p className="text-[10px] text-gray-500 font-medium mt-1.5">Coachings réservés</p>
                 </div>
                 <div className="bg-[#FAFAFA] rounded-xl p-3 border border-gray-100 text-center">
-                  <p className="text-xl font-bold leading-none bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">+300</p>
+                  <p className="text-xl font-bold leading-none bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">+300</p>
                   <p className="text-[10px] text-gray-500 font-medium mt-1.5">Nouveaux membres</p>
                 </div>
               </div>

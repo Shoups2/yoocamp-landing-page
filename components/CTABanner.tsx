@@ -13,14 +13,14 @@ export default function CTABanner() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log("Waitlist signup:", { email, role });
+    console.log("Signup:", { email, role });
     setSubmitted(true);
   }
 
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#7B61FF] via-[#6B4FE0] to-[#4A35A0]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#6952E6] via-[#6B4FE0] to-[#4A35A0]" />
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(90vw,600px)] h-[min(90vw,600px)] bg-white/5 rounded-full blur-[120px]" />
         <div className="absolute top-0 right-0 w-[min(60vw,300px)] h-[min(60vw,300px)] bg-purple-400/10 rounded-full blur-[100px]" />
@@ -67,7 +67,7 @@ export default function CTABanner() {
 
         <FadeIn delay={0.1}>
           <p className="text-lg text-white/70 mb-10 max-w-md mx-auto">
-            Rejoins la liste d&apos;attente et fais partie des premiers créateurs à accéder à Yoocamp.
+            Crée ton compte gratuitement et lance ta communauté en quelques minutes.
           </p>
         </FadeIn>
 
@@ -87,8 +87,8 @@ export default function CTABanner() {
                 >
                   🎉
                 </motion.div>
-                <p className="font-semibold text-white text-lg">Tu es sur la liste !</p>
-                <p className="text-sm text-white/60 mt-2">On te contactera dès que Yoocamp sera prêt.</p>
+                <p className="font-semibold text-white text-lg">C&apos;est parti !</p>
+                <p className="text-sm text-white/60 mt-2">Vérifie ta boîte mail pour finaliser ton inscription.</p>
               </motion.div>
             ) : (
               <motion.form
@@ -122,15 +122,15 @@ export default function CTABanner() {
 
                 <motion.button
                   type="submit"
-                  className="w-full bg-white text-[#7B61FF] font-bold py-3.5 rounded-xl text-[15px] shadow-lg cursor-pointer"
+                  className="w-full bg-white text-[#6952E6] font-bold py-3.5 rounded-xl text-[15px] shadow-lg cursor-pointer"
                   whileHover={{ scale: 1.03, boxShadow: "0 0 40px rgba(255,255,255,0.25)" }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  Rejoindre la liste d&apos;attente
+                  Créer ma communauté
                 </motion.button>
 
                 <p className="text-xs text-white/40">
-                  Accès early — priorité aux premiers inscrits. Pas de spam, promis.
+                  Gratuit pour démarrer. Sans engagement. En 2 minutes.
                 </p>
               </motion.form>
             )}

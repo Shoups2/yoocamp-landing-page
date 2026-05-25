@@ -63,7 +63,7 @@ export default function Footer() {
                     key={s.label}
                     href={s.href}
                     className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400 text-xs font-bold cursor-pointer"
-                    whileHover={{ scale: 1.1, backgroundColor: "#EEF2FF", color: "#7B61FF" }}
+                    whileHover={{ scale: 1.1, backgroundColor: "#EEF2FF", color: "#6952E6" }}
                   >
                     {s.label}
                   </motion.a>
@@ -82,7 +82,7 @@ export default function Footer() {
                     <li key={j}>
                       <motion.a
                         href={link.href}
-                        className="text-sm text-gray-400 hover:text-[#7B61FF] transition-colors"
+                        className="text-sm text-gray-400 hover:text-[#6952E6] transition-colors"
                         whileHover={{ x: 2 }}
                       >
                         {link.label}

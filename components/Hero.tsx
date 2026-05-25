@@ -156,7 +156,7 @@ export default function Hero() {
         >
           Lance ta communauté
           <br />
-          <span className="bg-gradient-to-r from-[#7B61FF] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
             et commence à vendre
           </span>
         </motion.h1>
@@ -176,8 +176,8 @@ export default function Hero() {
         >
           <motion.a
             href="#"
-            className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-lg font-semibold px-6 py-3.5 rounded-2xl shadow-lg shadow-indigo-500/25"
-            whileHover={{ scale: 1.04, boxShadow: "0 20px 50px -10px rgba(99, 102, 241, 0.45)" }}
+            className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#6952E6] to-[#8B75FF] text-white text-lg font-semibold px-6 py-3.5 rounded-2xl shadow-lg shadow-[#6952E6]/25"
+            whileHover={{ scale: 1.04, boxShadow: "0 20px 50px -10px rgba(105, 82, 230, 0.45)" }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
@@ -232,7 +232,7 @@ export default function Hero() {
               ))}
             </motion.div>
           </div>
-          <span className="text-sm text-gray-500"><span className="font-semibold text-gray-700">+1 000 créateurs</span> sur liste d&apos;attente</span>
+          <span className="text-sm text-gray-500"><span className="font-semibold text-gray-700">+1 000 créateurs</span> nous font déjà confiance</span>
         </motion.div>
       </div>
 
@@ -297,8 +297,8 @@ export default function Hero() {
 
         <FloatingCard className="top-[35%] -left-4 md:left-2 lg:-left-16" delay={1}>
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-50 to-purple-100 flex items-center justify-center">
-              <svg className="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6952E6]/10 to-purple-100 flex items-center justify-center">
+              <svg className="w-4 h-4 text-[#6952E6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
               </svg>
             </div>

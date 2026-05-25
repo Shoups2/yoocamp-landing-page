@@ -11,14 +11,7 @@ const links = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -78,16 +71,16 @@ export default function Navbar() {
             </motion.a>
             <motion.a
               href="#"
-              className="px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-xl"
+              className="px-5 py-2.5 text-sm font-semibold text-white bg-[#6952E6] rounded-xl"
               whileHover={{
                 scale: 1.03,
-                backgroundColor: "#4338ca",
-                boxShadow: "0 4px 16px rgba(99,102,241,0.3)",
+                backgroundColor: "#5841C9",
+                boxShadow: "0 4px 16px rgba(105,82,230,0.3)",
               }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Rejoindre la bêta
+              Créer ma communauté
             </motion.a>
           </div>
 
@@ -95,7 +88,9 @@ export default function Navbar() {
           <button
             className="md:hidden relative z-10 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-100/60 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
+            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             <div className="w-[18px] h-3 relative">
               <motion.span
@@ -134,6 +129,7 @@ export default function Navbar() {
 
             {/* Panel */}
             <motion.div
+              id="mobile-menu"
               className="fixed top-0 right-0 bottom-0 w-[280px] bg-white shadow-2xl md:hidden z-50"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -174,10 +170,10 @@ export default function Navbar() {
                   </a>
                   <a
                     href="#"
-                    className="block text-center py-3 text-[15px] font-semibold text-white bg-gray-900 rounded-xl"
+                    className="block text-center py-3 text-[15px] font-semibold text-white bg-[#6952E6] rounded-xl"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Rejoindre la bêta
+                    Créer ma communauté
                   </a>
                 </motion.div>
               </div>
