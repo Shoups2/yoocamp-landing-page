@@ -154,10 +154,10 @@ export default function Hero() {
           {...blurFadeUp(0.2)}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.08] tracking-tight scale-[1.03] origin-center"
         >
-          Lance ta communauté
+          Crée ta communauté privée
           <br />
           <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
-            et commence à vendre
+            et vends ton contenu
           </span>
         </motion.h1>
 
@@ -166,7 +166,7 @@ export default function Hero() {
           {...blurFadeUp(0.35)}
           className="mt-8 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto"
         >
-          Publie du contenu exclusif, vends tes formations<br className="hidden sm:block" /> et anime ta communauté.
+          Offre à ton audience un espace privé où elle peut suivre tes vidéos, découvrir tes formations, rejoindre tes événements et échanger avec toi.
         </motion.p>
 
         {/* CTA */}
