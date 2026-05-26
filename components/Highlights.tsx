@@ -7,7 +7,7 @@ import { RevenueMock, MockMobile } from "./FeaturesTabs";
 /* ── Tokens locaux ──────────────────────────────────────────────── */
 
 const MINT = { c: "#2DCFA8", soft: "rgba(45,207,168,0.10)", ring: "rgba(45,207,168,0.25)" } as const;
-const SUN  = { c: "#FFB627", soft: "rgba(255,182,39,0.10)", ring: "rgba(255,182,39,0.25)" } as const;
+const SKY  = { c: "#3D9DFF", soft: "rgba(61,157,255,0.10)", ring: "rgba(61,157,255,0.25)" } as const;
 
 /* ── Section ────────────────────────────────────────────────────── */
 
@@ -28,7 +28,7 @@ export default function Highlights() {
           >
             {/* Mockup zone — top */}
             <div
-              className="relative px-6 md:px-8 pt-8 pb-6 flex items-center justify-center min-h-[280px]"
+              className="relative px-6 md:px-8 pt-6 pb-4 flex items-center justify-center min-h-[200px]"
               style={{ background: `linear-gradient(135deg, ${MINT.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
             >
               <div className="relative w-full max-w-sm">
@@ -37,7 +37,7 @@ export default function Highlights() {
             </div>
 
             {/* Text zone */}
-            <div className="p-7 md:p-8 flex-1 flex flex-col">
+            <div className="p-6 md:p-7 flex-1 flex flex-col">
               <div
                 className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] self-start mb-3"
                 style={{ color: MINT.c }}
@@ -76,7 +76,7 @@ export default function Highlights() {
           {/* ── Carte 2 : App mobile ── */}
           <motion.article
             className="group relative rounded-[2rem] border overflow-hidden bg-white shadow-[0_1px_2px_rgba(15,12,40,0.04),0_4px_16px_rgba(15,12,40,0.05),0_12px_32px_-8px_rgba(15,12,40,0.04)] flex flex-col"
-            style={{ borderColor: SUN.ring }}
+            style={{ borderColor: SKY.ring }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -84,21 +84,21 @@ export default function Highlights() {
           >
             {/* Mockup zone — top */}
             <div
-              className="relative px-6 md:px-8 pt-8 pb-6 flex items-center justify-center min-h-[280px]"
-              style={{ background: `linear-gradient(135deg, ${SUN.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
+              className="relative px-6 md:px-8 pt-6 pb-4 flex items-center justify-center min-h-[200px]"
+              style={{ background: `linear-gradient(135deg, ${SKY.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
             >
-              <div className="relative scale-[0.7] md:scale-[0.75] origin-center">
-                <MockMobile tone={SUN} />
+              <div className="relative scale-[0.5] md:scale-[0.55] origin-center -my-[110px]">
+                <MockMobile tone={SKY} />
               </div>
             </div>
 
             {/* Text zone */}
-            <div className="p-7 md:p-8 flex-1 flex flex-col">
+            <div className="p-6 md:p-7 flex-1 flex flex-col">
               <div
                 className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] self-start mb-3"
-                style={{ color: SUN.c }}
+                style={{ color: SKY.c }}
               >
-                <span className="w-1.5 h-1.5 rounded-full" style={{ background: SUN.c }} />
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: SKY.c }} />
                 Mobile
               </div>
               <h3
@@ -108,7 +108,7 @@ export default function Highlights() {
                 Ta communauté toujours{" "}
                 <span
                   style={{
-                    backgroundImage: `linear-gradient(135deg, ${SUN.c}, #FFD16B)`,
+                    backgroundImage: `linear-gradient(135deg, #1E40AF, #60A5FA)`,
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -122,7 +122,7 @@ export default function Highlights() {
               </p>
               <div className="mt-5">
                 <CheckList
-                  color={SUN.c}
+                  color={SKY.c}
                   items={["Accès depuis le téléphone", "Notifications push", "Formations faciles à suivre", "Discussions à tout moment"]}
                 />
               </div>

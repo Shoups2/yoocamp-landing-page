@@ -426,7 +426,7 @@ function VideoMock() {
       </div>
 
       {/* Grid 2x2 */}
-      <div className="grid grid-cols-2 gap-2 p-2.5">
+      <div className="grid grid-cols-2 gap-2 px-5 py-2.5">
         {formations.map((f, i) => (
           <motion.div
             key={i}
@@ -533,7 +533,7 @@ function VideoLibraryMock() {
       </div>
 
       {/* Grid 2x2 */}
-      <div className="grid grid-cols-2 gap-x-3 gap-y-4 p-3">
+      <div className="grid grid-cols-2 gap-x-3 gap-y-4 px-5 py-3">
         {videos.map((v, i) => (
           <motion.div
             key={i}
@@ -832,16 +832,16 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
 
       <div className="relative w-[240px] h-[480px] bg-gray-900 rounded-[2.5rem] p-2 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.4)]">
         <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-900 rounded-b-2xl z-10" />
-        <div className="w-full h-full bg-gradient-to-br from-amber-400 via-orange-400 to-rose-400 rounded-[2.1rem] overflow-hidden relative">
-          <div className="relative h-full flex flex-col p-4 text-white">
+        <div className="w-full h-full bg-white rounded-[2.1rem] overflow-hidden relative">
+          <div className="relative h-full flex flex-col p-4 text-gray-900">
             <div className="flex items-center justify-between mt-2">
               <div className="font-bold text-lg" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>Yoocamp</div>
-              <div className="w-6 h-6 rounded-full bg-white/25 backdrop-blur flex items-center justify-center text-[10px] font-bold">3</div>
+              <div className="w-6 h-6 rounded-full bg-[#6952E6] flex items-center justify-center text-[10px] font-bold text-white">3</div>
             </div>
-            <div className="text-[11px] opacity-90 mt-1">Bonjour Lucas 👋</div>
+            <div className="text-[11px] text-gray-500 mt-1">Bonjour Lucas 👋</div>
 
             <div className="mt-4 space-y-2.5">
-              <div className="bg-white/95 backdrop-blur rounded-2xl p-3 text-gray-900 shadow-lg">
+              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 text-gray-900 shadow-sm">
                 <div className="flex items-start gap-2.5">
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center text-base shrink-0" style={{ background: tone.soft }}>💰</div>
                   <div className="flex-1 min-w-0">
@@ -852,7 +852,7 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
                 </div>
               </div>
 
-              <div className="bg-white/95 backdrop-blur rounded-2xl p-3 text-gray-900 shadow-lg">
+              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 text-gray-900 shadow-sm">
                 <div className="flex items-start gap-2.5">
                   <img src={AVATARS[4]} className="w-8 h-8 rounded-lg object-cover shrink-0" alt="" />
                   <div className="flex-1 min-w-0">
@@ -863,7 +863,7 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
                 </div>
               </div>
 
-              <div className="bg-white/95 backdrop-blur rounded-2xl p-3 text-gray-900 shadow-lg">
+              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 text-gray-900 shadow-sm">
                 <div className="flex items-start gap-2.5">
                   <div className="w-8 h-8 rounded-lg bg-sky-100 flex items-center justify-center text-base shrink-0">📅</div>
                   <div className="flex-1 min-w-0">
@@ -875,9 +875,9 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
               </div>
             </div>
 
-            <div className="mt-auto -mx-4 -mb-4 px-5 py-3 bg-black/15 backdrop-blur-lg border-t border-white/15 flex justify-between">
+            <div className="mt-auto -mx-4 -mb-4 px-5 py-3 bg-white border-t border-gray-100 flex justify-between">
               {["💬", "🎓", "📅", "👤"].map((e, i) => (
-                <div key={i} className={`w-8 h-8 rounded-xl flex items-center justify-center ${i === 0 ? "bg-white text-black" : "opacity-70"}`}>
+                <div key={i} className={`w-8 h-8 rounded-xl flex items-center justify-center ${i === 0 ? "bg-[#6952E6] text-white" : "opacity-50"}`}>
                   <span className="text-base">{e}</span>
                 </div>
               ))}
