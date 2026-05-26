@@ -373,7 +373,7 @@ const gradientClass = "bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0
 const steps = [
   {
     num: "1",
-    title: <>Crée <span className={gradientClass}>ta communauté</span>{"\n"}autour de ton contenu</>,
+    title: <>Crée ta communauté{"\n"}<span className={gradientClass}>autour de ton contenu</span></>,
     desc: "Rassemble ton audience et structure ton contenu dans un espace dédié.",
     image: "/step1.png",
   },
@@ -427,7 +427,7 @@ export default function Features() {
             <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">en 3 étapes</span>
           </h2>
           <p className="mt-4 text-lg md:text-xl text-gray-500 font-medium max-w-lg mx-auto leading-relaxed">
-            Ton espace privé est prêt <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent font-semibold">en quelques minutes</span>.
+            Ta communauté est prête <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent font-semibold">en quelques minutes</span>.
           </p>
         </FadeIn>
 

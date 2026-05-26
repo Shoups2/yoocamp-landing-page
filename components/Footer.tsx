@@ -5,35 +5,28 @@ import { FadeIn } from "./motion";
 
 const columns = [
   {
-    title: "Produit",
+    title: "Découvrir",
     links: [
       { label: "Communauté", href: "#communauté" },
-      { label: "Fonctionnalités", href: "#fonctionnalités" },
+      { label: "Comment ça marche", href: "#fonctionnalités" },
       { label: "Simulateur", href: "#simulateur" },
-      { label: "Tarifs", href: "#" },
+      { label: "FAQ", href: "#faq" },
     ],
   },
   {
     title: "Ressources",
     links: [
-      { label: "Blog", href: "#" },
-      { label: "Guides", href: "#" },
-      { label: "FAQ", href: "#faq" },
-    ],
-  },
-  {
-    title: "Entreprise",
-    links: [
-      { label: "À propos", href: "#" },
-      { label: "Contact", href: "#" },
-      { label: "Carrières", href: "#" },
+      { label: "Centre d'aide", href: "https://www.yoocamp.com/aide" },
+      { label: "Contact", href: "https://www.yoocamp.com/contact" },
+      { label: "Le site Yoocamp", href: "https://www.yoocamp.com" },
     ],
   },
   {
     title: "Légal",
     links: [
-      { label: "Mentions légales", href: "#" },
-      { label: "CGU", href: "#" },
+      { label: "CGU & CGV", href: "https://www.yoocamp.com/terms" },
+      { label: "Confidentialité", href: "https://www.yoocamp.com/privacy" },
+      { label: "Mentions légales", href: "https://www.yoocamp.com/legal" },
     ],
   },
 ];
@@ -43,7 +36,7 @@ export default function Footer() {
     <footer className="bg-gray-50 border-t border-gray-100">
       <div className="max-w-[1400px] mx-auto px-6 py-16">
         <FadeIn>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12">
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1">
               <a href="#" className="inline-block mb-3">
@@ -98,9 +91,9 @@ export default function Footer() {
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
           <p>© 2026 Yoocamp. Tous droits réservés.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-gray-600 transition-colors">Confidentialité</a>
-            <a href="#" className="hover:text-gray-600 transition-colors">CGU</a>
-            <a href="#" className="hover:text-gray-600 transition-colors">Contact</a>
+            <a href="https://www.yoocamp.com/privacy" className="hover:text-gray-600 transition-colors">Confidentialité</a>
+            <a href="https://www.yoocamp.com/terms" className="hover:text-gray-600 transition-colors">CGU & CGV</a>
+            <a href="https://www.yoocamp.com/legal" className="hover:text-gray-600 transition-colors">Mentions légales</a>
           </div>
         </div>
       </div>

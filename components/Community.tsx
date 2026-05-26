@@ -576,7 +576,7 @@ export default function Community() {
               </p>
             </div>
             <motion.a
-              href="#"
+              href="https://www.yoocamp.com/register"
               className="relative shrink-0 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#6952E6] to-[#6C4FE0] text-white font-semibold text-sm shadow-[0_6px_28px_-4px_rgba(123,97,255,0.50)]"
               whileHover={{ scale: 1.04, boxShadow: "0 10px 40px -4px rgba(123,97,255,0.60)" }}
               whileTap={{ scale: 0.97 }}

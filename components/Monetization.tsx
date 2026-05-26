@@ -171,7 +171,16 @@ export default function Monetization() {
 
   const subRevenue = members * subPrice;
   const courseRevenue = sales * coursePrice;
-  const total = subRevenue + courseRevenue;
+  const gross = subRevenue + courseRevenue;
+
+  // Frais Stripe : 1,5% + 0,25 € par transaction (1 transaction par abonné/vente)
+  const transactionCount = members + sales;
+  const stripeFees = gross * 0.015 + transactionCount * 0.25;
+
+  // Commission Yoocamp : 10% (formule standard)
+  const yoocampCommission = gross * 0.10;
+
+  const net = gross - stripeFees - yoocampCommission;
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-80px" });
@@ -236,25 +245,31 @@ export default function Monetization() {
             {/* Glow subtil */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] rounded-full bg-[#6952E6]/[0.04] blur-[80px] pointer-events-none" />
 
+            {/* ── Mention plan ── */}
+            <p className="relative text-[12px] text-gray-500 mb-3">
+              Estimation avec le <span className="font-semibold text-gray-700">plan Standard</span> · frais inclus
+            </p>
+
+            {/* ── Net : gros chiffre ── */}
             <motion.div
               className="relative"
-              key={total}
+              key={net}
               initial={{ scale: 0.98 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               <span className="text-[52px] md:text-[72px] lg:text-[88px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#6952E6] to-[#3B82F6] bg-clip-text text-transparent">
-                <AnimatedNumber value={total} />
+                <AnimatedNumber value={net} />
               </span>
             </motion.div>
 
-            <p className="relative text-base md:text-lg font-medium text-gray-400 mt-5 mb-10">
-              de revenus potentiels par mois avec <span className="text-[#6952E6] font-semibold">Yoocamp</span>
+            <p className="relative text-base md:text-lg font-medium text-gray-600 mt-5 mb-10">
+              de revenus nets sur ton compte avec <span className="text-[#6952E6] font-semibold">Yoocamp</span>
             </p>
 
             {/* CTA */}
             <motion.a
-              href="#"
+              href="https://www.yoocamp.com/register"
               className="relative inline-flex items-center gap-2.5 bg-[#6952E6] text-white font-semibold px-8 py-4 rounded-xl text-[15px] shadow-[0_2px_16px_rgba(123,97,255,0.25)] cursor-pointer"
               whileHover={{ scale: 1.03, boxShadow: "0 4px 24px rgba(123,97,255,0.35)" }}
               whileTap={{ scale: 0.98 }}
@@ -265,8 +280,8 @@ export default function Monetization() {
               </svg>
             </motion.a>
 
-            <p className="relative text-[13px] text-gray-400 mt-4">
-              Formule gratuite · Sans carte bancaire · En 2 minutes
+            <p className="relative text-[13px] text-gray-600 mt-4">
+              Sans carte bancaire · En 2 minutes
             </p>
           </div>
         </motion.div>

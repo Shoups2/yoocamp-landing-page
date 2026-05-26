@@ -173,7 +173,7 @@ export default function Hero() {
           className="mt-10 flex flex-col items-center"
         >
           <motion.a
-            href="#"
+            href="https://www.yoocamp.com/register"
             className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#6952E6] to-[#8B75FF] text-white text-lg font-semibold px-6 py-3.5 rounded-2xl shadow-lg shadow-[#6952E6]/25"
             whileHover={{ scale: 1.04, boxShadow: "0 20px 50px -10px rgba(105, 82, 230, 0.45)" }}
             whileTap={{ scale: 0.97 }}

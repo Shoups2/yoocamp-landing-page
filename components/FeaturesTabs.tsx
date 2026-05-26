@@ -250,7 +250,7 @@ export default function FeaturesTabs() {
 
               <div className="mt-7 flex items-center gap-3">
                 <a
-                  href="#"
+                  href="https://www.yoocamp.com/register"
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold text-white transition-transform hover:scale-105"
                   style={{ background: t.c }}
                 >

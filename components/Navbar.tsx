@@ -63,14 +63,14 @@ export default function Navbar() {
           {/* ── Desktop actions (right) ── */}
           <div className="hidden md:flex items-center gap-2">
             <motion.a
-              href="#"
+              href="https://www.yoocamp.com/login"
               className="px-4 py-2 text-sm font-medium text-gray-500 rounded-lg transition-colors hover:text-gray-900"
               whileHover={{ backgroundColor: "rgba(0,0,0,0.03)" }}
             >
               Se connecter
             </motion.a>
             <motion.a
-              href="#"
+              href="https://www.yoocamp.com/register"
               className="px-5 py-2.5 text-sm font-semibold text-white bg-[#6952E6] rounded-xl"
               whileHover={{
                 scale: 1.03,
@@ -162,14 +162,14 @@ export default function Navbar() {
                   transition={{ delay: 0.3 }}
                 >
                   <a
-                    href="#"
+                    href="https://www.yoocamp.com/login"
                     className="block text-center py-3 text-[15px] font-medium text-gray-600 rounded-xl hover:bg-gray-50 transition-colors"
                     onClick={() => setMenuOpen(false)}
                   >
                     Se connecter
                   </a>
                   <a
-                    href="#"
+                    href="https://www.yoocamp.com/register"
                     className="block text-center py-3 text-[15px] font-semibold text-white bg-[#6952E6] rounded-xl"
                     onClick={() => setMenuOpen(false)}
                   >
