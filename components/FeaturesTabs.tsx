@@ -1,9 +1,41 @@
 "use client";
 
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import CheckList from "./CheckList";
+
+/* ── Count up animé ──────────────────────────────────────────────── */
+
+function CountUp({
+  value,
+  duration = 700,
+  format,
+}: {
+  value: number;
+  duration?: number;
+  format?: (n: number) => string;
+}) {
+  const [display, setDisplay] = useState(0);
+  const rafRef = useRef(0);
+  useEffect(() => {
+    const start = performance.now();
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+    const step = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      setDisplay(Math.round(value * ease(t)));
+      if (t < 1) rafRef.current = requestAnimationFrame(step);
+    };
+    rafRef.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [value, duration]);
+  return <>{format ? format(display) : display}</>;
+}
+
+function formatViews(n: number): string {
+  if (n >= 1000) return (n / 1000).toLocaleString("fr-FR", { maximumFractionDigits: 1 }) + "K";
+  return String(n);
+}
 
 /* ── Tokens ─────────────────────────────────────────────────────────── */
 
@@ -261,7 +293,7 @@ export default function FeaturesTabs() {
               >
                 {f.mock === "community" && <DiscussionMock />}
                 {f.mock === "courses" && <VideoMock />}
-                {f.mock === "videos" && <VideoMock />}
+                {f.mock === "videos" && <VideoLibraryMock />}
                 {f.mock === "events" && <EventsMock />}
                 {f.mock === "payments" && <RevenueMock />}
                 {f.mock === "mobile" && <MockMobile tone={t} />}
@@ -378,25 +410,35 @@ function DiscussionMock() {
 /* ── Vidéo (Formations) ────────────────────────────────────────────── */
 
 function VideoMock() {
-  const formations: { title: string; image: string; free: boolean; price?: string }[] = [
-    { title: "Automatiser son business avec l'IA", image: "/formations/4eb4147d-30ef-49ac-a22b-9ccbf7190a65.png", free: true },
-    { title: "La stratégie YouTube qui génère des clients", image: "/formations/7e194074-cb06-4f3c-acec-b5b334e9f82f.png", free: true },
-    { title: "Comment créer un business rentable en 2026", image: "/formations/d626614f-ed9b-4761-a8f7-ee9c42010c8c.png", free: false, price: "99 €" },
-    { title: "De 0 à 10K€/mois avec une seule compétence", image: "/formations/444f0011-557d-4c97-9fe2-bf4255344c3b.png", free: false, price: "149 €" },
+  const formations: { title: string; image: string; free: boolean; price?: string; modules: number; duration: string }[] = [
+    { title: "Automatiser son business avec l'IA", image: "/formations/4eb4147d-30ef-49ac-a22b-9ccbf7190a65.png", free: true, modules: 6, duration: "3h 12min" },
+    { title: "La stratégie YouTube qui génère des clients", image: "/formations/7e194074-cb06-4f3c-acec-b5b334e9f82f.png", free: true, modules: 4, duration: "2h 45min" },
+    { title: "Comment créer un business rentable en 2026", image: "/formations/d626614f-ed9b-4761-a8f7-ee9c42010c8c.png", free: false, price: "99 €", modules: 12, duration: "6h 30min" },
+    { title: "De 0 à 10K€/mois avec une seule compétence", image: "/formations/444f0011-557d-4c97-9fe2-bf4255344c3b.png", free: false, price: "149 €", modules: 10, duration: "5h 15min" },
   ];
 
   return (
     <div className="bg-white rounded-xl border border-gray-200/80 shadow-[0_20px_50px_-15px_rgba(15,12,40,0.15)] overflow-hidden">
       {/* Header */}
-      <div className="px-4 py-3 border-b border-gray-100">
-        <div className="text-[13px] font-bold text-gray-900">Formations</div>
-        <div className="text-[10px] text-gray-500 mt-0.5">10 formations disponibles dans cette communauté</div>
+      <div className="px-4 py-2 border-b border-gray-100">
+        <div className="text-[12.5px] font-bold text-gray-900">Formations</div>
+        <div className="text-[9.5px] text-gray-500 mt-0.5">10 formations disponibles dans cette communauté</div>
       </div>
 
       {/* Grid 2x2 */}
-      <div className="grid grid-cols-2 gap-2.5 p-3">
+      <div className="grid grid-cols-2 gap-2 p-2.5">
         {formations.map((f, i) => (
-          <div key={i} className="rounded-lg overflow-hidden border border-gray-100 bg-white flex flex-col">
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.div
+              className="group cursor-pointer rounded-lg overflow-hidden border border-gray-100 bg-white flex flex-col transition-shadow hover:shadow-[0_4px_16px_-4px_rgba(105,82,230,0.15)] hover:border-[#6952E6]/20"
+              animate={{ y: [0, -2, 0] }}
+              transition={{ duration: 6 + i * 0.6, repeat: Infinity, ease: "easeInOut", delay: 0.5 + i * 0.2 }}
+            >
             {/* Thumbnail */}
             <div className="relative aspect-video bg-gray-100 overflow-hidden">
               <Image
@@ -404,18 +446,41 @@ function VideoMock() {
                 alt={f.title}
                 fill
                 sizes="(max-width: 768px) 45vw, 280px"
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 quality={90}
               />
+              {/* Play overlay on hover */}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/15 transition-colors">
+                <div className="w-8 h-8 rounded-full bg-[#6952E6] shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-90 transition-all duration-200">
+                  <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent ml-0.5" />
+                </div>
+              </div>
             </div>
 
-            {/* Title + Button */}
-            <div className="p-2 flex-1 flex flex-col">
-              <p className="text-[12px] font-semibold text-gray-900 leading-snug line-clamp-2 min-h-[2.6em]">
+            {/* Title + Meta + Button */}
+            <div className="px-2 pt-1.5 pb-2 flex-1 flex flex-col">
+              <p className="text-[11px] font-semibold text-gray-900 leading-snug line-clamp-1 transition-colors group-hover:text-[#6952E6]">
                 {f.title}
               </p>
 
-              <div className="mt-2.5 flex items-center justify-between gap-2">
+              {/* Meta : modules + durée */}
+              <div className="mt-0.5 flex items-center gap-1.5 text-[9.5px] text-gray-500">
+                <span className="inline-flex items-center gap-0.5 tabular-nums">
+                  <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  </svg>
+                  <CountUp value={f.modules} /> modules
+                </span>
+                <span className="text-gray-300">·</span>
+                <span className="inline-flex items-center gap-0.5">
+                  <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                  {f.duration}
+                </span>
+              </div>
+
+              <div className="mt-1.5 flex items-center justify-between gap-2">
                 {f.free ? (
                   <span className="text-[12px] font-bold text-gray-900">Gratuit</span>
                 ) : (
@@ -435,7 +500,117 @@ function VideoMock() {
                 )}
               </div>
             </div>
-          </div>
+            </motion.div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Vidéothèque (Vidéo) — style YouTube ─────────────────────────── */
+
+function VideoLibraryMock() {
+  const videos: { title: string; duration: string; views: number; image: string; free: boolean; price?: string }[] = [
+    { title: "La méthode que j'utilise vraiment", duration: "8:12", views: 1400, image: "/videos/clean_strategie_youtube_change_tout.png", free: true },
+    { title: "Comment je trouve des clients automatiquement", duration: "12:34", views: 856, image: "/videos/clean_clients_automatiquement.png", free: true },
+    { title: "Le système qui génère des ventes tous les jours", duration: "18:47", views: 234, image: "/videos/clean_systeme_ventes_tous_les_jours.png", free: false, price: "19 €" },
+    { title: "La stratégie YouTube qui change tout", duration: "24:03", views: 412, image: "/videos/methode_utilise_vraiment.png", free: false, price: "29 €" },
+  ];
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200/80 shadow-[0_20px_50px_-15px_rgba(15,12,40,0.15)] overflow-hidden">
+      {/* Header */}
+      <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+        <div>
+          <div className="text-[13px] font-bold text-gray-900">Vidéos</div>
+          <div className="text-[10px] text-gray-500 mt-0.5">42 vidéos disponibles dans cette communauté</div>
+        </div>
+        <div className="inline-flex items-center gap-1.5 bg-[#6952E6]/[0.08] px-2 py-1 rounded-full">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#6952E6]" />
+          <span className="text-[9px] font-bold text-[#6952E6] uppercase tracking-wider">Récentes</span>
+        </div>
+      </div>
+
+      {/* Grid 2x2 */}
+      <div className="grid grid-cols-2 gap-x-3 gap-y-4 p-3">
+        {videos.map((v, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.div
+              className="group cursor-pointer flex flex-col"
+              animate={{ y: [0, -2, 0] }}
+              transition={{ duration: 6 + i * 0.7, repeat: Infinity, ease: "easeInOut", delay: 0.5 + i * 0.2 }}
+            >
+            {/* Thumbnail */}
+            <div className="relative aspect-video rounded-lg bg-gray-100 overflow-hidden">
+              <Image
+                src={v.image}
+                alt={v.title}
+                fill
+                sizes="(max-width: 768px) 45vw, 280px"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                quality={90}
+              />
+
+              {/* Duration badge — YouTube style */}
+              <div className="absolute bottom-1 right-1 text-[9px] font-bold text-white bg-black/80 px-1.5 py-0.5 rounded z-10">
+                {v.duration}
+              </div>
+
+              {/* Premium badge for paid */}
+              {!v.free && (
+                <div className="absolute top-1 left-1 flex items-center gap-0.5 bg-[#6952E6] text-white text-[8.5px] font-bold px-1.5 py-0.5 rounded z-10">
+                  <svg className="w-2 h-2" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                  </svg>
+                  Premium
+                </div>
+              )}
+
+              {/* Play overlay on hover with pulse rings */}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/15 transition-colors z-10">
+                {/* Pulse rings (visible only on hover) */}
+                <span className="absolute w-10 h-10 rounded-full bg-[#6952E6]/30 opacity-0 group-hover:opacity-100 group-hover:animate-ping pointer-events-none" />
+                <span
+                  className="absolute w-10 h-10 rounded-full bg-[#6952E6]/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping pointer-events-none"
+                  style={{ animationDelay: "0.5s" }}
+                />
+                {/* Play button */}
+                <div className="relative w-10 h-10 rounded-full bg-[#6952E6] shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-90 transition-all duration-200">
+                  <div className="w-0 h-0 border-l-[10px] border-l-white border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent ml-1" />
+                </div>
+              </div>
+            </div>
+
+            {/* Meta — YouTube style (avatar + titre + infos) */}
+            <div className="mt-2 flex items-start gap-2">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#6952E6] to-[#8B75FF] flex items-center justify-center text-white text-[10px] font-bold shrink-0">
+                L
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[12px] font-semibold text-gray-900 leading-snug line-clamp-2 group-hover:text-[#6952E6] transition-colors">
+                  {v.title}
+                </p>
+                <div className="flex items-center gap-1.5 mt-1">
+                  {v.free ? (
+                    <span className="text-[10px] font-bold text-gray-900">Gratuit</span>
+                  ) : (
+                    <span className="text-[10px] font-bold text-[#6952E6]">{v.price}</span>
+                  )}
+                  <span className="text-[10px] text-gray-300">·</span>
+                  <span className="text-[10px] text-gray-500 tabular-nums">
+                    <CountUp value={v.views} format={formatViews} /> vues
+                  </span>
+                </div>
+              </div>
+            </div>
+            </motion.div>
+          </motion.div>
         ))}
       </div>
     </div>
