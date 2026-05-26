@@ -272,15 +272,17 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Image produit */}
-            <Image
-              src="/test.png"
-              alt="Yoocamp — tableau de bord"
-              width={1200}
-              height={750}
-              className="w-full h-auto"
-              priority
-            />
+            {/* Image produit (crop aspect-video centré) */}
+            <div className="relative w-full aspect-video bg-gray-50">
+              <Image
+                src="/hero-mockup.png"
+                alt="Yoocamp — tableau de bord"
+                fill
+                sizes="(max-width: 768px) 100vw, 1200px"
+                className="object-cover object-top"
+                priority
+              />
+            </div>
           </div>
         </motion.div>
 

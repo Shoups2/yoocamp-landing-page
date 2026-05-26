@@ -90,16 +90,6 @@ type Feat = {
 
 const FEATS: Feat[] = [
   {
-    id: "community",
-    label: "Communauté",
-    tone: "brand",
-    icon: "💬",
-    title: <>Le lieu où <Grad from="#6952E6" to="#8B75FF">ta communauté se retrouve</Grad></>,
-    desc: "Crée un espace où tes membres peuvent échanger, suivre tes annonces, réagir à tes publications et rester connectés à ton contenu.",
-    bullets: ["Publications & annonces", "Canal de discussion", "Messages privés", "Notifications membres"],
-    mock: "community",
-  },
-  {
     id: "courses",
     label: "Formations",
     tone: "brand",
@@ -111,7 +101,7 @@ const FEATS: Feat[] = [
   },
   {
     id: "videos",
-    label: "Vidéo",
+    label: "Vidéos",
     tone: "brand",
     icon: "🎥",
     title: <>Publie des vidéos <Grad from="#6952E6" to="#8B75FF">exclusives</Grad></>,
@@ -120,11 +110,21 @@ const FEATS: Feat[] = [
     mock: "videos",
   },
   {
+    id: "community",
+    label: "Communauté",
+    tone: "brand",
+    icon: "💬",
+    title: <>Le lieu où <Grad from="#6952E6" to="#8B75FF">ta communauté se retrouve</Grad></>,
+    desc: "Crée un espace où tes membres peuvent échanger, suivre tes annonces, réagir à tes publications et rester connectés à ton contenu.",
+    bullets: ["Publications & annonces", "Canal de discussion", "Messages privés", "Notifications membres"],
+    mock: "community",
+  },
+  {
     id: "events",
     label: "Événements",
-    tone: "sky",
+    tone: "brand",
     icon: "📅",
-    title: <>Organise des <Grad from="#3D9DFF" to="#5BB1FF">événements</Grad></>,
+    title: <>Organise des <Grad from="#6952E6" to="#8B75FF">événements</Grad></>,
     desc: "Annonce tes lives, webinaires, sessions privées, mentorats ou coachings, puis garde tes membres informés avec des notifications en temps réel.",
     bullets: ["Lives & webinaires", "Sessions privées", "Mentorat & coaching", "Notifications aux membres"],
     mock: "events",
@@ -281,7 +281,7 @@ export default function FeaturesTabs() {
 
             {/* Right — mockup */}
             <div
-              className="relative p-6 md:p-8 lg:p-10 min-h-[440px] md:min-h-[520px] flex items-center justify-center overflow-hidden transition-colors duration-500"
+              className="relative p-5 md:p-7 lg:p-8 min-h-[380px] md:min-h-[440px] flex items-center justify-center overflow-hidden transition-colors duration-500"
               style={{ background: `linear-gradient(135deg, ${t.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
             >
               <motion.div
