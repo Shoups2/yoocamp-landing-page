@@ -2,6 +2,7 @@
 
 import { useState, useEffect, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import CheckList from "./CheckList";
 
 /* ── Tokens ─────────────────────────────────────────────────────────── */
@@ -397,13 +398,14 @@ function VideoMock() {
         {formations.map((f, i) => (
           <div key={i} className="rounded-lg overflow-hidden border border-gray-100 bg-white flex flex-col">
             {/* Thumbnail */}
-            <div className="aspect-video bg-gray-100 overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+            <div className="relative aspect-video bg-gray-100 overflow-hidden">
+              <Image
                 src={f.image}
                 alt={f.title}
-                className="w-full h-full object-cover"
-                loading="lazy"
+                fill
+                sizes="(max-width: 768px) 45vw, 280px"
+                className="object-cover"
+                quality={90}
               />
             </div>
 
