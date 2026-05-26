@@ -94,9 +94,9 @@ const FEATS: Feat[] = [
     label: "Formations",
     tone: "brand",
     icon: "🎓",
-    title: <>Crée et <Grad from="#6952E6" to="#8B75FF">vends tes formations</Grad></>,
-    desc: "Construis tes modules avec vidéos, images et textes, puis propose-les gratuitement ou en accès payant à tes membres.",
-    bullets: ["Création de modules", "Vidéos, images & textes", "Accès gratuit ou payant", "Suivi de progression"],
+    title: <>Crée et vends des <Grad from="#6952E6" to="#8B75FF">formations</Grad></>,
+    desc: "Transforme tes connaissances, contenus ou méthodes en modules simples, puis propose-les gratuitement ou en accès payant à tes membres.",
+    bullets: ["Modules simples à organiser", "Vidéos, images & ressources", "Accès gratuit ou payant", "Suivi de progression"],
     mock: "courses",
   },
   {
@@ -104,8 +104,8 @@ const FEATS: Feat[] = [
     label: "Vidéos",
     tone: "brand",
     icon: "🎥",
-    title: <>Publie des vidéos <Grad from="#6952E6" to="#8B75FF">exclusives</Grad></>,
-    desc: "Mets en ligne tes vidéos, replays ou autres contenus premium, puis choisis de les proposer gratuitement ou en accès payant à tes membres.",
+    title: <>Publie du contenu <Grad from="#6952E6" to="#8B75FF">exclusif</Grad></>,
+    desc: "Partage tes vidéos, replays ou contenus premium dans un espace réservé à tes membres, où ils peuvent les retrouver, les suivre et y réagir.",
     bullets: ["Vidéos gratuites ou payantes", "Accès réservé aux membres", "Commentaires & réactions"],
     mock: "videos",
   },
@@ -114,9 +114,9 @@ const FEATS: Feat[] = [
     label: "Communauté",
     tone: "brand",
     icon: "💬",
-    title: <>Le lieu où <Grad from="#6952E6" to="#8B75FF">ta communauté se retrouve</Grad></>,
-    desc: "Crée un espace où tes membres peuvent échanger, suivre tes annonces, réagir à tes publications et rester connectés à ton contenu.",
-    bullets: ["Publications & annonces", "Canal de discussion", "Messages privés", "Notifications membres"],
+    title: <>Crée le point de rendez-vous de ta <Grad from="#6952E6" to="#8B75FF">communauté</Grad></>,
+    desc: "Un espace privé pour partager tes annonces, lancer les échanges et garder le lien avec les membres qui te suivent vraiment.",
+    bullets: ["Publications & annonces", "Discussions entre membres", "Messages privés", "Notifications importantes", "Projets collaboratifs"],
     mock: "community",
   },
   {
@@ -124,8 +124,8 @@ const FEATS: Feat[] = [
     label: "Événements",
     tone: "brand",
     icon: "📅",
-    title: <>Organise des <Grad from="#6952E6" to="#8B75FF">événements</Grad></>,
-    desc: "Annonce tes lives, webinaires, sessions privées, mentorats ou coachings, puis garde tes membres informés avec des notifications en temps réel.",
+    title: <>Crée des moments forts avec tes <Grad from="#6952E6" to="#8B75FF">membres</Grad></>,
+    desc: "Planifie tes lives, webinaires, coachings ou sessions privées, puis garde toute ta communauté informée au même endroit.",
     bullets: ["Lives & webinaires", "Sessions privées", "Mentorat & coaching", "Notifications aux membres"],
     mock: "events",
   },
@@ -175,17 +175,17 @@ export default function FeaturesTabs() {
             style={{ color: "#6952E6", background: "rgba(105,82,230,0.07)", borderColor: "rgba(105,82,230,0.18)" }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#6952E6]" />
-            Communautés
+            Ce que tu peux créer
           </span>
           <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1]">
-            Crée, partage.
+            Ton espace prend vie
             <br />
             <span className="whitespace-nowrap bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
-              Fais grandir ta communauté.
+              autour de ce que tu crées
             </span>
           </h2>
           <p className="mt-5 text-base md:text-lg text-gray-500 leading-relaxed">
-            Plus besoin de jongler entre Discord, Notion, Stripe et Calendly. On a tout réuni — en mieux.
+            Vidéos, formations, événements, discussions ou offres payantes : Yoocamp réunit tout ce qu&apos;il te faut pour accueillir tes membres et faire vivre ton projet.
           </p>
         </motion.div>
 

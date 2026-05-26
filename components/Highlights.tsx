@@ -13,27 +13,8 @@ const SUN  = { c: "#FFB627", soft: "rgba(255,182,39,0.10)", ring: "rgba(255,182,
 
 export default function Highlights() {
   return (
-    <section className="relative pt-2 pb-16 md:pt-4 md:pb-20 overflow-hidden bg-white">
+    <section className="relative pt-6 pb-16 md:pt-8 md:pb-20 overflow-hidden bg-white">
       <div className="max-w-6xl mx-auto px-5 md:px-6">
-
-        {/* ── Séparateur "Inclus aussi" ── */}
-        <motion.div
-          className="relative max-w-md mx-auto mb-10 md:mb-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="absolute inset-0 flex items-center pointer-events-none" aria-hidden="true">
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-          </div>
-          <div className="relative flex justify-center">
-            <span className="bg-white px-4 text-[11px] font-bold uppercase tracking-[0.18em] text-gray-400">
-              Inclus aussi
-            </span>
-          </div>
-        </motion.div>
-
         <div className="grid md:grid-cols-2 gap-5 md:gap-6">
 
           {/* ── Carte 1 : Monétisation ── */}
@@ -68,7 +49,7 @@ export default function Highlights() {
                 className="font-bold text-gray-900 text-[1.7rem] md:text-[1.95rem] leading-[1.05] tracking-[-0.025em]"
                 style={{ fontFamily: "var(--font-bricolage), sans-serif" }}
               >
-                Transforme ton contenu{" "}
+                Gère tes revenus{" "}
                 <span
                   style={{
                     backgroundImage: `linear-gradient(135deg, ${MINT.c}, #5DDDBE)`,
@@ -77,16 +58,16 @@ export default function Highlights() {
                     backgroundClip: "text",
                   }}
                 >
-                  en revenus
+                  sans complexité
                 </span>
               </h3>
               <p className="mt-3 text-[15px] text-gray-500 leading-relaxed">
-                Vends tes formations, vidéos ou accès privés, fixe tes prix librement et encaisse via Stripe. Yoocamp gère les paiements, les accès et les virements automatiques.
+                Vends tes formations, vidéos ou abonnements, encaisse les paiements et suis tes ventes en temps réel depuis ton dashboard intégré.
               </p>
               <div className="mt-5">
                 <CheckList
                   color={MINT.c}
-                  items={["Prix libres", "Abonnement ou paiement unique", "Paiements sécurisés", "Virements automatiques"]}
+                  items={["Suivi des ventes en temps réel", "Dashboard intégré", "Paiements sécurisés", "Virements automatiques"]}
                 />
               </div>
             </div>
@@ -118,13 +99,13 @@ export default function Highlights() {
                 style={{ color: SUN.c }}
               >
                 <span className="w-1.5 h-1.5 rounded-full" style={{ background: SUN.c }} />
-                App mobile
+                Mobile
               </div>
               <h3
                 className="font-bold text-gray-900 text-[1.7rem] md:text-[1.95rem] leading-[1.05] tracking-[-0.025em]"
                 style={{ fontFamily: "var(--font-bricolage), sans-serif" }}
               >
-                Garde le lien{" "}
+                Ta communauté toujours{" "}
                 <span
                   style={{
                     backgroundImage: `linear-gradient(135deg, ${SUN.c}, #FFD16B)`,
@@ -133,16 +114,16 @@ export default function Highlights() {
                     backgroundClip: "text",
                   }}
                 >
-                  avec ta communauté
+                  à portée de main
                 </span>
               </h3>
               <p className="mt-3 text-[15px] text-gray-500 leading-relaxed">
-                Tes membres accèdent à tes contenus, formations, discussions et événements depuis leur téléphone, où qu&apos;ils soient.
+                Tes membres retrouvent tes contenus, formations, discussions et événements depuis leur téléphone, avec une expérience simple à utiliser au quotidien.
               </p>
               <div className="mt-5">
                 <CheckList
                   color={SUN.c}
-                  items={["Accès iOS & Android", "Notifications push", "Formations sur mobile", "Discussions à tout moment"]}
+                  items={["Accès depuis le téléphone", "Notifications push", "Formations faciles à suivre", "Discussions à tout moment"]}
                 />
               </div>
             </div>

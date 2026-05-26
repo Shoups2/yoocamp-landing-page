@@ -196,13 +196,6 @@ export default function Hero() {
               <span className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center shrink-0">
                 <svg className="w-2.5 h-2.5 text-green-500" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
               </span>
-              Gratuit pour démarrer
-            </span>
-            <span>·</span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                <svg className="w-2.5 h-2.5 text-green-500" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
-              </span>
               Sans carte bancaire
             </span>
             <span>·</span>
@@ -210,7 +203,14 @@ export default function Hero() {
               <span className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center shrink-0">
                 <svg className="w-2.5 h-2.5 text-green-500" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
               </span>
-              Prêt en 2 minutes
+              Prêt en quelques minutes
+            </span>
+            <span>·</span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+                <svg className="w-2.5 h-2.5 text-green-500" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+              </span>
+              Monétise quand tu es prêt
             </span>
           </div>
         </motion.div>
