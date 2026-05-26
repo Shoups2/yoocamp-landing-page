@@ -68,7 +68,7 @@ export default function Highlights() {
                 className="font-bold text-gray-900 text-[1.7rem] md:text-[1.95rem] leading-[1.05] tracking-[-0.025em]"
                 style={{ fontFamily: "var(--font-bricolage), sans-serif" }}
               >
-                De l&apos;offre au virement,{" "}
+                Transforme ton contenu{" "}
                 <span
                   style={{
                     backgroundImage: `linear-gradient(135deg, ${MINT.c}, #5DDDBE)`,
@@ -77,16 +77,16 @@ export default function Highlights() {
                     backgroundClip: "text",
                   }}
                 >
-                  en quelques clics
+                  en revenus
                 </span>
               </h3>
               <p className="mt-3 text-[15px] text-gray-500 leading-relaxed">
-                Crée ton offre, partage ton lien et encaisse via Stripe. Yoocamp gère l&apos;accès, les paiements et les virements automatiques.
+                Vends tes formations, vidéos ou accès privés, fixe tes prix librement et encaisse via Stripe. Yoocamp gère les paiements, les accès et les virements automatiques.
               </p>
               <div className="mt-5">
                 <CheckList
                   color={MINT.c}
-                  items={["Offres en quelques clics", "Abonnements ou paiement unique", "Virements automatiques", "Zéro plugin"]}
+                  items={["Prix libres", "Abonnement ou paiement unique", "Paiements sécurisés", "Virements automatiques"]}
                 />
               </div>
             </div>

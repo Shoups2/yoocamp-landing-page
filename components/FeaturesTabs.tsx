@@ -131,7 +131,7 @@ export default function FeaturesTabs() {
       <div className="max-w-6xl mx-auto px-5 md:px-6">
         {/* Header */}
         <motion.div
-          className="text-center max-w-2xl mx-auto"
+          className="text-center max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
@@ -147,7 +147,7 @@ export default function FeaturesTabs() {
           <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1]">
             Crée, partage.
             <br />
-            <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
+            <span className="whitespace-nowrap bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
               Fais grandir ta communauté.
             </span>
           </h2>
@@ -196,7 +196,7 @@ export default function FeaturesTabs() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="grid md:grid-cols-[1fr_1.3fr]">
+          <div className="grid md:grid-cols-[1fr_1.5fr]">
             {/* Left — text */}
             <div className="p-7 md:p-10 lg:p-12 flex flex-col justify-center">
               <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] self-start" style={{ color: t.c }}>
@@ -253,7 +253,7 @@ export default function FeaturesTabs() {
             >
               <motion.div
                 key={f.id}
-                className="relative w-full max-w-md"
+                className="relative w-full max-w-xl"
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -377,48 +377,62 @@ function DiscussionMock() {
 /* ── Vidéo (Formations) ────────────────────────────────────────────── */
 
 function VideoMock() {
-  const videos = [
-    { title: "Lancer son offre", duration: "18 min", progress: 100, color: "from-[#6952E6] to-[#8B75FF]" },
-    { title: "Contenu qui convertit", duration: "12 min", progress: 65, color: "from-[#6C4FE0] to-[#6952E6]" },
-    { title: "Audience fidèle", duration: "24 min", progress: 0, color: "from-[#8B75FF] to-[#B4A0FF]" },
-    { title: "Monétiser son savoir", duration: "15 min", progress: 0, color: "from-[#6952E6] to-[#6C4FE0]" },
+  const formations: { title: string; image: string; free: boolean; price?: string }[] = [
+    { title: "Automatiser son business avec l'IA", image: "/formations/4eb4147d-30ef-49ac-a22b-9ccbf7190a65.png", free: true },
+    { title: "La stratégie YouTube qui génère des clients", image: "/formations/7e194074-cb06-4f3c-acec-b5b334e9f82f.png", free: true },
+    { title: "Comment créer un business rentable en 2026", image: "/formations/d626614f-ed9b-4761-a8f7-ee9c42010c8c.png", free: false, price: "99 €" },
+    { title: "De 0 à 10K€/mois avec une seule compétence", image: "/formations/444f0011-557d-4c97-9fe2-bf4255344c3b.png", free: false, price: "149 €" },
   ];
 
   return (
     <div className="bg-white rounded-xl border border-gray-200/80 shadow-[0_20px_50px_-15px_rgba(15,12,40,0.15)] overflow-hidden">
-      <div className="px-3.5 py-2.5 border-b border-gray-100 flex items-center justify-between">
-        <span className="text-[11px] font-semibold text-gray-900">Ma formation</span>
-        <span className="text-[10px] text-gray-400">4 vidéos</span>
+      {/* Header */}
+      <div className="px-4 py-3 border-b border-gray-100">
+        <div className="text-[13px] font-bold text-gray-900">Formations</div>
+        <div className="text-[10px] text-gray-500 mt-0.5">10 formations disponibles dans cette communauté</div>
       </div>
+
+      {/* Grid 2x2 */}
       <div className="grid grid-cols-2 gap-2.5 p-3">
-        {videos.map((v, i) => (
-          <div key={i} className="relative">
-            <div className={`aspect-video rounded-lg bg-gradient-to-br ${v.color} flex items-center justify-center relative overflow-hidden`}>
-              <div className="absolute top-[-20%] right-[-15%] w-[60%] h-[80%] bg-white/8 rounded-full blur-[20px]" />
-              {v.progress === 100 ? (
-                <div className="w-6 h-6 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center">
-                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
-                </div>
-              ) : (
-                <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                  <div className="w-0 h-0 border-l-[5px] border-l-white border-t-[3px] border-t-transparent border-b-[3px] border-b-transparent ml-0.5" />
-                </div>
-              )}
-              {v.progress > 0 && v.progress < 100 && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-black/15">
-                  <motion.div
-                    className="h-full bg-white/80 rounded-full"
-                    initial={{ width: "0%" }}
-                    animate={{ width: `${v.progress}%` }}
-                    transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-                  />
-                </div>
-              )}
+        {formations.map((f, i) => (
+          <div key={i} className="rounded-lg overflow-hidden border border-gray-100 bg-white flex flex-col">
+            {/* Thumbnail */}
+            <div className="aspect-video bg-gray-100 overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={f.image}
+                alt={f.title}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
-            <p className="text-[10px] font-semibold text-gray-700 mt-1.5 truncate">{v.title}</p>
-            <p className="text-[9px] text-gray-400">{v.duration}</p>
+
+            {/* Title + Button */}
+            <div className="p-2 flex-1 flex flex-col">
+              <p className="text-[12px] font-semibold text-gray-900 leading-snug line-clamp-2 min-h-[2.6em]">
+                {f.title}
+              </p>
+
+              <div className="mt-2.5 flex items-center justify-between gap-2">
+                {f.free ? (
+                  <span className="text-[12px] font-bold text-gray-900">Gratuit</span>
+                ) : (
+                  <span className="text-[12px] font-bold text-gray-900">{f.price}</span>
+                )}
+                {f.free ? (
+                  <button className="text-[10px] font-bold text-gray-700 bg-white border border-gray-200 px-3 py-1.5 rounded-md hover:bg-gray-50 hover:border-gray-300 transition-colors">
+                    Commencer
+                  </button>
+                ) : (
+                  <button className="text-[10px] font-bold text-white bg-[#6952E6] px-3 py-1.5 rounded-md flex items-center gap-1.5 hover:bg-[#5841C9] transition-colors">
+                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                    </svg>
+                    Débloquer
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
         ))}
       </div>
