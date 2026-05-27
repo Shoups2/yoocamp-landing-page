@@ -406,100 +406,99 @@ function DiscussionMock() {
   );
 }
 
-/* ── Vidéo (Formations) ────────────────────────────────────────────── */
+/* ── Formations (single spotlight) ─────────────────────────────────── */
 
 function VideoMock() {
-  const formations: { title: string; image: string; free: boolean; price?: string; modules: number; duration: string }[] = [
-    { title: "Automatiser son business avec l'IA", image: "/formations/4eb4147d-30ef-49ac-a22b-9ccbf7190a65.png", free: true, modules: 6, duration: "3h 12min" },
-    { title: "La stratégie YouTube qui génère des clients", image: "/formations/7e194074-cb06-4f3c-acec-b5b334e9f82f.png", free: true, modules: 4, duration: "2h 45min" },
-    { title: "Comment créer un business rentable en 2026", image: "/formations/d626614f-ed9b-4761-a8f7-ee9c42010c8c.png", free: false, price: "99 €", modules: 12, duration: "6h 30min" },
-    { title: "De 0 à 10K€/mois avec une seule compétence", image: "/formations/444f0011-557d-4c97-9fe2-bf4255344c3b.png", free: false, price: "149 €", modules: 10, duration: "5h 15min" },
+  const modules: { num: number; title: string; duration: string; status: "done" | "current" | "locked" }[] = [
+    { num: 1, title: "Trouver ta niche rentable", duration: "32 min", status: "done" },
+    { num: 2, title: "Créer ton offre signature", duration: "45 min", status: "done" },
+    { num: 3, title: "Construire ton audience", duration: "1h 12min", status: "current" },
+    { num: 4, title: "Monétiser ton expertise", duration: "55 min", status: "locked" },
+    { num: 5, title: "Scaler ton business", duration: "1h 08min", status: "locked" },
   ];
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200/80 shadow-[0_20px_50px_-15px_rgba(15,12,40,0.15)] overflow-hidden">
-      {/* Header */}
-      <div className="px-4 py-2 border-b border-gray-100">
-        <div className="text-[12.5px] font-bold text-gray-900">Formations</div>
-        <div className="text-[9.5px] text-gray-500 mt-0.5">10 formations disponibles dans cette communauté</div>
+    <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_20px_50px_-15px_rgba(15,12,40,0.15)] overflow-hidden">
+      {/* Hero thumbnail — inset card-like */}
+      <div className="px-3 pt-3">
+        <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-200/60">
+          <Image
+            src="/formations/clean_business_creator.png"
+            alt="Lance ton business"
+            fill
+            sizes="(max-width: 768px) 100vw, 440px"
+            className="object-cover"
+            priority={false}
+          />
+          {/* Léger dégradé pour lisibilité du badge */}
+          <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-black/25 to-transparent" />
+
+          <div className="absolute top-2 left-2 text-[8px] font-black text-white bg-red-500 px-1.5 py-0.5 rounded uppercase tracking-wider z-10">
+            POPULAIRE
+          </div>
+        </div>
       </div>
 
-      {/* Grid 2x2 */}
-      <div className="grid grid-cols-2 gap-2 px-5 py-2.5">
-        {formations.map((f, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          >
+      {/* Body : titre + price */}
+      <div className="px-4 pt-3 pb-2">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <h4 className="text-[13px] font-bold text-gray-900 leading-tight">Lance ton business : A à Z</h4>
+            <p className="text-[10px] text-gray-500 mt-0.5">
+              <CountUp value={12} /> modules · 6h 30min · <CountUp value={1234} /> élèves
+            </p>
+          </div>
+          <span className="shrink-0 text-[11px] font-bold text-[#6952E6] bg-[#6952E6]/[0.08] border border-[#6952E6]/15 px-2.5 py-1 rounded-md">99 €</span>
+        </div>
+
+        {/* Progress bar */}
+        <div className="mt-3 flex items-center gap-2">
+          <div className="flex-1 h-1.5 rounded-full bg-gray-100 overflow-hidden">
             <motion.div
-              className="group cursor-pointer rounded-lg overflow-hidden border border-gray-100 bg-white flex flex-col transition-shadow hover:shadow-[0_4px_16px_-4px_rgba(105,82,230,0.15)] hover:border-[#6952E6]/20"
-              animate={{ y: [0, -2, 0] }}
-              transition={{ duration: 6 + i * 0.6, repeat: Infinity, ease: "easeInOut", delay: 0.5 + i * 0.2 }}
-            >
-            {/* Thumbnail */}
-            <div className="relative aspect-video bg-gray-100 overflow-hidden">
-              <Image
-                src={f.image}
-                alt={f.title}
-                fill
-                sizes="(max-width: 768px) 45vw, 280px"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                quality={90}
-              />
-              {/* Play overlay on hover */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/15 transition-colors">
-                <div className="w-8 h-8 rounded-full bg-[#6952E6] shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-90 transition-all duration-200">
-                  <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent ml-0.5" />
-                </div>
-              </div>
-            </div>
+              className="h-full bg-gradient-to-r from-[#6952E6] to-[#8B75FF] rounded-full"
+              initial={{ width: 0 }}
+              whileInView={{ width: "65%" }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+            />
+          </div>
+          <span className="text-[10px] font-bold text-gray-700 tabular-nums">65%</span>
+        </div>
+      </div>
 
-            {/* Title + Meta + Button */}
-            <div className="px-2 pt-1.5 pb-2 flex-1 flex flex-col">
-              <p className="text-[11px] font-semibold text-gray-900 leading-snug line-clamp-1 transition-colors group-hover:text-[#6952E6]">
-                {f.title}
+      {/* Modules list */}
+      <div className="px-4 pb-3 space-y-0.5">
+        {modules.map((m, i) => (
+          <motion.div
+            key={m.num}
+            className="flex items-center gap-2.5 px-2 py-1.5 rounded-md hover:bg-gray-50 transition-colors cursor-pointer"
+            initial={{ opacity: 0, x: -8 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ delay: 0.3 + i * 0.06, duration: 0.4 }}
+          >
+            <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0 ${
+              m.status === "done"
+                ? "bg-emerald-500 text-white"
+                : m.status === "current"
+                  ? "bg-[#6952E6] text-white"
+                  : "bg-gray-100 text-gray-400"
+            }`}>
+              {m.status === "done" ? "✓" : m.status === "locked" ? (
+                <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                </svg>
+              ) : m.num}
+            </div>
+            <div className="flex-1 min-w-0 flex items-center gap-2">
+              <p className={`text-[11px] font-medium truncate ${m.status === "locked" ? "text-gray-400" : "text-gray-800"}`}>
+                {m.title}
               </p>
-
-              {/* Meta : modules + durée */}
-              <div className="mt-0.5 flex items-center gap-1.5 text-[9.5px] text-gray-500">
-                <span className="inline-flex items-center gap-0.5 tabular-nums">
-                  <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                  </svg>
-                  <CountUp value={f.modules} /> modules
-                </span>
-                <span className="text-gray-300">·</span>
-                <span className="inline-flex items-center gap-0.5">
-                  <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
-                  {f.duration}
-                </span>
-              </div>
-
-              <div className="mt-1.5 flex items-center justify-between gap-2">
-                {f.free ? (
-                  <span className="text-[12px] font-bold text-gray-900">Gratuit</span>
-                ) : (
-                  <span className="text-[12px] font-bold text-gray-900">{f.price}</span>
-                )}
-                {f.free ? (
-                  <button className="text-[10px] font-bold text-gray-700 bg-white border border-gray-200 px-3 py-1.5 rounded-md hover:bg-gray-50 hover:border-gray-300 transition-colors">
-                    Commencer
-                  </button>
-                ) : (
-                  <button className="text-[10px] font-bold text-white bg-[#6952E6] px-3 py-1.5 rounded-md flex items-center gap-1.5 hover:bg-[#5841C9] transition-colors">
-                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-                    </svg>
-                    Débloquer
-                  </button>
-                )}
-              </div>
+              {m.status === "current" && (
+                <span className="text-[8px] font-bold text-[#6952E6] bg-[#6952E6]/[0.08] px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">En cours</span>
+              )}
             </div>
-            </motion.div>
+            <span className="text-[9px] text-gray-400 tabular-nums shrink-0">{m.duration}</span>
           </motion.div>
         ))}
       </div>
@@ -507,110 +506,132 @@ function VideoMock() {
   );
 }
 
-/* ── Vidéothèque (Vidéo) — style YouTube ─────────────────────────── */
+/* ── Vidéothèque (Vidéo) — single spotlight ───────────────────────── */
 
 function VideoLibraryMock() {
-  const videos: { title: string; duration: string; views: number; image: string; free: boolean; price?: string }[] = [
-    { title: "La méthode que j'utilise vraiment", duration: "8:12", views: 1400, image: "/videos/clean_strategie_youtube_change_tout.png", free: true },
-    { title: "Comment je trouve des clients automatiquement", duration: "12:34", views: 856, image: "/videos/clean_clients_automatiquement.png", free: true },
-    { title: "Le système qui génère des ventes tous les jours", duration: "18:47", views: 234, image: "/videos/clean_systeme_ventes_tous_les_jours.png", free: false, price: "19 €" },
-    { title: "La stratégie YouTube qui change tout", duration: "24:03", views: 412, image: "/videos/methode_utilise_vraiment.png", free: false, price: "29 €" },
+  const suggested = [
+    { title: "La méthode que j'utilise vraiment", duration: "8:12", premium: false, src: "/videos/methode_utilise_vraiment.png" },
+    { title: "Le système qui génère des ventes", duration: "18:47", premium: true, src: "/videos/clean_systeme_ventes_tous_les_jours.png" },
+    { title: "Stratégie YouTube 2026", duration: "24:03", premium: true, src: "/videos/clean_strategie_youtube_change_tout.png" },
   ];
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200/80 shadow-[0_20px_50px_-15px_rgba(15,12,40,0.15)] overflow-hidden">
-      {/* Header */}
-      <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
-        <div>
-          <div className="text-[13px] font-bold text-gray-900">Vidéos</div>
-          <div className="text-[10px] text-gray-500 mt-0.5">42 vidéos disponibles dans cette communauté</div>
+    <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_20px_50px_-15px_rgba(15,12,40,0.15)] overflow-hidden">
+      {/* Channel header */}
+      <div className="px-4 py-2.5 border-b border-gray-100 flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#6952E6] to-[#8B75FF] flex items-center justify-center text-white text-[11px] font-bold">L</div>
+          <div>
+            <div className="text-[11.5px] font-bold text-gray-900 flex items-center gap-1">
+              Lucas Martin
+              <svg className="w-3 h-3 text-[#6952E6]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2L9.91 8.26L3.27 8.27L8.55 12.14L6.46 18.4L12 14.53L17.54 18.4L15.45 12.14L20.73 8.27L14.09 8.26L12 2Z" />
+              </svg>
+            </div>
+            <div className="text-[9px] text-gray-500">42 vidéos · 1 234 abonnés</div>
+          </div>
         </div>
-        <div className="inline-flex items-center gap-1.5 bg-[#6952E6]/[0.08] px-2 py-1 rounded-full">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#6952E6]" />
-          <span className="text-[9px] font-bold text-[#6952E6] uppercase tracking-wider">Récentes</span>
+        <button className="text-[10px] font-bold text-white bg-[#6952E6] px-3 py-1.5 rounded-full hover:bg-[#5841C9] transition-colors">
+          S&apos;abonner
+        </button>
+      </div>
+
+      {/* Big video player — inset card-like */}
+      <div className="px-3 pt-3">
+        <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-200/60">
+          <Image
+            src="/videos/clean_clients_automatiquement.png"
+            alt="Comment trouver des clients automatiquement"
+            fill
+            sizes="(max-width: 768px) 100vw, 440px"
+            className="object-cover"
+            priority={false}
+          />
+          {/* Léger dégradé pour lisibilité du badge */}
+          <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-black/25 to-transparent" />
+
+          <div className="absolute top-2 left-2 text-[8px] font-black text-white bg-red-500 px-1.5 py-0.5 rounded uppercase tracking-wider z-10 flex items-center gap-1">
+            <span className="w-1 h-1 rounded-full bg-white animate-pulse" />
+            LIVE
+          </div>
+
+          {/* Play button */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="relative">
+              <span className="absolute inset-0 rounded-full bg-white/30 animate-ping" />
+              <div className="relative w-12 h-12 rounded-full bg-white/95 shadow-xl flex items-center justify-center">
+                <div className="w-0 h-0 border-l-[12px] border-l-[#6952E6] border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1" />
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute bottom-1.5 right-1.5 text-[9px] font-bold text-white bg-black/80 px-1.5 py-0.5 rounded z-10">
+            8:12
+          </div>
         </div>
       </div>
 
-      {/* Grid 2x2 */}
-      <div className="grid grid-cols-2 gap-x-3 gap-y-4 px-5 py-3">
-        {videos.map((v, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <motion.div
-              className="group cursor-pointer flex flex-col"
-              animate={{ y: [0, -2, 0] }}
-              transition={{ duration: 6 + i * 0.7, repeat: Infinity, ease: "easeInOut", delay: 0.5 + i * 0.2 }}
-            >
-            {/* Thumbnail */}
-            <div className="relative aspect-video rounded-lg bg-gray-100 overflow-hidden">
-              <Image
-                src={v.image}
-                alt={v.title}
-                fill
-                sizes="(max-width: 768px) 45vw, 280px"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                quality={90}
-              />
+      {/* Video info */}
+      <div className="px-4 py-3">
+        <h4 className="text-[13.5px] font-bold text-gray-900 leading-tight">
+          Comment trouver des clients automatiquement
+        </h4>
+        <div className="flex items-center gap-1.5 mt-1.5 text-[10px] text-gray-500">
+          <CountUp value={1400} format={formatViews} /> vues · il y a 2 jours
+        </div>
 
-              {/* Duration badge — YouTube style */}
-              <div className="absolute bottom-1 right-1 text-[9px] font-bold text-white bg-black/80 px-1.5 py-0.5 rounded z-10">
-                {v.duration}
-              </div>
+        {/* Reactions */}
+        <div className="mt-2.5 flex items-center gap-1.5 flex-wrap">
+          {[
+            { emoji: "🔥", count: 124 },
+            { emoji: "❤️", count: 89 },
+            { emoji: "💯", count: 32 },
+          ].map((r, i) => (
+            <span key={i} className="text-[10px] font-bold text-gray-700 bg-gray-50 border border-gray-200 px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+              <span>{r.emoji}</span>
+              <span className="tabular-nums"><CountUp value={r.count} /></span>
+            </span>
+          ))}
+          <span className="ml-auto text-[10px] text-gray-400 inline-flex items-center gap-1">
+            💬 18
+          </span>
+        </div>
 
-              {/* Premium badge for paid */}
-              {!v.free && (
-                <div className="absolute top-1 left-1 flex items-center gap-0.5 bg-[#6952E6] text-white text-[8.5px] font-bold px-1.5 py-0.5 rounded z-10">
-                  <svg className="w-2 h-2" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
+        {/* Suggested */}
+        <div className="mt-3 pt-2.5 border-t border-gray-100">
+          <div className="text-[9px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">À suivre</div>
+          <div className="space-y-1">
+            {suggested.map((s, i) => (
+              <motion.div
+                key={i}
+                className="flex items-center gap-2 px-1.5 py-1 rounded hover:bg-gray-50 transition-colors cursor-pointer"
+                initial={{ opacity: 0, x: -8 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ delay: 0.3 + i * 0.06, duration: 0.4 }}
+              >
+                <div className="relative w-14 h-8 rounded overflow-hidden shrink-0 bg-gray-100 ring-1 ring-gray-200/60">
+                  <Image
+                    src={s.src}
+                    alt={s.title}
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                  <span className="absolute bottom-0 right-0 text-[7px] font-bold text-white bg-black/80 px-0.5 leading-tight z-10">{s.duration}</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10.5px] font-semibold text-gray-800 truncate">{s.title}</p>
+                </div>
+                {s.premium && (
+                  <svg className="w-2.5 h-2.5 text-[#6952E6] shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                   </svg>
-                  Premium
-                </div>
-              )}
-
-              {/* Play overlay on hover with pulse rings */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/15 transition-colors z-10">
-                {/* Pulse rings (visible only on hover) */}
-                <span className="absolute w-10 h-10 rounded-full bg-[#6952E6]/30 opacity-0 group-hover:opacity-100 group-hover:animate-ping pointer-events-none" />
-                <span
-                  className="absolute w-10 h-10 rounded-full bg-[#6952E6]/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping pointer-events-none"
-                  style={{ animationDelay: "0.5s" }}
-                />
-                {/* Play button */}
-                <div className="relative w-10 h-10 rounded-full bg-[#6952E6] shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-90 transition-all duration-200">
-                  <div className="w-0 h-0 border-l-[10px] border-l-white border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent ml-1" />
-                </div>
-              </div>
-            </div>
-
-            {/* Meta — YouTube style (avatar + titre + infos) */}
-            <div className="mt-2 flex items-start gap-2">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#6952E6] to-[#8B75FF] flex items-center justify-center text-white text-[10px] font-bold shrink-0">
-                L
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-[12px] font-semibold text-gray-900 leading-snug line-clamp-2 group-hover:text-[#6952E6] transition-colors">
-                  {v.title}
-                </p>
-                <div className="flex items-center gap-1.5 mt-1">
-                  {v.free ? (
-                    <span className="text-[10px] font-bold text-gray-900">Gratuit</span>
-                  ) : (
-                    <span className="text-[10px] font-bold text-[#6952E6]">{v.price}</span>
-                  )}
-                  <span className="text-[10px] text-gray-300">·</span>
-                  <span className="text-[10px] text-gray-500 tabular-nums">
-                    <CountUp value={v.views} format={formatViews} /> vues
-                  </span>
-                </div>
-              </div>
-            </div>
-            </motion.div>
-          </motion.div>
-        ))}
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
