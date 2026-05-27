@@ -430,11 +430,15 @@ function VideoMock() {
             className="object-cover"
             priority={false}
           />
-          {/* Léger dégradé pour lisibilité du badge */}
-          <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-black/25 to-transparent" />
 
-          <div className="absolute top-2 left-2 text-[8px] font-black text-white bg-red-500 px-1.5 py-0.5 rounded uppercase tracking-wider z-10">
-            POPULAIRE
+          {/* Play button centré */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="relative">
+              <span className="absolute inset-0 rounded-full bg-white/30 animate-ping" />
+              <div className="relative w-12 h-12 rounded-full bg-white/95 shadow-xl flex items-center justify-center">
+                <div className="w-0 h-0 border-l-[12px] border-l-[#6952E6] border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -641,15 +645,15 @@ function VideoLibraryMock() {
 
 const weekEvents = [
   { day: "Lun", num: 9, events: [
-    { title: "Mastermind élèves", time: "14h", color: "bg-indigo-500" },
+    { title: "Mastermind élèves", time: "14h", color: "bg-[#6952E6]" },
     { title: "Coaching Léo", time: "18h", color: "bg-violet-400" },
   ]},
   { day: "Mar", num: 10, events: [
-    { title: "Cours en visio", time: "16h", color: "bg-blue-500" },
+    { title: "Cours en visio", time: "16h", color: "bg-[#8B75FF]" },
   ]},
   { day: "Mer", num: 11, events: [
-    { title: "Coaching Marie", time: "10h", color: "bg-indigo-400" },
-    { title: "Séminaire St-Tropez", time: "14h", color: "bg-violet-500" },
+    { title: "Coaching Marie", time: "10h", color: "bg-violet-400" },
+    { title: "Séminaire St-Tropez", time: "14h", color: "bg-[#6952E6]" },
   ]},
 ];
 
@@ -659,7 +663,7 @@ function EventsMock() {
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_20px_50px_-15px_rgba(15,12,40,0.15)] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <svg className="w-4 h-4 text-[#3D9DFF]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-[#6952E6]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
           </svg>
           <span className="text-xs font-semibold text-gray-700">Semaine du 10 mars</span>
@@ -681,18 +685,18 @@ function EventsMock() {
               transition={{ delay: i * 0.1, duration: 0.3 }}
             >
               <motion.div
-                className={`w-full rounded-xl py-1.5 border text-center cursor-pointer ${selectedDay === i ? "bg-white border-[#3D9DFF]/40 shadow-sm" : "bg-gray-50 border-gray-200"}`}
+                className={`w-full rounded-xl py-1.5 border text-center cursor-pointer ${selectedDay === i ? "bg-white border-[#6952E6]/40 shadow-sm" : "bg-gray-50 border-gray-200"}`}
                 onClick={() => setSelectedDay(i)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 animate={selectedDay === i ? { y: -2 } : { y: 0 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                <span className={`text-[10px] font-semibold block transition-colors duration-200 ${selectedDay === i ? "text-[#3D9DFF]" : "text-gray-400"}`}>{day.day}</span>
+                <span className={`text-[10px] font-semibold block transition-colors duration-200 ${selectedDay === i ? "text-[#6952E6]" : "text-gray-400"}`}>{day.day}</span>
                 <span className={`text-sm font-bold block transition-colors duration-200 ${selectedDay === i ? "text-gray-900" : "text-gray-500"}`}>{day.num}</span>
               </motion.div>
               <div className={`w-full h-28 rounded-lg border flex flex-col items-center justify-start gap-1 p-1 overflow-hidden transition-colors duration-200 ${
-                selectedDay === i ? "border-[#3D9DFF]/20 bg-[#3D9DFF]/[0.04]" : "border-gray-100 bg-gray-50/30"
+                selectedDay === i ? "border-[#6952E6]/20 bg-[#6952E6]/[0.04]" : "border-gray-100 bg-gray-50/30"
               }`}>
                 {day.events.length > 0 ? day.events.map((evt, j) => (
                   <motion.div
@@ -855,7 +859,7 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
         <div className="w-full h-full bg-white rounded-[2.1rem] overflow-hidden relative">
           <div className="relative h-full flex flex-col p-4 text-gray-900">
             <div className="flex items-center justify-between mt-2">
-              <div className="font-bold text-lg" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>Yoocamp</div>
+              <img src="/yoocamp 4.svg" alt="Yoocamp" className="h-5 w-auto" />
               <div className="w-6 h-6 rounded-full bg-[#6952E6] flex items-center justify-center text-[10px] font-bold text-white">3</div>
             </div>
             <div className="text-[11px] text-gray-500 mt-1">Bonjour Lucas 👋</div>
@@ -863,9 +867,9 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
             <div className="mt-4 space-y-2.5">
               <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 text-gray-900 shadow-sm">
                 <div className="flex items-start gap-2.5">
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center text-base shrink-0" style={{ background: tone.soft }}>💰</div>
+                  <div className="w-8 h-8 rounded-lg bg-[#6952E6]/10 flex items-center justify-center text-base shrink-0">💰</div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-[9.5px] font-bold uppercase" style={{ color: tone.c }}>Nouvelle vente</div>
+                    <div className="text-[9.5px] font-bold uppercase text-[#6952E6]">Nouvelle vente</div>
                     <div className="text-[12px] font-bold leading-tight mt-0.5">Léa a acheté Coaching VIP</div>
                     <div className="text-[10px] text-gray-500 mt-0.5">+149 € · il y a 2 min</div>
                   </div>
@@ -885,9 +889,9 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
 
               <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 text-gray-900 shadow-sm">
                 <div className="flex items-start gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-sky-100 flex items-center justify-center text-base shrink-0">📅</div>
+                  <div className="w-8 h-8 rounded-lg bg-[#6952E6]/10 flex items-center justify-center text-base shrink-0">📅</div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-[9.5px] font-bold uppercase text-sky-500">Rappel</div>
+                    <div className="text-[9.5px] font-bold uppercase text-[#6952E6]">Rappel</div>
                     <div className="text-[12px] font-bold leading-tight mt-0.5">Mastermind dans 30 min</div>
                     <div className="text-[10px] text-gray-500 mt-0.5">48 personnes inscrites</div>
                   </div>
