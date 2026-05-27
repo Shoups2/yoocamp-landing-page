@@ -90,7 +90,7 @@ export default function LiveActivity() {
             <span className="relative inline-flex w-2 h-2 rounded-full bg-emerald-500" />
           </span>
           <p className="text-[12.5px] font-semibold uppercase tracking-[0.18em] text-gray-500">
-            Tout ce qui peut se passer dans ta communauté
+            Ce qui peut se passer dans ta communauté Yoocamp
           </p>
         </motion.div>
 

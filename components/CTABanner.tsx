@@ -67,7 +67,7 @@ export default function CTABanner() {
 
         <FadeIn delay={0.1}>
           <p className="text-lg text-white/70 mb-10 max-w-md mx-auto">
-            Crée ton compte gratuitement et lance ta communauté en quelques minutes.
+            Crée ton espace gratuitement, ajoute tes premiers contenus et invite tes membres en quelques minutes.
           </p>
         </FadeIn>
 
@@ -126,7 +126,7 @@ export default function CTABanner() {
                   whileHover={{ scale: 1.03, boxShadow: "0 0 40px rgba(255,255,255,0.25)" }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  Créer ma communauté
+                  Lancer ma communauté gratuitement
                 </motion.button>
 
                 <p className="text-xs text-white/40">

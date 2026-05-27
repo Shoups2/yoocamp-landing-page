@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, type ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import CheckList from "./CheckList";
 
@@ -94,9 +94,9 @@ const FEATS: Feat[] = [
     label: "Formations",
     tone: "brand",
     icon: "🎓",
-    title: <>Crée et vends des <Grad from="#6952E6" to="#8B75FF">formations</Grad></>,
-    desc: "Transforme tes connaissances, contenus ou méthodes en modules simples, puis propose-les gratuitement ou en accès payant à tes membres.",
-    bullets: ["Modules simples à organiser", "Vidéos, images & ressources", "Accès gratuit ou payant", "Suivi de progression"],
+    title: <>Crée et vends tes <Grad from="#6952E6" to="#8B75FF">formations</Grad></>,
+    desc: "Construis une formation complète avec vidéos, modules et ressources. Gratuit ou payant, à toi de choisir.",
+    bullets: ["Tarif à fixer librement", "Modules simples à organiser", "Accès instantané après paiement", "Suivi de progression par membre"],
     mock: "courses",
   },
   {
@@ -104,9 +104,9 @@ const FEATS: Feat[] = [
     label: "Vidéos",
     tone: "brand",
     icon: "🎥",
-    title: <>Publie du contenu <Grad from="#6952E6" to="#8B75FF">exclusif</Grad></>,
-    desc: "Partage tes vidéos, replays ou contenus premium dans un espace réservé à tes membres, où ils peuvent les retrouver, les suivre et y réagir.",
-    bullets: ["Vidéos gratuites ou payantes", "Accès réservé aux membres", "Commentaires & réactions"],
+    title: <>Publie des vidéos <Grad from="#6952E6" to="#8B75FF">réservées à tes membres</Grad></>,
+    desc: "Coulisses, vidéos bonus, replays ou masterclass : choisis ce que tu rends accessible à tous et ce que tu réserves à tes membres.",
+    bullets: ["Contenu pédagogique", "Coulisses & vidéos bonus", "Accès gratuit ou réservé aux membres", "Commentaires & réactions"],
     mock: "videos",
   },
   {
@@ -115,8 +115,8 @@ const FEATS: Feat[] = [
     tone: "brand",
     icon: "💬",
     title: <>Crée le point de rendez-vous de ta <Grad from="#6952E6" to="#8B75FF">communauté</Grad></>,
-    desc: "Un espace privé pour partager tes annonces, lancer les échanges et garder le lien avec les membres qui te suivent vraiment.",
-    bullets: ["Publications & annonces", "Discussions entre membres", "Messages privés", "Notifications importantes", "Projets collaboratifs"],
+    desc: "Rassemble tes membres dans un espace privé, gratuit ou par abonnement. Discussions, annonces, projets — tout se passe au même endroit.",
+    bullets: ["Gratuit ou par abonnement mensuel", "Discussions, annonces & projets", "Messages privés entre membres"],
     mock: "community",
   },
   {
@@ -124,9 +124,9 @@ const FEATS: Feat[] = [
     label: "Événements",
     tone: "brand",
     icon: "📅",
-    title: <>Crée des moments forts avec tes <Grad from="#6952E6" to="#8B75FF">membres</Grad></>,
+    title: <>Propose des lives, coachings et <Grad from="#6952E6" to="#8B75FF">événements payants</Grad></>,
     desc: "Planifie tes lives, webinaires, coachings ou sessions privées, puis garde toute ta communauté informée au même endroit.",
-    bullets: ["Lives & webinaires", "Sessions privées", "Mentorat & coaching", "Notifications aux membres"],
+    bullets: ["Événements privés sur invitation", "Lives & coaching", "Inscriptions & rappels automatiques"],
     mock: "events",
   },
 ];
@@ -136,21 +136,24 @@ const FEATS: Feat[] = [
 export default function FeaturesTabs() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef, { amount: 0.5 });
   const f = FEATS[active];
   const t = TONES[f.tone];
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || !inView) return;
     const timer = setInterval(() => {
       setActive((i) => (i + 1) % FEATS.length);
     }, 8000);
     return () => clearInterval(timer);
-  }, [active, paused]);
+  }, [active, paused, inView]);
 
   return (
     <section
+      ref={sectionRef}
       id="communauté"
-      className="relative pt-24 pb-4 md:pt-32 md:pb-6 overflow-hidden scroll-mt-24"
+      className="relative pt-20 pb-4 md:pt-24 md:pb-6 overflow-hidden scroll-mt-24"
       style={{ background: "linear-gradient(180deg, #FAFAFD 0%, #FEFDFE 100%)" }}
     >
       {/* Background glow that changes with tab */}
@@ -170,22 +173,18 @@ export default function FeaturesTabs() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span
-            className="inline-flex items-center gap-2 text-[12px] font-semibold px-3 py-1.5 rounded-full border mb-6"
-            style={{ color: "#6952E6", background: "rgba(105,82,230,0.07)", borderColor: "rgba(105,82,230,0.18)" }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#6952E6]" />
-            Ce que tu peux créer
-          </span>
+          <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#6952E6] mb-5">
+            Créer de la valeur
+          </p>
           <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1]">
-            Ton espace prend vie
+            Ce que tu apportes
             <br />
             <span className="whitespace-nowrap bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
-              autour de ce que tu crées
+              te rapporte aussi
             </span>
           </h2>
           <p className="mt-5 text-base md:text-lg text-gray-500 leading-relaxed">
-            Vidéos, formations, événements, discussions ou offres payantes : Yoocamp réunit tout ce qu&apos;il te faut pour accueillir tes membres et faire vivre ton projet.
+            Formations, vidéos premium, événements ou coaching : Yoocamp te permet de créer, vendre et faire vivre tes contenus au même endroit.
           </p>
         </motion.div>
 

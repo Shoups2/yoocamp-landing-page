@@ -62,12 +62,12 @@ export default function Highlights() {
                 </span>
               </h3>
               <p className="mt-3 text-[15px] text-gray-500 leading-relaxed">
-                Vends tes formations, vidéos ou abonnements, encaisse les paiements et suis tes ventes en temps réel depuis ton dashboard intégré.
+                Vends tes formations, vidéos ou abonnements, encaisse les paiements et suis tes ventes en temps réel depuis ton dashboard.
               </p>
               <div className="mt-5">
                 <CheckList
                   color={MINT.c}
-                  items={["Suivi des ventes en temps réel", "Dashboard intégré", "Paiements sécurisés", "Virements automatiques"]}
+                  items={["Suivi des ventes en temps réel", "Dashboard", "Paiements sécurisés", "Virements automatiques"]}
                 />
               </div>
             </div>
@@ -123,7 +123,7 @@ export default function Highlights() {
               <div className="mt-5">
                 <CheckList
                   color={SKY.c}
-                  items={["Accès depuis le téléphone", "Notifications push", "Formations faciles à suivre", "Discussions à tout moment"]}
+                  items={["Accès depuis le téléphone", "Formations faciles à suivre", "Discussions à tout moment"]}
                 />
               </div>
             </div>

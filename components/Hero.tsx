@@ -164,7 +164,7 @@ export default function Hero() {
           {...blurFadeUp(0.35)}
           className="mt-8 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto"
         >
-          Offre à ton audience un espace privé pour échanger, suivre tes vidéos, accéder à tes formations et participer à tes événements exclusifs.
+          Offre à ton audience un espace privé pour découvrir tes formations, accéder à tes vidéos exclusives et participer à tes événements privés.
         </motion.p>
 
         {/* CTA */}
@@ -179,7 +179,7 @@ export default function Hero() {
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
-            Créer ma communauté gratuitement
+            Lancer ma communauté gratuitement
             <motion.svg
               className="w-5 h-5"
               fill="none"

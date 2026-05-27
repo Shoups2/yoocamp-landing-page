@@ -373,20 +373,20 @@ const gradientClass = "bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0
 const steps = [
   {
     num: "1",
-    title: <>Crée ta communauté{"\n"}<span className={gradientClass}>autour de ton contenu</span></>,
-    desc: "Rassemble ton audience et structure ton contenu dans un espace dédié.",
+    title: <>Crée ton{"\n"}<span className={gradientClass}>espace privé</span></>,
+    desc: "Rassemble ton audience dans un lieu dédié à ta communauté.",
     image: "/step1.png",
   },
   {
     num: "2",
-    title: <>Publie du{"\n"}<span className={gradientClass}>contenu premium</span></>,
-    desc: "Propose des formations, des vidéos exclusives, ou les deux.",
+    title: <>Ajoute tes{"\n"}<span className={gradientClass}>contenus et offres</span></>,
+    desc: "Ajoute tes formations, vidéos, événements, coachings ou abonnements.",
     image: "/step2.png",
   },
   {
     num: "3",
-    title: <>Génère tes{"\n"}<span className={gradientClass}>premiers revenus</span></>,
-    desc: "Invite de nouveaux membres, vends tes produits et développe tes revenus.",
+    title: <>Invite tes membres{"\n"}<span className={gradientClass}>et commence à vendre</span></>,
+    desc: "Partage ton espace, accueille ta communauté et suis tes ventes.",
     image: "/step3.png",
   },
 ];
@@ -410,7 +410,7 @@ export default function Features() {
   return (
     <section ref={sectionRef} id="fonctionnalités" className="py-24 md:py-36 relative overflow-hidden">
       {/* Progressive gradient background — du blanc vers le violet */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#FAF7FE] to-[#F0EBFE]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#FDFCFE] to-[#FAF8FE]" />
       {/* Ambient glows */}
       <div className="absolute top-[10%] left-[-5%] w-[45%] h-[50%] bg-violet-300/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-[40%] right-[-8%] w-[40%] h-[40%] bg-blue-200/12 rounded-full blur-[140px] pointer-events-none" />
@@ -418,10 +418,9 @@ export default function Features() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         <FadeIn className="text-center mb-20 md:mb-28">
-          <div className="inline-flex items-center gap-2 bg-[#6952E6]/[0.06] text-[#6952E6] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-[#6952E6]/10">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#6952E6]" />
+          <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#6952E6] mb-5">
             Comment ça marche
-          </div>
+          </p>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
             <span className="text-gray-900">Lance ta communauté </span>
             <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">en 3 étapes</span>

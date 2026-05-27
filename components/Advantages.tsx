@@ -30,8 +30,8 @@ const faqs = [
     a: "Formations vidéo, modules de cours, coachings, abonnements mensuels ou événements… Tu choisis le format qui te correspond et tu fixes librement tes prix.",
   },
   {
-    q: "Quelle est la différence avec Skool, Teachable ou Podia ?",
-    a: "Yoocamp combine communauté, formations, contenu premium et monétisation dans un seul espace. Pas besoin de jongler entre plusieurs outils — tout est intégré et pensé pour les créateurs francophones.",
+    q: "Quelle est la différence avec Skool, Patreon, Teachable ou Podia ?",
+    a: "Yoocamp réunit communauté, contenus premium, formations, événements et paiements dans un seul espace. Tu peux lancer gratuitement, puis monétiser tes contenus quand ta communauté prend vie.",
   },
   {
     q: "Je peux quitter à tout moment ?",
