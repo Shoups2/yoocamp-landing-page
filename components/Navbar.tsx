@@ -26,8 +26,8 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className="fixed top-0 left-0 right-0 z-50"
     >
-      <div className="mt-4 max-w-6xl mx-4 xl:mx-auto bg-white/60 backdrop-blur-xl rounded-2xl border border-gray-200/40 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div className="mt-4 max-w-[1104px] mx-4 xl:mx-auto bg-white/60 backdrop-blur-xl rounded-2xl border border-gray-200/40 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+        <div className="max-w-[1104px] mx-auto px-6 h-14 flex items-center justify-between">
 
           {/* ── Logo ── */}
           <motion.a

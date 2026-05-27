@@ -241,7 +241,7 @@ export default function Hero() {
       </div>
 
       {/* ── Image produit centrale ── */}
-      <div className="relative max-w-6xl mx-4 xl:mx-auto mt-14 md:mt-18 lg:mt-22">
+      <div className="relative max-w-[1104px] mx-4 xl:mx-auto mt-14 md:mt-18 lg:mt-22">
         {/* Glow radial derrière le mockup */}
         <motion.div
           className="absolute inset-x-0 top-4 bottom-0 pointer-events-none"
