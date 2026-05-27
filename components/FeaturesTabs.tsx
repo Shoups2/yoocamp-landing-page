@@ -154,7 +154,7 @@ export default function FeaturesTabs() {
       ref={sectionRef}
       id="communauté"
       className="relative pt-20 pb-4 md:pt-24 md:pb-6 overflow-hidden scroll-mt-24"
-      style={{ background: "linear-gradient(180deg, #FAFAFD 0%, #FEFDFE 100%)" }}
+      style={{ background: "#ffffff" }}
     >
       {/* Background glow that changes with tab */}
       <div className="absolute inset-0 -z-10 pointer-events-none">

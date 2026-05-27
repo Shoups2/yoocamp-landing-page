@@ -13,7 +13,7 @@ const SKY  = { c: "#3D9DFF", soft: "rgba(61,157,255,0.10)", ring: "rgba(61,157,2
 
 export default function Highlights() {
   return (
-    <section className="relative pt-6 pb-16 md:pt-8 md:pb-20 overflow-hidden bg-white">
+    <section className="relative pt-6 pb-16 md:pt-8 md:pb-20 overflow-hidden bg-white border-t border-gray-100">
       <div className="max-w-6xl mx-auto px-5 md:px-6">
         <div className="grid md:grid-cols-2 gap-5 md:gap-6">
 

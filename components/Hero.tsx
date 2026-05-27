@@ -115,7 +115,7 @@ export default function Hero() {
     <section
       className="relative pb-12 md:pb-20"
       style={{
-        background: "linear-gradient(180deg, #FAFAFD 0%, #FEFDFE 100%)",
+        background: "#ffffff",
       }}
     >
       {/* ── Grain subtil pour la matière ── */}

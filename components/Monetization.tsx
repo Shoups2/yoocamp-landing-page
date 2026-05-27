@@ -188,7 +188,7 @@ export default function Monetization() {
   return (
     <section ref={sectionRef} id="simulateur" className="py-28 md:py-36 relative overflow-hidden">
       {/* ── Fond ── */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAFA] via-[#FAFAFA] to-white" />
+      <div className="absolute inset-0 bg-white border-t border-gray-100" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6">
         {/* ── Header ── */}
@@ -245,8 +245,8 @@ export default function Monetization() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] rounded-full bg-[#6952E6]/[0.04] blur-[80px] pointer-events-none" />
 
             {/* ── Mention plan ── */}
-            <p className="relative text-[12px] text-gray-500 mb-3">
-              Estimation avec le <span className="font-semibold text-gray-700">plan Standard</span> · frais inclus
+            <p className="relative text-[14px] text-gray-600 mb-3">
+              Estimation avec le <span className="font-semibold text-gray-900">plan Standard</span> · frais inclus
             </p>
 
             {/* ── Net : gros chiffre ── */}

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import Image from "next/image";
 import { FadeIn } from "./motion";
 
 /* ── Step Mockups ─────────────────────────── */
@@ -82,16 +83,16 @@ function Step1Mock() {
 
 function Step2Mock() {
   const formations = [
-    { title: "Trouver ta niche", videos: 4, color: "from-[#6952E6] to-[#9B8AFF]", free: true },
-    { title: "Créer ton offre", videos: 6, color: "from-[#6C4FE0] to-[#6952E6]", free: true },
-    { title: "Construire ton audience", videos: 8, color: "from-[#8B75FF] to-[#B4A0FF]", free: false, price: "49€" },
-    { title: "Monétiser son expertise", videos: 5, color: "from-[#6952E6] to-[#6C4FE0]", free: false, price: "79€" },
+    { title: "Trouver ta niche", videos: 4, image: "/formations/4eb4147d-30ef-49ac-a22b-9ccbf7190a65.png", free: true },
+    { title: "Créer ton offre", videos: 6, image: "/formations/d626614f-ed9b-4761-a8f7-ee9c42010c8c.png", free: true },
+    { title: "Construire ton audience", videos: 8, image: "/formations/7e194074-cb06-4f3c-acec-b5b334e9f82f.png", free: false, price: "49€" },
+    { title: "Monétiser son expertise", videos: 5, image: "/formations/444f0011-557d-4c97-9fe2-bf4255344c3b.png", free: false, price: "79€" },
   ];
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="px-5 py-3 border-b border-gray-100">
-        <span className="text-sm font-bold text-gray-900">Mes <span className="bg-gradient-to-r from-[#6952E6] to-[#6C4FE0] bg-clip-text text-transparent">formations</span></span>
+        <span className="text-sm font-bold text-gray-900">Lance ton business : A à Z formation niveau <span className="bg-gradient-to-r from-[#6952E6] to-[#6C4FE0] bg-clip-text text-transparent">Débutant à expert</span></span>
       </div>
 
       <div className="p-3 space-y-2">
@@ -104,19 +105,28 @@ function Step2Mock() {
             transition={{ delay: 0.3 + i * 0.1 }}
           >
             {/* Miniature */}
-            <div className={`w-16 h-10 rounded-lg bg-gradient-to-br ${f.color} flex items-center justify-center shrink-0 relative overflow-hidden`}>
-              <div className="absolute top-[-20%] right-[-15%] w-[60%] h-[80%] bg-white/10 rounded-full blur-[8px]" />
-              {f.free ? (
-                <div className="w-5 h-5 rounded-full bg-white/25 flex items-center justify-center">
-                  <div className="w-0 h-0 border-l-[4px] border-l-white border-t-[2.5px] border-t-transparent border-b-[2.5px] border-b-transparent ml-0.5" />
-                </div>
-              ) : (
-                <div className="w-5 h-5 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center">
-                  <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-                  </svg>
-                </div>
-              )}
+            <div className="relative w-16 h-10 rounded-lg shrink-0 overflow-hidden bg-gray-100">
+              <Image
+                src={f.image}
+                alt={f.title}
+                fill
+                sizes="64px"
+                className="object-cover"
+                quality={85}
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/15">
+                {f.free ? (
+                  <div className="w-5 h-5 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                    <div className="w-0 h-0 border-l-[4px] border-l-white border-t-[2.5px] border-t-transparent border-b-[2.5px] border-b-transparent ml-0.5" />
+                  </div>
+                ) : (
+                  <div className="w-5 h-5 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center">
+                    <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                    </svg>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Info */}
@@ -373,20 +383,20 @@ const gradientClass = "bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0
 const steps = [
   {
     num: "1",
-    title: <>Crée ton{"\n"}<span className={gradientClass}>espace privé</span></>,
-    desc: "Rassemble ton audience dans un lieu dédié à ta communauté.",
+    title: <>Configure ton espace{"\n"}<span className={gradientClass}>et tes tarifs</span></>,
+    desc: "Personnalise ton espace et choisis un tarif gratuit, mensuel ou annuel.",
     image: "/step1.png",
   },
   {
     num: "2",
-    title: <>Ajoute tes{"\n"}<span className={gradientClass}>contenus et offres</span></>,
-    desc: "Ajoute tes formations, vidéos, événements, coachings ou abonnements.",
+    title: <>Mets en ligne{"\n"}<span className={gradientClass}>ton contenu</span></>,
+    desc: "Crée tes formations, publie tes vidéos, organise tes événements.",
     image: "/step2.png",
   },
   {
     num: "3",
-    title: <>Invite tes membres{"\n"}<span className={gradientClass}>et commence à vendre</span></>,
-    desc: "Partage ton espace, accueille ta communauté et suis tes ventes.",
+    title: <>Invite tes{"\n"}<span className={gradientClass}>premiers membres</span></>,
+    desc: "Partage le lien de ta page avec ton audience et accueille tes premiers membres.",
     image: "/step3.png",
   },
 ];
@@ -410,7 +420,7 @@ export default function Features() {
   return (
     <section ref={sectionRef} id="fonctionnalités" className="py-24 md:py-36 relative overflow-hidden">
       {/* Progressive gradient background — du blanc vers le violet */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#FDFCFE] to-[#FAF8FE]" />
+      <div className="absolute inset-0 bg-white border-t border-gray-100" />
       {/* Ambient glows */}
       <div className="absolute top-[10%] left-[-5%] w-[45%] h-[50%] bg-violet-300/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-[40%] right-[-8%] w-[40%] h-[40%] bg-blue-200/12 rounded-full blur-[140px] pointer-events-none" />

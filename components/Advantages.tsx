@@ -101,7 +101,7 @@ const faqJsonLd = {
 export default function Advantages() {
   return (
     <section id="faq" className="py-24 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#FAFAFA]" />
+      <div className="absolute inset-0 bg-white border-t border-gray-100" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
       <div className="absolute top-[-15%] left-[-5%] w-[50%] h-[65%] bg-blue-200/25 rounded-full blur-[120px] pointer-events-none" />

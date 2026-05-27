@@ -66,7 +66,7 @@ const fadeIn = (delay = 0) => ({
 
 export default function LiveActivity() {
   return (
-    <section className="relative py-14 md:py-20 border-y border-gray-100 bg-white overflow-hidden">
+    <section className="relative py-14 md:py-20 border-y border-gray-100 overflow-hidden bg-white">
       <style jsx>{`
         @keyframes liveactivity-marquee {
           from { transform: translateX(0); }

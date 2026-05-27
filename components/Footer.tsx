@@ -34,7 +34,7 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="bg-gray-50 border-t border-gray-100">
-      <div className="max-w-[1400px] mx-auto px-6 py-16">
+      <div className="max-w-6xl mx-auto px-6 py-16">
         <FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12">
             {/* Brand */}
