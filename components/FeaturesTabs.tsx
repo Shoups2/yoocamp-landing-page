@@ -241,7 +241,7 @@ export default function FeaturesTabs() {
               >
                 {f.title}
               </h3>
-              <p className="mt-4 text-[15px] text-gray-500 leading-relaxed">{f.desc}</p>
+              <p className="mt-4 text-[15px] text-gray-700 leading-relaxed">{f.desc}</p>
 
               <div className="mt-6">
                 <CheckList items={f.bullets} color={t.c} />
@@ -280,7 +280,7 @@ export default function FeaturesTabs() {
 
             {/* Right — mockup */}
             <div
-              className="relative p-5 md:p-7 lg:p-8 min-h-[380px] md:min-h-[440px] flex items-center justify-center overflow-hidden transition-colors duration-500"
+              className="relative p-5 md:p-7 lg:p-8 min-h-[440px] md:min-h-[500px] h-full flex items-center justify-center overflow-hidden transition-colors duration-500"
               style={{ background: `linear-gradient(135deg, ${t.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
             >
               <motion.div
@@ -411,10 +411,8 @@ function DiscussionMock() {
 function VideoMock() {
   const modules: { num: number; title: string; duration: string; status: "done" | "current" | "locked" }[] = [
     { num: 1, title: "Trouver ta niche rentable", duration: "32 min", status: "done" },
-    { num: 2, title: "Créer ton offre signature", duration: "45 min", status: "done" },
-    { num: 3, title: "Construire ton audience", duration: "1h 12min", status: "current" },
-    { num: 4, title: "Monétiser ton expertise", duration: "55 min", status: "locked" },
-    { num: 5, title: "Scaler ton business", duration: "1h 08min", status: "locked" },
+    { num: 2, title: "Construire ton audience", duration: "1h 12min", status: "current" },
+    { num: 3, title: "Monétiser ton expertise", duration: "55 min", status: "locked" },
   ];
 
   return (
@@ -514,7 +512,6 @@ function VideoMock() {
 
 function VideoLibraryMock() {
   const suggested = [
-    { title: "La méthode que j'utilise vraiment", duration: "8:12", premium: false, src: "/videos/methode_utilise_vraiment.png" },
     { title: "Le système qui génère des ventes", duration: "18:47", premium: true, src: "/videos/clean_systeme_ventes_tous_les_jours.png" },
     { title: "Stratégie YouTube 2026", duration: "24:03", premium: true, src: "/videos/clean_strategie_youtube_change_tout.png" },
   ];
@@ -541,8 +538,8 @@ function VideoLibraryMock() {
       </div>
 
       {/* Big video player — inset card-like */}
-      <div className="px-3 pt-3">
-        <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-200/60">
+      <div className="px-3 pt-3 flex justify-center">
+        <div className="relative aspect-video w-[75%] overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-200/60">
           <Image
             src="/videos/clean_clients_automatiquement.png"
             alt="Comment trouver des clients automatiquement"
@@ -702,9 +699,9 @@ function EventsMock() {
                   <motion.div
                     key={j}
                     className="w-[90%] rounded-md px-1.5 py-1 bg-white border border-gray-200 shadow-sm"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.5 + i * 0.15 + j * 0.1, type: "spring", stiffness: 300 }}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.35 + i * 0.08 + j * 0.06, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <div className="flex items-center gap-1">
                       <div className={`w-1.5 h-1.5 rounded-full ${evt.color} flex-shrink-0`} />
