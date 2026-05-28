@@ -190,7 +190,7 @@ export default function Monetization() {
       {/* ── Fond ── */}
       <div className="absolute inset-0 bg-white border-t border-gray-100" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* ── Header ── */}
         <FadeIn className="text-center mb-5">
           <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#6952E6] mb-5">

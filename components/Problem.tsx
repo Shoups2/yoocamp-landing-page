@@ -69,7 +69,7 @@ export default function Problem() {
         <div className="absolute bottom-0 right-[-10%] w-[40%] h-[60%] bg-red-100/30 rounded-full blur-[140px]" />
       </div>
 
-      <div className="relative max-w-5xl mx-auto px-6">
+      <div className="relative max-w-6xl mx-auto px-6">
         {/* ── Header ── */}
         <FadeIn>
           <div className="text-center">
