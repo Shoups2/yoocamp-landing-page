@@ -232,9 +232,9 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
   return (
     <div className="relative" ref={ref}>
       {/* Timeline node */}
-      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-0 flex-col items-center z-20">
+      <div className="flex absolute left-[20px] md:left-1/2 -translate-x-1/2 top-0 flex-col items-center z-20">
         <motion.div
-          className="w-12 h-12 rounded-full flex items-center justify-center"
+          className="w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center"
           initial={{ scale: 0 }}
           animate={isInView ? {
             scale: isCurrent ? 1.1 : 1,
@@ -251,7 +251,7 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
           }}
         >
           <motion.div
-            className="w-8 h-8 rounded-full font-bold text-sm flex items-center justify-center"
+            className="w-6 h-6 md:w-8 md:h-8 rounded-full font-bold text-xs md:text-sm flex items-center justify-center"
             animate={{
               backgroundColor: isActive ? "#6952E6" : "#e5e7eb",
               color: isActive ? "#ffffff" : "#9ca3af",
@@ -264,37 +264,23 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
       </div>
 
       <motion.div
-        className={`flex flex-col ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-10 md:gap-16 pt-16 md:pt-0`}
+        className={`flex flex-col ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} items-start md:items-center gap-6 md:gap-16 pl-12 md:pl-0 pt-0 md:pt-0`}
         animate={{ opacity: isActive ? 1 : 0.6 }}
         transition={{ duration: 0.5 }}
       >
         {/* Texte */}
-        <div className="flex-1 w-full">
-          <motion.div
+        <div className="order-2 md:order-none flex-1 w-full">
+          <motion.span
+            className="text-xs sm:text-sm font-bold text-[#6952E6] uppercase tracking-wider block mb-2 md:mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="flex md:hidden items-center gap-3 mb-5">
-              <motion.div
-                className="w-10 h-10 rounded-full font-bold text-base flex items-center justify-center shrink-0"
-                animate={{
-                  backgroundColor: isActive ? "#6952E6" : "#e5e7eb",
-                  color: isActive ? "#ffffff" : "#9ca3af",
-                  scale: isCurrent ? 1.1 : 1,
-                  boxShadow: isCurrent ? "0 0 0 4px rgba(123,97,255,0.15), 0 4px 16px -4px rgba(123,97,255,0.3)" : "0 0 0 0px transparent",
-                }}
-                transition={{ duration: 0.4 }}
-              >
-                {step.num}
-              </motion.div>
-              <span className="text-sm font-bold text-[#6952E6] uppercase tracking-wider">Étape {step.num}</span>
-            </div>
-            <span className="hidden md:block text-sm font-bold text-[#6952E6] uppercase tracking-wider mb-4">Étape {step.num}</span>
-          </motion.div>
+            Étape {step.num}
+          </motion.span>
 
           <motion.h3
-            className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight transition-colors duration-500 whitespace-pre-wrap"
+            className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4 leading-tight transition-colors duration-500 whitespace-pre-wrap"
             initial={{ opacity: 0, y: 25 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
@@ -304,7 +290,7 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
           </motion.h3>
 
           <motion.p
-            className="text-lg md:text-xl font-medium leading-relaxed max-w-md transition-colors duration-500"
+            className="text-base md:text-xl font-medium leading-relaxed max-w-md transition-colors duration-500"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -314,9 +300,9 @@ function StepRow({ step, index, activeStep }: { step: typeof steps[number]; inde
           </motion.p>
         </div>
 
-        {/* Mockup */}
+        {/* Mockup (mobile: en premier, desktop: alterné) */}
         <motion.div
-          className="flex-1 w-full"
+          className="order-1 md:order-none flex-1 w-full"
           initial={{ opacity: 0, scale: 0.9, y: 30 }}
           animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -355,7 +341,7 @@ function TimelineLine() {
   const dotOpacity = useTransform(scrollYProgress, [0, 0.85, 0.95], [1, 1, 0]);
 
   return (
-    <div ref={ref} className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 z-10">
+    <div ref={ref} className="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 z-10">
       {/* Background line */}
       <div className="absolute inset-0 w-[3px] bg-[#6952E6]/[0.12] mx-auto rounded-full" />
       {/* Animated fill */}

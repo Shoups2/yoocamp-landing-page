@@ -186,12 +186,12 @@ export default function LiveActivity() {
 
       <div className="max-w-6xl mx-auto px-5 md:px-6">
         {/* Top label */}
-        <motion.div {...fadeIn(0)} className="flex items-center justify-center gap-2">
-          <span className="relative flex w-2 h-2">
+        <motion.div {...fadeIn(0)} className="flex items-start justify-center gap-2 text-center">
+          <span className="relative flex w-2 h-2 shrink-0 mt-[5px] sm:mt-1.5">
             <span className="absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
             <span className="relative inline-flex w-2 h-2 rounded-full bg-emerald-500" />
           </span>
-          <p className="text-[12.5px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+          <p className="text-[11px] sm:text-[12.5px] font-semibold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-gray-500 text-center">
             Ce qui peut se passer dans ta communauté Yoocamp
           </p>
         </motion.div>
@@ -231,7 +231,7 @@ export default function LiveActivity() {
                 className="inline-block w-1.5 h-1.5 rounded-full mr-2.5"
                 style={{ background: ACCENT[p.tone] }}
               />
-              <span className="font-bold text-[16px] md:text-[17px] text-gray-900 leading-tight tracking-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>
+              <span className="font-bold text-[14px] sm:text-[16px] md:text-[17px] text-gray-900 leading-tight tracking-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>
                 {p.title}
               </span>
             </div>
@@ -246,7 +246,7 @@ function ActivityTile({ e }: { e: (typeof events)[number] }) {
   const accent = ACCENT[e.tone];
   return (
     <div
-      className="flex items-center gap-2.5 mx-3 shrink-0 px-3.5 py-2 rounded-full bg-white border"
+      className="flex items-center gap-2.5 mx-2 sm:mx-3 shrink-0 px-3 sm:px-3.5 py-2 rounded-full bg-white border"
       style={{
         borderColor: `color-mix(in srgb, ${accent} 16%, transparent)`,
         boxShadow: "0 1px 2px rgba(15,12,40,0.04)",
@@ -281,7 +281,7 @@ function CommunityTile({ c }: { c: (typeof communities)[number] }) {
   const accent = ACCENT[c.tone];
   return (
     <div
-      className="flex items-center gap-2.5 mx-3 shrink-0 px-3 py-2 rounded-full bg-white border hover:-translate-y-0.5 transition-transform"
+      className="flex items-center gap-2.5 mx-2 sm:mx-3 shrink-0 px-3 py-2 rounded-full bg-white border hover:-translate-y-0.5 transition-transform"
       style={{
         borderColor: `color-mix(in srgb, ${accent} 16%, transparent)`,
         boxShadow: "0 1px 2px rgba(15,12,40,0.04)",

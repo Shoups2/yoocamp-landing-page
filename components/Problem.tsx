@@ -77,7 +77,7 @@ export default function Problem() {
               Pourquoi Yoocamp ?
             </p>
 
-            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6 max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6 max-w-3xl mx-auto">
               Choisis la plateforme{" "}
               <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
                 la plus adaptée aux créateurs
@@ -85,15 +85,110 @@ export default function Problem() {
               .
             </h2>
 
-            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-14">
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-10 sm:mb-14">
               Avec Yoocamp, tu peux démarrer gratuitement, publier des vidéos premium, lancer tes formations et créer un espace que tes membres auront envie de rejoindre.
             </p>
           </div>
         </FadeIn>
 
-        {/* ── Comparaison tableau léger ── */}
+        {/* ── Comparaison MOBILE : Yoocamp hero + 3 concurrents compacts ── */}
         <FadeIn delay={0.2}>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-12">
+          <div className="md:hidden mb-12">
+            {/* Yoocamp big card */}
+            {(() => {
+              const p = platforms.find((pl) => pl.highlight)!;
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: 0.3, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative bg-white rounded-2xl p-5 overflow-hidden border-2 border-[#6952E6]/40 shadow-[0_10px_35px_-8px_rgba(105,82,230,0.35)]"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6952E6]/[0.04] via-transparent to-[#8B75FF]/[0.06] pointer-events-none" />
+                  <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#6952E6] to-transparent" />
+
+                  <div className="relative flex items-start gap-4">
+                    <img
+                      src={p.logo}
+                      alt={p.name}
+                      className="w-12 h-12 rounded-lg shrink-0 shadow-[0_4px_12px_rgba(105,82,230,0.3)] ring-2 ring-white"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-base font-bold text-gray-900 mb-3">{p.name}</p>
+                      <ul className="space-y-1.5">
+                        <li className="flex items-center justify-between text-[12px]">
+                          <span className="text-gray-500">Communauté</span>
+                          <StatusIcon has={p.communaute} highlight />
+                        </li>
+                        <li className="flex items-center justify-between text-[12px]">
+                          <span className="text-gray-500">Formations</span>
+                          <StatusIcon has={p.formations} highlight />
+                        </li>
+                        <li className="flex items-center justify-between text-[12px]">
+                          <span className="text-gray-500">Vidéos premium</span>
+                          <StatusIcon has={p.videosPremium} highlight />
+                        </li>
+                        <li className="flex items-center justify-between text-[12px] pt-2 mt-1 border-t border-[#6952E6]/15">
+                          <span className="text-gray-500">Prix</span>
+                          <span className="inline-flex items-center gap-1 bg-[#6952E6] text-white font-bold text-[11px] px-2 py-0.5 rounded-full shadow-[0_2px_8px_rgba(105,82,230,0.4)]">
+                            {p.prix}
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <span className="absolute top-2.5 right-2.5 text-[9px] font-bold uppercase tracking-wider text-[#6952E6]">
+                    {p.lang}
+                  </span>
+                </motion.div>
+              );
+            })()}
+
+            {/* Séparateur */}
+            <p className="text-center text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 my-5">
+              vs alternatives
+            </p>
+
+            {/* 3 concurrents en cards horizontales empilées */}
+            <div className="space-y-2">
+              {platforms.filter((pl) => !pl.highlight).map((p, i) => (
+                <motion.div
+                  key={p.name}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: 0.4 + i * 0.06, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative bg-gray-50/70 border border-gray-100 rounded-xl p-3 flex items-center gap-3"
+                >
+                  <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center bg-white border border-gray-200/60 shadow-sm overflow-hidden">
+                    <img src={p.logo} alt={p.name} className="w-7 h-7 object-contain" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[13px] font-semibold text-gray-700 mb-1">{p.name}</p>
+                    <div className="flex items-center gap-3">
+                      <span className="flex items-center gap-1 text-[10px] text-gray-500">
+                        <StatusIcon has={p.communaute} /> Comm.
+                      </span>
+                      <span className="flex items-center gap-1 text-[10px] text-gray-500">
+                        <StatusIcon has={p.formations} /> Form.
+                      </span>
+                      <span className="flex items-center gap-1 text-[10px] text-gray-500">
+                        <StatusIcon has={p.videosPremium} /> Vidéos
+                      </span>
+                    </div>
+                  </div>
+                  <span className="text-[11px] font-semibold text-gray-700 shrink-0">{p.prix}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* ── Comparaison DESKTOP : 4-col grid avec tous ── */}
+        <FadeIn delay={0.2}>
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-3 mb-12">
             {platforms.map((p, i) => {
               const isYoo = !!p.highlight;
               return (

@@ -137,6 +137,8 @@ export default function FeaturesTabs() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const tabsScrollRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const inView = useInView(sectionRef, { amount: 0.5 });
   const f = FEATS[active];
   const t = TONES[f.tone];
@@ -148,6 +150,18 @@ export default function FeaturesTabs() {
     }, 8000);
     return () => clearInterval(timer);
   }, [active, paused, inView]);
+
+  // Auto-scroll active tab into view on mobile
+  useEffect(() => {
+    const tab = tabRefs.current[active];
+    const container = tabsScrollRef.current;
+    if (!tab || !container) return;
+    const tabRect = tab.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    const targetScroll =
+      container.scrollLeft + (tabRect.left + tabRect.width / 2) - (containerRect.left + containerRect.width / 2);
+    container.scrollTo({ left: targetScroll, behavior: "smooth" });
+  }, [active]);
 
   return (
     <section
@@ -176,7 +190,7 @@ export default function FeaturesTabs() {
           <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#6952E6] mb-5">
             Ce que tu peux créer
           </p>
-          <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1]">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1]">
             Donne plus de valeur
             <br />
             <span className="whitespace-nowrap bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
@@ -196,27 +210,40 @@ export default function FeaturesTabs() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="inline-flex flex-wrap items-center justify-center gap-1 p-1 rounded-full bg-white border border-gray-200 shadow-sm">
-            {FEATS.map((feat, i) => {
-              const isActive = i === active;
-              const tt = TONES[feat.tone];
-              return (
-                <button
-                  key={feat.id}
-                  onClick={() => setActive(i)}
-                  className="relative cursor-pointer px-3 md:px-4 py-2 text-[12.5px] md:text-[13.5px] font-semibold rounded-full transition-all duration-300"
-                  style={{
-                    color: isActive ? "#fff" : "#5A5A6E",
-                    background: isActive ? tt.c : "transparent",
-                    boxShadow: isActive ? `0 4px 14px -4px ${tt.c}` : "none",
-                  }}
-                >
-                  <span className="mr-1.5">{feat.icon}</span>
-                  {feat.label}
-                </button>
-              );
-            })}
+          {/* Scroll horizontal sur mobile, layout normal sur desktop */}
+          <div
+            ref={tabsScrollRef}
+            className="featurestabs-scroll w-full md:w-auto overflow-x-auto md:overflow-visible scroll-smooth -mx-5 md:mx-0 px-5 md:px-0 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)] md:[mask-image:none]"
+            style={{ scrollSnapType: "x mandatory" }}
+          >
+            <div className="inline-flex items-center gap-1 p-1 rounded-full bg-white border border-gray-200 shadow-sm whitespace-nowrap mx-auto">
+              {FEATS.map((feat, i) => {
+                const isActive = i === active;
+                const tt = TONES[feat.tone];
+                return (
+                  <button
+                    key={feat.id}
+                    ref={(el) => { tabRefs.current[i] = el; }}
+                    onClick={() => setActive(i)}
+                    className="relative cursor-pointer shrink-0 px-3 sm:px-3 md:px-4 py-1.5 sm:py-2 text-[12px] sm:text-[12.5px] md:text-[13.5px] font-semibold rounded-full transition-all duration-300"
+                    style={{
+                      color: isActive ? "#fff" : "#5A5A6E",
+                      background: isActive ? tt.c : "transparent",
+                      boxShadow: isActive ? `0 4px 14px -4px ${tt.c}` : "none",
+                      scrollSnapAlign: "center",
+                    }}
+                  >
+                    <span className="mr-1.5">{feat.icon}</span>
+                    {feat.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
+          <style jsx>{`
+            .featurestabs-scroll::-webkit-scrollbar { display: none; }
+            .featurestabs-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+          `}</style>
         </motion.div>
 
         {/* Showcase */}
@@ -228,19 +255,20 @@ export default function FeaturesTabs() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="grid md:grid-cols-[1fr_1.5fr]">
-            {/* Left — text */}
-            <div className="p-7 md:p-10 lg:p-12 flex flex-col justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr]">
+            {/* Left — text (mobile: en 2e, desktop: à gauche) */}
+            <div className="order-2 md:order-1 p-5 sm:p-7 md:p-10 lg:p-12 flex flex-col justify-center">
               <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] self-start" style={{ color: t.c }}>
                 <span className="w-1.5 h-1.5 rounded-full" style={{ background: t.c }} />
                 {f.label}
               </div>
               <h3
-                className="mt-4 font-bold text-gray-900 text-[1.75rem] md:text-[2.2rem] leading-[1.05] tracking-[-0.025em]"
+                className="mt-4 font-bold text-gray-900 text-[1.5rem] sm:text-[1.75rem] md:text-[2.2rem] leading-[1.05] tracking-[-0.025em]"
                 style={{ fontFamily: "var(--font-bricolage), sans-serif" }}
               >
                 {f.title}
               </h3>
+
               <p className="mt-4 text-[15px] text-gray-700 leading-relaxed">{f.desc}</p>
 
               <div className="mt-6">
@@ -278,9 +306,9 @@ export default function FeaturesTabs() {
               </div>
             </div>
 
-            {/* Right — mockup */}
+            {/* Right — mockup (mobile: en 1er, desktop: à droite) */}
             <div
-              className="relative p-5 md:p-7 lg:p-8 min-h-[440px] md:min-h-[500px] h-full flex items-center justify-center overflow-hidden transition-colors duration-500"
+              className="order-1 md:order-2 relative p-4 sm:p-5 md:p-7 lg:p-8 min-h-[360px] sm:min-h-[440px] md:min-h-[500px] h-full flex items-center justify-center overflow-hidden transition-colors duration-500"
               style={{ background: `linear-gradient(135deg, ${t.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
             >
               <motion.div

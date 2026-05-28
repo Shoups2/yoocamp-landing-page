@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 /* ── Animation variants ─────────────────── */
@@ -111,6 +112,22 @@ function FloatingCard({
 /* ── Main Hero ──────────────────────────── */
 
 export default function Hero() {
+  const [zoomed, setZoomed] = useState(false);
+
+  // Lock body scroll when zoom modal open
+  useEffect(() => {
+    document.body.style.overflow = zoomed ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [zoomed]);
+
+  // Close on Escape
+  useEffect(() => {
+    if (!zoomed) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setZoomed(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [zoomed]);
+
   return (
     <section
       className="relative pb-12 md:pb-20"
@@ -147,12 +164,24 @@ export default function Hero() {
 
       {/* ── Content ── */}
       <div className="relative max-w-5xl mx-auto px-6 pt-24 md:pt-36 lg:pt-44 text-center">
+        {/* Yoocamp favicon — mobile only */}
+        <motion.div
+          {...blurFadeUp(0.1)}
+          className="md:hidden flex justify-center mb-5"
+        >
+          <img
+            src="/logos/yoocamp.png"
+            alt="Yoocamp"
+            className="w-14 h-14 rounded-2xl shadow-[0_8px_24px_-8px_rgba(105,82,230,0.5)] ring-2 ring-white"
+          />
+        </motion.div>
+
         {/* Title */}
         <motion.h1
           {...blurFadeUp(0.2)}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.08] tracking-tight scale-[1.03] origin-center"
         >
-          Lance ta communauté privée
+          Lance ta<br className="md:hidden" /> communauté privée
           <br />
           <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
             et vends ton contenu
@@ -162,9 +191,10 @@ export default function Hero() {
         {/* Subtitle */}
         <motion.p
           {...blurFadeUp(0.35)}
-          className="mt-8 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto"
+          className="mt-6 md:mt-8 text-base md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto"
         >
-          Offre à ton audience un espace privé pour découvrir tes formations, accéder à tes vidéos exclusives et participer à tes événements privés.
+          <span className="md:hidden">Un espace privé pour ton audience : formations, vidéos exclusives, événements.</span>
+          <span className="hidden md:inline">Offre à ton audience un espace privé pour découvrir tes formations, accéder à tes vidéos exclusives et participer à tes événements privés.</span>
         </motion.p>
 
         {/* CTA */}
@@ -174,14 +204,14 @@ export default function Hero() {
         >
           <motion.a
             href="https://www.yoocamp.com/register"
-            className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#6952E6] to-[#8B75FF] text-white text-lg font-semibold px-6 py-3.5 rounded-2xl shadow-lg shadow-[#6952E6]/25"
+            className="inline-flex items-center justify-center gap-2 sm:gap-2.5 bg-gradient-to-r from-[#6952E6] to-[#8B75FF] text-white text-sm sm:text-lg font-semibold px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-lg shadow-[#6952E6]/25"
             whileHover={{ scale: 1.04, boxShadow: "0 20px 50px -10px rgba(105, 82, 230, 0.45)" }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
             Créer ma communauté gratuitement
             <motion.svg
-              className="w-5 h-5"
+              className="w-4 h-4 sm:w-5 sm:h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -198,8 +228,8 @@ export default function Hero() {
               </span>
               Sans carte bancaire
             </span>
-            <span>·</span>
-            <span className="flex items-center gap-1.5">
+            <span className="hidden md:inline">·</span>
+            <span className="hidden md:flex items-center gap-1.5">
               <span className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center shrink-0">
                 <svg className="w-2.5 h-2.5 text-green-500" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
               </span>
@@ -220,7 +250,7 @@ export default function Hero() {
           {...blurFadeUp(0.6)}
           className="mt-5 flex items-center justify-center gap-2.5"
         >
-          <div className="relative w-[120px] h-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]">
+          <div className="relative w-[100px] sm:w-[120px] h-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)] shrink-0">
             <motion.div
               className="flex -space-x-1.5 absolute top-0 h-full items-center"
               animate={{ x: ["0%", "-50%"] }}
@@ -236,7 +266,7 @@ export default function Hero() {
               ))}
             </motion.div>
           </div>
-          <span className="text-sm text-gray-500"><span className="font-semibold text-gray-700">+1 000 créateurs</span> attendent Yoocamp</span>
+          <span className="text-xs sm:text-sm text-gray-500"><span className="font-semibold text-gray-700">+1 000 créateurs</span> attendent Yoocamp</span>
         </motion.div>
       </div>
 
@@ -255,7 +285,10 @@ export default function Hero() {
 
         {/* Image container */}
         <motion.div
-          className="relative z-10 rounded-2xl md:rounded-3xl"
+          className="relative z-10 rounded-2xl md:rounded-3xl cursor-zoom-in md:cursor-default"
+          onClick={() => {
+            if (typeof window !== "undefined" && window.innerWidth < 768) setZoomed(true);
+          }}
           initial={{ opacity: 0, y: 40, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           whileHover={{ y: -6, boxShadow: "0 18px 40px -12px rgba(105,82,230,0.10), 0 8px 24px rgba(0,0,0,0.05)" }}
@@ -284,7 +317,79 @@ export default function Hero() {
               />
             </div>
           </div>
+
+          {/* Indicateur tap-to-zoom (mobile only) */}
+          <motion.div
+            className="md:hidden absolute top-3 right-3 z-20 bg-black/60 backdrop-blur-sm text-white text-[10px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 0.6 }}
+          >
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 8v6M8 11h6m6.5 0a9.5 9.5 0 1 1-19 0 9.5 9.5 0 0 1 19 0z" />
+            </svg>
+            Zoom
+          </motion.div>
         </motion.div>
+
+        {/* ── Lightbox / Zoom modal (mobile only) — immersif, sans chrome ── */}
+        <AnimatePresence>
+          {zoomed && (
+            <motion.div
+              className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center md:hidden"
+              onClick={() => setZoomed(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              aria-label="Image agrandie"
+            >
+              {/* Close button */}
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setZoomed(false); }}
+                className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/15 backdrop-blur-md text-white flex items-center justify-center active:scale-95 transition-transform z-10"
+                aria-label="Fermer"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Image immersive — sans chrome navigateur, object-contain plein écran */}
+              <motion.div
+                className="relative w-full h-full flex items-center justify-center px-3"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 260, damping: 26 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative w-full max-h-[80vh] rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                  <Image
+                    src="/hero-mockup.png"
+                    alt="Yoocamp — tableau de bord agrandi"
+                    width={1920}
+                    height={1080}
+                    sizes="100vw"
+                    className="w-full h-auto object-contain"
+                    priority
+                  />
+                </div>
+              </motion.div>
+
+              {/* Hint en bas */}
+              <motion.p
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 text-xs font-medium pointer-events-none"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                Tape n'importe où pour fermer
+              </motion.p>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Floating cards autour de l'image */}
         <FloatingCard className="-top-4 -right-4 md:right-4 lg:-right-12" delay={0}>

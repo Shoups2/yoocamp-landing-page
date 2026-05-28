@@ -131,7 +131,7 @@ export default function Navbar() {
             {/* Panel */}
             <motion.div
               id="mobile-menu"
-              className="fixed top-0 right-0 bottom-0 w-[280px] bg-white shadow-2xl md:hidden z-50"
+              className="fixed top-0 right-0 bottom-0 w-[80vw] max-w-[280px] bg-white shadow-2xl md:hidden z-50"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}

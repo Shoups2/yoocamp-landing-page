@@ -136,9 +136,9 @@ function RevenueCard({
       }}
     >
       {/* ── Résultat ── */}
-      <div className="p-6 pb-4">
+      <div className="p-4 sm:p-6 pb-4">
         <span
-          className="block text-[36px] md:text-[40px] font-extrabold leading-none tracking-tight"
+          className="block text-[28px] sm:text-[36px] md:text-[40px] font-extrabold leading-none tracking-tight"
           style={{
             backgroundImage: `linear-gradient(135deg, ${color}, ${gradientTo})`,
             WebkitBackgroundClip: "text",
@@ -148,13 +148,13 @@ function RevenueCard({
         >
           <AnimatedNumber value={revenue} />
         </span>
-        <span className="text-[20px] font-bold block mt-2" style={{ color }}>
+        <span className="text-[16px] sm:text-[20px] font-bold block mt-2" style={{ color }}>
           {title}
         </span>
       </div>
 
       {/* ── Contrôles ── */}
-      <div className="mt-auto p-6 pt-4 space-y-4 border-t border-gray-100">
+      <div className="mt-auto p-4 sm:p-6 pt-4 space-y-4 border-t border-gray-100">
         {children}
       </div>
     </motion.div>
@@ -196,7 +196,7 @@ export default function Monetization() {
           <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#6952E6] mb-5">
             Simule tes revenus
           </p>
-          <h2 className="text-3xl md:text-[2.75rem] lg:text-5xl font-bold text-gray-900 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-[2.75rem] lg:text-5xl font-bold text-gray-900 leading-tight">
             Combien peut vraiment te rapporter<br className="hidden md:block" />
             <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">ta communauté</span> ?
           </h2>
@@ -257,7 +257,7 @@ export default function Monetization() {
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
-              <span className="text-[52px] md:text-[72px] lg:text-[88px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#6952E6] to-[#3B82F6] bg-clip-text text-transparent">
+              <span className="text-[40px] sm:text-[52px] md:text-[72px] lg:text-[88px] font-extrabold leading-none tracking-tight bg-gradient-to-r from-[#6952E6] to-[#3B82F6] bg-clip-text text-transparent">
                 <AnimatedNumber value={net} />
               </span>
             </motion.div>

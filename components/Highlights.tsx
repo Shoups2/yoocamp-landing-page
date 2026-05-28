@@ -28,7 +28,7 @@ export default function Highlights() {
           >
             {/* Mockup zone — top */}
             <div
-              className="relative px-6 md:px-8 pt-6 pb-4 flex items-center justify-center min-h-[200px]"
+              className="relative px-4 sm:px-6 md:px-8 pt-6 pb-4 flex items-center justify-center min-h-[180px] sm:min-h-[200px]"
               style={{ background: `linear-gradient(135deg, ${MINT.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
             >
               <div className="relative w-full max-w-sm">
@@ -84,10 +84,10 @@ export default function Highlights() {
           >
             {/* Mockup zone — top */}
             <div
-              className="relative px-6 md:px-8 pt-6 pb-4 flex items-center justify-center min-h-[200px]"
+              className="relative px-4 sm:px-6 md:px-8 pt-6 pb-4 flex items-center justify-center min-h-[180px] sm:min-h-[200px]"
               style={{ background: `linear-gradient(135deg, ${SKY.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
             >
-              <div className="relative scale-[0.5] md:scale-[0.55] origin-center -my-[110px]">
+              <div className="relative scale-[0.42] sm:scale-[0.5] md:scale-[0.55] origin-center -my-[110px]">
                 <MockMobile tone={SKY} />
               </div>
             </div>
