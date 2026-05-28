@@ -42,7 +42,7 @@ export default function Footer() {
               <a href="#" className="inline-block mb-3">
                 <img src="/yoocamp 4.svg" alt="Yoocamp" className="h-7" />
               </a>
-              <p className="text-sm text-gray-400 leading-relaxed max-w-[220px]">
+              <p className="text-sm text-gray-500 leading-relaxed max-w-[220px]">
                 La plateforme tout-en-un pour créer, animer et monétiser ta communauté.
               </p>
               <div className="flex gap-3 mt-4">
@@ -81,7 +81,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400 cursor-pointer"
+                    className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-500 cursor-pointer"
                     whileHover={{ scale: 1.1, backgroundColor: "#EEF2FF", color: "#6952E6" }}
                   >
                     {s.icon}
@@ -101,7 +101,7 @@ export default function Footer() {
                     <li key={j}>
                       <motion.a
                         href={link.href}
-                        className="text-sm text-gray-400 hover:text-[#6952E6] transition-colors"
+                        className="text-sm text-gray-500 hover:text-[#6952E6] transition-colors"
                         whileHover={{ x: 2 }}
                       >
                         {link.label}
@@ -114,13 +114,8 @@ export default function Footer() {
           </div>
         </FadeIn>
 
-        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
+        <div className="border-t border-gray-200 pt-8 text-sm text-gray-500">
           <p>© 2026 Yoocamp. Tous droits réservés.</p>
-          <div className="flex gap-6">
-            <a href="https://www.yoocamp.com/privacy" className="hover:text-gray-600 transition-colors">Confidentialité</a>
-            <a href="https://www.yoocamp.com/terms" className="hover:text-gray-600 transition-colors">CGU & CGV</a>
-            <a href="https://www.yoocamp.com/legal" className="hover:text-gray-600 transition-colors">Mentions légales</a>
-          </div>
         </div>
       </div>
     </footer>

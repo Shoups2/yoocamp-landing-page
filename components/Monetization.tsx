@@ -222,7 +222,7 @@ export default function Monetization() {
           <RevenueCard
             index={1}
             inView={inView}
-            title="Formations & Coaching"
+            title="Formations & Vidéos"
             revenue={courseRevenue}
             color="#3B82F6"
             gradientTo="#06B6D4"
@@ -263,7 +263,7 @@ export default function Monetization() {
             </motion.div>
 
             <p className="relative text-base md:text-lg font-medium text-gray-600 mt-5 mb-10">
-              de revenus nets mensuels sur ton compte avec <span className="text-[#6952E6] font-semibold">Yoocamp</span>
+              de revenus mensuels sur ton compte avec <span className="text-[#6952E6] font-semibold">Yoocamp</span>
             </p>
 
             {/* CTA */}

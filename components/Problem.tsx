@@ -86,7 +86,7 @@ export default function Problem() {
             </h2>
 
             <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-14">
-              Avec Yoocamp, tu peux démarrer gratuitement, publier des vidéos premium, vendre tes contenus et offrir une expérience membre moderne.
+              Avec Yoocamp, tu peux démarrer gratuitement, publier des vidéos premium, lancer tes formations et créer un espace que tes membres auront envie de rejoindre.
             </p>
           </div>
         </FadeIn>
