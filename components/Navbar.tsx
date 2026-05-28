@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const links = [
   { label: "Créer", href: "#communauté" },
   { label: "Comment ça marche", href: "#fonctionnalités" },
+  { label: "Comparer", href: "#pourquoi-yoocamp" },
   { label: "Simulateur", href: "#simulateur" },
   { label: "FAQ", href: "#faq" },
 ];

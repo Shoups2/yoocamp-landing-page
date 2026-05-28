@@ -174,17 +174,17 @@ export default function FeaturesTabs() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#6952E6] mb-5">
-            Créer de la valeur
+            Ce que tu peux créer
           </p>
           <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1]">
-            Ce que tu apportes
+            Donne plus de valeur
             <br />
             <span className="whitespace-nowrap bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
-              te rapporte aussi
+              à ton contenu
             </span>
           </h2>
           <p className="mt-5 text-base md:text-lg text-gray-500 leading-relaxed">
-            Formations, vidéos premium, événements ou coaching : Yoocamp te permet de créer, vendre et faire vivre tes contenus au même endroit.
+            Transforme ton contenu en produits pour ta communauté : formations, vidéos exclusives, événements et expériences réservées à tes membres.
           </p>
         </motion.div>
 
