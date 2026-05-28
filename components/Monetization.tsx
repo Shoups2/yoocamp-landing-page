@@ -164,10 +164,10 @@ function RevenueCard({
 /* ── Section ─────────────────────────────── */
 
 export default function Monetization() {
-  const [members, setMembers] = useState(200);
-  const [subPrice, setSubPrice] = useState(39);
-  const [sales, setSales] = useState(30);
-  const [coursePrice, setCoursePrice] = useState(240);
+  const [members, setMembers] = useState(80);
+  const [subPrice, setSubPrice] = useState(29);
+  const [sales, setSales] = useState(10);
+  const [coursePrice, setCoursePrice] = useState(97);
 
   const subRevenue = members * subPrice;
   const courseRevenue = sales * coursePrice;
@@ -263,7 +263,7 @@ export default function Monetization() {
             </motion.div>
 
             <p className="relative text-base md:text-lg font-medium text-gray-600 mt-5 mb-10">
-              de revenus nets sur ton compte avec <span className="text-[#6952E6] font-semibold">Yoocamp</span>
+              de revenus nets mensuels sur ton compte avec <span className="text-[#6952E6] font-semibold">Yoocamp</span>
             </p>
 
             {/* CTA */}
@@ -280,7 +280,7 @@ export default function Monetization() {
             </motion.a>
 
             <p className="relative text-[13px] text-gray-600 mt-4">
-              Sans carte bancaire · En 2 minutes
+              Crée ton espace en 2 min · Encaisse dès ton premier membre
             </p>
           </div>
         </motion.div>

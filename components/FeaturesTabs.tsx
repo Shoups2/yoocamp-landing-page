@@ -96,7 +96,7 @@ const FEATS: Feat[] = [
     icon: "🎓",
     title: <>Crée et vends tes <Grad from="#6952E6" to="#8B75FF">formations</Grad></>,
     desc: "Construis une formation complète avec vidéos, modules et ressources. Gratuit ou payant, à toi de choisir.",
-    bullets: ["Tarif à fixer librement", "Modules simples à organiser", "Accès instantané après paiement", "Suivi de progression par membre"],
+    bullets: ["Tarif libre", "Vidéos, textes, images", "Modules simples à organiser", "Accès instantané après paiement", "Suivi de progression"],
     mock: "courses",
   },
   {
@@ -104,9 +104,9 @@ const FEATS: Feat[] = [
     label: "Vidéos",
     tone: "brand",
     icon: "🎥",
-    title: <>Publie des vidéos <Grad from="#6952E6" to="#8B75FF">réservées à tes membres</Grad></>,
-    desc: "Coulisses, vidéos bonus, replays ou masterclass : choisis ce que tu rends accessible à tous et ce que tu réserves à tes membres.",
-    bullets: ["Contenu pédagogique", "Coulisses & vidéos bonus", "Accès gratuit ou réservé aux membres", "Commentaires & réactions"],
+    title: <>Publie des vidéos <Grad from="#6952E6" to="#8B75FF">exclusives</Grad></>,
+    desc: "Partage des vidéos pédagogiques, des ressources exclusives et du contenu premium réservé à ta communauté.",
+    bullets: ["Vidéos pédagogiques et contenus premium", "Bonus, coulisses et ressources exclusives", "Accès libre ou réservé à tes membres"],
     mock: "videos",
   },
   {
@@ -116,7 +116,7 @@ const FEATS: Feat[] = [
     icon: "💬",
     title: <>Crée le point de rendez-vous de ta <Grad from="#6952E6" to="#8B75FF">communauté</Grad></>,
     desc: "Rassemble tes membres dans un espace privé, gratuit ou par abonnement. Discussions, annonces, projets — tout se passe au même endroit.",
-    bullets: ["Gratuit ou par abonnement mensuel", "Discussions, annonces & projets", "Messages privés entre membres"],
+    bullets: ["Gratuit, mensuel, annuel ou tarif unique", "Discussions, annonces & projets", "Messages privés"],
     mock: "community",
   },
   {
@@ -124,9 +124,9 @@ const FEATS: Feat[] = [
     label: "Événements",
     tone: "brand",
     icon: "📅",
-    title: <>Propose des lives, coachings et <Grad from="#6952E6" to="#8B75FF">événements payants</Grad></>,
-    desc: "Planifie tes lives, webinaires, coachings ou sessions privées, puis garde toute ta communauté informée au même endroit.",
-    bullets: ["Événements privés sur invitation", "Lives & coaching", "Inscriptions & rappels automatiques"],
+    title: <>Organise tes événements, ateliers et <Grad from="#6952E6" to="#8B75FF">coachings</Grad></>,
+    desc: "Crée un calendrier d'événements pour ta communauté. Ajoute ton lien externe (Zoom, Meet, etc.) et tes membres reçoivent les rappels automatiquement.",
+    bullets: ["Calendrier visible par tes membres", "Lien externe (Zoom, Meet, etc.)", "Inscriptions & rappels automatiques"],
     mock: "events",
   },
 ];

@@ -152,7 +152,7 @@ export default function Hero() {
           {...blurFadeUp(0.2)}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.08] tracking-tight scale-[1.03] origin-center"
         >
-          Crée ta communauté privée
+          Lance ta communauté privée
           <br />
           <span className="bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0] bg-clip-text text-transparent">
             et vends ton contenu
@@ -179,7 +179,7 @@ export default function Hero() {
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
-            Lancer ma communauté gratuitement
+            Créer ma communauté gratuitement
             <motion.svg
               className="w-5 h-5"
               fill="none"
@@ -236,7 +236,7 @@ export default function Hero() {
               ))}
             </motion.div>
           </div>
-          <span className="text-sm text-gray-500"><span className="font-semibold text-gray-700">+1 000 créateurs</span> nous font déjà confiance</span>
+          <span className="text-sm text-gray-500"><span className="font-semibold text-gray-700">+1 000 créateurs</span> attendent Yoocamp</span>
         </motion.div>
       </div>
 

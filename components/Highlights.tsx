@@ -58,16 +58,16 @@ export default function Highlights() {
                     backgroundClip: "text",
                   }}
                 >
-                  sans complexité
+                  simplement
                 </span>
               </h3>
               <p className="mt-3 text-[15px] text-gray-500 leading-relaxed">
-                Vends tes formations, vidéos ou abonnements, encaisse les paiements et suis tes ventes en temps réel depuis ton dashboard.
+                Vends tes formations, contenus premium et abonnements, encaisse tes paiements en toute sécurité et suis l'évolution de tes ventes depuis le tableau de bord.
               </p>
               <div className="mt-5">
                 <CheckList
                   color={MINT.c}
-                  items={["Suivi des ventes en temps réel", "Dashboard", "Paiements sécurisés", "Virements automatiques"]}
+                  items={["Ventes et revenus suivis en temps réel", "Tableau de bord", "Paiements sécurisés intégrés"]}
                 />
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function Highlights() {
                 className="font-bold text-gray-900 text-[1.7rem] md:text-[1.95rem] leading-[1.05] tracking-[-0.025em]"
                 style={{ fontFamily: "var(--font-bricolage), sans-serif" }}
               >
-                Ta communauté toujours{" "}
+                Ta communauté{" "}
                 <span
                   style={{
                     backgroundImage: `linear-gradient(135deg, #1E40AF, #60A5FA)`,
@@ -114,16 +114,16 @@ export default function Highlights() {
                     backgroundClip: "text",
                   }}
                 >
-                  à portée de main
+                  accessible partout
                 </span>
               </h3>
               <p className="mt-3 text-[15px] text-gray-500 leading-relaxed">
-                Tes membres retrouvent tes contenus, formations, discussions et événements depuis leur téléphone, avec une expérience simple à utiliser au quotidien.
+                Offre à tes membres une expérience fluide sur téléphone pour suivre tes formations, consulter tes contenus, participer aux discussions et ne rien manquer de tes événements.
               </p>
               <div className="mt-5">
                 <CheckList
                   color={SKY.c}
-                  items={["Accès depuis le téléphone", "Formations faciles à suivre", "Discussions à tout moment"]}
+                  items={["Accès mobile simple et rapide", "Formations et contenus faciles à suivre", "Discussions et événements toujours à portée"]}
                 />
               </div>
             </div>

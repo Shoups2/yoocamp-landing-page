@@ -383,7 +383,7 @@ const gradientClass = "bg-gradient-to-r from-[#6952E6] via-[#8B75FF] to-[#6C4FE0
 const steps = [
   {
     num: "1",
-    title: <>Configure ton espace{"\n"}<span className={gradientClass}>et tes tarifs</span></>,
+    title: <>Configure ton espace{"\n"}<span className={gradientClass}>et ton prix</span></>,
     desc: "Personnalise ton espace et choisis un tarif gratuit, mensuel ou annuel.",
     image: "/step1.png",
   },
@@ -396,7 +396,7 @@ const steps = [
   {
     num: "3",
     title: <>Invite tes{"\n"}<span className={gradientClass}>premiers membres</span></>,
-    desc: "Partage le lien de ta page avec ton audience et accueille tes premiers membres.",
+    desc: "Partage le lien de ta page avec ton audience, accueille tes premiers membres et génère du revenu.",
     image: "/step3.png",
   },
 ];

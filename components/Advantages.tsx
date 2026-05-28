@@ -7,7 +7,7 @@ import { FadeIn } from "./motion";
 const faqs = [
   {
     q: "C'est quoi Yoocamp ?",
-    a: "Yoocamp est une plateforme pour créer du contenu payant, animer une communauté et vendre des formations en ligne.",
+    a: "Yoocamp est une plateforme qui permet aux créateurs de contenu de générer des revenus et de se rapprocher de leur audience. Tu y proposes tes formations, vidéos exclusives et tout autre contenu premium à ta communauté.",
   },
   {
     q: "C'est gratuit ?",
@@ -27,11 +27,11 @@ const faqs = [
   },
   {
     q: "Quels types de contenus je peux vendre ?",
-    a: "Formations vidéo, modules de cours, coachings, abonnements mensuels ou événements… Tu choisis le format qui te correspond et tu fixes librement tes prix.",
+    a: "Tu peux vendre des formations, des vidéos exclusives ou des abonnements à ta communauté. Tu choisis tes formats, ton mode d'accès et tes prix.",
   },
   {
     q: "Quelle est la différence avec Skool, Patreon, Teachable ou Podia ?",
-    a: "Yoocamp réunit communauté, contenus premium, formations, événements et paiements dans un seul espace. Tu peux lancer gratuitement, puis monétiser tes contenus quand ta communauté prend vie.",
+    a: "Skool, Patreon, Teachable ou Podia répondent chacun à une partie du besoin. Yoocamp rassemble communauté, formations et vidéos premium dans une plateforme française, avec une offre gratuite pour démarrer simplement.",
   },
   {
     q: "Je peux quitter à tout moment ?",

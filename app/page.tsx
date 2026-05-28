@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Problem from "@/components/Problem";
 import LiveActivity from "@/components/LiveActivity";
 
 import FeaturesTabs from "@/components/FeaturesTabs";
@@ -23,6 +24,7 @@ export default function Home() {
         <FeaturesTabs />
         <Highlights />
         <Features />
+        <Problem />
         <Monetization />
         <Advantages />
         <CTABanner />
