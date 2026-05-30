@@ -1083,7 +1083,7 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
 
             <div className="relative h-full flex flex-col text-gray-900">
               {/* Barre de statut */}
-              <div className="flex items-center justify-between px-5 pt-4 text-[10px] font-semibold text-gray-700">
+              <div className="flex items-center justify-between px-5 pt-3 text-[10px] font-semibold text-gray-700">
                 <span>9:41</span>
                 <div className="flex items-center gap-1">
                   <svg className="w-3 h-3" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="9" width="2.5" height="4" rx="0.5"/><rect x="5" y="6" width="2.5" height="7" rx="0.5"/><rect x="9" y="3" width="2.5" height="10" rx="0.5"/><rect x="13" y="1" width="2.5" height="12" rx="0.5" opacity="0.35"/></svg>
@@ -1093,7 +1093,7 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
               </div>
 
               {/* En-tête */}
-              <div className="flex items-center justify-between px-5 pt-3">
+              <div className="flex items-center justify-between px-5 pt-2">
                 <div className="flex items-center gap-2.5">
                   <img src={AVATARS[0]} alt="" className="w-9 h-9 rounded-full object-cover ring-2 ring-white shadow-sm" />
                   <div>
@@ -1108,15 +1108,15 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
               </div>
 
               {/* Carte revenus (hero) */}
-              <div className="px-4 mt-4">
-                <div className="relative overflow-hidden rounded-[1.5rem] p-4 text-white shadow-[0_14px_30px_-10px_rgba(105,82,230,0.55)]" style={{ background: "linear-gradient(135deg,#6952E6 0%,#8B75FF 100%)" }}>
+              <div className="px-4 mt-3">
+                <div className="relative overflow-hidden rounded-[1.5rem] p-3.5 text-white shadow-[0_14px_30px_-10px_rgba(105,82,230,0.55)]" style={{ background: "linear-gradient(135deg,#6952E6 0%,#8B75FF 100%)" }}>
                   <div className="absolute -top-8 -right-6 w-24 h-24 rounded-full bg-white/15 blur-xl pointer-events-none" />
                   <div className="relative flex items-center justify-between">
                     <span className="text-[10px] font-medium text-white/75">Revenus ce mois</span>
                     <span className="inline-flex items-center gap-1 text-[9px] font-bold bg-white/20 rounded-full px-2 py-0.5 backdrop-blur-sm">↑ 24%</span>
                   </div>
-                  <div className="relative mt-1.5 text-[26px] font-extrabold tracking-tight leading-none">8 300 €</div>
-                  <div className="relative mt-3 flex items-end gap-1.5 h-8">
+                  <div className="relative mt-1.5 text-[23px] font-extrabold tracking-tight leading-none">8 300 €</div>
+                  <div className="relative mt-2 flex items-end gap-1.5 h-6">
                     {[42, 60, 38, 72, 55, 88, 66].map((h, i) => (
                       <div key={i} className="flex-1 h-full flex items-end">
                         <motion.div
@@ -1134,16 +1134,16 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
               </div>
 
               {/* Activité */}
-              <div className="flex items-center justify-between px-5 mt-4">
+              <div className="flex items-center justify-between px-5 mt-3">
                 <span className="text-[11px] font-bold text-gray-900">Activité récente</span>
                 <span className="text-[9px] font-semibold text-[#6952E6]">Tout voir</span>
               </div>
 
-              <div className="px-4 mt-2 space-y-2">
+              <div className="px-4 mt-2 space-y-1">
                 {notifs.map((n, i) => (
                   <motion.div
                     key={i}
-                    className="rounded-2xl px-1 py-1.5 flex items-center gap-2.5"
+                    className="rounded-2xl px-1 py-1 flex items-center gap-2.5"
                     initial={{ opacity: 0, x: 14 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -1160,7 +1160,7 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
               </div>
 
               {/* Nav flottante */}
-              <div className="mt-auto px-5 pb-7 pt-2">
+              <div className="mt-auto px-5 pb-4 pt-2">
                 <div className="flex items-center justify-between bg-white rounded-2xl px-2 py-1.5 shadow-[0_8px_24px_-8px_rgba(15,12,40,0.25)] border border-gray-100">
                   <div className="flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-white" style={{ background: "linear-gradient(135deg,#6952E6,#8B75FF)" }}>
                     <LucideIcon name="home" className="w-4 h-4" />
