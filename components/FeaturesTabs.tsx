@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef, type ReactNode } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useState, useEffect, useRef, type ReactNode, type CSSProperties } from "react";
+import { motion, AnimatePresence, useInView, type PanInfo } from "framer-motion";
 import Image from "next/image";
 import CheckList from "./CheckList";
 
@@ -124,8 +124,8 @@ const FEATS: Feat[] = [
     label: "Événements",
     tone: "brand",
     icon: "📅",
-    title: <>Organise tes événements, ateliers et <Grad from="#6952E6" to="#8B75FF">coachings</Grad></>,
-    desc: "Crée un calendrier d'événements pour ta communauté. Ajoute ton lien externe (Zoom, Meet, etc.) et tes membres reçoivent les rappels automatiquement.",
+    title: <>Organise des <Grad from="#6952E6" to="#8B75FF">événements</Grad> avec ta communauté</>,
+    desc: "Crée un calendrier d'événements, masterclasses et coachings pour ta communauté. Ajoute ton lien externe (Zoom, Meet, etc.) et tes membres reçoivent les rappels automatiquement.",
     bullets: ["Calendrier visible par tes membres", "Lien externe (Zoom, Meet, etc.)", "Inscriptions & rappels automatiques"],
     mock: "events",
   },
@@ -136,6 +136,8 @@ const FEATS: Feat[] = [
 export default function FeaturesTabs() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [hinted, setHinted] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const tabsScrollRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -150,6 +152,26 @@ export default function FeaturesTabs() {
     }, 8000);
     return () => clearInterval(timer);
   }, [active, paused, inView]);
+
+  // Active le swipe uniquement sur mobile
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const paginate = (dir: number) => {
+    setActive((i) => (i + dir + FEATS.length) % FEATS.length);
+    setPaused(true);
+  };
+
+  const handleDragEnd = (_: unknown, info: PanInfo) => {
+    const threshold = 40;
+    if (info.offset.x <= -threshold) paginate(1);
+    else if (info.offset.x >= threshold) paginate(-1);
+  };
 
   // Auto-scroll active tab into view on mobile
   useEffect(() => {
@@ -213,10 +235,10 @@ export default function FeaturesTabs() {
           {/* Scroll horizontal sur mobile, layout normal sur desktop */}
           <div
             ref={tabsScrollRef}
-            className="featurestabs-scroll w-full md:w-auto overflow-x-auto md:overflow-visible scroll-smooth -mx-5 md:mx-0 px-5 md:px-0 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)] md:[mask-image:none]"
+            className="featurestabs-scroll w-full md:w-auto md:overflow-visible md:scroll-smooth md:mx-0 md:px-0 md:[mask-image:none]"
             style={{ scrollSnapType: "x mandatory" }}
           >
-            <div className="inline-flex items-center gap-1 p-1 rounded-full bg-white border border-gray-200 shadow-sm whitespace-nowrap mx-auto">
+            <div className="flex w-full justify-center md:inline-flex md:w-auto md:justify-start items-center gap-1 p-1 rounded-full bg-white border border-gray-200 shadow-sm whitespace-nowrap mx-auto">
               {FEATS.map((feat, i) => {
                 const isActive = i === active;
                 const tt = TONES[feat.tone];
@@ -225,7 +247,7 @@ export default function FeaturesTabs() {
                     key={feat.id}
                     ref={(el) => { tabRefs.current[i] = el; }}
                     onClick={() => setActive(i)}
-                    className="relative cursor-pointer shrink-0 px-3 sm:px-3 md:px-4 py-1.5 sm:py-2 text-[12px] sm:text-[12.5px] md:text-[13.5px] font-semibold rounded-full transition-all duration-300"
+                    className="relative cursor-pointer shrink-0 px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 text-[11.5px] sm:text-[12.5px] md:text-[13.5px] font-semibold rounded-full transition-all duration-300"
                     style={{
                       color: isActive ? "#fff" : "#5A5A6E",
                       background: isActive ? tt.c : "transparent",
@@ -233,7 +255,7 @@ export default function FeaturesTabs() {
                       scrollSnapAlign: "center",
                     }}
                   >
-                    <span className="mr-1.5">{feat.icon}</span>
+                    <span className="hidden md:inline mr-1.5">{feat.icon}</span>
                     {feat.label}
                   </button>
                 );
@@ -255,7 +277,18 @@ export default function FeaturesTabs() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr]">
+          <motion.div
+            className="touch-pan-y"
+            drag={isMobile ? "x" : false}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0}
+            onDragEnd={handleDragEnd}
+          >
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr]"
+            animate={isMobile && inView && !hinted ? { x: [0, -36, 0, -18, 0] } : undefined}
+            transition={{ delay: 0.6, duration: 1.3, times: [0, 0.28, 0.5, 0.72, 1], ease: "easeInOut" }}
+            onAnimationComplete={() => { if (isMobile && inView && !hinted) setHinted(true); }}>
             {/* Left — text (mobile: en 2e, desktop: à gauche) */}
             <div className="order-2 md:order-1 p-5 sm:p-7 md:p-10 lg:p-12 flex flex-col justify-center">
               <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] self-start" style={{ color: t.c }}>
@@ -281,7 +314,7 @@ export default function FeaturesTabs() {
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold text-white transition-transform hover:scale-105"
                   style={{ background: t.c }}
                 >
-                  Essayer maintenant
+                  Commencer gratuitement
                   <span>→</span>
                 </a>
                 <button
@@ -308,7 +341,7 @@ export default function FeaturesTabs() {
 
             {/* Right — mockup (mobile: en 1er, desktop: à droite) */}
             <div
-              className="order-1 md:order-2 relative p-4 sm:p-5 md:p-7 lg:p-8 min-h-[360px] sm:min-h-[440px] md:min-h-[500px] h-full flex items-center justify-center overflow-hidden transition-colors duration-500"
+              className="order-1 md:order-2 relative p-3 sm:p-5 md:p-7 lg:p-8 min-h-0 sm:min-h-[440px] md:min-h-[500px] h-full flex items-center justify-center overflow-hidden transition-colors duration-500"
               style={{ background: `linear-gradient(135deg, ${t.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
             >
               <motion.div
@@ -326,7 +359,8 @@ export default function FeaturesTabs() {
                 {f.mock === "mobile" && <MockMobile tone={t} />}
               </motion.div>
             </div>
-          </div>
+          </motion.div>
+          </motion.div>
 
           {/* Progress bar */}
           <div className="h-1 bg-gray-100">
@@ -340,6 +374,81 @@ export default function FeaturesTabs() {
             />
           </div>
         </motion.div>
+
+        {/* Monétisation & Mobile — sous les onglets, même section */}
+        <div className="mt-12 md:mt-16 space-y-8 md:space-y-10">
+          {/* Monétisation */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-[1.35fr_1fr] rounded-[2rem] border bg-white overflow-hidden shadow-[0_1px_2px_rgba(15,12,40,0.04),0_4px_16px_rgba(15,12,40,0.05),0_12px_32px_-8px_rgba(15,12,40,0.04)]"
+            style={{ borderColor: TONES.brand.ring }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="order-2 md:order-1 p-7 sm:p-9 md:p-10 flex flex-col justify-center">
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] self-start text-[#1FB894]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#1FB894]" />
+                Monétisation
+              </div>
+              <h3
+                className="mt-4 font-bold text-gray-900 text-[1.5rem] sm:text-[1.75rem] md:text-[2.2rem] leading-[1.05] tracking-[-0.025em]"
+                style={{ fontFamily: "var(--font-bricolage), sans-serif" }}
+              >
+                Suis tes <Grad from="#1FB894" to="#2DCFA8">revenus</Grad> en temps réel
+              </h3>
+              <p className="mt-4 text-[15px] text-gray-700 leading-relaxed">
+                Vends formations, abonnements et accès premium, encaisse en toute sécurité et suis l&apos;évolution de tes ventes depuis ton tableau de bord.
+              </p>
+              <div className="mt-6">
+                <CheckList items={["Paiements sécurisés intégrés", "Abonnements & ventes uniques", "Tableau de bord des ventes"]} color={TONES.brand.c} />
+              </div>
+            </div>
+            <div
+              className="order-1 md:order-2 relative p-5 sm:p-7 md:p-8 flex items-center justify-center overflow-hidden"
+              style={{ background: `linear-gradient(135deg, ${TONES.brand.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
+            >
+              <div className="relative w-full max-w-md">
+                <RevenueMock />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Mobile */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-[1fr_1.35fr] rounded-[2rem] border bg-white overflow-hidden shadow-[0_1px_2px_rgba(15,12,40,0.04),0_4px_16px_rgba(15,12,40,0.05),0_12px_32px_-8px_rgba(15,12,40,0.04)]"
+            style={{ borderColor: TONES.brand.ring }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div
+              className="order-1 relative p-6 sm:p-8 md:p-8 flex items-center justify-center overflow-hidden"
+              style={{ background: `linear-gradient(135deg, ${TONES.brand.soft} 0%, rgba(250,250,253,0.5) 100%)` }}
+            >
+              <MockMobile tone={TONES.brand} />
+            </div>
+            <div className="order-2 p-7 sm:p-9 md:p-10 flex flex-col justify-center">
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] self-start text-[#3D9DFF]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3D9DFF]" />
+                Mobile
+              </div>
+              <h3
+                className="mt-4 font-bold text-gray-900 text-[1.5rem] sm:text-[1.75rem] md:text-[2.2rem] leading-[1.05] tracking-[-0.025em]"
+                style={{ fontFamily: "var(--font-bricolage), sans-serif" }}
+              >
+                Ta communauté <Grad from="#3D9DFF" to="#6FB8FF">dans ta poche</Grad>
+              </h3>
+              <p className="mt-4 text-[15px] text-gray-700 leading-relaxed">
+                Reçois tes ventes, messages et rappels en temps réel. Tes membres accèdent à ton espace où qu&apos;ils soient, directement depuis leur mobile.
+              </p>
+              <div className="mt-6">
+                <CheckList items={["Notifications en temps réel", "Ventes, messages & rappels", "Accessible partout, sur tous les écrans"]} color={TONES.brand.c} />
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -387,7 +496,7 @@ function DiscussionMock() {
           </motion.div>
         </div>
       </div>
-      <div className="px-3 py-3 space-y-2.5 h-52 overflow-hidden">
+      <div className="px-3 py-3 space-y-2.5 h-auto md:h-52 overflow-hidden">
         {chatMessages.map((msg, i) => (
           <motion.div
             key={i}
@@ -470,7 +579,7 @@ function VideoMock() {
       </div>
 
       {/* Body : titre + price */}
-      <div className="px-4 pt-3 pb-2">
+      <div className="px-4 pt-3 pb-4 md:pb-2">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             <h4 className="text-[13px] font-bold text-gray-900 leading-tight">Lance ton business : A à Z</h4>
@@ -497,7 +606,7 @@ function VideoMock() {
       </div>
 
       {/* Modules list */}
-      <div className="px-4 pb-3 space-y-0.5">
+      <div className="hidden md:block px-4 pb-3 space-y-0.5">
         {modules.map((m, i) => (
           <motion.div
             key={m.num}
@@ -610,7 +719,7 @@ function VideoLibraryMock() {
         </div>
 
         {/* Reactions */}
-        <div className="mt-2.5 flex items-center gap-1.5 flex-wrap">
+        <div className="mt-2.5 hidden md:flex items-center gap-1.5 flex-wrap">
           {[
             { emoji: "🔥", count: 124 },
             { emoji: "❤️", count: 89 },
@@ -627,7 +736,7 @@ function VideoLibraryMock() {
         </div>
 
         {/* Suggested */}
-        <div className="mt-3 pt-2.5 border-t border-gray-100">
+        <div className="hidden md:block mt-3 pt-2.5 border-t border-gray-100">
           <div className="text-[9px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">À suivre</div>
           <div className="space-y-1">
             {suggested.map((s, i) => (
@@ -675,10 +784,7 @@ const weekEvents = [
   ]},
   { day: "Mar", num: 10, events: [
     { title: "Cours en visio", time: "16h", color: "bg-[#8B75FF]" },
-  ]},
-  { day: "Mer", num: 11, events: [
-    { title: "Coaching Marie", time: "10h", color: "bg-violet-400" },
-    { title: "Séminaire St-Tropez", time: "14h", color: "bg-[#6952E6]" },
+    { title: "Séminaire St-Tropez", time: "18h", color: "bg-[#6952E6]" },
   ]},
 ];
 
@@ -704,7 +810,7 @@ function EventsMock() {
           {weekEvents.map((day, i) => (
             <motion.div
               key={day.day}
-              className="flex-1 flex flex-col items-center gap-1"
+              className="flex-1 min-w-0 flex flex-col items-center gap-1"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.3 }}
@@ -731,9 +837,9 @@ function EventsMock() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.35 + i * 0.08 + j * 0.06, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1 min-w-0">
                       <div className={`w-1.5 h-1.5 rounded-full ${evt.color} flex-shrink-0`} />
-                      <span className="text-[11px] text-gray-800 font-semibold leading-tight block truncate">{evt.title}</span>
+                      <span className="text-[11px] text-gray-800 font-semibold leading-tight block truncate min-w-0">{evt.title}</span>
                     </div>
                     <span className="text-[10px] text-gray-400 ml-2.5">{evt.time}</span>
                   </motion.div>
@@ -870,70 +976,207 @@ export function RevenueMock() {
   );
 }
 
+/* ── Icônes style Lucide (inline, sans dépendance) ──────────────────── */
+
+const ICON_PATHS: Record<string, ReactNode> = {
+  wallet: (
+    <>
+      <path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+      <path d="M21 11h-6a2 2 0 0 0 0 4h6a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Z" />
+    </>
+  ),
+  message: <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />,
+  bell: (
+    <>
+      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+      <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+    </>
+  ),
+  home: (
+    <>
+      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <path d="M9 22V12h6v10" />
+    </>
+  ),
+  cap: (
+    <>
+      <path d="M22 10 12 5 2 10l10 5 10-5Z" />
+      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect width="18" height="18" x="3" y="4" rx="2" />
+      <path d="M3 10h18M8 2v4M16 2v4" />
+    </>
+  ),
+  user: (
+    <>
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </>
+  ),
+};
+
+function LucideIcon({ name, className, style }: { name: keyof typeof ICON_PATHS; className?: string; style?: CSSProperties }) {
+  return (
+    <svg className={className} style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      {ICON_PATHS[name]}
+    </svg>
+  );
+}
+
 /* ── Mobile (depuis le spec, pas de mock existant) ──────────────────── */
 
 export function MockMobile({ tone }: { tone: ToneObj }) {
+  const notifs = [
+    {
+      kind: "Nouvelle vente",
+      title: "Léa a acheté Coaching VIP",
+      sub: "+149 € · il y a 2 min",
+      icon: "wallet" as const,
+      from: "#1FB894",
+      to: "#34E0B6",
+    },
+    {
+      kind: "Message",
+      title: "Maxime t'a mentionné dans #wins",
+      sub: "« @Lucas check ça 🔥 »",
+      icon: "message" as const,
+      from: "#3D9DFF",
+      to: "#7FBFFF",
+    },
+    {
+      kind: "Rappel",
+      title: "Mastermind dans 30 min",
+      sub: "48 personnes inscrites",
+      icon: "calendar" as const,
+      from: "#FFB627",
+      to: "#FFD37A",
+    },
+  ] as const;
+
   return (
     <div className="relative flex justify-center">
       <div className="absolute inset-0 -z-0 flex items-center justify-center pointer-events-none">
         <div className="w-72 h-72 rounded-full blur-3xl opacity-50" style={{ background: tone.soft }} />
       </div>
 
-      <div className="relative w-[240px] h-[480px] bg-gray-900 rounded-[2.5rem] p-2 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.4)]">
-        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-900 rounded-b-2xl z-10" />
-        <div className="w-full h-full bg-white rounded-[2.1rem] overflow-hidden relative">
-          <div className="relative h-full flex flex-col p-4 text-gray-900">
-            <div className="flex items-center justify-between mt-2">
-              <img src="/yoocamp 4.svg" alt="Yoocamp" className="h-5 w-auto" />
-              <div className="w-6 h-6 rounded-full bg-[#6952E6] flex items-center justify-center text-[10px] font-bold text-white">3</div>
-            </div>
-            <div className="text-[11px] text-gray-500 mt-1">Bonjour Lucas 👋</div>
+      <motion.div
+        className="relative w-[248px] h-[506px] rounded-[3rem] p-[3px] shadow-[0_40px_90px_-20px_rgba(15,12,40,0.45)]"
+        style={{ background: "linear-gradient(160deg,#3a3a44 0%,#0d0d12 55%,#000 100%)" }}
+        initial={{ y: 16, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {/* reflets latéraux du châssis */}
+        <div className="pointer-events-none absolute inset-y-7 -left-[1px] w-[3px] rounded-full bg-white/15" />
+        <div className="pointer-events-none absolute inset-y-7 -right-[1px] w-[3px] rounded-full bg-white/10" />
 
-            <div className="mt-4 space-y-2.5">
-              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 text-gray-900 shadow-sm">
-                <div className="flex items-start gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-[#6952E6]/10 flex items-center justify-center text-base shrink-0">💰</div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-[9.5px] font-bold uppercase text-[#6952E6]">Nouvelle vente</div>
-                    <div className="text-[12px] font-bold leading-tight mt-0.5">Léa a acheté Coaching VIP</div>
-                    <div className="text-[10px] text-gray-500 mt-0.5">+149 € · il y a 2 min</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 text-gray-900 shadow-sm">
-                <div className="flex items-start gap-2.5">
-                  <img src={AVATARS[4]} className="w-8 h-8 rounded-lg object-cover shrink-0" alt="" />
-                  <div className="flex-1 min-w-0">
-                    <div className="text-[9.5px] font-bold uppercase text-[#6952E6]">Message</div>
-                    <div className="text-[12px] font-bold leading-tight mt-0.5">Maxime t&apos;a mentionné dans #wins</div>
-                    <div className="text-[10px] text-gray-500 mt-0.5">&quot;@Lucas check ça 🔥&quot;</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 text-gray-900 shadow-sm">
-                <div className="flex items-start gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-[#6952E6]/10 flex items-center justify-center text-base shrink-0">📅</div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-[9.5px] font-bold uppercase text-[#6952E6]">Rappel</div>
-                    <div className="text-[12px] font-bold leading-tight mt-0.5">Mastermind dans 30 min</div>
-                    <div className="text-[10px] text-gray-500 mt-0.5">48 personnes inscrites</div>
-                  </div>
-                </div>
-              </div>
+        <div className="relative w-full h-full bg-[#0d0d12] rounded-[2.85rem] p-[6px]">
+          <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden bg-gradient-to-b from-[#FAFAFE] to-[#F2F1FB]">
+            {/* Dynamic island */}
+            <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[78px] h-[22px] bg-black rounded-full z-30 flex items-center justify-end pr-2.5">
+              <div className="w-2 h-2 rounded-full bg-[#1c1c22] ring-1 ring-white/10" />
             </div>
 
-            <div className="mt-auto -mx-4 -mb-4 px-5 py-3 bg-white border-t border-gray-100 flex justify-between">
-              {["💬", "🎓", "📅", "👤"].map((e, i) => (
-                <div key={i} className={`w-8 h-8 rounded-xl flex items-center justify-center ${i === 0 ? "bg-[#6952E6] text-white" : "opacity-50"}`}>
-                  <span className="text-base">{e}</span>
+            <div className="relative h-full flex flex-col text-gray-900">
+              {/* Barre de statut */}
+              <div className="flex items-center justify-between px-5 pt-4 text-[10px] font-semibold text-gray-700">
+                <span>9:41</span>
+                <div className="flex items-center gap-1">
+                  <svg className="w-3 h-3" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="9" width="2.5" height="4" rx="0.5"/><rect x="5" y="6" width="2.5" height="7" rx="0.5"/><rect x="9" y="3" width="2.5" height="10" rx="0.5"/><rect x="13" y="1" width="2.5" height="12" rx="0.5" opacity="0.35"/></svg>
+                  <svg className="w-3 h-3" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3.5c2.4 0 4.6.9 6.2 2.4l-1.4 1.5A7 7 0 0 0 8 5.5a7 7 0 0 0-4.8 1.9L1.8 5.9A8.9 8.9 0 0 1 8 3.5Zm0 3.4c1.5 0 2.8.6 3.8 1.5l-1.4 1.5A3.9 3.9 0 0 0 8 8.8c-1 0-1.9.4-2.5 1L4.2 8.4A5.6 5.6 0 0 1 8 6.9Zm0 3.3c.7 0 1.3.3 1.7.7L8 12.5l-1.7-1.6c.4-.4 1-.7 1.7-.7Z"/></svg>
+                  <div className="flex items-center gap-0.5"><div className="w-4 h-2 rounded-[3px] border border-gray-500/60 px-[1px] flex items-center"><div className="h-1 w-2.5 rounded-[1px] bg-gray-700"/></div><div className="w-0.5 h-1 rounded-r bg-gray-500/60"/></div>
                 </div>
-              ))}
+              </div>
+
+              {/* En-tête */}
+              <div className="flex items-center justify-between px-5 pt-3">
+                <div className="flex items-center gap-2.5">
+                  <img src={AVATARS[0]} alt="" className="w-9 h-9 rounded-full object-cover ring-2 ring-white shadow-sm" />
+                  <div>
+                    <div className="text-[9px] font-medium text-gray-400 leading-none">Bonjour 👋</div>
+                    <div className="text-[13px] font-bold leading-tight mt-0.5">Lucas</div>
+                  </div>
+                </div>
+                <div className="relative w-9 h-9 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.8 23.8 0 0 0 5.454-1.31A8.97 8.97 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.97 8.97 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.3 24.3 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg>
+                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#6952E6] text-white text-[8px] font-bold flex items-center justify-center ring-2 ring-white">3</span>
+                </div>
+              </div>
+
+              {/* Carte revenus (hero) */}
+              <div className="px-4 mt-4">
+                <div className="relative overflow-hidden rounded-[1.5rem] p-4 text-white shadow-[0_14px_30px_-10px_rgba(105,82,230,0.55)]" style={{ background: "linear-gradient(135deg,#6952E6 0%,#8B75FF 100%)" }}>
+                  <div className="absolute -top-8 -right-6 w-24 h-24 rounded-full bg-white/15 blur-xl pointer-events-none" />
+                  <div className="relative flex items-center justify-between">
+                    <span className="text-[10px] font-medium text-white/75">Revenus ce mois</span>
+                    <span className="inline-flex items-center gap-1 text-[9px] font-bold bg-white/20 rounded-full px-2 py-0.5 backdrop-blur-sm">↑ 24%</span>
+                  </div>
+                  <div className="relative mt-1.5 text-[26px] font-extrabold tracking-tight leading-none">8 300 €</div>
+                  <div className="relative mt-3 flex items-end gap-1.5 h-8">
+                    {[42, 60, 38, 72, 55, 88, 66].map((h, i) => (
+                      <div key={i} className="flex-1 h-full flex items-end">
+                        <motion.div
+                          className={`w-full rounded-full ${i === 5 ? "bg-white" : "bg-white/45"}`}
+                          style={{ height: `${h}%`, originY: 1 }}
+                          initial={{ scaleY: 0 }}
+                          whileInView={{ scaleY: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.3 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Activité */}
+              <div className="flex items-center justify-between px-5 mt-4">
+                <span className="text-[11px] font-bold text-gray-900">Activité récente</span>
+                <span className="text-[9px] font-semibold text-[#6952E6]">Tout voir</span>
+              </div>
+
+              <div className="px-4 mt-2 space-y-2">
+                {notifs.map((n, i) => (
+                  <motion.div
+                    key={i}
+                    className="rounded-2xl px-1 py-1.5 flex items-center gap-2.5"
+                    initial={{ opacity: 0, x: 14 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: 0.5 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <LucideIcon name={n.icon} className="w-5 h-5 shrink-0" style={{ color: n.from }} />
+                    <div className="flex-1 min-w-0">
+                      <div className="text-[8.5px] font-bold uppercase tracking-wide" style={{ color: n.from }}>{n.kind}</div>
+                      <div className="text-[11.5px] font-bold leading-tight mt-0.5 truncate">{n.title}</div>
+                      <div className="text-[9.5px] text-gray-400 mt-0.5 truncate">{n.sub}</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Nav flottante */}
+              <div className="mt-auto px-5 pb-7 pt-2">
+                <div className="flex items-center justify-between bg-white rounded-2xl px-2 py-1.5 shadow-[0_8px_24px_-8px_rgba(15,12,40,0.25)] border border-gray-100">
+                  <div className="flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-white" style={{ background: "linear-gradient(135deg,#6952E6,#8B75FF)" }}>
+                    <LucideIcon name="home" className="w-4 h-4" />
+                    <span className="text-[10px] font-bold">Feed</span>
+                  </div>
+                  {(["cap", "calendar", "user"] as const).map((name, i) => (
+                    <div key={i} className="w-8 h-8 rounded-xl flex items-center justify-center text-gray-400">
+                      <LucideIcon name={name} className="w-[18px] h-[18px]" />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

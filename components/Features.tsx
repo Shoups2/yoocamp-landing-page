@@ -58,13 +58,13 @@ function Step1Mock() {
             </div>
           </div>
           <div className="flex gap-2">
-            <div className="flex-1 px-3 py-2 rounded-xl bg-gray-50 border border-gray-200">
-              <span className="text-[10px] text-gray-400">Prix abonnement par mois</span>
-              <div className="text-sm text-gray-300">0,00 €</div>
+            <div className="flex-1 px-3 py-2 rounded-xl bg-gray-50 border border-gray-200 flex flex-col justify-between">
+              <span className="text-[10px] text-gray-400">Abonnement / mois</span>
+              <div className="text-sm text-gray-300 mt-1">0,00 €</div>
             </div>
-            <div className="flex-1 px-3 py-2 rounded-xl bg-gray-50 border border-gray-200">
+            <div className="flex-1 px-3 py-2 rounded-xl bg-gray-50 border border-gray-200 flex flex-col justify-between">
               <span className="text-[10px] text-gray-400">Accès à vie</span>
-              <div className="text-sm text-gray-300">0,00 €</div>
+              <div className="text-sm text-gray-300 mt-1">0,00 €</div>
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@ function Step2Mock() {
   return (
     <div className="bg-white rounded-2xl border border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="px-5 py-3 border-b border-gray-100">
-        <span className="text-sm font-bold text-gray-900">Lance ton business : A à Z formation niveau <span className="bg-gradient-to-r from-[#6952E6] to-[#6C4FE0] bg-clip-text text-transparent">Débutant à expert</span></span>
+        <span className="text-sm font-bold text-gray-900">Lance ton business : A à Z formation niveau <span className="bg-gradient-to-r from-[#6952E6] to-[#6C4FE0] bg-clip-text text-transparent">Débutant à Expert</span></span>
       </div>
 
       <div className="p-3 space-y-2">
@@ -396,6 +396,8 @@ export default function Features() {
     offset: ["start center", "end center"],
   });
   const [activeStep, setActiveStep] = useState(0);
+  const finaleRef = useRef(null);
+  const finaleInView = useInView(finaleRef, { once: true, margin: "-60px" });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     if (v < 0.25) setActiveStep(0);
@@ -435,6 +437,66 @@ export default function Features() {
               <StepRow key={step.num} step={step} index={i} activeStep={activeStep} />
             ))}
           </div>
+
+          {/* Nœud final — clôt la timeline */}
+          <div ref={finaleRef} className="relative mt-20 md:mt-24 h-11 md:h-14">
+            <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 top-0 z-20">
+              <motion.div
+                className="relative w-11 h-11 md:w-14 md:h-14 rounded-full flex items-center justify-center bg-gradient-to-br from-[#6952E6] to-[#8B75FF]"
+                initial={{ scale: 0 }}
+                animate={finaleInView ? { scale: 1 } : { scale: 0 }}
+                transition={{ type: "spring", stiffness: 260, damping: 18 }}
+                style={{ boxShadow: "0 0 0 6px rgba(123,97,255,0.12), 0 8px 30px -4px rgba(123,97,255,0.5)" }}
+              >
+                <span className="absolute inset-0 rounded-full bg-[#6952E6]/40 animate-ping" />
+                <svg className="relative w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                </svg>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* Carte de lancement — sous la timeline, centrée */}
+        <div className="mt-8 md:mt-10 flex justify-center">
+          <motion.div
+            className="relative overflow-hidden w-full max-w-md rounded-3xl p-7 md:p-9 text-center bg-gradient-to-br from-[#6952E6] to-[#8B75FF]"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            style={{ boxShadow: "0 24px 70px -18px rgba(105,82,230,0.55)" }}
+          >
+            <div className="absolute -top-12 -right-10 w-44 h-44 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-14 -left-10 w-44 h-44 rounded-full bg-[#B8A9FF]/25 blur-2xl pointer-events-none" />
+
+            <p className="relative text-[11px] font-bold uppercase tracking-[0.2em] text-white/70">Prêt à te lancer ?</p>
+            <h3 className="relative mt-2 text-2xl md:text-3xl font-extrabold text-white leading-tight">
+              Lance ta communauté aujourd&apos;hui
+            </h3>
+
+            <motion.a
+              href="https://www.yoocamp.com/register"
+              className="relative mt-6 inline-flex items-center gap-2 bg-white text-[#6952E6] font-bold text-base px-7 py-3 rounded-full shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            >
+              Commencer maintenant
+              <motion.svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </motion.svg>
+            </motion.a>
+
+            <p className="relative mt-4 text-[12px] text-white/75">Gratuit · Sans carte bancaire · Ta communauté en ligne en 5 minutes</p>
+          </motion.div>
         </div>
       </div>
     </section>

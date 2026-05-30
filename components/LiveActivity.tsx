@@ -153,10 +153,10 @@ const communities: { name: string; members: string; tone: Tone; icon: keyof type
 ];
 
 const pillars: { tone: Tone; title: string }[] = [
-  { tone: "rose", title: "Formations & vidéos" },
   { tone: "brand", title: "Communauté privée" },
-  { tone: "mint", title: "Gratuit pour démarrer" },
+  { tone: "rose", title: "Formations & vidéos" },
   { tone: "sky", title: "Paiements intégrés" },
+  { tone: "mint", title: "Gratuit pour démarrer" },
 ];
 
 const fadeIn = (delay = 0) => ({
