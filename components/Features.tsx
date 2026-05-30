@@ -204,7 +204,7 @@ function Step3Mock() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 + i * 0.12 }}
               >
-                <img src={a.avatar} alt={a.name} className="w-6 h-6 rounded-full object-cover shrink-0 border border-white shadow-sm" />
+                <img src={a.avatar} alt={a.name} width={24} height={24} loading="lazy" className="w-6 h-6 rounded-full object-cover shrink-0 border border-white shadow-sm" />
                 <div className="flex-1 min-w-0">
                   <span className="text-[11px] text-gray-700"><span className="font-semibold">{a.name}</span> {a.action}</span>
                 </div>

@@ -1,13 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { FadeIn } from "./motion";
 
 const floatingEmojis = ["🚀", "💜", "⚡", "🎯", "🔥", "✨"];
 
 export default function CTABanner() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef, { margin: "100px" });
+
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden bg-white border-t border-gray-100">
+    <section ref={sectionRef} className="py-16 md:py-24 relative overflow-hidden bg-white border-t border-gray-100">
       {/* Card wrapper avec gradient violet rounded */}
       <div className="relative max-w-6xl mx-auto px-4 md:px-6">
         <div className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden">
@@ -27,17 +31,16 @@ export default function CTABanner() {
                 left: `${10 + i * 15}%`,
                 top: `${15 + (i % 3) * 25}%`,
               }}
-              animate={{
-                y: [0, -20, 0],
-                rotate: [0, i % 2 === 0 ? 15 : -15, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 3 + i * 0.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.4,
-              }}
+              animate={
+                inView
+                  ? { y: [0, -20, 0], rotate: [0, i % 2 === 0 ? 15 : -15, 0], scale: [1, 1.1, 1] }
+                  : { y: 0, rotate: 0, scale: 1 }
+              }
+              transition={
+                inView
+                  ? { duration: 3 + i * 0.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }
+                  : { duration: 0.3 }
+              }
             >
               {emoji}
             </motion.span>
@@ -47,8 +50,8 @@ export default function CTABanner() {
             <FadeIn>
               <motion.div
                 className="text-5xl mb-5"
-                animate={{ scale: [1, 1.15, 1], rotate: [0, -5, 5, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                animate={inView ? { scale: [1, 1.15, 1], rotate: [0, -5, 5, 0] } : { scale: 1, rotate: 0 }}
+                transition={inView ? { duration: 2.5, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
               >
                 🚀
               </motion.div>

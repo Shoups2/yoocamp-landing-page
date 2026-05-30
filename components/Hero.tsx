@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import Image from "next/image";
 
 /* ── Animation variants ─────────────────── */
@@ -30,7 +31,7 @@ const avatarList = [
 
 /* ── Floating decorative particles ──────── */
 
-function FloatingParticles() {
+function FloatingParticles({ play }: { play: boolean }) {
   const particles = [
     { x: "8%", y: "18%", size: 4, color: "#818CF8", opacity: 0.5, delay: 0, drift: 6 },
     { x: "88%", y: "22%", size: 3, color: "#C084FC", opacity: 0.35, delay: 0.5, drift: 5 },
@@ -57,18 +58,26 @@ function FloatingParticles() {
             backgroundColor: p.color,
           }}
           initial={{ opacity: 0, scale: 0 }}
-          animate={{
-            opacity: [0, p.opacity, p.opacity * 0.5, p.opacity],
-            scale: 1,
-            x: [-p.drift, p.drift, -p.drift],
-            y: [-p.drift, p.drift, -p.drift],
-          }}
-          transition={{
-            opacity: { delay: 1 + p.delay, duration: 2.5, repeat: Infinity, repeatType: "reverse" },
-            scale: { delay: 1 + p.delay, duration: 0.6 },
-            x: { delay: 1 + p.delay, duration: 6 + i * 0.8, repeat: Infinity, ease: "easeInOut" },
-            y: { delay: 1 + p.delay, duration: 5 + i * 0.6, repeat: Infinity, ease: "easeInOut" },
-          }}
+          animate={
+            play
+              ? {
+                  opacity: [0, p.opacity, p.opacity * 0.5, p.opacity],
+                  scale: 1,
+                  x: [-p.drift, p.drift, -p.drift],
+                  y: [-p.drift, p.drift, -p.drift],
+                }
+              : { opacity: p.opacity, scale: 1, x: 0, y: 0 }
+          }
+          transition={
+            play
+              ? {
+                  opacity: { delay: 1 + p.delay, duration: 2.5, repeat: Infinity, repeatType: "reverse" },
+                  scale: { delay: 1 + p.delay, duration: 0.6 },
+                  x: { delay: 1 + p.delay, duration: 6 + i * 0.8, repeat: Infinity, ease: "easeInOut" },
+                  y: { delay: 1 + p.delay, duration: 5 + i * 0.6, repeat: Infinity, ease: "easeInOut" },
+                }
+              : { duration: 0.3 }
+          }
         />
       ))}
     </>
@@ -111,8 +120,12 @@ function FloatingCard({
 /* ── Main Hero ──────────────────────────── */
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef, { margin: "200px" });
+
   return (
     <section
+      ref={sectionRef}
       className="relative pb-12 md:pb-20"
       style={{
         background: "#ffffff",
@@ -132,18 +145,18 @@ export default function Hero() {
         <motion.div
           className="absolute top-[30%] left-[-10%] w-[50%] h-[55%] rounded-full blur-[110px]"
           style={{ background: "radial-gradient(circle, rgba(105,82,230,0.06), rgba(139,117,255,0.025) 55%, transparent 80%)" }}
-          animate={{ x: [0, 15, 0], y: [0, -10, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          animate={inView ? { x: [0, 15, 0], y: [0, -10, 0] } : { x: 0, y: 0 }}
+          transition={inView ? { duration: 12, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
         />
         <motion.div
           className="absolute bottom-[5%] right-[-8%] w-[50%] h-[55%] rounded-full blur-[110px]"
           style={{ background: "radial-gradient(circle, rgba(139,117,255,0.045), rgba(184,169,255,0.02) 55%, transparent 80%)" }}
-          animate={{ x: [0, -12, 0], y: [0, 10, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          animate={inView ? { x: [0, -12, 0], y: [0, 10, 0] } : { x: 0, y: 0 }}
+          transition={inView ? { duration: 14, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
         />
       </div>
 
-      <FloatingParticles />
+      <FloatingParticles play={inView} />
 
       {/* ── Content ── */}
       <div className="relative max-w-5xl mx-auto px-6 pt-24 md:pt-36 lg:pt-44 text-center">
@@ -155,6 +168,8 @@ export default function Hero() {
           <img
             src="/logos/yoocamp.png"
             alt="Yoocamp"
+            width={56}
+            height={56}
             className="w-14 h-14 rounded-2xl shadow-[0_8px_24px_-8px_rgba(105,82,230,0.5)] ring-2 ring-white"
           />
         </motion.div>
@@ -244,6 +259,9 @@ export default function Hero() {
                   key={i}
                   src={av.img}
                   alt=""
+                  width={28}
+                  height={28}
+                  loading="lazy"
                   className="w-7 h-7 rounded-full border-2 border-white shadow-sm flex-shrink-0 object-cover bg-gray-100"
                 />
               ))}

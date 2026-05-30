@@ -430,15 +430,15 @@ export default function FeaturesTabs() {
               <MockMobile tone={TONES.brand} />
             </div>
             <div className="order-2 p-7 sm:p-9 md:p-10 flex flex-col justify-center">
-              <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] self-start text-[#3D9DFF]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#3D9DFF]" />
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] self-start text-[#6952E6]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#6952E6]" />
                 Mobile
               </div>
               <h3
                 className="mt-4 font-bold text-gray-900 text-[1.5rem] sm:text-[1.75rem] md:text-[2.2rem] leading-[1.05] tracking-[-0.025em]"
                 style={{ fontFamily: "var(--font-bricolage), sans-serif" }}
               >
-                Ta communauté <Grad from="#3D9DFF" to="#6FB8FF">dans ta poche</Grad>
+                Ta communauté <Grad from="#6952E6" to="#8B75FF">dans ta poche</Grad>
               </h3>
               <p className="mt-4 text-[15px] text-gray-700 leading-relaxed">
                 Reçois tes ventes, messages et rappels en temps réel. Tes membres accèdent à ton espace où qu&apos;ils soient, directement depuis leur mobile.
@@ -505,7 +505,7 @@ function DiscussionMock() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.4, delay: i * 0.3 }}
           >
-            <img src={msg.avatar} alt={msg.name} className="w-6 h-6 rounded-full flex-shrink-0 object-cover border border-white shadow-sm" />
+            <img src={msg.avatar} alt={msg.name} width={24} height={24} loading="lazy" className="w-6 h-6 rounded-full flex-shrink-0 object-cover border border-white shadow-sm" />
             <div className={`max-w-[75%] ${msg.side === "right" ? "items-end" : "items-start"} flex flex-col gap-0.5`}>
               <span className={`text-[8px] font-medium text-gray-400 ${msg.side === "right" ? "text-right" : ""}`}>{msg.name}</span>
               <div className={`px-3 py-1.5 rounded-2xl text-[11px] leading-relaxed ${
@@ -1095,7 +1095,7 @@ export function MockMobile({ tone }: { tone: ToneObj }) {
               {/* En-tête */}
               <div className="flex items-center justify-between px-5 pt-2">
                 <div className="flex items-center gap-2.5">
-                  <img src={AVATARS[0]} alt="" className="w-9 h-9 rounded-full object-cover ring-2 ring-white shadow-sm" />
+                  <img src={AVATARS[0]} alt="" width={36} height={36} loading="lazy" className="w-9 h-9 rounded-full object-cover ring-2 ring-white shadow-sm" />
                   <div>
                     <div className="text-[9px] font-medium text-gray-400 leading-none">Bonjour 👋</div>
                     <div className="text-[13px] font-bold leading-tight mt-0.5">Lucas</div>

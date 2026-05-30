@@ -112,6 +112,9 @@ export default function Problem() {
                     <img
                       src={p.logo}
                       alt={p.name}
+                      width={48}
+                      height={48}
+                      loading="lazy"
                       className="w-12 h-12 rounded-lg shrink-0 shadow-[0_4px_12px_rgba(105,82,230,0.3)] ring-2 ring-white"
                     />
                     <div className="flex-1 min-w-0">
@@ -163,7 +166,7 @@ export default function Problem() {
                   className="relative bg-gray-50/70 border border-gray-100 rounded-xl p-3 flex items-center gap-3"
                 >
                   <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center bg-white border border-gray-200/60 shadow-sm overflow-hidden">
-                    <img src={p.logo} alt={p.name} className="w-7 h-7 object-contain" />
+                    <img src={p.logo} alt={p.name} width={28} height={28} loading="lazy" className="w-7 h-7 object-contain" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-[13px] font-semibold text-gray-700 mb-1">{p.name}</p>
@@ -219,11 +222,14 @@ export default function Problem() {
                       <img
                         src={p.logo}
                         alt={p.name}
+                        width={40}
+                        height={40}
+                        loading="lazy"
                         className="w-10 h-10 rounded-lg mx-auto mb-3 shadow-[0_4px_12px_rgba(105,82,230,0.3)] ring-2 ring-white"
                       />
                     ) : (
                       <div className="w-10 h-10 rounded-lg mx-auto mb-3 flex items-center justify-center bg-white border border-gray-200/60 shadow-sm overflow-hidden">
-                        <img src={p.logo} alt={p.name} className="w-7 h-7 object-contain" />
+                        <img src={p.logo} alt={p.name} width={28} height={28} loading="lazy" className="w-7 h-7 object-contain" />
                       </div>
                     )}
 
